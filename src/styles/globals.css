@@ -1,3 +1,4 @@
+/* #region Generics */
 
 * {
 	box-sizing: border-box;
@@ -21,6 +22,10 @@ body,
 	background-color: black;
 	color: white;
 }
+
+/* #endregion */
+
+/* #region Elements */
 
 a {
 	color: inherit;
@@ -51,27 +56,31 @@ a:focus::after {
 	width: 100%;
 }
 
+/* #endregion */
+
+/* #region Layout */
 
 header {
-	font-size: 2em;
-
 	margin: 20px 0;
 
+	font-size: 2em;
 	text-align: center;
 }
 
 header a {
-	margin: 0 15px;
+	margin: 0 20px;
 }
 
-
-main {
-	color: black;
+nav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
 }
 
 
 footer {
-	margin: 10px 0;
+	margin: 20px 0;
 }
 
 footer span {
@@ -84,3 +93,15 @@ footer span:not(:last-child) {
 
 	border-right: solid 1px white;
 }
+
+/* #endregion */
+
+/* #region Responsive mobile layout */
+
+@media screen and (max-width: 800px) {
+	nav {
+		flex-direction: column;
+	}
+}
+
+/* #endregion */
