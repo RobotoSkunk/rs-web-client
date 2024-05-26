@@ -14,7 +14,7 @@ export default function Footer()
 				© Copyright {year} RobotoSkunk. All Rights Reserved.
 			</span>
 			<span>
-				<a href='#'>Privacy Policy</a> • <a href='#'>Terms of Use</a>
+				<a href='#'>Privacy Policy</a> • <a href='#'>Terms of Use</a> • <a href='#'>Open Source</a>
 			</span>
 		</footer>
 	);
