@@ -21,6 +21,17 @@
 
 .logo {
 	margin: 20px;
+
+	transition: border ease 0.2s;
+	border: 0 solid black;
+}
+
+@media (prefers-color-scheme: light) {
+	.logo {
+		border-radius: 50%;
+		background-color: black;
+		border: 5px solid black;
+	}
 }
 
 
@@ -42,6 +53,8 @@
 	height: 50px;
 
 	margin: 1em;
+
+	transition: scale 0.3s ease-in-out;
 }
 
 .social_media a svg * {
@@ -49,6 +62,11 @@
 }
 
 .social_media a::after { display: none }
+
+.social_media a:hover,
+.social_media a:focus {
+	scale: 1.3;
+}
 
 .social_media a:hover.facebook svg > circle,
 .social_media a:focus.facebook svg > circle { fill: white }
@@ -69,3 +87,9 @@
 
 .social_media a:hover.generic svg > path,
 .social_media a:focus.generic svg > path { fill: #aaa }
+
+
+@media (prefers-color-scheme: light) {
+	.social_media a:hover.generic svg > path,
+	.social_media a:focus.generic svg > path { fill: #777 }
+}

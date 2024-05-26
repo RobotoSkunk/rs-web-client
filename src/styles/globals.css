@@ -1,3 +1,26 @@
+/* #region Colors */
+
+:root {
+	--background-color: white;
+	--foreground-color: black;
+
+	--svg-dark-color: black;
+	--svg-light-color: white;
+}
+
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background-color: black;
+		--foreground-color: white;
+
+		--svg-dark-color: white;
+		--svg-light-color: black;
+	}
+}
+
+/* #endregion */
+
 /* #region Generics */
 
 * {
@@ -19,8 +42,10 @@ body,
 
 	overflow-x: hidden;
 
-	background-color: black;
-	color: white;
+	background-color: var(--background-color);
+	color: var(--foreground-color);
+
+	scrollbar-color: var(--background-color) var(--foreground-color);
 }
 
 /* #endregion */
@@ -55,6 +80,11 @@ a:hover::after,
 a:focus::after {
 	width: 100%;
 }
+
+
+svg .black { fill: var(--svg-dark-color) }
+svg .white { fill: var(--svg-light-color) }
+
 
 /* #endregion */
 
@@ -91,7 +121,7 @@ footer span:not(:last-child) {
 	padding-right: 10px;
 	margin-right: 10px;
 
-	border-right: solid 1px white;
+	border-right: solid 1px var(--foreground-color);
 }
 
 /* #endregion */
