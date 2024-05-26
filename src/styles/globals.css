@@ -4,10 +4,12 @@
 	--background-color: black;
 	--foreground-color: white;
 
+	--cool-background: linear-gradient(-10deg, #222, black);
+
 	--svg-light-color: white;
 	--svg-dark-color: black;
 
-	--background-squares-color: #;
+	--background-squares-color: #ffffff30;
 }
 
 
@@ -18,6 +20,10 @@
 	
 		--svg-light-color: black;
 		--svg-dark-color: white;
+
+		--cool-background: linear-gradient(-10deg, #ddd, white);
+
+		--background-squares-color: #00000030;
 	}
 }
 
@@ -88,6 +94,7 @@ a:focus::after {
 
 svg .black { fill: var(--svg-dark-color) }
 svg .white { fill: var(--svg-light-color) }
+svg .clear { fill: transparent }
 
 
 /* #endregion */
@@ -138,10 +145,20 @@ footer span:not(:last-child) {
 
 	width: 100vw !important;
 	height: 100vh !important;
+
+	background: var(--cool-background);
 }
 
 #background div {
+	display: block;
 
+	position: absolute;
+	bottom: -150px;
+
+	width: 20px;
+	height: 20px;
+
+	background: var(--background-squares-color);
 }
 
 /* #endregion */
