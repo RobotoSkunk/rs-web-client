@@ -96,6 +96,10 @@ svg .black { fill: var(--svg-dark-color) }
 svg .white { fill: var(--svg-light-color) }
 svg .clear { fill: transparent }
 
+.autowritter_text {
+	text-decoration: underline;
+}
+
 
 /* #endregion */
 

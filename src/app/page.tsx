@@ -1,6 +1,8 @@
+'use client';
 
 import Image from 'next/image';
 import style from '../styles/index.module.css';
+import { TypeAnimation } from 'react-type-animation';
 
 import Facebook from '@/components/icons/social/Facebook';
 import Twitter from '@/components/icons/social/Twitter';
@@ -24,7 +26,23 @@ export default function Root()
 
 			<h1 className={style.h1}>RobotoSkunk</h1>
 			<h2 className={style.h2}>Edgar Lima</h2>
-			<p className={style.p}>Full Stack developer, game developer, Linux servers maintainer and designer</p>
+			<p className={style.p}>
+				<TypeAnimation
+					preRenderFirstString={true}
+					sequence={[
+						2000,
+						"I'm a Full Stack Developer.",
+						2000,
+						"I'm a Game Developer.",
+						2000,
+						"I'm a Linux Servers Maintainer.",
+						2000,
+						"I'm a Designer.",
+					]}
+					speed={50}
+					repeat={Infinity}
+				/>
+			</p>
 
 			<div className={style.social_media}>
 				<a
