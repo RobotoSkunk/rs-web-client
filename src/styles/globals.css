@@ -1,21 +1,23 @@
 /* #region Colors */
 
 :root {
-	--background-color: white;
-	--foreground-color: black;
+	--background-color: black;
+	--foreground-color: white;
 
-	--svg-dark-color: black;
 	--svg-light-color: white;
+	--svg-dark-color: black;
+
+	--background-squares-color: #;
 }
 
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
 	:root {
-		--background-color: black;
-		--foreground-color: white;
-
-		--svg-dark-color: white;
+		--background-color: white;
+		--foreground-color: black;
+	
 		--svg-light-color: black;
+		--svg-dark-color: white;
 	}
 }
 
@@ -42,10 +44,12 @@ body,
 
 	overflow-x: hidden;
 
+	scrollbar-color: var(--foreground-color) var(--background-color);
+}
+
+html {
 	background-color: var(--background-color);
 	color: var(--foreground-color);
-
-	scrollbar-color: var(--background-color) var(--foreground-color);
 }
 
 /* #endregion */
@@ -122,6 +126,22 @@ footer span:not(:last-child) {
 	margin-right: 10px;
 
 	border-right: solid 1px var(--foreground-color);
+}
+
+/* #endregion */
+
+/* #region Cool background */
+
+#background {
+	position: fixed;
+	z-index: -1;
+
+	width: 100vw !important;
+	height: 100vh !important;
+}
+
+#background div {
+
 }
 
 /* #endregion */

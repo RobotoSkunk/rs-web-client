@@ -28,56 +28,56 @@ export default function Root()
 
 			<div className={style.social_media}>
 				<a
-					href="https://facebook.com/RobotoSkunk"
-					title="Facebook"
+					href='https://facebook.com/RobotoSkunk'
+					title='Facebook'
 					className={style.facebook}
-					target="_blank"
-					rel="noreferrer noopener"
+					target='_blank'
+					rel='noreferrer noopener'
 				>
 					<Facebook/>
 				</a>
 				<a
-					href="https://twitter.com/RobotoSkunk"
-					title="Twitter"
+					href='https://twitter.com/RobotoSkunk'
+					title='Twitter'
 					className={style.twitter}
-					target="_blank"
-					rel="noreferrer noopener"
+					target='_blank'
+					rel='noreferrer noopener'
 				>
 					<Twitter/>
 				</a>
 				<a
-					href="https://discord.gg/RT8uayccTt"
-					title="Discord"
+					href='https://discord.gg/RT8uayccTt'
+					title='Discord'
 					className={style.discord}
-					target="_blank"
-					rel="noreferrer noopener"
+					target='_blank'
+					rel='noreferrer noopener'
 				>
 					<Discord/>
 				</a>
 				<a
-					href="https://instagram.com/RobotoSkunk"
-					title="Instagram"
+					href='https://instagram.com/RobotoSkunk'
+					title='Instagram'
 					className={style.generic}
-					target="_blank"
-					rel="noreferrer noopener"
+					target='_blank'
+					rel='noreferrer noopener'
 				>
 					<Instagram/>
 				</a>
 				<a
-					href="https://www.youtube.com/robotoskunk"
-					title="YouTube"
+					href='https://www.youtube.com/robotoskunk'
+					title='YouTube'
 					className={style.youtube}
-					target="_blank"
-					rel="noreferrer noopener"
+					target='_blank'
+					rel='noreferrer noopener'
 				>
 					<YouTube/>
 				</a>
 				<a
-					href="https://github.com/RobotoSkunk"
-					title="GitHub"
+					href='https://github.com/RobotoSkunk'
+					title='GitHub'
 					className={style.generic}
-					target="_blank"
-					rel="noreferrer noopener"
+					target='_blank'
+					rel='noreferrer noopener'
 				>
 					<GitHub/>
 				</a>
