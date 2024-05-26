@@ -16,6 +16,11 @@ export default function Header()
 				<a href='#'>Contact</a>
 				<a href='#'>Donate</a>
 			</nav>
+
+			<div id='nav-menu'>
+				<button>Home</button>
+				<button>Menu</button>
+			</div>
 		</header>
 	);
 }

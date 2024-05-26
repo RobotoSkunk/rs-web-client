@@ -37,14 +37,14 @@ export default function Root()
 						2000,
 						"I'm a Linux Servers Maintainer.",
 						2000,
-						"I'm a Designer.",
+						"I'm a Graphic Designer.",
 					]}
 					speed={50}
 					repeat={Infinity}
 				/>
 			</p>
 
-			<div className={style.social_media}>
+			<div className={style['social-media']}>
 				<a
 					href='https://facebook.com/RobotoSkunk'
 					title='Facebook'

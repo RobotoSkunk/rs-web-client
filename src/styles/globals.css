@@ -96,10 +96,6 @@ svg .black { fill: var(--svg-dark-color) }
 svg .white { fill: var(--svg-light-color) }
 svg .clear { fill: transparent }
 
-.autowritter_text {
-	text-decoration: underline;
-}
-
 
 /* #endregion */
 
@@ -121,6 +117,16 @@ nav {
 	align-items: center;
 	justify-content: center;
 	flex-direction: row;
+}
+
+#nav-menu {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-direction: row;
+
+	position: absolute;
+	top: 0;
 }
 
 
