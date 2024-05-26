@@ -1,14 +1,17 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Roboto } from 'next/font/google';
 import '../styles/globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 
-const inter = Inter({ subsets: [ 'latin' ] });
+const roboto = Roboto({ weight: '300', subsets: [ 'latin' ] });
 
 export const metadata: Metadata = {
 	title: 'RobotoSkunk',
 	description: "I'm a Full Stack developer who makes commissioned artwork, games, websites, bots and microservices.",
 };
+
 
 
 export default function RootLayout({
@@ -19,10 +22,16 @@ export default function RootLayout({
 {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
-				<main>
-					{children}
-				</main>
+			<body className={roboto.className}>
+				<div id="app">
+					<Header/>
+
+					<main>
+						{children}
+					</main>
+
+					<Footer/>
+				</div>
 			</body>
 		</html>
 	);
