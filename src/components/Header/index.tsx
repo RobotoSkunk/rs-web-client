@@ -1,12 +1,36 @@
+'use client';
 
 import Image from 'next/image';
 import { Roboto_Condensed } from 'next/font/google';
+import { useEffect } from 'react';
 
 const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
 
 
+
+function toggleNav()
+{
+	document.querySelector('header')?.classList.toggle('nav-open');
+}
+
+function hideHomeLink()
+{
+	const url = new URL(location.href)
+
+	if (url.pathname === '/') {
+		const navMenu = document.getElementById('nav-menu');
+
+		if (navMenu) {
+			navMenu.classList.add('hide-home');
+		}
+	}
+}
+
+
 export default function Header()
 {
+	useEffect(hideHomeLink, []);
+
 	return (
 		<header className={roboto.className}>
 			<nav>
@@ -19,7 +43,8 @@ export default function Header()
 			</nav>
 
 			<div id='nav-menu'>
-				<a href='/'>
+				<div className='dummy-div'></div>
+				<a href='/' className='home-link'>
 					<Image
 						alt=''
 						src='/assets/svg/symbols/back.svg'
@@ -28,7 +53,7 @@ export default function Header()
 					/>
 					<span>Home</span>
 				</a>
-				<button id="nav-toggle" aria-label="Toggle menu">
+				<button id="nav-toggle" aria-label="Toggle menu" onClick={toggleNav}>
 					<div className='lines'>
 						<div></div>
 						<div></div>
