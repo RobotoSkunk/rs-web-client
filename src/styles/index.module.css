@@ -58,7 +58,7 @@
 }
 
 .social_media a svg * {
-	transition: fill 0.2s ease;
+	transition: fill 0.3s ease;
 }
 
 .social_media a::after { display: none }
