@@ -135,7 +135,7 @@ nav {
 	align-content: flex-end;
 	justify-content: space-between;
 
-	position: fixed;
+	position: absolute;
 	left: 50%;
 	top: 55px;
 
@@ -284,6 +284,8 @@ footer span:not(:last-child) {
 
 @media screen and (max-width: 900px) {
 	#nav-menu {
+		position: fixed;
+
 		top: 0;
 		width: 90vw;
 	}

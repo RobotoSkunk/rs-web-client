@@ -34,12 +34,12 @@ export default function Header()
 	return (
 		<header className={roboto.className}>
 			<nav>
-				<a href='#'>About me</a>
-				<a href='#'>Blog</a>
-				<a href='#'>Commissions</a>
-				<a href='#'>Portfolio</a>
-				<a href='#'>Contact</a>
-				<a href='#'>Donate</a>
+				<a href='/about'>About me</a>
+				<a href='/blog'>Blog</a>
+				<a href='/commissions'>Commissions</a>
+				<a href='/portfolio'>Portfolio</a>
+				<a href='/contact'>Contact</a>
+				<a href='/donate'>Donate</a>
 			</nav>
 
 			<div id='nav-menu'>
