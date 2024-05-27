@@ -3,10 +3,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Roboto_Condensed } from 'next/font/google';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import backImage from '@/../public/assets/svg/symbols/back.svg';
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 
 const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
@@ -32,7 +32,7 @@ export default function Header()
 {
 	const pathname = usePathname();
 
-	useEffect(() => displayHomeLink(pathname), [ pathname ]);
+	useEffect(() => displayHomeLink(pathname as string), [ pathname ]);
 
 	return (
 		<header className={roboto.className}>

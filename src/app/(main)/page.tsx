@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import style from '../styles/index.module.css';
+import style from '@/styles/index.module.css';
 import { TypeAnimation } from 'react-type-animation';
 
 import Facebook from '@/components/icons/social/Facebook';

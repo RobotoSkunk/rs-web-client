@@ -1,7 +1,7 @@
 
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
-import '../styles/globals.css';
+import '@/styles/globals.css';
 
 import Background from '@/components/Background';
 import Header from '@/components/Header';
@@ -25,9 +25,13 @@ export default function RootLayout({
 {
 	return (
 		<html lang='en'>
+			<head>
+				<noscript><meta http-equiv="refresh" content="0; url=/noscript"></meta></noscript>
+			</head>
+
 			<body className={roboto.className}>
 				<Background/>
-				
+
 				<div id='app'>
 					<Header/>
 
