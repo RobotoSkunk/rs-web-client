@@ -84,7 +84,7 @@ function createSquares()
 {
 	setInterval(() =>
 	{
-		if (Math.random() < 0.75) {
+		if (Math.random() < 0.75 || document.hidden) {
 			return;
 		}
 	

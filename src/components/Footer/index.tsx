@@ -1,4 +1,5 @@
 
+import Link from 'next/link';
 import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({ weight: '300', subsets: [ 'latin' ] });
@@ -14,7 +15,7 @@ export default function Footer()
 				© Copyright {year} RobotoSkunk. All Rights Reserved.
 			</span>
 			<span>
-				<a href='/privacy'>Privacy Policy</a> • <a href='/terms'>Terms of Use</a> • <a href='/open-source'>Open Source</a>
+				<Link href='/privacy'>Privacy Policy</Link> • <Link href='/terms'>Terms of Use</Link> • <Link href='/open-source'>Open Source</Link>
 			</span>
 		</footer>
 	);

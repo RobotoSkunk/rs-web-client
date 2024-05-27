@@ -1,8 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { Roboto_Condensed } from 'next/font/google';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import backImage from '@/../public/assets/svg/symbols/back.svg';
+import { usePathname, useSearchParams } from 'next/navigation';
+
 
 const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
 
@@ -13,46 +18,43 @@ function toggleNav()
 	document.querySelector('header')?.classList.toggle('nav-open');
 }
 
-function hideHomeLink()
+function displayHomeLink(pathname: string)
 {
-	const url = new URL(location.href)
+	const navMenu = document.getElementById('nav-menu');
 
-	if (url.pathname !== '/') {
-		const navMenu = document.getElementById('nav-menu');
-
-		if (navMenu) {
-			navMenu.classList.add('show-home');
-		}
+	if (navMenu) {
+		navMenu.classList.toggle('show-home', pathname !== '/');
 	}
 }
 
 
 export default function Header()
 {
-	useEffect(hideHomeLink, []);
+	const pathname = usePathname();
+
+	useEffect(() => displayHomeLink(pathname), [ pathname ]);
 
 	return (
 		<header className={roboto.className}>
 			<nav>
-				<a href='/about'>About me</a>
-				<a href='/blog'>Blog</a>
-				<a href='/commissions'>Commissions</a>
-				<a href='/portfolio'>Portfolio</a>
-				<a href='/contact'>Contact</a>
-				<a href='/donate'>Donate</a>
+				<Link href='/about'>About me</Link>
+				<Link href='/blog'>Blog</Link>
+				<Link href='/commissions'>Commissions</Link>
+				<Link href='/portfolio'>Portfolio</Link>
+				<Link href='/contact'>Contact</Link>
+				<Link href='/donate'>Donate</Link>
 			</nav>
 
 			<div id='nav-menu'>
 				<div className='dummy-div'></div>
-				<a href='/' className='home-link'>
+				<Link href='/' className='home-link'>
 					<Image
 						alt=''
-						src='/assets/svg/symbols/back.svg'
+						src={backImage}
 						width={20}
-						height={15}
 					/>
 					<span>Home</span>
-				</a>
+				</Link>
 				<button id="nav-toggle" aria-label="Toggle menu" onClick={toggleNav}>
 					<div className='lines'>
 						<div></div>

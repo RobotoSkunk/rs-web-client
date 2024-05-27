@@ -2,6 +2,8 @@
 export default function Page()
 {
 	return (
-		<p>i like trains</p>
+		<main>
+			<p>i like trains</p>
+		</main>
 	);
 }

@@ -12,13 +12,17 @@ import YouTube from '@/components/icons/social/YouTube';
 import GitHub from '@/components/icons/social/GitHub';
 
 
+import logoImage from '@/../public/assets/svg/logo_2020.svg';
+
+
+
 export default function Root()
 {
 	return (
 		<main className={style.main}>
 			<Image
 				alt='Alex Skunk logo'
-				src='/assets/svg/logo_2020.svg'
+				src={logoImage}
 				width={200}
 				height={200}
 				className={style.logo}
