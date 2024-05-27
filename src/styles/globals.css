@@ -164,11 +164,11 @@ nav {
 	margin-right: 10px;
 }
 
-#nav-menu .dummy-div { display: none }
-#nav-menu .home-link { display: flex }
+#nav-menu .dummy-div { display: block }
+#nav-menu .home-link { display: none }
 
-#nav-menu.hide-home .dummy-div { display: block }
-#nav-menu.hide-home .home-link { display: none }
+#nav-menu.show-home .dummy-div { display: none }
+#nav-menu.show-home .home-link { display: flex }
 
 
 #nav-toggle {

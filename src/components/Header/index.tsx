@@ -17,11 +17,11 @@ function hideHomeLink()
 {
 	const url = new URL(location.href)
 
-	if (url.pathname === '/') {
+	if (url.pathname !== '/') {
 		const navMenu = document.getElementById('nav-menu');
 
 		if (navMenu) {
-			navMenu.classList.add('hide-home');
+			navMenu.classList.add('show-home');
 		}
 	}
 }

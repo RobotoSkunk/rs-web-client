@@ -6,8 +6,6 @@ import React, {
 
 
 
-var squaresNumber = 0;
-
 function lerp(from: number, to: number, delta: number)
 {
 	return from * delta + to * (1 - delta);
@@ -67,10 +65,9 @@ function moveSquare(square: HTMLDivElement)
 		square.style.opacity = `${(1 - relativeTop) * (0.5 + properties.scale * 0.5)}`;
 
 		// Delete on page top
-		if (properties.top < -100) {
+		if (properties.top < 0) {
 			clearInterval(intervalId);
 			square.remove();
-			squaresNumber--;
 		}
 	}, 16);
 }
@@ -81,14 +78,13 @@ function addSquare(){
 	moveSquare(square);
 
 	document.getElementById('background')?.append(square);
-	squaresNumber++;
 }
 
 function createSquares()
 {
 	setInterval(() =>
 	{
-		if (Math.random() < 0.75 || squaresNumber > 20) {
+		if (Math.random() < 0.75) {
 			return;
 		}
 	
