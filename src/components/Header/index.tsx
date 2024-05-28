@@ -25,6 +25,8 @@ function displayHomeLink(pathname: string)
 	if (navMenu) {
 		navMenu.classList.toggle('show-home', pathname !== '/');
 	}
+
+	document.querySelector('header')?.classList.remove('nav-open');
 }
 
 
