@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 
 import HTTPError from '@/components/HTTPError';
 
-import alexTeapot from '@/../public/assets/svg/alex-skunk/teapot.svg';
+import alexTeapot from '@/assets/svg/alex-skunk/teapot.svg';
 
 
 export const metadata: Metadata = {

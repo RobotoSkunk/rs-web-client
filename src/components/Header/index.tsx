@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Roboto_Condensed } from 'next/font/google';
 import { useEffect } from 'react';
 
-import backImage from '@/../public/assets/svg/symbols/back.svg';
+import backImage from '@/assets/svg/symbols/back.svg';
 import { usePathname } from 'next/navigation';
 
 

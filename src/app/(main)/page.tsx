@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import style from '@/styles/index.module.css';
+import style from './page.module.css';
 import { TypeAnimation } from 'react-type-animation';
 
 import Facebook from '@/components/icons/social/Facebook';
@@ -12,7 +12,7 @@ import YouTube from '@/components/icons/social/YouTube';
 import GitHub from '@/components/icons/social/GitHub';
 
 
-import logoImage from '@/../public/assets/svg/logo_2020.svg';
+import logoImage from '@/assets/svg/logo_2020.svg';
 
 
 

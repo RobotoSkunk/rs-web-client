@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import HTTPError from '@/components/HTTPError';
 
-import alexDizzy from '@/../public/assets/svg/alex-skunk/dizzy.svg';
+import alexDizzy from '@/assets/svg/alex-skunk/dizzy.svg';
 
 
 function returnHome()
