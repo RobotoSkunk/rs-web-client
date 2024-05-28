@@ -11,9 +11,16 @@
 	--svg-light-color: white;
 	--svg-dark-color: black;
 
+	--a-link-color: #9bddf7;
+
 	--background-squares-color: #ffffff30;
 
 	--svg-color-fix-filter: invert(1);
+}
+
+::selection {
+	background: white;
+	color: black;
 }
 
 
@@ -29,9 +36,16 @@
 		--svg-light-color: black;
 		--svg-dark-color: white;
 
+		--a-link-color: #1e4d6d;
+
 		--background-squares-color: #00000030;
 
 		--svg-color-fix-filter: invert(0);
+	}
+
+	::selection {
+		background: black;
+		color: white;
 	}
 }
 
@@ -75,6 +89,10 @@ a {
 	text-decoration: none;
 
 	position: relative;
+}
+
+main a {
+	color: var(--a-link-color);
 }
 
 a::after {
@@ -137,10 +155,10 @@ nav {
 
 	position: absolute;
 	left: 50%;
-	top: 55px;
+	top: 65px;
 
 	width: 95vw;
-	max-width: 800px;
+	max-width: 750px;
 	
 	margin: 15px 0;
 	transform: translateX(-50%);

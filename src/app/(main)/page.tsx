@@ -19,20 +19,21 @@ import logoImage from '@/assets/svg/logo_2020.svg';
 export default function Root()
 {
 	return (
-		<main className={style.main}>
+		<main className={ style.main }>
 			<Image
 				alt='Alex Skunk logo'
-				src={logoImage}
-				width={200}
-				height={200}
-				className={style.logo}
+				src={ logoImage }
+				width={ 200 }
+				height={ 200 }
+				className={ style.logo }
+				draggable={ false }
 			/>
 
-			<h1 className={style.h1}>RobotoSkunk</h1>
-			<h2 className={style.h2}>Edgar Lima</h2>
-			<p className={style.p}>
+			<h1 className={ style.h1 }>RobotoSkunk</h1>
+			<h2 className={ style.h2 }>Edgar Lima</h2>
+			<p className={ style.p }>
 				<TypeAnimation
-					preRenderFirstString={true}
+					preRenderFirstString={ true }
 					sequence={[
 						2000,
 						"I'm a Full Stack Developer.",
@@ -42,17 +43,19 @@ export default function Root()
 						"I'm a Linux Servers Maintainer.",
 						2000,
 						"I'm a Graphic Designer.",
+						2000,
+						"I'm a Cartoonist.",
 					]}
-					speed={50}
-					repeat={Infinity}
+					speed={ 50 }
+					repeat={ Infinity }
 				/>
 			</p>
 
-			<div className={style['social-media']}>
+			<div className={ style['social-media'] }>
 				<a
 					href='https://facebook.com/RobotoSkunk'
 					title='Facebook'
-					className={style.facebook}
+					className={style.facebook }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -61,7 +64,7 @@ export default function Root()
 				<a
 					href='https://twitter.com/RobotoSkunk'
 					title='Twitter'
-					className={style.twitter}
+					className={ style.twitter }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -70,7 +73,7 @@ export default function Root()
 				<a
 					href='https://discord.gg/RT8uayccTt'
 					title='Discord'
-					className={style.discord}
+					className={ style.discord }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -79,7 +82,7 @@ export default function Root()
 				<a
 					href='https://instagram.com/RobotoSkunk'
 					title='Instagram'
-					className={style.generic}
+					className={ style.generic }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -88,7 +91,7 @@ export default function Root()
 				<a
 					href='https://www.youtube.com/robotoskunk'
 					title='YouTube'
-					className={style.youtube}
+					className={ style.youtube }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -97,7 +100,7 @@ export default function Root()
 				<a
 					href='https://github.com/RobotoSkunk'
 					title='GitHub'
-					className={style.generic}
+					className={ style.generic }
 					target='_blank'
 					rel='noreferrer noopener'
 				>

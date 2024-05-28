@@ -8,7 +8,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 
-const roboto = Roboto({ weight: '400', subsets: [ 'latin' ] });
+const roboto = Roboto({ weight: '400', subsets: [ 'latin' ], display: 'swap' });
 
 export const metadata: Metadata = {
 	title: 'RobotoSkunk',
@@ -29,13 +29,13 @@ export default function RootLayout({
 				<noscript><meta http-equiv="refresh" content="0; url=/noscript"></meta></noscript>
 			</head>
 
-			<body className={roboto.className}>
+			<body className={ roboto.className }>
 				<Background/>
 
 				<div id='app'>
 					<Header/>
 
-					{children}
+					{ children }
 
 					<Footer/>
 				</div>
