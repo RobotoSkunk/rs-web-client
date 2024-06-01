@@ -6,6 +6,7 @@ import './globals.css';
 import Background from '@/components/Background';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import AlexPhrase from '@/components/AlexPhrase';
 
 
 const roboto = Roboto({ weight: '400', subsets: [ 'latin' ], display: 'swap' });
@@ -69,6 +70,7 @@ export default function RootLayout({
 
 			<body className={ roboto.className }>
 				<Background/>
+				<AlexPhrase/>
 
 				<div id='app'>
 					<Header/>

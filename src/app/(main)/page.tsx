@@ -29,9 +29,9 @@ export default function Root()
 				draggable={ false }
 			/>
 
-			<h1 className={ style.h1 }>RobotoSkunk</h1>
-			<h2 className={ style.h2 }>Edgar Lima</h2>
-			<p className={ style.p }>
+			<h1>RobotoSkunk</h1>
+			<h2>Edgar Lima</h2>
+			<p>
 				<TypeAnimation
 					preRenderFirstString={ true }
 					sequence={[

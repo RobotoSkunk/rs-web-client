@@ -3,15 +3,13 @@
 	text-align: center;
 }
 
-.h1 {
-	font-size: 3em;
+
+.main h1,
+.main h2 {
+	margin: 0;
 }
 
-.h2 {
-	font-size: 2em;
-}
-
-.p {
+.main p {
 	font-size: 1.2em;
 	margin: 25px 0;
 }

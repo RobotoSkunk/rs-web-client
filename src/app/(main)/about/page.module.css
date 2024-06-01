@@ -57,7 +57,10 @@
 	background-color: white;
 }
 
-.alex-ref p { padding: 10px 0 }
+.alex-ref p {
+	padding: 10px 0;
+	margin: 0;
+}
 .alex-ref a { color: black }
 
 .alex-ref,

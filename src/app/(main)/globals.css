@@ -53,11 +53,11 @@
 
 /* #region Generics */
 
-* {
+/* * {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
-}
+} */
 
 html,
 body,
@@ -73,6 +73,9 @@ body,
 	overflow-x: hidden;
 
 	scrollbar-color: var(--foreground-color) var(--background-color);
+
+	padding: 0;
+	margin: 0;
 }
 
 html {
@@ -83,6 +86,15 @@ html {
 /* #endregion */
 
 /* #region Elements */
+
+
+h1,
+h2 {
+	margin: 30px 0;
+}
+
+h1 { font-size: 3em }
+h2 { font-size: 2em }
 
 a {
 	color: inherit;
@@ -115,6 +127,51 @@ a::after {
 a:hover::after,
 a:focus::after {
 	width: 100%;
+}
+
+.button,
+button {
+	display: inline-block;
+
+	position: relative;
+	overflow: hidden;
+
+	margin: 10px;
+	padding: 10px 20px;
+	border-radius: 40px;
+
+	background: var(--foreground-color);
+	color: var(--background-color);
+
+	border: 1px solid var(--foreground-color);
+}
+
+.button::after,
+button::after {
+	content: '';
+	display: block;
+
+	position: absolute;
+	left: 0;
+	top: 50%;
+	
+	width: 100%;
+	height: 0;
+
+	color: #ffffff00;
+	transform: none;
+
+	backdrop-filter: invert(100%);
+
+	transition: top 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+
+.button:hover::after,
+.button:focus::after,
+.utton:hover::after,
+button:focus::after {
+	top: 0; /* I fucking hate Firefox's CSS logic */
+	height: 100%;
 }
 
 
