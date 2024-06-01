@@ -12,7 +12,7 @@ import YouTube from '@/components/icons/social/YouTube';
 import GitHub from '@/components/icons/social/GitHub';
 
 
-import logoImage from '@/assets/svg/logo_2020.svg';
+import logoImage from '@/assets/svg/logo_2024.svg';
 
 
 
