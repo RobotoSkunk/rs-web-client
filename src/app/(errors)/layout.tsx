@@ -8,7 +8,8 @@ import './globals.css';
 const roboto = Roboto({ weight: '300', subsets: [ 'latin' ] });
 
 export const metadata: Metadata = {
-	title: 'Error'
+	title: 'Error',
+	description: 'Something went wrong...'
 };
 
 
