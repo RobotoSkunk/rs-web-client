@@ -84,12 +84,12 @@ function createSquares()
 {
 	setInterval(() =>
 	{
-		if (Math.random() < 0.75 || document.hidden) {
+		if (document.hidden) {
 			return;
 		}
 	
 		addSquare();
-	}, 1000);
+	}, 5000);
 
 	addSquare();
 }
