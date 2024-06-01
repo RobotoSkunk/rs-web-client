@@ -15,7 +15,11 @@ export default function Footer()
 				© Copyright {year} RobotoSkunk. All Rights Reserved.
 			</span>
 			<span>
-				<Link href='/privacy'>Privacy Policy</Link> • <Link href='/terms'>Terms of Use</Link> • <Link href='/open-source'>Open Source</Link>
+				{/* <Link href='/privacy'>Privacy Policy</Link>
+				{ " • " }
+				<Link href='/terms'>Terms of Use</Link>
+				{ " • " } */}
+				<Link href='/open-source'>Open Source</Link>
 			</span>
 		</footer>
 	);

@@ -40,8 +40,8 @@ export default function Header()
 		<header className={roboto.className}>
 			<nav>
 				<Link href='/about'>About me</Link>
-				<Link href='/blog'>Blog</Link>
-				<Link href='/commissions'>Commissions</Link>
+				{/* <Link href='/blog'>Blog</Link> */}
+				{/* <Link href='/commissions'>Commissions</Link> */}
 				<Link href='/portfolio'>Portfolio</Link>
 				<Link href='/contact'>Contact</Link>
 				<Link href='/donate'>Donate</Link>
