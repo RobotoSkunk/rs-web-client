@@ -12,10 +12,26 @@ export const metadata: Metadata = {
 
 export default function HTTP404()
 {
+	const phrases = [
+		'What you are looking for was not found.',
+		'Are you lost?',
+		"That page doesn't exists.",
+		'What? What was you doing?',
+		'Oops! Something is broken.',
+		"Oh dear, this link isn't working.",
+		'Page lost.',
+		"The page you though exists... doesn't.",
+		'I think you know what 404 means...',
+		'Uhhhh......',
+		'What are you wanting for?',
+	];
+
+	const phrase = phrases[Math.floor(Math.random() * phrases.length)];
+
 	return (
 		<HTTPError
 			title={ '404' }
-			description={ 'Are you lost?' }
+			description={ phrase }
 			alexImage={ alexLost }
 		/>
 	);
