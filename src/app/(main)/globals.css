@@ -152,26 +152,30 @@ button::after {
 	display: block;
 
 	position: absolute;
-	left: 0;
+	left: 50%;
 	top: 50%;
-	
-	width: 100%;
+
+	width: 0;
 	height: 0;
+	border-radius: 40px;
+	transform: none; /* I fucking hate Firefox's CSS logic :) */
 
-	color: #ffffff00;
-	transform: none;
-
+	background: #ffffff00;
 	backdrop-filter: invert(100%);
 
-	transition: top 0.2s ease-in-out, height 0.2s ease-in-out;
+	transition-property: top, left, width, height;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
 }
 
 .button:hover::after,
 .button:focus::after,
 .utton:hover::after,
 button:focus::after {
-	top: 0; /* I fucking hate Firefox's CSS logic */
+	top: 0;
+	left: 0;
 	height: 100%;
+	width: 100%;
 }
 
 
