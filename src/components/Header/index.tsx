@@ -69,7 +69,7 @@ export default function Header()
 	}
 
 	return (
-		<header className={roboto.className}>
+		<header className={ roboto.className }>
 			<nav>
 				{
 					linksData.links.map((data, index) =>

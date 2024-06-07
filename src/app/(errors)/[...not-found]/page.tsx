@@ -17,13 +17,13 @@ export default function HTTP404()
 		'Are you lost?',
 		"That page doesn't exists.",
 		'What? What was you doing?',
-		'Oops! Something is broken.',
-		"Oh dear, this link isn't working.",
 		'Page lost.',
 		"The page you though exists... doesn't.",
 		'I think you know what 404 means...',
 		'Uhhhh......',
-		'What are you wanting for?',
+		'What are you looking for?',
+		'Do you want another map?',
+		'I think your map is upside down.',
 	];
 
 	const phrase = phrases[Math.floor(Math.random() * phrases.length)];
