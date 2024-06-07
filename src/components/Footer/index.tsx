@@ -1,6 +1,8 @@
+'use client';
 
 import Link from 'next/link';
 import { Roboto } from 'next/font/google';
+import { motion } from 'framer-motion';
 
 const roboto = Roboto({ weight: '300', subsets: [ 'latin' ] });
 
@@ -10,7 +12,12 @@ export default function Footer()
 	const year = new Date().getFullYear();
 
 	return (
-		<footer className={roboto.className}>
+		<motion.footer
+			className={roboto.className}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.8 }}
+		>
 			<span>
 				© Copyright {year} RobotoSkunk. All Rights Reserved.
 			</span>
@@ -21,6 +28,6 @@ export default function Footer()
 				{ " • " } */}
 				<Link href='/open-source'>Open Source</Link>
 			</span>
-		</footer>
+		</motion.footer>
 	);
 }

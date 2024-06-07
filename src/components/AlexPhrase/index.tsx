@@ -19,7 +19,7 @@ export default function AlexPhrase()
 	useEffect(() =>
 	{
 		alexTalk(phrases[Math.floor(Math.random() * phrases.length)]);
-	}, []);
+	});
 
 	return (<></>);
 }

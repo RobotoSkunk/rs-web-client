@@ -5,6 +5,7 @@ import './globals.css';
 
 import Background from '@/components/Background';
 import Header from '@/components/Header';
+import Body from '@/components/Body';
 import Footer from '@/components/Footer';
 import AlexPhrase from '@/components/AlexPhrase';
 
@@ -75,7 +76,9 @@ export default function RootLayout({
 				<div id='app'>
 					<Header/>
 
-					{ children }
+					{/* <Body> */}
+						{ children }
+					{/* </Body> */}
 
 					<Footer/>
 				</div>

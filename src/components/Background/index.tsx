@@ -1,8 +1,7 @@
 'use client';
 
-import React, {
-	useEffect,
-} from 'react';
+import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 
 
@@ -100,6 +99,11 @@ export default function Background()
 	useEffect(createSquares, []);
 
 	return (
-		<div id='background'></div>
+		<motion.div
+			id='background'
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 1 }}
+		/>
 	);
 }

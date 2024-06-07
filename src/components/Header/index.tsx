@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 
 import backImage from '@/assets/svg/symbols/back.svg';
 import { usePathname } from 'next/navigation';
+import SpanLink from './SpanLink';
+import { AnimatePresence } from 'framer-motion';
 
 
 const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
@@ -30,21 +32,64 @@ function displayHomeLink(pathname: string)
 }
 
 
+
 export default function Header()
 {
 	const pathname = usePathname();
 
 	useEffect(() => displayHomeLink(pathname as string), [ pathname ]);
 
+	const linksData = {
+		time: 0.5,
+		links: [
+			{
+				href: '/about',
+				label: 'About me',
+			},
+			// {
+			// 	href: '/blog',
+			// 	label: 'Blog',
+			// },
+			// {
+			// 	href: '/commissions',
+			// 	label: 'Commissions',
+			// },
+			{
+				href: '/portfolio',
+				label: 'Portfolio',
+			},
+			{
+				href: '/contact',
+				label: 'Contact',
+			},
+			{
+				href: '/donate',
+				label: 'Donate',
+			},
+		]
+	}
+
 	return (
 		<header className={roboto.className}>
 			<nav>
-				<Link href='/about'>About me</Link>
-				{/* <Link href='/blog'>Blog</Link> */}
-				{/* <Link href='/commissions'>Commissions</Link> */}
-				<Link href='/portfolio'>Portfolio</Link>
-				<Link href='/contact'>Contact</Link>
-				<Link href='/donate'>Donate</Link>
+				<AnimatePresence mode='wait'>
+					{
+						linksData.links.map((data, index) =>
+						{
+							const delay = linksData.time / linksData.links.length * index;
+
+							return (
+								<SpanLink
+									href={ data.href }
+									delay={ 0.2 + delay }
+									key={ index }
+								>
+									{ data.label }
+								</SpanLink>
+							);
+						})
+					}
+				</AnimatePresence>
 			</nav>
 
 			<div id='nav-menu'>
