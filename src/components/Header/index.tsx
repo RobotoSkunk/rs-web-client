@@ -8,7 +8,6 @@ import { useEffect } from 'react';
 import backImage from '@/assets/svg/symbols/back.svg';
 import { usePathname } from 'next/navigation';
 import SpanLink from './SpanLink';
-import { AnimatePresence } from 'framer-motion';
 
 
 const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
@@ -72,36 +71,35 @@ export default function Header()
 	return (
 		<header className={roboto.className}>
 			<nav>
-				<AnimatePresence mode='wait'>
+				{
+					linksData.links.map((data, index) =>
 					{
-						linksData.links.map((data, index) =>
-						{
-							const delay = linksData.time / linksData.links.length * index;
+						const delay = linksData.time / linksData.links.length * index;
 
-							return (
-								<SpanLink
-									href={ data.href }
-									delay={ 0.2 + delay }
-									key={ index }
-								>
-									{ data.label }
-								</SpanLink>
-							);
-						})
-					}
-				</AnimatePresence>
+						return (
+							<SpanLink
+								href={ data.href }
+								delay={ 0.2 + delay }
+								key={ index }
+							>
+								{ data.label }
+							</SpanLink>
+						);
+					})
+				}
 			</nav>
 
 			<div id='nav-menu'>
-				<div className='dummy-div'></div>
-				<Link href='/' className='home-link'>
-					<Image
-						alt=''
-						src={backImage}
-						width={20}
-					/>
-					<span>Home</span>
-				</Link>
+				<div>
+					<Link href='/' className='home-link'>
+						<Image
+							alt=''
+							src={backImage}
+							width={20}
+						/>
+						<span>Home</span>
+					</Link>
+				</div>
 				<button id="nav-toggle" aria-label="Toggle menu" onClick={toggleNav}>
 					<div className='lines'>
 						<div></div>

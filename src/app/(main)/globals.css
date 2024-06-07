@@ -129,8 +129,8 @@ a:focus::after {
 	width: 100%;
 }
 
-.button,
-button {
+main .button,
+main button {
 	display: inline-block;
 
 	position: relative;
@@ -146,8 +146,8 @@ button {
 	border: 1px solid var(--foreground-color);
 }
 
-.button::after,
-button::after {
+main .button::after,
+main button::after {
 	content: '';
 	display: block;
 
@@ -158,7 +158,7 @@ button::after {
 	width: 0;
 	height: 0;
 	border-radius: 40px;
-	transform: none; /* I fucking hate Firefox's CSS logic :) */
+	transform: none; /* I fucking hate Firefox's CSS bugs :) */
 
 	background: #ffffff00;
 	backdrop-filter: invert(100%);
@@ -168,10 +168,10 @@ button::after {
 	transition-timing-function: ease-in-out;
 }
 
-.button:hover::after,
-.button:focus::after,
-.utton:hover::after,
-button:focus::after {
+main .button:hover::after,
+main .button:focus::after,
+main button:hover::after,
+main button:focus::after {
 	top: 0;
 	left: 0;
 	height: 100%;
@@ -211,7 +211,7 @@ nav {
 #nav-menu {
 	display: flex;
 	flex-direction: row;
-	align-content: flex-end;
+	align-content: center;
 	justify-content: space-between;
 
 	position: absolute;
@@ -243,11 +243,32 @@ nav {
 	margin-right: 10px;
 }
 
+
+#nav-menu > div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 #nav-menu .dummy-div { display: block }
-#nav-menu .home-link { display: none }
+#nav-menu .home-link {
+	position: relative;
+
+	left: -10px;
+	opacity: 0;
+	visibility: hidden;
+
+	transition-property: left, opacity, visibility;
+	transition-duration: 0.25s;
+	transition-timing-function: ease;
+}
 
 #nav-menu.show-home .dummy-div { display: none }
-#nav-menu.show-home .home-link { display: flex }
+#nav-menu.show-home .home-link {
+	left: 0;
+	opacity: 1;
+	visibility: visible;
+}
 
 
 #nav-toggle {
