@@ -7,7 +7,7 @@ export default function Page()
 {
 	return (
 		<main className={ style.main }>
-			<h1>hi</h1>
+			<h1>Portfolio</h1>
 		</main>
 	);
 }
