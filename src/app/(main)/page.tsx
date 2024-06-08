@@ -4,6 +4,7 @@
 
 'use client';
 
+import Link from 'next/link';
 import Image from 'next/image';
 import style from './page.module.css';
 import { TypeAnimation } from 'react-type-animation';
@@ -55,61 +56,61 @@ export default function Root()
 				/>
 			</p>
 
-			<div className={ style['social-media'] }>
-				<a
+			<div className='social-media'>
+				<Link
 					href='https://facebook.com/RobotoSkunk'
 					title='Facebook'
-					className={style.facebook }
+					className='facebook'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
 					<Facebook/>
-				</a>
-				<a
+				</Link>
+				<Link
 					href='https://twitter.com/RobotoSkunk'
 					title='Twitter'
-					className={ style.twitter }
+					className='twitter'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
 					<Twitter/>
-				</a>
-				<a
+				</Link>
+				<Link
 					href='https://discord.gg/RT8uayccTt'
 					title='Discord'
-					className={ style.discord }
+					className='discord'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
 					<Discord/>
-				</a>
-				<a
+				</Link>
+				<Link
 					href='https://instagram.com/RobotoSkunk'
 					title='Instagram'
-					className={ style.generic }
+					className='generic'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
 					<Instagram/>
-				</a>
-				<a
+				</Link>
+				<Link
 					href='https://www.youtube.com/robotoskunk'
 					title='YouTube'
-					className={ style.youtube }
+					className='youtube'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
 					<YouTube/>
-				</a>
-				<a
+				</Link>
+				<Link
 					href='https://github.com/RobotoSkunk'
 					title='GitHub'
-					className={ style.generic }
+					className='generic'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
 					<GitHub/>
-				</a>
+				</Link>
 			</div>
 		</main>
 	);
