@@ -60,8 +60,8 @@ export default function CardModal({
 				>
 					<Image
 						src={ img }
-						alt={ name }
-						sizes='750px'
+						alt='' // Disabled due to redundancy
+						sizes={ `${(img.width / img.height) * 350}px` }
 						fill
 					/>
 					<div>
