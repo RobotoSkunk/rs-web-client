@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Roboto } from 'next/font/google';
 import { motion } from 'framer-motion';
 
-const roboto = Roboto({ weight: '300', subsets: [ 'latin' ] });
+const roboto = Roboto({ weight: '300', subsets: [ 'latin' ], display: 'swap' });
 
 
 export default function Footer()

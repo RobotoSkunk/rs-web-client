@@ -8,7 +8,7 @@ import { Roboto } from 'next/font/google';
 import './globals.css';
 
 
-const roboto = Roboto({ weight: '300', subsets: [ 'latin' ] });
+const roboto = Roboto({ weight: '300', subsets: [ 'latin' ], display: 'swap' });
 
 export const metadata: Metadata = {
 	title: 'Error',

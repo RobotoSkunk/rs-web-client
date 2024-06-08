@@ -14,7 +14,7 @@ import { usePathname } from 'next/navigation';
 import SpanLink from './SpanLink';
 
 
-const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
+const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ], display: 'swap' });
 
 
 

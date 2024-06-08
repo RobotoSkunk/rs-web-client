@@ -15,7 +15,7 @@ import React, { useState } from 'react';
 import closeIcon from '@/assets/svg/symbols/close.svg';
 
 
-const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
+const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ], display: 'swap' });
 
 
 
