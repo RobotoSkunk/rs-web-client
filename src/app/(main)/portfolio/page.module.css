@@ -2,10 +2,16 @@
  * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
  */
 
+.legend {
+	font-size: 1.2em;
+
+	max-width: 800px;
+	margin: 0 auto;
+}
+
 .main section {
 	margin: 120px 0;
 }
-
 
 .gallery {
 	width: 1200px;

@@ -19,7 +19,9 @@ export default function Page()
 	return (
 		<main className={ style.main }>
 			<h1>Portfolio</h1>
-			<p>A few examples of the works I've done since I can remember.</p>
+			<p className={ style.legend }>
+				A few examples of some of my favorite projects and artworks I've made since I can remember.
+			</p>
 
 			<section>
 				<h2>Projects</h2>
@@ -31,6 +33,8 @@ export default function Page()
 
 			<section>
 				<h2>Artworks</h2>
+				<p>A collection of my favorite artworks and commissions I made.</p>
+				<p>Want to see more? You can take a look at my social media!</p>
 
 				<div className={ style.gallery }>
 					{artworks.map((data, index) => (
