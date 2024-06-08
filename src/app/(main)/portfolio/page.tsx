@@ -1,18 +1,15 @@
 /* 
  * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
  */
+
 'use client';
 
-import style from './page.module.css';
-
 import { useState } from 'react';
+
+import style from './page.module.css';
 import ArticleModal from '@/components/ArticleModal';
 
-
-import exampleImage1 from '@/assets/img/portfolio/artworks/silence.webp';
-import exampleImage2 from '@/assets/img/portfolio/artworks/why.webp';
-import exampleImage3 from '@/assets/img/portfolio/artworks/unzor.webp';
-
+import artworks from '@/data/artworks';
 
 
 export default function Page()
@@ -28,32 +25,27 @@ export default function Page()
 				<h2>Projects</h2>
 
 				<div className={ style.gallery }>
-					<ArticleModal
-						id='1'
-						name={ 'SILENCE!!!' }
-						img={ exampleImage1 }
-						currentId={ currentId }
-						isImage={ true }
-						setCurrentId={ setCurrentId }
-					/>
+					
+				</div>
+			</section>
 
-					<ArticleModal
-						id='2'
-						img={ exampleImage2 }
-						name={ 'Why?' }
-						isImage={ true }
-						currentId={ currentId }
-						setCurrentId={ setCurrentId }
-					/>
+			<section>
+				<h2>Artworks</h2>
 
-					<ArticleModal
-						id='3'
-						img={ exampleImage3 }
-						name={ 'Gift for Unzor' }
-						currentId={ currentId }
-						isImage={ true }
-						setCurrentId={ setCurrentId }
-					/>
+				<div className={ style.gallery }>
+					{artworks.map((data, index) => (
+						<ArticleModal
+							id={ `artwork-${index}` }
+							key={ index }
+
+							name={ data.name }
+							img={ data.img }
+
+							currentId={ currentId }
+							isImage={ true }
+							setCurrentId={ setCurrentId }
+						/>
+					))}			
 				</div>
 			</section>
 		</main>

@@ -2,7 +2,9 @@
  * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
  */
 
-.project {
+
+
+.card {
 	display: inline-block;
 
 	width: 300px;
@@ -20,17 +22,17 @@
 }
 
 @media (prefers-color-scheme: light) {
-	.project {
+	.card {
 		--transparent-background-color: #ffffff88;
 	}
 }
 
 
-.project::after {
+.card::after {
 	display: none;
 }
 
-.project .preview {
+.card .preview {
 	width: 100%;
 	height: 100%;
 
@@ -39,7 +41,7 @@
 	overflow: hidden;
 }
 
-.project .preview img {
+.card .preview img {
 	object-fit: cover;
 
 	scale: 1;
@@ -50,13 +52,13 @@
 	transition-timing-function: ease;
 }
 
-.project:hover .preview img,
-.project:focus .preview img {
+.card:hover .preview img,
+.card:focus .preview img {
 	scale: 1.25;
 	filter: blur(5px);
 }
 
-.project .preview div {
+.card .preview div {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -76,8 +78,8 @@
 	transition: opacity var(--transition-duration);
 }
 
-.project:hover .preview div,
-.project:focus .preview div {
+.card:hover .preview div,
+.card:focus .preview div {
 	opacity: 1;
 }
 
@@ -114,18 +116,24 @@
 }
 
 .article .content.image {
+	display: inline-block;
+
 	overflow: hidden;
-	width: 100vw;
-	height: 100vh;
+	width: auto;
+	height: auto;
+
+	max-width: 100vw;
+	max-height: 100vh;
 
 	padding: 0;
+	border-radius: 0;
 
 	background-color: transparent;
 }
 
 .article .content.image img {
-	width: 100vw;
-	height: 100vh;
+	max-width: 100vw;
+	max-height: 100vh;
 
 	object-fit: contain;
 
@@ -137,8 +145,8 @@
 }
 
 .article .content.image.maximized img {
-	width: unset;
-	height: unset;
+	max-width: unset;
+	max-height: unset;
 
 	object-fit: none;
 

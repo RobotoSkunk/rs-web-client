@@ -41,8 +41,23 @@ export default function ArticleModal({
 
 	return (
 		<>
-			<motion.button layoutId={ id } className={ style.project } onClick={ () => setCurrentId(id) }>
-				<div className={ style.preview + ' ' + roboto.className }>
+			<motion.button
+				layoutId={ id }
+				className={ style.card }
+				onClick={() =>
+				{
+					setCurrentId(id);
+					setMaximize(false)
+				}}
+			>
+				<div
+					className={
+						[
+							style.preview,
+							roboto.className,
+						].join(' ')
+					}
+				>
 					<Image
 						src={ img }
 						alt={ name }
@@ -81,12 +96,14 @@ export default function ArticleModal({
 							}
 						>
 							{ !isImage ? children : (
-								<Image
-									src={ img }
-									alt={ name }
-									unoptimized={ true }
-									onClick={ () => setMaximize(!maximize) }
-								/>
+								<>
+									<Image
+										src={ img }
+										alt={ name }
+										unoptimized={ true }
+										onClick={ () => setMaximize(!maximize) }
+									/>
+								</>
 							)}
 						</motion.div>
 					</motion.div>
