@@ -83,6 +83,10 @@ html {
 	color: var(--foreground-color);
 }
 
+main {
+	text-align: center;
+}
+
 /* #endregion */
 
 /* #region Elements */
