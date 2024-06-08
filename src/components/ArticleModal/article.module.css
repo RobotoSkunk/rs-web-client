@@ -19,6 +19,13 @@
 	--transparent-background-color: #000000aa;
 }
 
+@media (prefers-color-scheme: light) {
+	.project {
+		--transparent-background-color: #ffffff88;
+	}
+}
+
+
 .project::after {
 	display: none;
 }
@@ -102,26 +109,61 @@
 
 	overflow-x: hidden;
 
-	color: var(--foreground-color);
+	color: black;
 	background-color: white;
 }
 
+.article .content.image {
+	overflow: hidden;
+	width: 100vw;
+	height: 100vh;
 
-.article .content > button {
+	padding: 0;
+
+	background-color: transparent;
+}
+
+.article .content.image img {
+	width: 100vw;
+	height: 100vh;
+
+	object-fit: contain;
+
+	cursor: zoom-in;
+}
+
+.article .content.image.maximized {
+	overflow: auto;
+}
+
+.article .content.image.maximized img {
+	width: unset;
+	height: unset;
+
+	object-fit: none;
+
+	cursor: zoom-out;
+}
+
+
+.article > button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
 	position: absolute;
-	right: 0px;
-	top: 0px;
+	right: 15px;
+	top: 15px;
 
 	width: 30px;
 	height: 30px;
 
 	padding: 0;
-	border: 0;
+	margin: 0;
 
 	background-color: white;
+	border-color: white;
 	color: black;
+
+	z-index: 1;
 }

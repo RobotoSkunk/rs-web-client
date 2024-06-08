@@ -4,35 +4,41 @@
 'use client';
 
 import Image from 'next/image';
-import { StaticImport } from 'next/dist/shared/lib/get-img-props';
+import { StaticImageData } from 'next/dist/shared/lib/get-img-props';
 import { Roboto_Condensed } from 'next/font/google';
 
 import style from './article.module.css';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import React from 'react';
+import React, { useState } from 'react';
 
 import closeIcon from '@/assets/svg/symbols/close.svg';
 
 
 const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
 
+
+
 export default function ArticleModal({
 	children,
 	name,
 	id,
 	img,
+	isImage = false,
 	currentId,
 	setCurrentId,
 }: Readonly<{
-	children: React.ReactNode,
+	children?: React.ReactNode,
 	name: string,
 	id: string,
-	img: StaticImport,
+	img: StaticImageData,
+	isImage?: boolean,
 	currentId: null|string,
 	setCurrentId(id: null|string): void,
 }>)
 {
+	const [ maximize, setMaximize ] = useState(false);
+
 	return (
 		<>
 			<motion.button layoutId={ id } className={ style.project } onClick={ () => setCurrentId(id) }>
@@ -57,20 +63,31 @@ export default function ArticleModal({
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 					>
+						<button onClick={ () => setCurrentId(null) } aria-label='Close'>
+							<Image
+								src={ closeIcon }
+								alt='Close'
+								width={ 12 }
+							/>
+						</button>
 						<motion.div
-							className={ style.content }
 							layoutId={ currentId }
+							className={
+								[
+									style.content,
+									isImage ? style.image : '',
+									maximize ? style.maximized : '',
+								].join(' ')
+							}
 						>
-							<button onClick={ () => setCurrentId(null) } aria-label='Close'>
+							{ !isImage ? children : (
 								<Image
-									src={ closeIcon }
-									alt='Close'
-									width={ 12 }
+									src={ img }
+									alt={ name }
+									unoptimized={ true }
+									onClick={ () => setMaximize(!maximize) }
 								/>
-							</button>
-							<div>
-								{ children }
-							</div>
+							)}
 						</motion.div>
 					</motion.div>
 				)}
