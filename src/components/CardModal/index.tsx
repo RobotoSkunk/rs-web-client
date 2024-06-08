@@ -7,7 +7,7 @@ import Image from 'next/image';
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props';
 import { Roboto_Condensed } from 'next/font/google';
 
-import style from './article.module.css';
+import style from './card.module.css';
 
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
