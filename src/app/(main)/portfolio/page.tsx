@@ -7,7 +7,7 @@
 import { useState } from 'react';
 
 import style from './page.module.css';
-import ArticleModal from '@/components/ArticleModal';
+import ArticleModal from '@/components/CardModal';
 
 import artworks from '@/data/artworks';
 

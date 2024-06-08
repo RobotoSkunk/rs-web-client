@@ -19,7 +19,7 @@ const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ] });
 
 
 
-export default function ArticleModal({
+export default function CardModal({
 	children,
 	name,
 	id,
@@ -73,7 +73,7 @@ export default function ArticleModal({
 			<AnimatePresence mode='wait'>
 				{currentId === id && (
 					<motion.div
-						className={ style.article }
+						className={ style['card-container'] }
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}

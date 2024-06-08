@@ -84,7 +84,7 @@
 }
 
 
-.article {
+.card-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -101,7 +101,7 @@
 	z-index: 100;
 }
 
-.article .content {
+.card-container .content {
 	position: relative;
 
 	width: 90vw;
@@ -115,7 +115,7 @@
 	background-color: white;
 }
 
-.article .content.image {
+.card-container .content.image {
 	display: inline-block;
 
 	overflow: hidden;
@@ -131,7 +131,7 @@
 	background-color: transparent;
 }
 
-.article .content.image img {
+.card-container .content.image img {
 	max-width: 100vw;
 	max-height: 100vh;
 
@@ -140,11 +140,11 @@
 	cursor: zoom-in;
 }
 
-.article .content.image.maximized {
+.card-container .content.image.maximized {
 	overflow: auto;
 }
 
-.article .content.image.maximized img {
+.card-container .content.image.maximized img {
 	max-width: unset;
 	max-height: unset;
 
@@ -154,7 +154,7 @@
 }
 
 
-.article > button {
+.card-container > button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
