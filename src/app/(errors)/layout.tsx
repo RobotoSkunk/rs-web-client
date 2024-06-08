@@ -1,3 +1,6 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
 
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';

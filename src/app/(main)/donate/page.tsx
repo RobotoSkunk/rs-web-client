@@ -1,4 +1,6 @@
-
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
 
 import style from './page.module.css';
 

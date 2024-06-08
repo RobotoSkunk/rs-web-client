@@ -1,3 +1,7 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
+
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';

@@ -1,3 +1,6 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
 
 import Link from 'next/link';
 import style from './page.module.css';

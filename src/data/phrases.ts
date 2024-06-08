@@ -1,3 +1,6 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
 
 export default [
 	`It's over 9000!!`,

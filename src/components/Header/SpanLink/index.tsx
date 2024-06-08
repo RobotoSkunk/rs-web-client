@@ -1,3 +1,6 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';

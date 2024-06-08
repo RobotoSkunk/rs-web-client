@@ -1,3 +1,6 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
 
 import { NextRequest, NextResponse } from 'next/server';
 
