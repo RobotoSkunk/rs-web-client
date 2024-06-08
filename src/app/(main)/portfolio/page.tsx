@@ -6,14 +6,16 @@
 
 import { useState } from 'react';
 
-import style from './page.module.css';
-import ArticleModal from '@/components/CardModal';
-
-import artworks from '@/data/artworks';
 import Link from 'next/link';
 import Newgrounds from '@/components/icons/social/Newgrounds';
 import Instagram from '@/components/icons/social/Instagram';
 import DeviantArt from '@/components/icons/social/DeviantArt';
+import GitHub from '@/components/icons/social/GitHub';
+import ArticleModal from '@/components/CardModal';
+
+import style from './page.module.css';
+
+import artworks from '@/data/artworks';
 
 
 export default function Page()
@@ -38,7 +40,27 @@ export default function Page()
 			<section>
 				<h2>Artworks</h2>
 				<p>A collection of my favorite artworks and commissions I made.</p>
+
+				<div className={ style.gallery }>
+					{artworks.map((data, index) => (
+						<ArticleModal
+							id={ `artwork-${index}` }
+							key={ index }
+
+							name={ data.name }
+							img={ data.img }
+
+							currentId={ currentId }
+							isImage={ true }
+							setCurrentId={ setCurrentId }
+						/>
+					))}			
+				</div>
+			</section>
+
+			<section>
 				<h3>Want to see more?</h3>
+				<p>Follow my projects!</p>
 				<div className='social-media'>
 					<Link
 						href='https://www.deviantart.com/robotogamer98'
@@ -67,22 +89,15 @@ export default function Page()
 					>
 						<Instagram/>
 					</Link>
-				</div>
-
-				<div className={ style.gallery }>
-					{artworks.map((data, index) => (
-						<ArticleModal
-							id={ `artwork-${index}` }
-							key={ index }
-
-							name={ data.name }
-							img={ data.img }
-
-							currentId={ currentId }
-							isImage={ true }
-							setCurrentId={ setCurrentId }
-						/>
-					))}			
+					<Link
+						href='https://github.com/RobotoSkunk'
+						title='GitHub'
+						className='generic'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<GitHub/>
+					</Link>
 				</div>
 			</section>
 		</main>
