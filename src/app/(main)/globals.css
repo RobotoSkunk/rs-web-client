@@ -151,6 +151,8 @@ main button {
 	background: var(--foreground-color);
 	color: var(--background-color);
 
+	cursor: pointer;
+
 	border: 1px solid var(--foreground-color);
 }
 
