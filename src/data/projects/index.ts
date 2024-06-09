@@ -8,6 +8,7 @@ import siwiniChallenge from './data/siwini-challenge';
 
 import pixelman from './data/pixelman';
 import circlebeats from './data/circlebeats';
+import gamink from './data/gamink';
 
 
 export default [
@@ -17,4 +18,5 @@ export default [
 
 	pixelman,
 	circlebeats,
+	gamink,
 ] as ProjectData[];
