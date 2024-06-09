@@ -66,8 +66,8 @@ export default function Header()
 				label: 'Contact',
 			},
 			{
-				href: '/donate',
-				label: 'Donate',
+				href: '/support-me',
+				label: 'Support me',
 			},
 		]
 	}

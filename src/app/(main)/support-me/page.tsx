@@ -9,7 +9,7 @@ export default function Page()
 {
 	return (
 		<main className={ style.main }>
-			<h1>hi again</h1>
+			<h1>Support me</h1>
 		</main>
 	);
 }
