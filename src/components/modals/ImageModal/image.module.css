@@ -1,0 +1,80 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
+
+.img {
+	cursor: zoom-in;
+}
+
+/* Div */
+
+.picture {
+	z-index: 200;
+}
+
+.picture .container {
+	display: inline-block;
+
+	overflow: hidden;
+	width: auto;
+	height: auto;
+
+	max-width: 100vw;
+	max-height: 100vh;
+
+	padding: 0;
+	border-radius: 0;
+
+	background-color: transparent;
+}
+
+.picture .container.maximized {
+	max-width: 100vw;
+	max-height: 100vh;
+
+	object-fit: contain;
+
+	cursor: zoom-in;
+}
+
+/* Image */
+
+.picture .container img {
+	max-width: 100vw;
+	max-height: 100vh;
+
+	object-fit: contain;
+
+	cursor: zoom-in;
+}
+
+.picture .container.maximized img {
+	max-width: unset;
+	max-height: unset;
+
+	object-fit: none;
+
+	cursor: zoom-out;
+}
+
+.picture > button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: absolute;
+	right: 15px;
+	top: 15px;
+
+	width: 30px;
+	height: 30px;
+
+	padding: 0;
+	margin: 0;
+
+	background-color: white;
+	border-color: white;
+	color: black;
+
+	z-index: 1;
+}

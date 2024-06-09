@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { StaticImageData } from 'next/dist/shared/lib/get-img-props';
 import { Roboto_Condensed } from 'next/font/google';
 
+import modalStyle from '../modal.module.css';
 import style from './card.module.css';
 
 import { AnimatePresence, motion } from 'framer-motion';
@@ -73,7 +74,12 @@ export default function CardModal({
 			<AnimatePresence mode='wait'>
 				{currentId === id && (
 					<motion.div
-						className={ style['card-container'] }
+						className={
+							[
+								modalStyle.modal,
+								style['card-container'],
+							].join(' ')
+						}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}

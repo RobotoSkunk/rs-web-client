@@ -1,0 +1,45 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
+
+
+/* Div */
+
+.modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+
+	backdrop-filter: blur(5px);
+	background-color: #000000aa;
+}
+
+/* Close button */
+
+.modal > button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: absolute;
+	right: 15px;
+	top: 15px;
+
+	width: 30px;
+	height: 30px;
+
+	padding: 0;
+	margin: 0;
+
+	background-color: white;
+	border-color: white;
+	color: black;
+
+	z-index: 1;
+}

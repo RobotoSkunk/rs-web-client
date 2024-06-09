@@ -1,0 +1,106 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
+
+'use client';
+
+import { useState } from 'react';
+
+import Image, { StaticImageData } from 'next/image';
+
+import modalStyle from '../modal.module.css';
+import style from './image.module.css';
+
+import genesisBot1 from '@/assets/img/portfolio/development/genesis-bot/1.webp';
+import { AnimatePresence, motion } from 'framer-motion';
+
+import closeIcon from '@/assets/svg/symbols/close.svg';
+
+
+
+export default function ImageModal({
+	src,
+	alt,
+	width,
+	height,
+
+	id,
+	currentId,
+	setCurrentId,
+}: Readonly<{
+	src: StaticImageData,
+	alt: string,
+	width?: number | `${number}`,
+	height?: number | `${number}`,
+
+	id: string,
+	currentId: null|string,
+	setCurrentId(id: null|string): void,
+}>)
+{
+	const [ maximize, setMaximize ] = useState(false);
+
+	return (
+		<>
+			<motion.div
+				layoutId={ id }
+				className={ style.img }
+				onClick={() =>
+				{
+					setMaximize(false);
+					setCurrentId(id);
+				}}
+			>
+				<Image
+					src={ src }
+					alt={ alt }
+					width={ width }
+					height={ height }
+				/>
+			</motion.div>
+
+
+			<AnimatePresence mode='wait'>
+				{currentId === id && (
+					<motion.div
+						className={
+							[
+								modalStyle.modal,
+								style.picture,
+							].join(' ')
+						}
+
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+
+						transition={{ duration: 0.4 }}
+					>
+						<button onClick={ () => setCurrentId(null) } aria-label='Close'>
+							<Image
+								src={ closeIcon }
+								alt='Close'
+								width={ 12 }
+							/>
+						</button>
+						<motion.div
+							className={
+								[
+									style.container,
+									maximize ? style.maximized : '',
+								].join(' ')
+							}
+							layoutId={ currentId }
+						>
+							<Image
+								src={ src }
+								alt=''
+								onClick={ () => setMaximize(!maximize) }
+							/>
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</>
+	);
+}
