@@ -9,6 +9,7 @@ import style from './page.module.css';
 
 import profilePicture from '@/assets/img/profile-picture.webp';
 import alexReferencePicture from '@/assets/img/alex-skunk-ref2021.webp';
+import ExternalLink from '@/components/icons/ExternalLink';
 
 
 export default function Page()
@@ -33,7 +34,7 @@ export default function Page()
 								target='_blank'
 								rel='noreferrer noopener'
 							>
-								@SynieDraw.
+								@SynieDraw <ExternalLink/>
 							</Link>
 						</span>
 					</div>

@@ -22,6 +22,7 @@ import GitHub from '@/components/icons/social/GitHub';
 
 import projects from '@/data/projects';
 import artworks from '@/data/artworks';
+import ExternalLink from '@/components/icons/ExternalLink';
 
 
 
@@ -92,7 +93,7 @@ export default function Page()
 													target='_blank'
 													rel='noreferrer noopener'
 												>
-													{ link.label }
+													{ link.label } <ExternalLink/>
 												</Link>
 											))}
 										</div>
