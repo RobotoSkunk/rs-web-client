@@ -79,7 +79,7 @@ export default function Page()
 										height={ 200 }
 									/>
 									<div>
-										<h2>Génesis Discord Bot</h2>
+										<h2>{ data.name }</h2>
 										<div className={ style.description }>
 											{ data.description } 
 										</div>

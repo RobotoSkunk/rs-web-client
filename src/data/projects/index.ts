@@ -3,8 +3,10 @@
  */
 
 import genesis from './data/genesis';
+import kawitech from './data/kawitech';
 
 
 export default [
 	genesis,
+	kawitech,
 ] as ProjectData[];
