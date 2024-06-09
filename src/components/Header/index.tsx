@@ -74,6 +74,8 @@ export default function Header()
 
 	return (
 		<header className={ roboto.className }>
+			<div className='nav-menu-bg'></div>
+
 			<nav>
 				{
 					linksData.links.map((data, index) =>
@@ -104,7 +106,7 @@ export default function Header()
 						<span>Home</span>
 					</Link>
 				</div>
-				<button id="nav-toggle" aria-label="Toggle menu" onClick={toggleNav}>
+				<button id='nav-toggle' aria-label='Toggle menu' onClick={toggleNav}>
 					<div className='lines'>
 						<div></div>
 						<div></div>

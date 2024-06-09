@@ -224,6 +224,10 @@ nav {
 	flex-direction: row;
 }
 
+.nav-menu-bg {
+	display: none;
+}
+
 #nav-menu {
 	display: flex;
 	flex-direction: row;
@@ -478,6 +482,11 @@ footer span:not(:last-child) {
 
 		top: 0;
 		width: 90vw;
+		pointer-events: none;
+	}
+
+	#nav-menu * {
+		pointer-events: all;
 	}
 
 	#nav-toggle {
@@ -508,11 +517,31 @@ footer span:not(:last-child) {
 		transition-duration: 0.8s;
 	}
 
+	.nav-menu-bg {
+		display: block;
+		position: fixed;
+
+		top: 0;
+		left: 0;
+
+		width: 100vw;
+		height: 100px;
+
+		background: linear-gradient(0deg, transparent, var(--background-color));
+		pointer-events: none;
+
+		z-index: 9;
+	}
+
 	header.nav-open nav {
 		backdrop-filter: blur(15px);
 		scale: 1;
 		opacity: 1;
 		visibility: visible;
+	}
+
+	main {
+		margin-top: 80px;
 	}
 }
 

@@ -40,6 +40,7 @@
 	max-height: 100vh;
 
 	object-fit: contain;
+	overflow: auto;
 
 	cursor: zoom-in;
 }
