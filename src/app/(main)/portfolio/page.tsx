@@ -4,7 +4,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 import Image from 'next/image';
@@ -36,7 +36,9 @@ export default function Page()
 	const [ cardId, setCardId ] = useState(null as null|string);
 	const [ imageId, setImageId ] = useState(null as null|string);
 
-	toggleScrolling(cardId != null || imageId != null);
+	useEffect(() =>
+		toggleScrolling(cardId != null || imageId != null)
+	);
 
 	return (
 		<main className={ style.main }>
