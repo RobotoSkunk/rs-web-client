@@ -23,6 +23,7 @@ export default function ImageModal({
 	alt,
 	width,
 	height,
+	className,
 
 	id,
 	currentId,
@@ -32,6 +33,7 @@ export default function ImageModal({
 	alt: string,
 	width?: number | `${number}`,
 	height?: number | `${number}`,
+	className?: string,
 
 	id: string,
 	currentId: null|string,
@@ -44,7 +46,12 @@ export default function ImageModal({
 		<>
 			<motion.div
 				layoutId={ id }
-				className={ style.img }
+				className={
+					[
+						style.image,
+						className,
+					].join(' ')
+				}
 				onClick={() =>
 				{
 					setMaximize(false);

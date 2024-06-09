@@ -2,9 +2,16 @@
  * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
  */
 
-.img {
+.image {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	overflow: hidden;
+
 	cursor: zoom-in;
 }
+
 
 /* Div */
 

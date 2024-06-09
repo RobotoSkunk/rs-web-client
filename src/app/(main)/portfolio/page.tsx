@@ -85,6 +85,7 @@ export default function Page()
 										src={ genesisBot1 }
 										alt=''
 										width={ 400 }
+										className={ style.screenshot }
 
 										id='test'
 

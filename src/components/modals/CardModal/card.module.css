@@ -98,8 +98,9 @@
 
 	overflow-x: hidden;
 
-	color: black;
-	background-color: white;
+	color: var(--foreground-color);
+	background: var(--cool-background);
+	border: 2px solid var(--foreground-color);
 }
 
 
@@ -117,6 +118,7 @@
 	max-width: 100vw;
 	max-height: 100vh;
 
+	border: 0;
 	padding: 0;
 	border-radius: 0;
 
@@ -148,28 +150,3 @@
 }
 
 /* #endregion */
-
-
-/* Close button*/
-
-.card-container > button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	position: absolute;
-	right: 15px;
-	top: 15px;
-
-	width: 30px;
-	height: 30px;
-
-	padding: 0;
-	margin: 0;
-
-	background-color: white;
-	border-color: white;
-	color: black;
-
-	z-index: 1;
-}

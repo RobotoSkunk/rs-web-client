@@ -46,3 +46,9 @@
 	display: inline-block;
 }
 
+
+.screenshot {
+	border-radius: 15px;
+
+	margin: 10px;
+}
