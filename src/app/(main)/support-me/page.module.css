@@ -1,3 +1,41 @@
 /* 
  * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
  */
+
+.buttons {
+	display: flex;
+	align-self: center;
+	justify-content: center;
+	flex-direction: column;
+
+	row-gap: 20px;
+
+	margin: 20px 0;
+}
+
+.buttons > a::after {
+	display: none;
+}
+
+.buttons > a,
+.buttons > div {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	scale: 1;
+
+	transition: scale 0.25s ease;
+}
+
+.buttons > div a {
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.buttons > a:hover,
+.buttons > a:focus,
+.buttons > div:has(:hover),
+.buttons > div:has(:focus) {
+	scale: 1.1;
+}
