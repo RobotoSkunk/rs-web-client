@@ -4,9 +4,11 @@
 
 import genesis from './data/genesis';
 import kawitech from './data/kawitech';
+import siwiniChallenge from './data/siwini-challenge';
 
 
 export default [
 	genesis,
 	kawitech,
+	siwiniChallenge,
 ] as ProjectData[];

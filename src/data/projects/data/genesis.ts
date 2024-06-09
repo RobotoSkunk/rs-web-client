@@ -18,7 +18,7 @@ import screenshot_9 from '@/assets/img/portfolio/development/genesis-bot/9.webp'
 export default {
 	name: 'Génesis Discord Bot',
 	icon,
-	description: 'A commissioned Discord bot I made to sell roles, avatars and profile banners, provide a looting ' +
+	description: 'A commissioned Discord bot to sell roles, avatars and profile banners, provide a looting ' +
 				 'system and a lot more for a private Discord server.',
 	links: [
 		{
