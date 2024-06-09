@@ -11,7 +11,6 @@ import Image, { StaticImageData } from 'next/image';
 import modalStyle from '../modal.module.css';
 import style from './image.module.css';
 
-import genesisBot1 from '@/assets/img/portfolio/development/genesis-bot/1.webp';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import closeIcon from '@/assets/svg/symbols/close.svg';
@@ -101,7 +100,8 @@ export default function ImageModal({
 						>
 							<Image
 								src={ src }
-								alt=''
+								alt={ alt }
+								unoptimized={ true }
 								onClick={ () => setMaximize(!maximize) }
 							/>
 						</motion.div>

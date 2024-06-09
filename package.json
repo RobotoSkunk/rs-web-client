@@ -2,6 +2,7 @@
   "name": "rs-web-client",
   "version": "0.1.0",
   "private": true,
+  "types": "src/types/index.d.ts",
   "scripts": {
     "dev": "next dev",
     "prebuild": "next telemetry disable",

@@ -6,49 +6,91 @@
 	font-size: 1.2em;
 }
 
+.main {
+	max-width: 90vw;
+}
+
 .main section {
 	margin: 120px 0;
 }
 
 .gallery {
 	width: 1200px;
-	max-width: 100vw;
+	max-width: 100%;
 }
 
 
 .project {
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
-	flex-direction: row;
+	flex-direction: column;
 
 	width: 100%;
 	height: 100%;
+
+	overflow-x: hidden;
 }
 
 .project > .about {
-	position: sticky;
+	display: flex;
+	flex-direction: row;
 
-	border-right: 1px solid #999;
+	padding: 40px 0;
+	text-align: left;
 
-	height: 100%;
-	max-width: 400px;
-	padding-right: 20px;
+	max-width: 750px;
 }
 
-.screenshots {
-	height: 100%;
+.project > .about h2 {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
 
-	flex-grow: 1;
+.project > .about .icon {
+	border-radius: 10px;
+	margin: 0 15px;
+}
+
+.project > .about .description {
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}
+
+
+.screenshots {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+
+	margin: 20px 0;
 }
 
 .screenshots > div {
-	display: inline-block;
+	display: flex;
+	flex-direction: column;
+
+	row-gap: 15px;
+
+	margin: 10px;
+}
+
+.screenshots > div .screenshot {
+	border-radius: 15px;
 }
 
 
-.screenshot {
-	border-radius: 15px;
+@media screen and (max-width: 900px) {
+	.project > .about {
+		align-items: center;
+		flex-direction: column;
 
-	margin: 10px;
+		row-gap: 20px;
+
+		text-align: center;
+	}
+
+	.project > .about .icon {
+		margin: 0;
+	}
 }

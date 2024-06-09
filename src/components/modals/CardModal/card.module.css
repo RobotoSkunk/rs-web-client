@@ -2,8 +2,6 @@
  * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
  */
 
-
-
 .card {
 	display: inline-block;
 
@@ -91,9 +89,8 @@
 .card-container .content {
 	position: relative;
 
-	width: 90vw;
-	height: 90vh;
-	padding: 20px;
+	width: calc(100vw - 100px);
+	height: calc(100vh - 100px);
 	border-radius: 15px;
 
 	overflow-x: hidden;
@@ -122,7 +119,7 @@
 	padding: 0;
 	border-radius: 0;
 
-	background-color: transparent;
+	background: transparent;
 }
 
 .card-container .content.image.maximized {
@@ -150,3 +147,26 @@
 }
 
 /* #endregion */
+
+
+@media screen and (max-width: 900px) {
+	.card-container .content {
+		width: calc(100vw - 50px);
+		height: calc(100vh - 50px);
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.card-container .content {
+		width: calc(100vw - 20px);
+		height: calc(100vh - 20px);
+	}
+}
+
+
+@media screen and (max-width: 380px) {
+	.card {
+		width: 100%;
+		margin: 10px 0;
+	}
+}

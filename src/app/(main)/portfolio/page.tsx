@@ -7,29 +7,36 @@
 import { useState } from 'react';
 
 import Link from 'next/link';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
+
+import CardModal from '@/components/modals/CardModal';
+import ImageModal from '@/components/modals/ImageModal';
+
+import style from './page.module.css';
 
 import Newgrounds from '@/components/icons/social/Newgrounds';
 import Instagram from '@/components/icons/social/Instagram';
 import DeviantArt from '@/components/icons/social/DeviantArt';
 import GitHub from '@/components/icons/social/GitHub';
-import CardModal from '@/components/modals/CardModal';
 
-import style from './page.module.css';
-
+import projects from '@/data/projects';
 import artworks from '@/data/artworks';
-import genesisBot from '@/assets/img/portfolio/development/genesis-bot/icon.webp';
-import genesisBot1 from '@/assets/img/portfolio/development/genesis-bot/1.webp';
-import { motion } from 'framer-motion';
 
-import closeIcon from '@/assets/svg/symbols/close.svg';
-import ImageModal from '@/components/modals/ImageModal';
+
+
+function toggleScrolling(toggle: boolean)
+{
+	document.querySelector('html')?.classList.toggle('no-scroll', toggle);
+}
 
 
 export default function Page()
 {
 	const [ cardId, setCardId ] = useState(null as null|string);
 	const [ imageId, setImageId ] = useState(null as null|string);
+
+	toggleScrolling(cardId != null || imageId != null);
 
 	return (
 		<main className={ style.main }>
@@ -42,60 +49,90 @@ export default function Page()
 				<h2>Projects</h2>
 
 				<div className={ style.gallery }>
-					<CardModal
-						id='example-project'
+					{projects.map((data, index) =>
+					(
+						<CardModal
+							id={ `project-${index}` }
+							key={ index }
 
-						name='Génesis Discord Bot'
-						img={ genesisBot }
+							name={ data.name }
+							img={ data.icon }
 
-						currentId={ cardId }
-						setCurrentId={ setCardId }
-					>
-						<div className={ style.project }>
-							<motion.div
-								className={ style.about }
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								transition={{ duration: 0.25, delay: 0.15 }}
-							>
-								<h2>Génesis Discord Bot</h2>
-								<Image
-									src={ genesisBot }
-									alt='Génesis Discord Bot icon'
-									width={ 200 }
-								/>
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam id finibus quam.
-									Mauris dapibus neque tortor, sit amet venenatis est placerat ac. In quis faucibus
-									erat, a sagittis arcu. Curabitur eu ultricies arcu. In id massa vehicula, vulputate
-									lorem quis, semper justo. Donec mollis consectetur aliquet. Curabitur sit amet est
-									lorem. 
-								</p>
-							</motion.div>
-							<motion.div
-								className={ style.screenshots }
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								transition={{ duration: 0.25, delay: 0.35 }}
-							>
+							currentId={ cardId }
+							setCurrentId={ setCardId }
+						>
+							<div className={ style.project }>
 								<motion.div
-									layoutId={ genesisBot1.src }
+									className={ style.about }
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ duration: 0.25, delay: 0.2 }}
 								>
-									<ImageModal
-										src={ genesisBot1 }
-										alt=''
-										width={ 400 }
-										className={ style.screenshot }
-
-										id='test'
-
-										currentId={ imageId }
-										setCurrentId={ setImageId }
+									<Image
+										src={ data.icon }
+										alt={ `${data.name} icon` }
+										className={ style.icon }
+										width={ 200 }
+										height={ 200 }
 									/>
+									<div>
+										<h2>Génesis Discord Bot</h2>
+										<div className={ style.description }>
+											{ data.description } 
+										</div>
+										<div>
+											{data.links.map((link, i) =>
+											(
+												<Link
+													key={ i }
+													href={ link.url }
+													className='button'
+													target='_blank'
+													rel='noreferrer noopener'
+												>
+													{ link.label }
+												</Link>
+											))}
+										</div>
+									</div>
 								</motion.div>
-							</motion.div>
-						</div>
-					</CardModal>
+								<motion.div
+									className={ style.screenshots }
+								>
+									{data.screenshots.map((screenshot, i) =>
+									(
+										<motion.div
+											key={ i }
+											initial={{
+												y: 15,
+												opacity: 0,
+											}}
+											animate={{
+												y: 0,
+												opacity: 1,
+											}}
+											transition={{ duration: 0.25, delay: 0.3 + 0.075 * i }}
+										>
+											<ImageModal
+												src={ screenshot.src }
+												alt={ screenshot.alt }
+												width={ 300 }
+												className={ style.screenshot }
+	
+												id={ `project-${index}-${i}` }
+	
+												currentId={ imageId }
+												setCurrentId={ setImageId }
+											/>
+											<span>
+												{ screenshot.alt }
+											</span>
+										</motion.div>
+									))}
+								</motion.div>
+							</div>
+						</CardModal>
+					))}
 				</div>
 			</section>
 

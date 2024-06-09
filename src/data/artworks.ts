@@ -22,12 +22,6 @@ import comm_terry        from '@/assets/img/portfolio/artworks/commissions/terry
 import comm_zarckets     from '@/assets/img/portfolio/artworks/commissions/zarckets.webp';
 
 
-interface ArtworkData {
-	name: string,
-	img: StaticImageData,
-}
-
-
 export default [
 	{
 		name: "Commission for @Serpent_Boi",

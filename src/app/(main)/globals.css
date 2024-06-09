@@ -71,12 +71,11 @@ body,
 	flex-direction: column;
 	justify-content: space-between;
 
+	overflow-x: hidden;
+	scrollbar-color: var(--foreground-color) var(--background-color);
+
 	max-width: 100vw;
 	min-height: 100vh;
-
-	overflow-x: hidden;
-
-	scrollbar-color: var(--foreground-color) var(--background-color);
 
 	padding: 0;
 	margin: 0;
@@ -91,6 +90,10 @@ html {
 
 main {
 	text-align: center;
+}
+
+.no-scroll {
+	overflow: hidden;
 }
 
 /* #endregion */
@@ -173,7 +176,7 @@ main button::after {
 	border-radius: 40px;
 	transform: none; /* I fucking hate Firefox's CSS bugs :) */
 
-	background: #ffffff00;
+	background: #ffffff01;
 	backdrop-filter: invert(100%);
 
 	transition-property: top, left, width, height;
