@@ -5,10 +5,12 @@
 import genesis from './data/genesis';
 import kawitech from './data/kawitech';
 import siwiniChallenge from './data/siwini-challenge';
+import circlebeats from './data/circlebeats';
 
 
 export default [
 	genesis,
 	kawitech,
 	siwiniChallenge,
+	circlebeats,
 ] as ProjectData[];
