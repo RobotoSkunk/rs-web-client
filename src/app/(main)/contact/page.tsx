@@ -18,7 +18,6 @@
 
 import Link from 'next/link';
 import style from './page.module.css';
-import Twitter from '@/components/icons/social/Twitter';
 import Discord from '@/components/icons/social/Discord';
 import Instagram from '@/components/icons/social/Instagram';
 import Messenger from '@/components/icons/social/Messenger';
