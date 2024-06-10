@@ -67,6 +67,7 @@ export function middleware(request: NextRequest)
 				'https://www.youtube.com/watch?v=rF-O6Z3sk8c',
 				'https://www.youtube.com/watch?v=oIkhgagvrjI',
 				'https://www.youtube.com/watch?v=MLsbc-dFWS8',
+				'https://www.youtube.com/watch?v=arwACd-pdbg',
 			];
 
 			const redirect = redirects[Math.floor(Math.random() * (redirects.length - 1))];
