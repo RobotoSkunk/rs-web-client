@@ -16,4 +16,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+.main {
+	width: 650px;
+	max-width: 90vw;
+}
 
+.licenses {
+	margin: 50px 0;
+}
+
+.article {
+	margin: 30px 0;
+}
+
+.article > h3 {
+	margin: 0;
+	text-align: left;
+}
+
+.article > h3 a {
+	color: white;
+}
+
+.article > div {
+	font-size: 0.8em;
+	text-align: left;
+
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}

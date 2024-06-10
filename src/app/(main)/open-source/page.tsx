@@ -17,9 +17,15 @@
  */
 
 import Link from 'next/link';
+import { Roboto_Mono } from 'next/font/google';
 
 import style from './page.module.css';
 import ExternalLink from '@/components/icons/ExternalLink';
+
+import acknowledgements from '@/data/acknowledgements';
+
+
+const robotoMono = Roboto_Mono({ weight: '400', subsets: [ 'latin' ], display: 'swap' });
 
 
 export default function Page()
@@ -34,12 +40,34 @@ export default function Page()
 				target='_blank'
 				rel='noreferrer noopener'
 			>
-				GitHub
+				GitHub Repository
 				<ExternalLink/>
 			</Link>
 
-			<h2>Acknowledgements</h2>
-			<p>Thank you to the following open source projects that made this website possible! </p>
+			<section>
+				<h2>Acknowledgements</h2>
+				<p>Thank you to the following open source projects that made this website possible!</p>
+
+				<div className={ style.licenses }>
+					{acknowledgements.map((data, index) =>
+					(
+						<article className={ style.article } key={ index }>
+							<h3>
+								<Link
+									href={ data.repo }
+									target='_blank'
+									rel='noreferrer noopener'
+								>
+									{ data.name } <ExternalLink/>
+								</Link>
+							</h3>
+							<div className={ robotoMono.className }>
+								{ data.license.replace(/\t/g, '') }
+							</div>
+						</article>
+					))}
+				</div>
+			</section>
 		</main>
 	);
 }
