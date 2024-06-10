@@ -25,6 +25,10 @@ export function middleware(request: NextRequest)
 			return NextResponse.redirect(new URL('/contact', request.url));
 		}
 
+		case '/acknowledgements': {
+			return NextResponse.redirect(new URL('/open-source', request.url));
+		}
+
 		case '/phpmyadmin':
 		case '/myadmin':
 		case '/admin': {
