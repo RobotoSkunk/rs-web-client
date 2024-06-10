@@ -32,5 +32,24 @@ export default function sitemap(): MetadataRoute.Sitemap
 			lastModified: new Date(2024, 4, 29),
 			priority: 1,
 		},
+		{
+			url: 'https://robotoskunk.com/portfolio',
+			lastModified: new Date(2024, 5, 9),
+			priority: 1,
+		},
+		{
+			url: 'https://robotoskunk.com/contact',
+			lastModified: new Date(2024, 5, 9),
+			priority: 1,
+		},
+		{
+			url: 'https://robotoskunk.com/support-me',
+			lastModified: new Date(2024, 5, 9),
+			priority: 1,
+		},
+		{
+			url: 'https://robotoskunk.com/open-source',
+			lastModified: new Date(2024, 5, 9),
+		},
 	];
 }
