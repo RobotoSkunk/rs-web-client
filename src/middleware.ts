@@ -77,7 +77,8 @@ export function middleware(request: NextRequest)
 	}
 
 
-	const allowInsecure = request.nextUrl.hostname.endsWith('.onion') || process.env.NODE_ENV !== 'production';
+	const isOnion = request.nextUrl.hostname.endsWith('.onion');
+	const allowInsecure = isOnion || process.env.NODE_ENV !== 'production';
 
 	const csp = [
 		`default-src 'self' 'unsafe-hashes' 'unsafe-inline' ${ allowInsecure ? "'unsafe-eval'" : '' };`,
@@ -110,6 +111,12 @@ export function middleware(request: NextRequest)
 	response.headers.set('Feature-Policy',            "microphone 'none'; geolocation 'none'; camera 'none';");
 	response.headers.set('Keep-Alive',                'timeout=5');
 	response.headers.set('X-Powered-By',              'Your mom');
+
+	// CORS
+	if (isOnion) {
+		response.headers.set('Access-Control-Allow-Origin', '*');
+		response.headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+	}
 
 
 	return response;
