@@ -1,0 +1,14 @@
+/* 
+ * Copyright (c) 2024 Edgar Lima (RobotoSkunk) - All Rights Reserved.
+ */
+
+.mail-icon {
+	display: inline-block;
+
+	width: 30px;
+	margin-right: 12px;
+}
+
+.mail-icon path {
+	fill: currentColor;
+}

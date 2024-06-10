@@ -23,6 +23,7 @@ import GitHub from '@/components/icons/social/GitHub';
 import projects from '@/data/projects';
 import artworks from '@/data/artworks';
 import ExternalLink from '@/components/icons/ExternalLink';
+import LinkedIn from '@/components/icons/social/LinkedIn';
 
 
 
@@ -164,6 +165,15 @@ export default function Page()
 				<h3>Want to see more?</h3>
 				<p>Follow my projects!</p>
 				<div className='social-media'>
+					<Link
+						href='https://linkedin.com/in/RobotoSkunk'
+						title='LinkedIn'
+						className='linkedin'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<LinkedIn/>
+					</Link>
 					<Link
 						href='https://www.deviantart.com/robotogamer98'
 						title='DeviantArt'

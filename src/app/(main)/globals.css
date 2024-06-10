@@ -458,6 +458,11 @@ footer span:not(:last-child) {
 .social-media a:hover.reddit svg > path,
 .social-media a:focus.reddit svg > path { fill: #ff4500 }
 
+.social-media a:hover.linkedin svg > rect,
+.social-media a:focus.linkedin svg > rect { fill: white }
+.social-media a:hover.linkedin svg > path,
+.social-media a:focus.linkedin svg > path { fill: #0a66c2 }
+
 .social-media a:hover.twitter svg > path,
 .social-media a:focus.twitter svg > path { fill: #1da1f2 }
 
