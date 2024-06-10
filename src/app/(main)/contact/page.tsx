@@ -62,13 +62,13 @@ export default function Page()
 				<p>You can find me on my social media. Ordered from the fastest to the slowest I respond.</p>
 				<div className='social-media'>
 					<Link
-						href='https://twitter.com/RobotoSkunk'
-						title='Twitter'
-						className='twitter'
+						href='https://m.me/RobotoSkunk'
+						title='Telegram'
+						className='telegram'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
-						<Twitter/>
+						<Telegram/>
 					</Link>
 					<Link
 						href='https://discord.gg/RT8uayccTt'
@@ -78,15 +78,6 @@ export default function Page()
 						rel='noreferrer noopener'
 					>
 						<Discord/>
-					</Link>
-					<Link
-						href='https://m.me/RobotoSkunk'
-						title='Telegram'
-						className='telegram'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Telegram/>
 					</Link>
 					<Link
 						href='https://linkedin.com/in/RobotoSkunk'
