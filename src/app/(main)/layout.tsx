@@ -32,7 +32,7 @@ const roboto = Roboto({ weight: '400', subsets: [ 'latin' ], display: 'swap' });
 const commonMetadata = {
 	title: 'RobotoSkunk',
 	description: "I'm a Full Stack developer who makes commissioned artwork, games, websites, bots and microservices.",
-	metaIcon: 'https://robotoskunk/resources/img/meta-icon.webp',
+	metaIcon: 'https://robotoskunk.com/assets/img/meta-icon.webp',
 };
 
 export const metadata: Metadata = {
