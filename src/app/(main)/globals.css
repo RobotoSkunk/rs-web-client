@@ -445,9 +445,18 @@ footer span:not(:last-child) {
 
 .social-media a:hover.facebook svg > circle,
 .social-media a:focus.facebook svg > circle { fill: white }
-
 .social-media a:hover.facebook svg > path,
 .social-media a:focus.facebook svg > path { fill: #1877f2 }
+
+.social-media a:hover.telegram svg > circle,
+.social-media a:focus.telegram svg > circle { fill: white }
+.social-media a:hover.telegram svg > path,
+.social-media a:focus.telegram svg > path { fill: #229ed9 }
+
+.social-media a:hover.reddit svg > circle,
+.social-media a:focus.reddit svg > circle { fill: white }
+.social-media a:hover.reddit svg > path,
+.social-media a:focus.reddit svg > path { fill: #ff4500 }
 
 .social-media a:hover.twitter svg > path,
 .social-media a:focus.twitter svg > path { fill: #1da1f2 }

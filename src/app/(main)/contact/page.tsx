@@ -4,6 +4,12 @@
 
 import Link from 'next/link';
 import style from './page.module.css';
+import Twitter from '@/components/icons/social/Twitter';
+import Discord from '@/components/icons/social/Discord';
+import Instagram from '@/components/icons/social/Instagram';
+import Messenger from '@/components/icons/social/Messenger';
+import Telegram from '@/components/icons/social/Telegram/intex';
+import Reddit from '@/components/icons/social/Reddit';
 
 
 export default function Page()
@@ -24,6 +30,67 @@ export default function Page()
 						contact@robotoskunk.com
 					</Link>
 				</p>
+			</section>
+
+			<section>
+				<h2>Social Media</h2>
+				<p>You can find me on my social media. Ordered from the fastest to the slowest I respond.</p>
+				<div className='social-media'>
+					<Link
+						href='https://twitter.com/RobotoSkunk'
+						title='Twitter'
+						className='twitter'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Twitter/>
+					</Link>
+					<Link
+						href='https://discord.gg/RT8uayccTt'
+						title='Discord'
+						className='discord'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Discord/>
+					</Link>
+					<Link
+						href='https://m.me/RobotoSkunk'
+						title='Telegram'
+						className='telegram'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Telegram/>
+					</Link>
+					<Link
+						href='https://m.me/RobotoSkunk'
+						title='Messenger'
+						className='facebook'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Messenger/>
+					</Link>
+					<Link
+						href='https://instagram.com/RobotoSkunk'
+						title='Instagram'
+						className='generic'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Instagram/>
+					</Link>
+					<Link
+						href='https://www.reddit.com/user/RobotoSkunk_'
+						title='Reddit'
+						className='reddit'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Reddit/>
+					</Link>
+				</div>
 			</section>
 		</main>
 	);
