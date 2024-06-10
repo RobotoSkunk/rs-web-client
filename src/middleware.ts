@@ -76,8 +76,9 @@ export function middleware(request: NextRequest)
 		}
 	}
 
+	const hostname = request.headers.get('Host') || request.nextUrl.hostname;
 
-	const isOnion = request.nextUrl.hostname.endsWith('.onion');
+	const isOnion = hostname.endsWith('.onion');
 	const allowInsecure = isOnion || process.env.NODE_ENV !== 'production';
 
 	const csp = [
