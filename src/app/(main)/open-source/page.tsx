@@ -16,28 +16,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-'use client';
+import Link from 'next/link';
 
-import { useEffect } from 'react';
+import style from './page.module.css';
+import ExternalLink from '@/components/icons/ExternalLink';
 
-import phrases from '@/data/phrases';
 
-
-function alexTalk(message: string)
+export default function Page()
 {
-	console.log(
-		`%cAlex Skunk: %c${message}`,
-		'color: #c3e629; font-size: 15px',
-		'color: #dddddd; font-size: 15px; font-weight: bold'
+	return (
+		<main className={ style.main }>
+			<h1>Open Source</h1>
+			<p>This website is completely open source under the AGPLv3 license and its code can be found on GitHub.</p>
+			<Link
+				href='https://github.com/RobotoSkunk/robotoskunk.com'
+				className='button'
+				target='_blank'
+				rel='noreferrer noopener'
+			>
+				GitHub
+				<ExternalLink/>
+			</Link>
+
+			<h2>Acknowledgements</h2>
+			<p>Thank you to the following open source projects that made this website possible! </p>
+		</main>
 	);
-}
-
-export default function AlexPhrase()
-{
-	useEffect(() =>
-	{
-		alexTalk(phrases[Math.floor(Math.random() * phrases.length)]);
-	});
-
-	return (<></>);
 }

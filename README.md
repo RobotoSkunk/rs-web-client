@@ -5,5 +5,12 @@ This is the web client of my personal website
 If you find something you think I should fix or improve, please open an issue
 and I'll review it!
 
+
 ## Copyright
-All Rights Reserved.
+The source code of this project is licensed under the
+[GNU Affero General Public License v3.0](LICENSE).
+
+All the assets, including vector images, are protected under the copyright laws,
+and you should remove them if you want to fork this project and use it for your
+own.
+
