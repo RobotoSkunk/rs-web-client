@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse, userAgent } from 'next/server';
 
 
 export const config = {
@@ -98,8 +98,18 @@ export function middleware(request: NextRequest)
 		status = 418;
 	}
 
+
+	const { device } = userAgent(request);
+
+	const requestHeaders = new Headers(request.headers);
+	requestHeaders.set('X-Device-Type', device.type ?? 'desktop');
+
+
 	const response = NextResponse.next({
 		status,
+		request: {
+			headers: requestHeaders
+		}
 	});
 
 	response.headers.set('Content-Security-Policy',   csp.join(' '));

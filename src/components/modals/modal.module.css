@@ -34,6 +34,11 @@
 	background-color: #000000aa;
 }
 
+body[device-type=mobile] .modal {
+	backdrop-filter: unset;
+	background-color: #000000dd;
+}
+
 /* Close button */
 
 .modal > button {
