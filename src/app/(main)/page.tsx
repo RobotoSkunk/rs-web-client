@@ -64,8 +64,6 @@ export default function Root()
 						2000,
 						"I'm a Graphic Designer.",
 						2000,
-						"I'm a Minecraft plugins and mods developer.",
-						2000,
 						"I'm a Cartoonist.",
 					]}
 					speed={ 50 }
