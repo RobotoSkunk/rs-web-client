@@ -489,6 +489,9 @@ footer span:not(:last-child) {
 .social-media a:hover.youtube svg > path,
 .social-media a:focus.youtube svg > path { fill: red }
 
+.social-media a:hover.bluesky svg > path,
+.social-media a:focus.bluesky svg > path { fill: #1185fe }
+
 .social-media a:hover.generic svg > path,
 .social-media a:focus.generic svg > path { fill: #aaa }
 

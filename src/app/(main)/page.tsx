@@ -29,6 +29,7 @@ import Discord from '@/components/icons/social/Discord';
 import Instagram from '@/components/icons/social/Instagram';
 import YouTube from '@/components/icons/social/YouTube';
 import GitHub from '@/components/icons/social/GitHub';
+import Bluesky from '@/components/icons/social/Bluesky';
 
 
 import logoImage from '@/assets/svg/logo_2024.svg';
@@ -90,6 +91,15 @@ export default function Root()
 					rel='noreferrer noopener'
 				>
 					<Twitter/>
+				</Link>
+				<Link
+					href='https://bsky.app/profile/robotoskunk.com'
+					title='Bluesky'
+					className='bluesky'
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<Bluesky/>
 				</Link>
 				<Link
 					href='https://discord.gg/RT8uayccTt'

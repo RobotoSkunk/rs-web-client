@@ -25,6 +25,7 @@ import Telegram from '@/components/icons/social/Telegram/intex';
 import Reddit from '@/components/icons/social/Reddit';
 import MailIcon from '@/components/icons/MailIcon';
 import LinkedIn from '@/components/icons/social/LinkedIn';
+import Bluesky from '@/components/icons/social/Bluesky';
 
 
 export default function Page()
@@ -77,6 +78,15 @@ export default function Page()
 						rel='noreferrer noopener'
 					>
 						<Discord/>
+					</Link>
+					<Link
+						href='https://bsky.app/profile/robotoskunk.com'
+						title='Bluesky'
+						className='bluesky'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Bluesky/>
 					</Link>
 					<Link
 						href='https://linkedin.com/in/RobotoSkunk'
