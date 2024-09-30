@@ -32,7 +32,7 @@ function lerp(from: number, to: number, delta: number)
 function moveSquare(square: HTMLDivElement, startY?: number)
 {
 	const properties = {
-		top: startY ?? window.innerHeight + 100,
+		top: startY ?? window.innerHeight + 300,
 		left: Math.random(),
 
 		moveDelta: 0.5 + Math.random() * 1,
@@ -52,12 +52,60 @@ function moveSquare(square: HTMLDivElement, startY?: number)
 	// Random scale and X position
 	square.style.scale = '' + (1 + properties.scale * 7);
 
-	// Mouse positon
-	document.addEventListener('mousemove', (ev) =>
-	{
-		properties.mouse.xDelta = ev.clientX / window.innerHeight * 20 * (0.5 + properties.scale * 0.5);
-		properties.mouse.yDelta = ev.clientY / window.innerHeight * 20 * (0.5 + properties.scale * 0.5);
-	});
+	// Mouse positon or device orientation
+	if (document.body.getAttribute('device-type') !== 'mobile') {
+		document.addEventListener('mousemove', (ev) =>
+		{
+			properties.mouse.xDelta = ev.clientX / window.innerHeight * 20 * (0.5 + properties.scale * 0.5);
+			properties.mouse.yDelta = ev.clientY / window.innerHeight * 20 * (0.5 + properties.scale * 0.5);
+		});
+	} else {
+		window.addEventListener('deviceorientation', (ev) =>
+		{
+			var x = ev.gamma ?? 0;
+			var y = ev.beta ?? 0;
+
+			// Clamp Y between -90 and 90
+			if (y > 90) {
+				y = 90;
+			}
+
+			if (y < -90) {
+				y = -90;
+			}
+
+			// Shift ranges to [0, 180]
+			x += 90;
+			y += 90;
+
+			// Shift values based on orientation
+			const angle = screen.orientation.angle;
+			var xDelta = 0;
+			var yDelta = 0;
+
+
+			if (angle >= 270) {
+				xDelta = 180 - y;
+				yDelta = x;
+
+			} else if (angle >= 180) {
+				xDelta = x;
+				yDelta = 180 - y;
+
+			} else if (angle >= 90) {
+				xDelta = y;
+				yDelta = 180 - x;
+
+			} else {
+				xDelta = x;
+				yDelta = y;
+			}
+
+
+			properties.mouse.xDelta = xDelta / 180 * 150 * (0.5 + properties.scale * 0.5);
+			properties.mouse.yDelta = yDelta / 180 * 150 * (0.5 + properties.scale * 0.5);
+		});
+	}
 
 	// Animation interval
 	const intervalId = setInterval(() =>
@@ -81,12 +129,14 @@ function moveSquare(square: HTMLDivElement, startY?: number)
 		square.style.top = `${properties.top + properties.mouse.y}px`;
 
 		// Appareance
+		const opacity = (1 - relativeTop) * (0.5 + properties.scale * 0.5);
+
 		square.style.rotate = `${properties.rotation}deg`;
 		square.style.borderRadius = `${relativeTop * 10}px`;
-		square.style.opacity = `${(1 - relativeTop) * (0.5 + properties.scale * 0.5)}`;
+		square.style.opacity = '' + opacity;
 
 		// Delete on page top
-		if (properties.top < 0) {
+		if (opacity <= 0.01) {
 			clearInterval(intervalId);
 			square.remove();
 		}
