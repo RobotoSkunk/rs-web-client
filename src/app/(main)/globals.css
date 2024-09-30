@@ -498,7 +498,7 @@ footer span:not(:last-child) {
 
 @media (prefers-color-scheme: light) {
 	.social-media a:hover.generic svg > path,
-	.social-media a:focus.generic svg > path { fill: #777 }
+	.social-media a:focus.generic svg > path { fill: #444 }
 }
 
 /* #endregion */
