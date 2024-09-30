@@ -29,10 +29,10 @@ function lerp(from: number, to: number, delta: number)
 }
 
 
-function moveSquare(square: HTMLDivElement)
+function moveSquare(square: HTMLDivElement, startY?: number)
 {
 	const properties = {
-		top: window.innerHeight + 100,
+		top: startY ?? window.innerHeight + 100,
 		left: Math.random(),
 
 		moveDelta: 0.5 + Math.random() * 1,
@@ -89,10 +89,10 @@ function moveSquare(square: HTMLDivElement)
 	}, 16);
 }
 
-function addSquare(){
+function addSquare(startY?: number){
 	const square = document.createElement('div');
 
-	moveSquare(square);
+	moveSquare(square, startY);
 
 	document.getElementById('background')?.append(square);
 }
@@ -106,9 +106,15 @@ function createSquares()
 		}
 	
 		addSquare();
-	}, 5000);
+	}, 4500);
 
-	addSquare();
+
+	// Pre-spawn some squares at once
+	var maxSquares = 2 + Math.floor(Math.random() * 4);
+
+	for (var i = 0; i < maxSquares; i++) {
+		addSquare(Math.random() * window.innerHeight);
+	}
 }
 
 
