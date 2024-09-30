@@ -62,6 +62,10 @@ function moveSquare(square: HTMLDivElement, startY?: number)
 	// Animation interval
 	const intervalId = setInterval(() =>
 	{
+		if (document.hidden) {
+			return;
+		}
+
 		const relativeTop = (window.innerHeight - square.offsetTop) / window.innerHeight;
 		const relativeLeft = properties.left * window.innerWidth;
 
