@@ -54,7 +54,7 @@ export default function Page()
 					</div>
 					<div className={ style.content }>
 						<p>
-							My name is <b>Edgar Lima</b>, I'm a 22-year-old Mexican autodidact Full Stack developer,
+							My name is <b>Edgar Lima</b>, I'm a 23-year-old Mexican autodidact Full Stack developer,
 							graphic designer, cartoonist, Linux Servers maintainer and game developer.
 						</p>
 						<p>
