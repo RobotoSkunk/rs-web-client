@@ -38,6 +38,7 @@ import projects from '@/data/projects';
 import artworks from '@/data/artworks';
 import ExternalLink from '@/components/icons/ExternalLink';
 import LinkedIn from '@/components/icons/social/LinkedIn';
+import DropdownArticle from '@/components/articles/DropdownArticle';
 
 
 
@@ -65,8 +66,10 @@ export default function Page()
 
 			<section>
 				<h2>Projects</h2>
+				
+				<DropdownArticle></DropdownArticle>
 
-				<div className={ style.gallery }>
+				{/* <div className={ style.gallery }>
 					{projects.map((data, index) =>
 					(
 						<CardModal
@@ -151,7 +154,7 @@ export default function Page()
 							</div>
 						</CardModal>
 					))}
-				</div>
+				</div> */}
 			</section>
 
 			<section>

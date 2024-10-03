@@ -1,0 +1,102 @@
+/*
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+	height: 35px;
+
+	margin: 0;
+
+	border-radius: 0;
+
+	border: 0;
+	background: transparent;
+	backdrop-filter: blur(0px);
+
+	transition: backdrop-filter 0.5s, background 0.5s;
+}
+
+.button::after {
+	display: none;
+}
+
+.button:hover {
+	background: #ffffff30;
+	backdrop-filter: blur(5px);
+}
+
+
+/* #region Arrow */
+
+.arrow {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	width: 30px;
+	height: 20px;
+}
+
+.arrow div {
+	display: block;
+	height: 2px;
+	width: 70%;
+	border-radius: 10px;
+	background: var(--foreground-color);
+}
+
+.arrow div:nth-child(1) {
+	transform: translate(12px, 8px) rotate(-40deg);
+
+	transform-origin: 50% 50%;
+	transition: transform 0.4s ease-in-out;
+}
+
+.arrow div:nth-child(2) {
+	transform: translate(-3px, -10px) rotate(40deg);
+
+	transform-origin: 50% 50%;
+	transition: transform 0.4s ease-in-out;
+}
+
+.dropdown.open .arrow div:nth-child(1) {
+	transform: translate(12px, 8px) rotate(-140deg);
+}
+
+.dropdown.open .arrow div:nth-child(2) {
+	transform: translate(-3px, -10px) rotate(140deg);
+}
+
+/* #endregion */
+
+
+.content {
+	max-height: 0px;
+
+	overflow: hidden;
+
+	transition: max-height 0.5s ease-in-out;
+}
+
+.dropdown.open .content {
+	max-height: 500px;
+}
