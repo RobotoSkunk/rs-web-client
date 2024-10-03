@@ -17,7 +17,7 @@
  */
 'use client';
 
-import React, { useState } from 'react';
+import React, { MutableRefObject, useRef, useState } from 'react';
 
 import articlesStyle from '../article.module.css';
 import style from './dropdown.module.css';
@@ -42,6 +42,7 @@ export default function DropdownArticle({
 	// setCurrentId(id: null|string): void,
 }>)
 {
+	const contentRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 	const [ open, setOpen ] = useState(false);
 
 	return (
@@ -70,7 +71,13 @@ export default function DropdownArticle({
 					<div></div>
 				</div>
 			</button>
-			<div className={style.content}>
+			<div
+				className={style.content}
+				ref={ contentRef }
+				style={{
+					height: open ? contentRef.current?.scrollHeight : 0,
+				}}
+			>
 				<p>
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat justo ac congue aliquet.
 					Vestibulum libero massa, condimentum eu facilisis ac, finibus ac felis.
