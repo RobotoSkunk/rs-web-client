@@ -20,12 +20,12 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import articlesStyle from '../article.module.css';
-import style from './dropdown.module.css';
+import style from './project.module.css';
 import { StaticImageData } from 'next/image';
 
 
 
-export default function DropdownArticle({
+export default function ProjectArticle({
 	children,
 	name,
 	description,

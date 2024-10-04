@@ -38,7 +38,7 @@ import projects from '@/data/projects';
 import artworks from '@/data/artworks';
 import ExternalLink from '@/components/icons/ExternalLink';
 import LinkedIn from '@/components/icons/social/LinkedIn';
-import DropdownArticle from '@/components/articles/DropdownArticle';
+import ProjectArticle from '@/components/articles/ProjectArticle';
 
 
 
@@ -70,7 +70,7 @@ export default function Page()
 				{<div className={ style.gallery }>
 					{projects.map((data, index) =>
 					(
-						<DropdownArticle
+						<ProjectArticle
 							key={ index }
 							name={ data.name }
 							description={ data.description }
@@ -110,7 +110,7 @@ export default function Page()
 									</motion.div>
 								))}
 							</motion.div>
-						</DropdownArticle>
+						</ProjectArticle>
 					))}
 				</div>}
 			</section>
