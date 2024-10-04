@@ -81,21 +81,21 @@ export default function DropdownArticle({
 			<div className={ articlesStyle.background }>
 				<div className={ articlesStyle.circle } ref={ circleRef }></div>
 			</div>
-			<div className={articlesStyle.info}>
+			<div className={ articlesStyle.info }>
 				<h3>{ name }</h3>
 				<p>{ description }</p>
 			</div>
 			<button
-				className={style.button}
-				onClick={() => setOpen(!open)}
+				className={ style.button }
+				onClick={ () => setOpen(!open) }
 			>
-				<div className={style.arrow}>
+				<div className={ style.arrow }>
 					<div></div>
 					<div></div>
 				</div>
 			</button>
 			<div
-				className={style.content}
+				className={ style.content }
 				ref={ contentRef }
 				style={{
 					height: open ? contentRef.current?.scrollHeight : 0,
