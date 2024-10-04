@@ -185,6 +185,7 @@ export default function ProjectArticle({
 			<button
 				className={ style.button }
 				onClick={ () => toggleArticle(!open) }
+				aria-label={ `${open ? 'Hide' : 'Show'} screenshots of ${ name }` }
 			>
 				<div className={ style.arrow }>
 					<div></div>
