@@ -66,6 +66,8 @@ export default function ProjectArticle({
 
 	const [ open, setOpen ] = useState(false);
 
+	const previewScreenshots = screenshots.filter((_, index) => index < 2).reverse();
+
 
 	useEffect(() =>
 	{
@@ -147,23 +149,17 @@ export default function ProjectArticle({
 				</div>
 				<div className={ style.content }>
 					<div className={ style.preview }>
-						{screenshots.map((screenshot, i) =>
-						{
-							if (i >= 2) {
-								return;
-							}
-
-							return (
-								<div className={ style.picture }>
-									<Image
-										src={ screenshot.src }
-										alt={ screenshot.alt }
-										width={ 200 }
-										draggable={ false }
-									/>
-								</div>
-							);
-						})}
+						{previewScreenshots.map((screenshot, i) =>
+						(
+							<div className={ style.picture }>
+								<Image
+									src={ screenshot.src }
+									alt={ screenshot.alt }
+									width={ 200 }
+									draggable={ false }
+								/>
+							</div>
+						))}
 					</div>
 					<div className={ style.description }>
 						<div className={ style.text }>
