@@ -38,8 +38,10 @@ export default function DropdownArticle({
 }>)
 {
 	const articleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-	const contentRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 	const circleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+
+	const containerRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+	const contentRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
 	const [ open, setOpen ] = useState(false);
 
@@ -64,7 +66,37 @@ export default function DropdownArticle({
 			circleRef.current.style.left = deltaX + 'px';
 			circleRef.current.style.top = deltaY + 'px';
 		});
+
+		window.addEventListener('resize', () =>
+		{
+			if (!articleRef.current) {
+				return;
+			}
+
+			setContentHeight(articleRef.current.classList.contains(style.open));
+		});
 	}, []);
+
+
+	function toggleArticle(toggle: boolean)
+	{
+		setOpen(toggle);
+		setContentHeight(toggle);
+	}
+
+	function setContentHeight(toggle: boolean)
+	{
+		if (!contentRef.current) {
+			return;
+		}
+		if (!containerRef.current) {
+			return;
+		}
+
+		const rect = contentRef.current?.getBoundingClientRect();
+
+		containerRef.current.style.height = (toggle ? rect.height : 0) + 'px';
+	}
 
 
 	return (
@@ -87,7 +119,7 @@ export default function DropdownArticle({
 			</div>
 			<button
 				className={ style.button }
-				onClick={ () => setOpen(!open) }
+				onClick={ () => toggleArticle(!open) }
 			>
 				<div className={ style.arrow }>
 					<div></div>
@@ -95,13 +127,15 @@ export default function DropdownArticle({
 				</div>
 			</button>
 			<div
-				className={ style.content }
-				ref={ contentRef }
+				className={ style.container }
+				ref={ containerRef }
 				style={{
-					height: open ? contentRef.current?.scrollHeight : 0,
+					height: 0,
 				}}
 			>
-				{ children }
+				<div className={ style.content } ref={ contentRef }>
+					{ children }
+				</div>
 			</div>
 		</article>
 	);

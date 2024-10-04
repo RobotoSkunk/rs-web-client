@@ -23,12 +23,11 @@
 	width: 80%;
 
 	margin: 20px auto;
-
-	background: #ffffff0E;
-	backdrop-filter: blur(4px);
+	position: relative;
 
 	border-radius: 20px;
 }
+
 
 .article .info {
 	padding: 15px;
@@ -44,6 +43,10 @@
 	height: 100%;
 
 	overflow: hidden;
+
+	background: #ffffff0E;
+	backdrop-filter: blur(4px);
+
 	border-radius: 20px;
 
 	z-index: -1;
