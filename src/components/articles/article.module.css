@@ -17,19 +17,17 @@
  */
 
 .article {
+	display: flex;
 	flex-direction: column;
 
 	width: 80%;
 
 	margin: 20px auto;
 
-	position: relative;
-
 	background: #ffffff0E;
 	backdrop-filter: blur(4px);
 
 	border-radius: 20px;
-	/* border-bottom: 1px solid white; */
 }
 
 .article .info {
@@ -59,7 +57,3 @@
 
 	background: radial-gradient(closest-side, #ffffff10, transparent);
 }
-
-/* .article:nth-child(1) {
-	border-top: 1px solid white;
-} */
