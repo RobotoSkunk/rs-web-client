@@ -44,7 +44,7 @@
 
 	overflow: hidden;
 
-	background: #ffffff0E;
+	background: var(--article-background);
 	backdrop-filter: blur(4px);
 
 	border-radius: 20px;
@@ -63,5 +63,5 @@ body[device-type=mobile] .article .background {
 	width: 800px;
 	height: 800px;
 
-	background: radial-gradient(closest-side, #ffffff10, transparent);
+	background: var(--article-circle-gradient);
 }
