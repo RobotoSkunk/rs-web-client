@@ -20,7 +20,8 @@
 	display: flex;
 	flex-direction: column;
 
-	width: 80%;
+	width: 900px;
+	max-width: 100%;
 
 	margin: 20px auto;
 	position: relative;
