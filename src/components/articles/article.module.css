@@ -29,7 +29,6 @@
 	border-radius: 20px;
 }
 
-
 .article .info {
 	padding: 15px;
 }
@@ -52,6 +51,11 @@
 
 	z-index: -1;
 }
+
+body[device-type=mobile] .article .background {
+	backdrop-filter: unset;
+}
+
 
 .article .background .circle {
 	position: absolute;

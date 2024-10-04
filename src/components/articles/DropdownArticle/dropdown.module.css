@@ -39,10 +39,18 @@
 	display: none;
 }
 
+.button:focus,
 .button:hover {
 	background: #ffffff30;
 	backdrop-filter: blur(5px);
 }
+
+
+body[device-type=mobile] .button:focus,
+body[device-type=mobile] .button:hover {
+	backdrop-filter: unset;
+}
+
 
 
 /* #region Arrow */
