@@ -19,7 +19,7 @@
 
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 
-import { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { motion } from 'framer-motion';
 
 import ImageModal from '@/components/modals/ImageModal';
@@ -55,7 +55,7 @@ export default function ProjectArticle({
 	const circleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
 	const containerRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-	const contentRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+	const screenshotsRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 
 	const [ open, setOpen ] = useState(false);
 
@@ -100,14 +100,14 @@ export default function ProjectArticle({
 
 	function setContentHeight(toggle: boolean)
 	{
-		if (!contentRef.current) {
+		if (!screenshotsRef.current) {
 			return;
 		}
 		if (!containerRef.current) {
 			return;
 		}
 
-		const rect = contentRef.current?.getBoundingClientRect();
+		const rect = screenshotsRef.current?.getBoundingClientRect();
 
 		containerRef.current.style.height = (toggle ? rect.height : 0) + 'px';
 	}
@@ -119,7 +119,7 @@ export default function ProjectArticle({
 			className={
 				[
 					articlesStyle.article,
-					style.dropdown,
+					style.project,
 					open ? style.open : '',
 				].join(' ')
 			}
@@ -128,8 +128,39 @@ export default function ProjectArticle({
 				<div className={ articlesStyle.circle } ref={ circleRef }></div>
 			</div>
 			<div className={ articlesStyle.info }>
-				<h3>{ name }</h3>
-				<p>{ description }</p>
+				<div className={ style.head }>
+					<Image
+						src={ icon }
+						alt={ name }
+						width={ 45 }
+						height={ 45 }
+						draggable={ false }
+					/>
+					<h3>{ name }</h3>
+				</div>
+				<div className={ style.content }>
+					<div className={ style.preview }>
+						{screenshots.map((screenshot, i) =>
+						{
+							if (i >= 2) {
+								return;
+							}
+
+							return (
+								<div className={ style.picture }>
+									<Image
+										src={ screenshot.src }
+										alt={ screenshot.alt }
+										width={ 200 }
+									/>
+								</div>
+							);
+						})}
+					</div>
+					<div className={ style.description }>
+						{ description }
+					</div>
+				</div>
 			</div>
 			<button
 				className={ style.button }
@@ -147,7 +178,7 @@ export default function ProjectArticle({
 					height: 0,
 				}}
 			>
-				<div className={ style.content } ref={ contentRef }>
+				<div className={ style.screenshots } ref={ screenshotsRef }>
 					{screenshots.map((screenshot, i) =>
 					(
 						<motion.div
