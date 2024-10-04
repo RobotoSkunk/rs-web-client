@@ -78,11 +78,11 @@ export default function Page()
 							description={ data.description }
 							icon={ data.icon }
 							screenshots={ data.screenshots }
+							links={ data.links }
 
 							currentId={ imageId }
 							setCurrentId={ setImageId }
-						>
-						</ProjectArticle>
+						/>
 					))}
 				</div>}
 			</section>

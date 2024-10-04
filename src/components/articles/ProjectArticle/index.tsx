@@ -20,8 +20,10 @@
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import Image, { StaticImageData } from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
+import ExternalLink from '@/components/icons/ExternalLink';
 import ImageModal from '@/components/modals/ImageModal';
 
 import articlesStyle from '../article.module.css';
@@ -33,6 +35,7 @@ export default function ProjectArticle({
 	description,
 	icon,
 	screenshots,
+	links,
 
 	id,
 	currentId,
@@ -44,6 +47,10 @@ export default function ProjectArticle({
 	screenshots: {
 		src: StaticImageData,
 		alt: string,
+	}[],
+	links: {
+		label: string,
+		url: string,
 	}[],
 
 	id: number,
@@ -152,13 +159,30 @@ export default function ProjectArticle({
 										src={ screenshot.src }
 										alt={ screenshot.alt }
 										width={ 200 }
+										draggable={ false }
 									/>
 								</div>
 							);
 						})}
 					</div>
 					<div className={ style.description }>
-						{ description }
+						<div>
+							{ description }
+						</div>
+						<div>
+							{links.map((link, i) =>
+							(
+								<Link
+									key={ i }
+									href={ link.url }
+									className='button'
+									target='_blank'
+									rel='noreferrer noopener'
+								>
+									{ link.label } <ExternalLink/>
+								</Link>
+							))}
+						</div>
 					</div>
 				</div>
 			</div>
