@@ -17,36 +17,59 @@
  */
 'use client';
 
-import React, { MutableRefObject, useRef, useState } from 'react';
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import articlesStyle from '../article.module.css';
 import style from './dropdown.module.css';
+import { StaticImageData } from 'next/image';
 
 
 
 export default function DropdownArticle({
-	// children,
-	// name,
-	// id,
-	// img,
-	// isImage = false,
-	// currentId,
-	// setCurrentId,
+	children,
+	name,
+	description,
+	img,
 }: Readonly<{
-	// children?: React.ReactNode,
-	// name: string,
-	// id: string,
-	// img: StaticImageData,
-	// isImage?: boolean,
-	// currentId: null|string,
-	// setCurrentId(id: null|string): void,
+	children?: React.ReactNode,
+	name: string,
+	description: string,
+	img: StaticImageData,
 }>)
 {
+	const articleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
 	const contentRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+	const circleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+
 	const [ open, setOpen ] = useState(false);
+
+
+	useEffect(() =>
+	{
+		document.addEventListener('mousemove', (ev) =>
+		{
+			if (!circleRef.current) {
+				return;
+			}
+			if (!articleRef.current) {
+				return;
+			}
+
+			const articleRect = articleRef.current.getBoundingClientRect();
+			const circleRect = circleRef.current.getBoundingClientRect();
+
+			const deltaX = ev.x - articleRect.x - circleRect.width / 2;
+			const deltaY = ev.y - articleRect.y - circleRect.height / 2;
+
+			circleRef.current.style.left = deltaX + 'px';
+			circleRef.current.style.top = deltaY + 'px';
+		});
+	}, []);
+
 
 	return (
 		<article
+			ref={ articleRef }
 			className={
 				[
 					articlesStyle.article,
@@ -55,12 +78,12 @@ export default function DropdownArticle({
 				].join(' ')
 			}
 		>
+			<div className={ articlesStyle.background }>
+				<div className={ articlesStyle.circle } ref={ circleRef }></div>
+			</div>
 			<div className={articlesStyle.info}>
-				<h3>Something here</h3>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat justo ac congue aliquet.
-					Vestibulum libero massa, condimentum eu facilisis ac, finibus ac felis.
-				</p>
+				<h3>{ name }</h3>
+				<p>{ description }</p>
 			</div>
 			<button
 				className={style.button}
@@ -78,10 +101,7 @@ export default function DropdownArticle({
 					height: open ? contentRef.current?.scrollHeight : 0,
 				}}
 			>
-				<p>
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam placerat justo ac congue aliquet.
-					Vestibulum libero massa, condimentum eu facilisis ac, finibus ac felis.
-				</p>
+				{ children }
 			</div>
 		</article>
 	);

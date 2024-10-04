@@ -66,95 +66,133 @@ export default function Page()
 
 			<section>
 				<h2>Projects</h2>
-				
-				<DropdownArticle></DropdownArticle>
 
-				{/* <div className={ style.gallery }>
+				{<div className={ style.gallery }>
 					{projects.map((data, index) =>
 					(
-						<CardModal
-							id={ `project-${index}` }
+						<DropdownArticle
 							key={ index }
-
 							name={ data.name }
+							description={ data.description }
 							img={ data.icon }
-
-							currentId={ cardId }
-							setCurrentId={ setCardId }
 						>
-							<div className={ style.project }>
-								<motion.div
-									className={ style.about }
-									initial={{ opacity: 0 }}
-									animate={{ opacity: 1 }}
-									transition={{ duration: 0.25, delay: 0.2 }}
-								>
-									<Image
-										src={ data.icon }
-										alt={ `${data.name} icon` }
-										className={ style.icon }
-										width={ 200 }
-										height={ 200 }
-									/>
-									<div>
-										<h2>{ data.name }</h2>
-										<div className={ style.description }>
-											{ data.description } 
-										</div>
-										<div>
-											{data.links.map((link, i) =>
-											(
-												<Link
-													key={ i }
-													href={ link.url }
-													className='button'
-													target='_blank'
-													rel='noreferrer noopener'
-												>
-													{ link.label } <ExternalLink/>
-												</Link>
-											))}
-										</div>
-									</div>
-								</motion.div>
-								<motion.div
-									className={ style.screenshots }
-								>
-									{data.screenshots.map((screenshot, i) =>
-									(
-										<motion.div
-											key={ i }
-											initial={{
-												y: 15,
-												opacity: 0,
-											}}
-											animate={{
-												y: 0,
-												opacity: 1,
-											}}
-											transition={{ duration: 0.25, delay: 0.3 + 0.075 * i }}
-										>
-											<ImageModal
-												src={ screenshot.src }
-												alt={ screenshot.alt }
-												width={ 300 }
-												className={ style.screenshot }
+							<motion.div
+								className={ style.screenshots }
+							>
+								{data.screenshots.map((screenshot, i) =>
+								(
+									<motion.div
+										key={ i }
+										initial={{
+											y: 15,
+											opacity: 0,
+										}}
+										animate={{
+											y: 0,
+											opacity: 1,
+										}}
+										transition={{ duration: 0.25, delay: 0.3 + 0.075 * i }}
+									>
+										<ImageModal
+											src={ screenshot.src }
+											alt={ screenshot.alt }
+											width={ 300 }
+											className={ style.screenshot }
+
+											id={ `project-${index}-${i}` }
+
+											currentId={ imageId }
+											setCurrentId={ setImageId }
+										/>
+										<span>
+											{ screenshot.alt }
+										</span>
+									</motion.div>
+								))}
+							</motion.div>
+						</DropdownArticle>
+						// <CardModal
+						// 	id={ `project-${index}` }
+
+						// 	name={ data.name }
+						// 	img={ data.icon }
+
+						// 	currentId={ cardId }
+						// 	setCurrentId={ setCardId }
+						// >
+						// 	<div className={ style.project }>
+						// 		<motion.div
+						// 			className={ style.about }
+						// 			initial={{ opacity: 0 }}
+						// 			animate={{ opacity: 1 }}
+						// 			transition={{ duration: 0.25, delay: 0.2 }}
+						// 		>
+						// 			<Image
+						// 				src={ data.icon }
+						// 				alt={ `${data.name} icon` }
+						// 				className={ style.icon }
+						// 				width={ 200 }
+						// 				height={ 200 }
+						// 			/>
+						// 			<div>
+						// 				<h2>{ data.name }</h2>
+						// 				<div className={ style.description }>
+						// 					{ data.description } 
+						// 				</div>
+						// 				<div>
+						// 					{data.links.map((link, i) =>
+						// 					(
+						// 						<Link
+						// 							key={ i }
+						// 							href={ link.url }
+						// 							className='button'
+						// 							target='_blank'
+						// 							rel='noreferrer noopener'
+						// 						>
+						// 							{ link.label } <ExternalLink/>
+						// 						</Link>
+						// 					))}
+						// 				</div>
+						// 			</div>
+						// 		</motion.div>
+						// 		<motion.div
+						// 			className={ style.screenshots }
+						// 		>
+						// 			{data.screenshots.map((screenshot, i) =>
+						// 			(
+						// 				<motion.div
+						// 					key={ i }
+						// 					initial={{
+						// 						y: 15,
+						// 						opacity: 0,
+						// 					}}
+						// 					animate={{
+						// 						y: 0,
+						// 						opacity: 1,
+						// 					}}
+						// 					transition={{ duration: 0.25, delay: 0.3 + 0.075 * i }}
+						// 				>
+						// 					<ImageModal
+						// 						src={ screenshot.src }
+						// 						alt={ screenshot.alt }
+						// 						width={ 300 }
+						// 						className={ style.screenshot }
 	
-												id={ `project-${index}-${i}` }
+						// 						id={ `project-${index}-${i}` }
 	
-												currentId={ imageId }
-												setCurrentId={ setImageId }
-											/>
-											<span>
-												{ screenshot.alt }
-											</span>
-										</motion.div>
-									))}
-								</motion.div>
-							</div>
-						</CardModal>
+						// 						currentId={ imageId }
+						// 						setCurrentId={ setImageId }
+						// 					/>
+						// 					<span>
+						// 						{ screenshot.alt }
+						// 					</span>
+						// 				</motion.div>
+						// 			))}
+						// 		</motion.div>
+						//	 </div>
+						// </CardModal>
 					))}
-				</div> */}
+				</div>}
 			</section>
 
 			<section>
