@@ -166,10 +166,10 @@ export default function ProjectArticle({
 						})}
 					</div>
 					<div className={ style.description }>
-						<div>
+						<div className={ style.text }>
 							{ description }
 						</div>
-						<div>
+						<div className={ style.links }>
 							{links.map((link, i) =>
 							(
 								<Link

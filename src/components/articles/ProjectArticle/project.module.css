@@ -201,3 +201,26 @@ body[device-type=mobile] .button:hover {
 }
 
 /* #endregion */
+
+
+@media screen and (max-width: 900px) {
+	.preview {
+		margin: 15px 0;
+	}
+
+	.content {
+		align-items:center;
+		flex-direction: column;
+	}
+
+	.links {
+		width: 100%;
+		margin: 15px 0;
+
+		text-align: center;
+	}
+
+	.description .text {
+		text-align: center;
+	}
+}
