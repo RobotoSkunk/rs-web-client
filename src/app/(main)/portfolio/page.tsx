@@ -72,44 +72,16 @@ export default function Page()
 					(
 						<ProjectArticle
 							key={ index }
+							id={ index }
+
 							name={ data.name }
 							description={ data.description }
-							img={ data.icon }
+							icon={ data.icon }
+							screenshots={ data.screenshots }
+
+							currentId={ imageId }
+							setCurrentId={ setImageId }
 						>
-							<motion.div
-								className={ style.screenshots }
-							>
-								{data.screenshots.map((screenshot, i) =>
-								(
-									<motion.div
-										key={ i }
-										initial={{
-											y: 15,
-											opacity: 0,
-										}}
-										animate={{
-											y: 0,
-											opacity: 1,
-										}}
-										transition={{ duration: 0.25, delay: 0.3 + 0.075 * i }}
-									>
-										<ImageModal
-											src={ screenshot.src }
-											alt={ screenshot.alt }
-											width={ 300 }
-											className={ style.screenshot }
-
-											id={ `project-${index}-${i}` }
-
-											currentId={ imageId }
-											setCurrentId={ setImageId }
-										/>
-										<span>
-											{ screenshot.alt }
-										</span>
-									</motion.div>
-								))}
-							</motion.div>
 						</ProjectArticle>
 					))}
 				</div>}

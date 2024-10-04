@@ -71,29 +71,6 @@
 }
 
 
-.screenshots {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-
-	margin: 20px 0;
-}
-
-.screenshots > div {
-	display: flex;
-	flex-direction: column;
-
-	row-gap: 15px;
-
-	margin: 10px;
-}
-
-.screenshots > div .screenshot {
-	border-radius: 15px;
-}
-
-
 @media screen and (max-width: 900px) {
 	.project > .about {
 		align-items: center;

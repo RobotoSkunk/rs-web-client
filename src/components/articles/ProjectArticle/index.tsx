@@ -19,22 +19,36 @@
 
 import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
 
+import { StaticImageData } from 'next/image';
+import { motion } from 'framer-motion';
+
+import ImageModal from '@/components/modals/ImageModal';
+
 import articlesStyle from '../article.module.css';
 import style from './project.module.css';
-import { StaticImageData } from 'next/image';
-
 
 
 export default function ProjectArticle({
-	children,
 	name,
 	description,
-	img,
+	icon,
+	screenshots,
+
+	id,
+	currentId,
+	setCurrentId,
 }: Readonly<{
-	children?: React.ReactNode,
 	name: string,
 	description: string,
-	img: StaticImageData,
+	icon: StaticImageData,
+	screenshots: {
+		src: StaticImageData,
+		alt: string,
+	}[],
+
+	id: number,
+	currentId: null|string,
+	setCurrentId(id: null|string): void,
 }>)
 {
 	const articleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
@@ -134,7 +148,32 @@ export default function ProjectArticle({
 				}}
 			>
 				<div className={ style.content } ref={ contentRef }>
-					{ children }
+					{screenshots.map((screenshot, i) =>
+					(
+						<motion.div
+							key={ i }
+							animate={{
+								y: open ? 0 : 15,
+								opacity: open ? 1 : 0,
+							}}
+							transition={{ duration: 0.25, delay: open ? 0.1 + 0.075 * i : 0.1 }}
+						>
+							<ImageModal
+								src={ screenshot.src }
+								alt={ screenshot.alt }
+								width={ 300 }
+								className={ style.screenshot }
+
+								id={ `project-${id}-${i}` }
+
+								currentId={ currentId }
+								setCurrentId={ setCurrentId }
+							/>
+							<span>
+								{ screenshot.alt }
+							</span>
+						</motion.div>
+					))}
 				</div>
 			</div>
 		</article>

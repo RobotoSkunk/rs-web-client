@@ -104,5 +104,24 @@ body[device-type=mobile] .button:hover {
 }
 
 .container .content {
-	padding: 10px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	
+	padding: 20px 0;
+}
+
+
+.container .content > div {
+	display: flex;
+	flex-direction: column;
+
+	row-gap: 15px;
+
+	margin: 10px;
+}
+
+.container .content > div .screenshot {
+	border-radius: 15px;
 }
