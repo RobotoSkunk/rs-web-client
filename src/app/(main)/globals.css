@@ -34,6 +34,10 @@
 	--background-squares-color: #ffffff30;
 
 	--svg-color-fix-filter: invert(1);
+
+	--article-background: #ffffff0E;
+	--article-button-background: #ffffff30;
+	--article-circle-gradient: radial-gradient(closest-side, #ffffff10, transparent);
 }
 
 ::selection {
@@ -59,6 +63,10 @@
 		--background-squares-color: #00000030;
 
 		--svg-color-fix-filter: invert(0);
+
+		--article-background: #0000001A;
+		--article-button-background: #00000039;
+		--article-circle-gradient: radial-gradient(closest-side, #00000017, transparent);
 	}
 
 	::selection {

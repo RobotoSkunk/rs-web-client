@@ -1,0 +1,226 @@
+/*
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* #region Toggle button */
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 100%;
+	height: 35px;
+
+	margin: 0;
+
+	border-radius: 0 0 20px 20px;
+
+	border: 0;
+	background: transparent;
+	backdrop-filter: blur(0px);
+
+	transition: backdrop-filter 0.5s, background 0.5s;
+}
+
+.button::after {
+	display: none;
+}
+
+.button:focus,
+.button:hover {
+	background: var(--article-button-background);
+	backdrop-filter: blur(5px);
+}
+
+
+body[device-type=mobile] .button:focus,
+body[device-type=mobile] .button:hover {
+	backdrop-filter: unset;
+}
+
+/* #endregion */
+
+/* #region Arrow */
+
+.arrow {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	width: 30px;
+	height: 20px;
+}
+
+.arrow div {
+	display: block;
+	height: 2px;
+	width: 70%;
+	border-radius: 10px;
+	background: var(--foreground-color);
+}
+
+.arrow div:nth-child(1) {
+	transform: translate(12px, 8px) rotate(-40deg);
+
+	transform-origin: 50% 50%;
+	transition: transform 0.4s ease-in-out;
+}
+
+.arrow div:nth-child(2) {
+	transform: translate(-3px, -10px) rotate(40deg);
+
+	transform-origin: 50% 50%;
+	transition: transform 0.4s ease-in-out;
+}
+
+.project.open .arrow div:nth-child(1) {
+	transform: translate(12px, 8px) rotate(-140deg);
+}
+
+.project.open .arrow div:nth-child(2) {
+	transform: translate(-3px, -10px) rotate(140deg);
+}
+
+/* #endregion */
+
+/* #region Screenshots container */
+.container {
+	overflow: hidden;
+
+	transition: height 0.5s ease-in-out;
+}
+
+.container .screenshots {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	
+	padding: 20px 0;
+}
+
+
+.container .screenshots > div {
+	display: flex;
+	flex-direction: column;
+
+	row-gap: 15px;
+
+	margin: 10px;
+}
+
+.container .screenshots > div .screenshot {
+	border-radius: 15px;
+}
+/* #endregion */
+
+/* #region Layout */
+.head {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	gap: 15px;
+
+	margin-left: 15px;
+}
+
+.head img {
+	border-radius: 50%;
+}
+
+
+.content {
+	display: flex;
+	align-items:flex-start;
+	flex-direction: row;
+}
+
+.description {
+	display: flex;
+	align-items:flex-start;
+	flex-direction: column;
+}
+
+.preview {
+	display: block;
+
+	min-width: 260px;
+	height: 120px;
+
+
+	position: relative;
+}
+
+.preview .picture {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+
+	transform: translate(-50%, -50%) rotate(-3deg);
+
+	width: 200px;
+	height: 120px;
+	overflow: hidden;
+
+	transition: transform 0.4s ease;
+}
+
+.preview .picture:first-child {
+	transform: translate(-50%, -50%) rotate(5deg);
+}
+
+
+.project:hover .preview .picture {
+	transform: translate(-40%, -50%) rotate(-10deg);
+}
+
+.project:hover .preview .picture:first-child {
+	transform: translate(-60%, -40%) rotate(8deg);
+}
+
+
+
+.description {
+	text-align: left;
+	padding: 10px;
+}
+
+/* #endregion */
+
+
+@media screen and (max-width: 900px) {
+	.preview {
+		margin: 15px 0;
+	}
+
+	.content {
+		align-items:center;
+		flex-direction: column;
+	}
+
+	.links {
+		width: 100%;
+		margin: 15px 0;
+
+		text-align: center;
+	}
+
+	.description .text {
+		text-align: center;
+	}
+}

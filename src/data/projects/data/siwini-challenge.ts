@@ -28,7 +28,7 @@ import screenshot_7 from '@/assets/img/portfolio/development/siwini-challenge/7.
 
 
 export default {
-	name: 'Swini Challenge Poza Rica',
+	name: 'Siwini Challenge Poza Rica',
 	icon,
 	description: 'A simple website that Instituto Tecnológico Superior de Poza Rica requested me to register ' +
 				 'the projects and teams for their mechatronic event.',
