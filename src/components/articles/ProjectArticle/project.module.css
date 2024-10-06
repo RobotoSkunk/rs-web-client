@@ -159,9 +159,10 @@ body[device-type=mobile] .button:hover {
 .preview {
 	display: block;
 
-	min-width: 260px;
-	height: 120px;
+	min-width: 350px;
+	height: 210px;
 
+	padding: 30px;
 
 	position: relative;
 }
@@ -173,11 +174,16 @@ body[device-type=mobile] .button:hover {
 
 	transform: translate(-50%, -50%) rotate(-3deg);
 
-	width: 200px;
-	height: 120px;
+	width: 350px;
+	height: 210px;
 	overflow: hidden;
 
 	transition: transform 0.4s ease;
+}
+
+.preview .picture img {
+	width: 350px;
+	height: auto;
 }
 
 .preview .picture:first-child {
@@ -205,7 +211,19 @@ body[device-type=mobile] .button:hover {
 
 @media screen and (max-width: 900px) {
 	.preview {
+		min-width: 200px;
+		height: 120px;
+
 		margin: 15px 0;
+	}
+	
+	.preview .picture {
+		width: 200px;
+		height: 120px;
+	}
+
+	.preview .picture img {
+		width: 200px;
 	}
 
 	.content {

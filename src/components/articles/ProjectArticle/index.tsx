@@ -155,8 +155,9 @@ export default function ProjectArticle({
 								<Image
 									src={ screenshot.src }
 									alt={ screenshot.alt }
-									width={ 200 }
 									draggable={ false }
+									quality={ 85 }
+									sizes={ '(max-width: 900px) 200px, 350px' }
 								/>
 							</div>
 						))}
