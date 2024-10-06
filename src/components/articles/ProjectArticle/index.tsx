@@ -157,7 +157,7 @@ export default function ProjectArticle({
 									alt={ screenshot.alt }
 									draggable={ false }
 									quality={ 85 }
-									sizes={ '(max-width: 900px) 200px, 350px' }
+									sizes={ '(max-width: 600px) 200px, (max-width: 900px) 250px, 350px' }
 								/>
 							</div>
 						))}
