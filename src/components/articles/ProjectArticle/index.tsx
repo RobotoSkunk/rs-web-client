@@ -140,7 +140,7 @@ export default function ProjectArticle({
 				<div className={ style.head }>
 					<Image
 						src={ icon }
-						alt={ name }
+						alt={ '' }
 						width={ 45 }
 						height={ 45 }
 						draggable={ false }
