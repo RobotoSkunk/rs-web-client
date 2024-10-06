@@ -162,7 +162,7 @@ body[device-type=mobile] .button:hover {
 	min-width: 350px;
 	height: 210px;
 
-	padding: 30px;
+	padding: 30px 40px;
 
 	position: relative;
 }
@@ -214,7 +214,7 @@ body[device-type=mobile] .button:hover {
 		min-width: 200px;
 		height: 120px;
 
-		margin: 15px 0;
+		padding: 15px 0;
 	}
 	
 	.preview .picture {
