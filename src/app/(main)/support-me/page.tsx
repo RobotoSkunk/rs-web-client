@@ -38,6 +38,7 @@ export default function Page()
 				src={ alexHappy }
 				alt='Alex happy'
 				width={ 300 }
+				quality={ 100 }
 			/>
 
 			<div className={ style.buttons }>
