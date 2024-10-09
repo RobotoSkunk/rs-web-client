@@ -164,10 +164,10 @@ function createSquares()
 
 
 	// Pre-spawn some squares at once
-	var maxSquares = 3 + Math.floor(Math.random() * 7);
+	var maxSquares = 5 + Math.floor(Math.random() * 3);
 
 	for (var i = 0; i < maxSquares; i++) {
-		addSquare(Math.random() * window.innerHeight);
+		addSquare(window.innerHeight / 2 + Math.random() * window.innerHeight);
 	}
 }
 
