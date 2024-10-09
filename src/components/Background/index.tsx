@@ -160,7 +160,7 @@ function createSquares()
 		}
 	
 		addSquare();
-	}, 4500);
+	}, 3000);
 
 
 	// Pre-spawn some squares at once
