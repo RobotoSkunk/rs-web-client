@@ -22,7 +22,7 @@ import { NextRequest, NextResponse, userAgent } from 'next/server';
 export const config = {
 	matcher: [
 		{
-			source: '/((?!assets|_next/static|_next/image|favicon.ico).*)',
+			source: '/((?!assets|_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)',
 			missing: [
 				{ type: 'header', key: 'next-router-prefetch' },
 				{ type: 'header', key: 'purpose', value: 'prefetch' },
