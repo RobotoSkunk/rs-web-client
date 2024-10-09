@@ -26,7 +26,8 @@ const roboto = Roboto({ weight: '300', subsets: [ 'latin' ], display: 'swap' });
 
 export const metadata: Metadata = {
 	title: 'Error',
-	description: 'Something went wrong...'
+	description: 'Something went wrong...',
+	robots: 'noindex, nofollow',
 };
 
 
