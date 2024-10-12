@@ -463,8 +463,8 @@ footer span:not(:last-child) {
 	scale: 1.3;
 }
 
-.social-media a:hover.facebook svg > circle,
-.social-media a:focus.facebook svg > circle { fill: white }
+.social-media a:hover.facebook svg > :first-child,
+.social-media a:focus.facebook svg > :first-child { fill: white }
 .social-media a:hover.facebook svg > path,
 .social-media a:focus.facebook svg > path { fill: #1877f2 }
 
