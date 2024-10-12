@@ -122,7 +122,7 @@ export default function Page()
 						<LinkedIn/>
 					</Link>
 					<Link
-						href='https://www.deviantart.com/robotogamer98'
+						href='https://www.deviantart.com/robotoskunk'
 						title='DeviantArt'
 						className='deviantart'
 						target='_blank'
