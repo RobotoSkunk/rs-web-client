@@ -86,6 +86,8 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<head>
+				<link rel='me' href='https://mastodon.social/@RobotoSkunk'/>
+				<link rel='me' href='https://wetdry.world/@RobotoSkunk'/>
 				<noscript><meta http-equiv="refresh" content="0; url=/noscript"></meta></noscript>
 			</head>
 

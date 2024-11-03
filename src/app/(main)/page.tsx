@@ -30,6 +30,7 @@ import Instagram from '@/components/icons/social/Instagram';
 import YouTube from '@/components/icons/social/YouTube';
 import GitHub from '@/components/icons/social/GitHub';
 import Bluesky from '@/components/icons/social/Bluesky';
+import Mastodon from '@/components/icons/social/Mastodon';
 
 
 import logoImage from '@/assets/svg/logo_2024.svg';
@@ -98,6 +99,15 @@ export default function Root()
 					rel='noreferrer noopener'
 				>
 					<Bluesky/>
+				</Link>
+				<Link
+					href='https://mastodon.social/@RobotoSkunk'
+					title='Mastodon'
+					className='mastodon'
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<Mastodon/>
 				</Link>
 				<Link
 					href='https://discord.gg/RT8uayccTt'
