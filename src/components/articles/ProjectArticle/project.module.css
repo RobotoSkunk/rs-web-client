@@ -126,6 +126,10 @@ body[device-type=mobile] .button:hover {
 .container .screenshots > div .screenshot {
 	border-radius: 15px;
 }
+
+.container .screenshots > div span {
+	max-width: 280px;
+}
 /* #endregion */
 
 /* #region Layout */
