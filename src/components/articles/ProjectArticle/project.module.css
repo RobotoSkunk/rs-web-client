@@ -129,6 +129,7 @@ body[device-type=mobile] .button:hover {
 
 .container .screenshots > div span {
 	max-width: 280px;
+	margin: 0 auto;
 }
 /* #endregion */
 
