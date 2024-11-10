@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import icon from '@/assets/img/portfolio/development/siwini-challenge/icon.webp';
+import icon from '@/assets/img/portfolio/development/simocaver/icon.webp';
 
 
 export default {
