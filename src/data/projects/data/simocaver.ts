@@ -16,23 +16,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import simocaver from './data/simocaver';
-import genesis from './data/genesis';
-import kawitech from './data/kawitech';
-import siwiniChallenge from './data/siwini-challenge';
-
-import pixelman from './data/pixelman';
-import circlebeats from './data/circlebeats';
-import gamink from './data/gamink';
+import icon from '@/assets/img/portfolio/development/siwini-challenge/icon.webp';
 
 
-export default [
-	simocaver,
-	genesis,
-	kawitech,
-	siwiniChallenge,
-
-	pixelman,
-	circlebeats,
-	gamink,
-] as ProjectData[];
+export default {
+	name: 'Sistema de Modelado de Calidad del Aire de Veracruz (SiMoCAVer)',
+	icon,
+	description: '',
+	links: [
+		
+	],
+	screenshots: [
+		
+	],
+} as ProjectData;
