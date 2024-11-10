@@ -463,7 +463,7 @@ footer span:not(:last-child) {
 	scale: 1.3;
 }
 
-.social-media a.mastodon svg > #mastodon_gradient stop { stop-color: white; }
+.social-media a.mastodon svg > #mastodon_gradient stop { stop-color: var(--svg-light-color); }
 
 .social-media a:hover.facebook svg > :first-child,
 .social-media a:focus.facebook svg > :first-child { fill: white }
