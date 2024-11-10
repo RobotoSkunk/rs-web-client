@@ -24,7 +24,18 @@ export default {
 	icon,
 	description: '',
 	links: [
-		
+		{ // Line length excuse: URL is too long
+			label: 'COVEICYDET\'s Post',
+			url: 'https://ciencia.covecyt.gob.mx/coveicydet-realiza-encuentro-para-mostrar-avances-en-ciencia-y-tecnologia/',
+		},
+		{ // Line length excuse: URL is too long
+			label: 'Scientific Research Book',
+			url: 'https://static1.squarespace.com/static/55564587e4b0d1d3fb1eda6b/t/668ddd4cfbcc727de1c33c6f/1720573265095/Innovaci%C3%B3n+y+Excelencia+en+la+Investigaci%C3%B3n+Cient%C3%ADfica+%E2%80%93+Ingenier%C3%ADas+%E2%80%93+Academia+Journals+Chiapas+2024.pdf',
+		},
+		{
+			label: 'Installation Report',
+			url: 'https://drive.proton.me/urls/XGQ0DZADX4#6n0lQeINIO9q',
+		},
 	],
 	screenshots: [
 		
