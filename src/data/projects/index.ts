@@ -16,6 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import simocaver from './data/simocaver';
 import genesis from './data/genesis';
 import kawitech from './data/kawitech';
 import siwiniChallenge from './data/siwini-challenge';
@@ -26,6 +27,7 @@ import gamink from './data/gamink';
 
 
 export default [
+	simocaver,
 	genesis,
 	kawitech,
 	siwiniChallenge,
