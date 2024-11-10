@@ -110,7 +110,7 @@ export default function Root()
 					<Mastodon/>
 				</Link>
 				<Link
-					href='https://discord.gg/RT8uayccTt'
+					href='https://discord.com/users/273147770242596875'
 					title='Discord'
 					className='discord'
 					target='_blank'
