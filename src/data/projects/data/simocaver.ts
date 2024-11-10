@@ -29,7 +29,9 @@ import screenshot_6 from '@/assets/img/portfolio/development/simocaver/6.webp';
 export default {
 	name: 'Sistema de Modelado de Calidad del Aire de Veracruz (SiMoCAVer)',
 	icon,
-	description: '',
+	description: 'I worked on the installation of a scientific computing system to calculate the air quality of the' +
+				 'state of Veracruz using satellite information, which was presented to the Governor of Veracruz' +
+				 'during a COVEICYDET event on September 18, 2024',
 	links: [
 		{ // Line length excuse: URL is too long
 			label: 'COVEICYDET\'s Post',
