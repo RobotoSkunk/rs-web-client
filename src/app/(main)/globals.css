@@ -215,9 +215,9 @@ main button:focus::after {
 }
 
 
-svg .black { fill: var(--svg-dark-color) }
+/* svg .black { fill: var(--svg-dark-color) }
 svg .white { fill: var(--svg-light-color) }
-svg .clear { fill: transparent }
+svg .clear { fill: transparent } */
 
 
 /* #endregion */
@@ -452,15 +452,15 @@ footer span:not(:last-child) {
 	object-fit: contain;
 }
 
-.social-media a svg * {
-	transition: fill 0.3s ease, stop-color 0.3s ease, opacity 0.3s ease;
-}
-
 .social-media a::after { display: none }
 
 .social-media a:hover,
 .social-media a:focus {
 	scale: 1.3;
+}
+
+/* .social-media a svg * {
+	transition: fill 0.3s ease, stop-color 0.3s ease, opacity 0.3s ease;
 }
 
 .social-media a.mastodon svg > #mastodon_gradient stop { stop-color: var(--svg-light-color); }
@@ -521,7 +521,7 @@ footer span:not(:last-child) {
 @media (prefers-color-scheme: light) {
 	.social-media a:hover.generic svg > path,
 	.social-media a:focus.generic svg > path { fill: #444 }
-}
+} */
 
 /* #endregion */
 
