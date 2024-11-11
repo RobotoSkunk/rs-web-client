@@ -453,7 +453,7 @@ footer span:not(:last-child) {
 }
 
 .social-media a svg * {
-	transition: fill 0.3s ease, stop-color 0.3s ease;
+	transition: fill 0.3s ease, stop-color 0.3s ease, opacity 0.3s ease;
 }
 
 .social-media a::after { display: none }
@@ -464,6 +464,7 @@ footer span:not(:last-child) {
 }
 
 .social-media a.mastodon svg > #mastodon_gradient stop { stop-color: var(--svg-light-color); }
+.social-media a.instagram svg rect { opacity: 1 }
 
 .social-media a:hover.facebook svg > :first-child,
 .social-media a:focus.facebook svg > :first-child { fill: white }
@@ -504,6 +505,9 @@ footer span:not(:last-child) {
 
 .social-media a:hover.generic svg > path,
 .social-media a:focus.generic svg > path { fill: #aaa }
+
+.social-media a:hover.instagram svg rect,
+.social-media a:focus.instagram svg rect { opacity: 0 }
 
 
 .social-media a:hover.mastodon svg > .clear,

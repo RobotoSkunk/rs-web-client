@@ -121,7 +121,7 @@ export default function Root()
 				<Link
 					href='https://instagram.com/RobotoSkunk'
 					title='Instagram'
-					className='generic'
+					className='instagram'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
