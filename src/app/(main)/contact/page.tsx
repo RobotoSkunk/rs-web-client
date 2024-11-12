@@ -64,7 +64,6 @@ export default function Page()
 					<Link
 						href='https://m.me/RobotoSkunk'
 						title='Telegram'
-						className='telegram'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -73,7 +72,6 @@ export default function Page()
 					<Link
 						href='https://discord.com/users/273147770242596875'
 						title='Discord'
-						className='discord'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -82,7 +80,6 @@ export default function Page()
 					<Link
 						href='https://bsky.app/profile/robotoskunk.com'
 						title='Bluesky'
-						className='bluesky'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -91,7 +88,6 @@ export default function Page()
 					<Link
 						href='https://linkedin.com/in/RobotoSkunk'
 						title='LinkedIn'
-						className='linkedin'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -100,7 +96,6 @@ export default function Page()
 					<Link
 						href='https://m.me/RobotoSkunk'
 						title='Messenger'
-						className='facebook'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -109,7 +104,6 @@ export default function Page()
 					<Link
 						href='https://instagram.com/RobotoSkunk'
 						title='Instagram'
-						className='generic'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -118,7 +112,6 @@ export default function Page()
 					<Link
 						href='https://www.reddit.com/user/RobotoSkunk_'
 						title='Reddit'
-						className='reddit'
 						target='_blank'
 						rel='noreferrer noopener'
 					>

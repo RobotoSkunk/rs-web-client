@@ -115,7 +115,6 @@ export default function Page()
 					<Link
 						href='https://linkedin.com/in/RobotoSkunk'
 						title='LinkedIn'
-						className='linkedin'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -124,7 +123,6 @@ export default function Page()
 					<Link
 						href='https://www.deviantart.com/robotoskunk'
 						title='DeviantArt'
-						className='deviantart'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -133,7 +131,6 @@ export default function Page()
 					<Link
 						href='https://robotoskunk.newgrounds.com/art'
 						title='Newgrounds'
-						className='newgrounds'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -142,7 +139,6 @@ export default function Page()
 					<Link
 						href='https://www.instagram.com/RobotoSkunk'
 						title='Instagram'
-						className='generic'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
@@ -151,7 +147,6 @@ export default function Page()
 					<Link
 						href='https://github.com/RobotoSkunk'
 						title='GitHub'
-						className='generic'
 						target='_blank'
 						rel='noreferrer noopener'
 					>

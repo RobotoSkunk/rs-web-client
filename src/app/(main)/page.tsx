@@ -76,7 +76,6 @@ export default function Root()
 				<Link
 					href='https://facebook.com/RobotoSkunk'
 					title='Facebook'
-					className='facebook'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -85,7 +84,6 @@ export default function Root()
 				<Link
 					href='https://twitter.com/RobotoSkunk'
 					title='Twitter'
-					className='twitter'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -94,7 +92,6 @@ export default function Root()
 				<Link
 					href='https://bsky.app/profile/robotoskunk.com'
 					title='Bluesky'
-					className='bluesky'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -103,7 +100,6 @@ export default function Root()
 				<Link
 					href='https://mastodon.social/@RobotoSkunk'
 					title='Mastodon'
-					className='mastodon'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -112,7 +108,6 @@ export default function Root()
 				<Link
 					href='https://discord.com/users/273147770242596875'
 					title='Discord'
-					className='discord'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -121,7 +116,6 @@ export default function Root()
 				<Link
 					href='https://instagram.com/RobotoSkunk'
 					title='Instagram'
-					className='instagram'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -130,7 +124,6 @@ export default function Root()
 				<Link
 					href='https://www.youtube.com/robotoskunk'
 					title='YouTube'
-					className='youtube'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
@@ -139,7 +132,6 @@ export default function Root()
 				<Link
 					href='https://github.com/RobotoSkunk'
 					title='GitHub'
-					className='generic'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
