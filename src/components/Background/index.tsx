@@ -21,6 +21,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+import Square, { MouseData } from './square';
 
 
 function lerp(from: number, to: number, delta: number)
@@ -28,10 +29,10 @@ function lerp(from: number, to: number, delta: number)
 	return from * delta + to * (1 - delta);
 }
 
-
 export default function Background()
 {
-	const mouse = {
+	var squares: Square[] = [];
+	const mouse: MouseData = {
 		x: 0,
 		y: 0,
 		xDelta: 0,
@@ -39,69 +40,10 @@ export default function Background()
 	};
 
 
-	function moveSquare(square: HTMLDivElement, startY?: number)
-	{
-		const properties = {
-			top: startY ?? window.innerHeight + 300,
-			left: Math.random(),
-
-			moveDelta: 0.5 + Math.random() * 1,
-			rotationDelta: Math.random() * 0.3 * Math.sign(Math.random() - 0.5),
-
-			rotation: 0,
-			scale: Math.random(),
-
-			virtualPos: {
-				x: 0,
-				y: 0,
-			},
-		}
-
-		// Random scale and X position
-		square.style.scale = '' + (1 + properties.scale * 7);
-
-		// Animation interval
-		const intervalId = setInterval(() =>
-		{
-			if (document.hidden) {
-				return;
-			}
-
-			const relativeTop = (window.innerHeight - square.offsetTop) / window.innerHeight;
-			const relativeLeft = properties.left * window.innerWidth;
-
-			// Properties calculation
-			properties.top -= properties.moveDelta;
-			properties.rotation -= properties.rotationDelta;
-
-			// Position
-			properties.virtualPos.x = lerp(properties.virtualPos.x, mouse.xDelta * (0.5 + properties.scale * 0.5), 0.8);
-			properties.virtualPos.y = lerp(properties.virtualPos.y, mouse.yDelta * (0.5 + properties.scale * 0.5), 0.8);
-
-			square.style.left = `${relativeLeft + mouse.x * (0.5 + properties.scale * 0.5)}px`;
-			square.style.top = `${properties.top + mouse.y * (0.5 + properties.scale * 0.5)}px`;
-
-			// Appareance
-			const opacity = (1 - relativeTop) * (0.5 + properties.scale * 0.5);
-
-			square.style.rotate = `${properties.rotation}deg`;
-			square.style.borderRadius = `${relativeTop * 10}px`;
-			square.style.opacity = '' + opacity;
-
-			// Delete on page top
-			if (opacity <= 0.01) {
-				clearInterval(intervalId);
-				square.remove();
-			}
-		}, 16);
-	}
-
 	function addSquare(startY?: number){
-		const square = document.createElement('div');
+		const square = new Square(startY);
 
-		moveSquare(square, startY);
-
-		document.getElementById('background')?.append(square);
+		squares.push(square);
 	}
 
 
@@ -163,7 +105,7 @@ export default function Background()
 		}
 
 
-		// Start mouse delta position update
+		// Main loop
 		setInterval(() =>
 		{
 			if (document.hidden) {
@@ -172,6 +114,13 @@ export default function Background()
 
 			mouse.x = lerp(mouse.x, mouse.xDelta, 0.8);
 			mouse.y = lerp(mouse.y, mouse.yDelta, 0.8);
+
+			// Update squares
+			for (const square of squares) {
+				square.update(mouse);
+			}
+
+			squares = squares.filter((v) => v.isAlive);
 		}, 16);
 
 
