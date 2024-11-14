@@ -20,6 +20,8 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 import { headers } from 'next/headers';
 
+import { execSync } from 'child_process';
+
 import './globals.css';
 
 import Background from '@/components/Background';
@@ -83,11 +85,24 @@ export default function RootLayout({
 {
 	const deviceType = headers().get('X-Device-Type') ?? '';
 
+
+	if (!process.env.COMMIT_SHA) {
+		process.env.COMMIT_SHA = 'not_a_repo';
+
+		try {
+			// Not the best approach, but it works...
+			process.env.COMMIT_SHA = execSync('git rev-parse HEAD').toString().trim();
+		} catch (_) { }
+	}
+
 	return (
 		<html lang='en'>
 			<head>
 				<link rel='me' href='https://mastodon.social/@RobotoSkunk'/>
 				<link rel='me' href='https://wetdry.world/@RobotoSkunk'/>
+
+				<meta name='commit-sha' content={ process.env.COMMIT_SHA }/>
+
 				<noscript><meta http-equiv="refresh" content="0; url=/noscript"></meta></noscript>
 			</head>
 
