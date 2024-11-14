@@ -16,34 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import appDirectory from '@/data/app-directory';
 import { MetadataRoute } from 'next';
 
 
 export default function sitemap(): MetadataRoute.Sitemap
 {
-	return [
+	const root = 'https://robotoskunk.com';
+
+	return appDirectory.filter(v => v.validForSeo).map((value) => (
 		{
-			url: 'https://robotoskunk.com',
-			priority: 1,
-		},
-		{
-			url: 'https://robotoskunk.com/about',
-			priority: 1,
-		},
-		{
-			url: 'https://robotoskunk.com/portfolio',
-			priority: 1,
-		},
-		{
-			url: 'https://robotoskunk.com/contact',
-			priority: 1,
-		},
-		{
-			url: 'https://robotoskunk.com/support-me',
-			priority: 1,
-		},
-		{
-			url: 'https://robotoskunk.com/open-source',
-		},
-	];
+			url: `${root}${value.path}`,
+			priority: value.priority,
+		}
+	));
 }

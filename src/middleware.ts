@@ -18,7 +18,7 @@
 
 import { NextRequest, NextResponse, userAgent } from 'next/server';
 
-import directory from './data/app-directory';
+import appDirectory from './data/app-directory';
 import redirects from './data/joke-redirects';
 
 
@@ -39,7 +39,13 @@ export function middleware(request: NextRequest)
 {
 	function pathExists()
 	{
-		return directory.includes(request.nextUrl.pathname);
+		for (const data of appDirectory) {
+			if (request.nextUrl.pathname === data.path) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	function pathEquals(pathname: string)

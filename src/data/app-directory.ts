@@ -17,11 +17,39 @@
  */
 
 export default [
-	'/',
-	'/about',
-	'/contact',
-	'/open-source',
-	'/portfolio',
-	'/support-me',
-	'/noscript',
-];
+	{
+		path: '/',
+		priority: 1,
+		validForSeo: true,
+	},
+	{
+		path: '/about',
+		priority: 1,
+		validForSeo: true,
+	},
+	{
+		path: '/contact',
+		priority: 1,
+		validForSeo: true,
+	},
+	{
+		path: '/open-source',
+		priority: 0.3,
+		validForSeo: true,
+	},
+	{
+		path: '/portfolio',
+		priority: 1,
+		validForSeo: true,
+	},
+	{
+		path: '/support-me',
+		priority: 0.5,
+		validForSeo: true,
+	},
+	{
+		path: '/noscript',
+		priority: 0,
+		validForSeo: false,
+	},
+] as PathData[];

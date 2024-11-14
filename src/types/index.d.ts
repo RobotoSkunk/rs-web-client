@@ -41,6 +41,13 @@ declare global
 		name: string,
 		img: StaticImageData,
 	}
+
+	interface PathData
+	{
+		path: string,
+		priority: number,
+		validForSeo: boolean,
+	}
 }
 
 
