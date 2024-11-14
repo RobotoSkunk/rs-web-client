@@ -54,21 +54,19 @@ export default function Footer()
 				© Copyright {year} RobotoSkunk. All Rights Reserved.
 			</span>
 			<span>
-				Built from { ' ' }
+				{/* <Link href='/privacy'>Privacy Policy</Link>
+				{ ' • ' }
+				<Link href='/terms'>Terms of Use</Link>
+				{ ' • ' } */}
+				<Link href='/open-source'>Open Source</Link>
+				{ ' • ' }
 				<Link
 					href={ `https://github.com/RobotoSkunk/rs-web-client/tree/${commitSha}` }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
-					{ commitSha.slice(0, 7) }<ExternalLink/>
+					Built from { commitSha.slice(0, 7) }<ExternalLink/>
 				</Link>
-			</span>
-			<span>
-				{/* <Link href='/privacy'>Privacy Policy</Link>
-				{ " • " }
-				<Link href='/terms'>Terms of Use</Link>
-				{ " • " } */}
-				<Link href='/open-source'>Open Source</Link>
 			</span>
 		</motion.footer>
 	);
