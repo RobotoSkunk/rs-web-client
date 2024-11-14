@@ -18,6 +18,7 @@
 
 import { NextRequest, NextResponse, userAgent } from 'next/server';
 
+import directory from './data/app-directory';
 import redirects from './data/joke-redirects';
 
 
@@ -36,6 +37,11 @@ export const config = {
 
 export function middleware(request: NextRequest)
 {
+	function pathExists()
+	{
+		return directory.includes(request.nextUrl.pathname);
+	}
+
 	function pathEquals(pathname: string)
 	{
 		return request.nextUrl.pathname === pathname;
@@ -68,6 +74,11 @@ export function middleware(request: NextRequest)
 
 		case pathEquals('/teapot'): {
 			status = 418;
+			break;
+		}
+
+		case !pathExists(): {
+			status = 404;
 		}
 	}
 
