@@ -92,7 +92,7 @@ export function middleware(request: NextRequest)
 
 	const isOnion = hostname.endsWith('.onion');
 	const allowInsecure = isOnion || process.env.NODE_ENV !== 'production';
-	const canonical = `${request.nextUrl.protocol}//${hostname}${request.nextUrl.pathname}`;
+	const canonical = `https://${hostname}${request.nextUrl.pathname}`;
 
 	const csp = [
 		`default-src 'self' 'unsafe-hashes' 'unsafe-inline' ${ allowInsecure ? "'unsafe-eval'" : '' };`,
