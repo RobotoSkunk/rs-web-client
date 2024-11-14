@@ -36,21 +36,38 @@ export const config = {
 
 export function middleware(request: NextRequest)
 {
-	switch (request.nextUrl.pathname) {
-		case '/social': {
+	function pathEquals(pathname: string)
+	{
+		return request.nextUrl.pathname === pathname;
+	}
+
+	function pathStartsWith(pathname: string)
+	{
+		return request.nextUrl.pathname.startsWith(pathname);
+	}
+
+
+	var status = 200;
+
+	switch (true) {
+		case pathEquals('/social'): {
 			return NextResponse.redirect(new URL('/contact', request.url));
 		}
 
-		case '/acknowledgements': {
+		case pathEquals('/acknowledgements'): {
 			return NextResponse.redirect(new URL('/open-source', request.url));
 		}
 
-		case '/phpmyadmin':
-		case '/myadmin':
-		case '/admin': {
+		case pathStartsWith('/phpmyadmin'):
+		case pathStartsWith('/myadmin'):
+		case pathEquals('/admin'): {
 			const redirect = redirects[Math.floor(Math.random() * (redirects.length - 1))];
 
 			return NextResponse.redirect(new URL(redirect, request.url));
+		}
+
+		case pathEquals('/teapot'): {
+			status = 418;
 		}
 	}
 
@@ -70,12 +87,6 @@ export function middleware(request: NextRequest)
 		`frame-ancestors 'none';`,
 		allowInsecure ? '' : 'upgrade-insecure-requests;',
 	];
-
-	var status = 200;
-
-	if (request.nextUrl.pathname === '/teapot') {
-		status = 418;
-	}
 
 
 	const { device } = userAgent(request);
