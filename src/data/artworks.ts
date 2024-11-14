@@ -86,7 +86,7 @@ export default [
 		img: tongue,
 	},
 	{
-		name: "Gitf for Unzor",
+		name: "Gift for Unzor",
 		img: unzor,
 	},
 	{
