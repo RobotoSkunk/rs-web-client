@@ -42,7 +42,7 @@ export default function Instagram()
 					<Image src={ gradient } width={ 330 } height={ 330 } quality={ 50 } alt=''/>
 				</foreignObject>
 
-				<rect className={ style.white } x='0' y='y' width='330' height='330'/>
+				<rect className={ style.white } x='0' y='0' width='330' height='330'/>
 			</g>
 		</svg>
 	);
