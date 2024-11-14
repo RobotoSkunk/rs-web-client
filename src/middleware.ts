@@ -81,6 +81,7 @@ export function middleware(request: NextRequest)
 
 	const isOnion = hostname.endsWith('.onion');
 	const allowInsecure = isOnion || process.env.NODE_ENV !== 'production';
+	const canonical = `${request.nextUrl.protocol}//${hostname}${request.nextUrl.pathname}`;
 
 	const csp = [
 		`default-src 'self' 'unsafe-hashes' 'unsafe-inline' ${ allowInsecure ? "'unsafe-eval'" : '' };`,
@@ -104,6 +105,7 @@ export function middleware(request: NextRequest)
 
 	const requestHeaders = new Headers(request.headers);
 	requestHeaders.set('X-Device-Type', device.type ?? 'desktop');
+	requestHeaders.set('X-Canonical', canonical);
 
 
 	const response = NextResponse.next({

@@ -84,6 +84,7 @@ export default function RootLayout({
 }>)
 {
 	const deviceType = headers().get('X-Device-Type') ?? '';
+	const canonical = headers().get('X-Canonical') ?? '';
 
 
 	if (!process.env.COMMIT_SHA) {
@@ -100,6 +101,7 @@ export default function RootLayout({
 			<head>
 				<link rel='me' href='https://mastodon.social/@RobotoSkunk'/>
 				<link rel='me' href='https://wetdry.world/@RobotoSkunk'/>
+				<link rel='canonical' href={ canonical }/>
 
 				<meta name='commit-sha' content={ process.env.COMMIT_SHA }/>
 
