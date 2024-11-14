@@ -24,32 +24,26 @@ export default function sitemap(): MetadataRoute.Sitemap
 	return [
 		{
 			url: 'https://robotoskunk.com',
-			lastModified: new Date(2024, 4, 28),
 			priority: 1,
 		},
 		{
 			url: 'https://robotoskunk.com/about',
-			lastModified: new Date(2024, 4, 29),
 			priority: 1,
 		},
 		{
 			url: 'https://robotoskunk.com/portfolio',
-			lastModified: new Date(2024, 9, 8),
 			priority: 1,
 		},
 		{
 			url: 'https://robotoskunk.com/contact',
-			lastModified: new Date(2024, 5, 9),
 			priority: 1,
 		},
 		{
 			url: 'https://robotoskunk.com/support-me',
-			lastModified: new Date(2024, 5, 9),
 			priority: 1,
 		},
 		{
 			url: 'https://robotoskunk.com/open-source',
-			lastModified: new Date(2024, 5, 9),
 		},
 	];
 }
