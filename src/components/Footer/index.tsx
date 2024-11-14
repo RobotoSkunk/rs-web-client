@@ -19,15 +19,29 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
+
 import { Roboto } from 'next/font/google';
 import { motion } from 'framer-motion';
+import ExternalLink from '../icons/ExternalLink';
 
 const roboto = Roboto({ weight: '300', subsets: [ 'latin' ], display: 'swap' });
 
 
 export default function Footer()
 {
+	const [ commitSha, setCommitSha ] = useState('not_a_repo');
+
 	const year = new Date().getFullYear();
+
+
+	useEffect(() =>
+	{
+		const metaTag = document.querySelector('[name="commit-sha"]')?.getAttribute('content');
+
+		setCommitSha(metaTag ?? 'not_a_repo');
+	}, []);
+
 
 	return (
 		<motion.footer
@@ -38,6 +52,16 @@ export default function Footer()
 		>
 			<span>
 				© Copyright {year} RobotoSkunk. All Rights Reserved.
+			</span>
+			<span>
+				Built from { ' ' }
+				<Link
+					href={ `https://github.com/RobotoSkunk/rs-web-client/tree/${commitSha}` }
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					{ commitSha.slice(0, 7) }<ExternalLink/>
+				</Link>
 			</span>
 			<span>
 				{/* <Link href='/privacy'>Privacy Policy</Link>
