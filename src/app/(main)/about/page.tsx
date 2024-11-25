@@ -19,11 +19,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+import metadataBuilder from '@/utils/metadata-builder';
+
 import style from './page.module.css';
 
 import profilePicture from '@/assets/img/profile-picture.webp';
 import alexReferencePicture from '@/assets/img/alex-skunk-ref2021.webp';
 import ExternalLink from '@/components/icons/ExternalLink';
+
+
+export const metadata = metadataBuilder('About');
 
 
 export default function Page()

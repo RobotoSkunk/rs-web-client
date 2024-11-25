@@ -16,16 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-'use client';
-
-import { useEffect, useState } from 'react';
-
 import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
 
-import CardModal from '@/components/modals/CardModal';
-import ImageModal from '@/components/modals/ImageModal';
+import metadataBuilder from '@/utils/metadata-builder';
+
 
 import style from './page.module.css';
 
@@ -34,29 +28,17 @@ import Instagram from '@/components/icons/social/Instagram';
 import DeviantArt from '@/components/icons/social/DeviantArt';
 import GitHub from '@/components/icons/social/GitHub';
 
-import projects from '@/data/projects';
-import artworks from '@/data/artworks';
-import ExternalLink from '@/components/icons/ExternalLink';
 import LinkedIn from '@/components/icons/social/LinkedIn';
-import ProjectArticle from '@/components/articles/ProjectArticle';
+import PortfolioContent from './portfolio-content';
 
 
 
-function toggleScrolling(toggle: boolean)
-{
-	document.querySelector('html')?.classList.toggle('no-scroll', toggle);
-}
+export const metadata = metadataBuilder('Portfolio');
+
 
 
 export default function Page()
 {
-	const [ cardId, setCardId ] = useState(null as null|string);
-	const [ imageId, setImageId ] = useState(null as null|string);
-
-	useEffect(() =>
-		toggleScrolling(cardId != null || imageId != null)
-	);
-
 	return (
 		<main className={ style.main }>
 			<h1>Portfolio</h1>
@@ -64,49 +46,7 @@ export default function Page()
 				A few examples of some of my favorite projects and artworks I've made since I can remember.
 			</p>
 
-			<section>
-				<h2>Projects</h2>
-
-				{<div className={ style.gallery }>
-					{projects.map((data, index) =>
-					(
-						<ProjectArticle
-							key={ index }
-							id={ index }
-
-							name={ data.name }
-							description={ data.description }
-							icon={ data.icon }
-							screenshots={ data.screenshots }
-							links={ data.links }
-
-							currentId={ imageId }
-							setCurrentId={ setImageId }
-						/>
-					))}
-				</div>}
-			</section>
-
-			<section>
-				<h2>Artworks</h2>
-				<p>A collection of my favorite artworks and commissions I made.</p>
-
-				<div className={ style.gallery }>
-					{artworks.map((data, index) => (
-						<CardModal
-							id={ `artwork-${index}` }
-							key={ index }
-
-							name={ data.name }
-							img={ data.img }
-
-							currentId={ cardId }
-							isImage={ true }
-							setCurrentId={ setCardId }
-						/>
-					))}			
-				</div>
-			</section>
+			<PortfolioContent/>
 
 			<section>
 				<h3>Want to see more?</h3>

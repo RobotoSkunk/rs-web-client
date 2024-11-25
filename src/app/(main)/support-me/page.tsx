@@ -19,6 +19,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
+import metadataBuilder from '@/utils/metadata-builder';
+
 import style from './page.module.css';
 
 import alexHappy from '@/assets/img/alex-happy.webp';
@@ -26,6 +28,8 @@ import alexHappy from '@/assets/img/alex-happy.webp';
 import buyMeACoffee from '@/assets/svg/branding/buy-me-a-coffee.svg';
 import paypalDonate from '@/assets/svg/branding/paypal-donate.svg';
 
+
+export const metadata = metadataBuilder('Support me');
 
 export default function Page()
 {
