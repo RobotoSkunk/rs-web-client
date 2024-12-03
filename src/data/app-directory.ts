@@ -52,4 +52,9 @@ export default [
 		priority: 0,
 		validForSeo: false,
 	},
+	{
+		path: '/public/*',
+		priority: 0,
+		validForSeo: false,
+	},
 ] as PathData[];
