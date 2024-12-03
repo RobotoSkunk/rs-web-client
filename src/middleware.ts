@@ -62,6 +62,10 @@ export function middleware(request: NextRequest)
 	var status = 200;
 
 	switch (true) {
+		case pathEquals('/public'): {
+			return NextResponse.redirect(new URL('/public/', request.url));
+		}
+
 		case pathEquals('/social'): {
 			return NextResponse.redirect(new URL('/contact', request.url));
 		}
