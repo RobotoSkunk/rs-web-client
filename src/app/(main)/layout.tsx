@@ -37,14 +37,15 @@ const roboto = Roboto({ weight: '400', subsets: [ 'latin' ], display: 'swap' });
 export const metadata = metadataBuilder();
 
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>)
 {
-	const deviceType = headers().get('X-Device-Type') ?? '';
-	const canonical = headers().get('X-Canonical') ?? '';
+	const _headers = await headers();
+	const deviceType = _headers.get('X-Device-Type') ?? '';
+	const canonical = _headers.get('X-Canonical') ?? '';
 
 
 	if (!process.env.COMMIT_SHA) {
