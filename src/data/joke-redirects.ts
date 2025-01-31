@@ -53,7 +53,6 @@ export default [
 	'https://www.youtube.com/watch?v=MK6-IBjyUTs',
 	'https://www.youtube.com/watch?v=vszWsYOdnPg',
 	'https://www.youtube.com/watch?v=mUf2vTaRolIc',
-	'https://www.youtube.com/watch?v=7HmapK3VLq0',
 	'https://www.youtube.com/watch?v=RjJDCTgBJHA',
 	'https://www.youtube.com/watch?v=dlHEbuhfjYo',
 	'https://www.youtube.com/watch?v=JmSEC6hSBes',
