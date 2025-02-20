@@ -48,7 +48,7 @@ export default function Page()
 			<div className={ style.buttons }>
 				<div>
 					<Link
-						href='https://buy.stripe.com/aEUbL527K1XCdyw6oo'
+						href='https://buy.stripe.com/6oEcPj14kdVN9EceUU'
 						className='button'
 						target='_blank'
 						rel='noreferrer noopener'
