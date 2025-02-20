@@ -17,7 +17,7 @@
  */
 'use client';
 
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
@@ -58,11 +58,11 @@ export default function ProjectArticle({
 	setCurrentId(id: null|string): void,
 }>)
 {
-	const articleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-	const circleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+	const articleRef: RefObject<HTMLDivElement | null> = useRef(null);
+	const circleRef: RefObject<HTMLDivElement | null> = useRef(null);
 
-	const containerRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-	const screenshotsRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+	const containerRef: RefObject<HTMLDivElement | null> = useRef(null);
+	const screenshotsRef: RefObject<HTMLDivElement | null> = useRef(null);
 
 	const [ open, setOpen ] = useState(false);
 
