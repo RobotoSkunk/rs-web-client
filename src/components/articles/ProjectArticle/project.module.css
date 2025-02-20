@@ -183,7 +183,9 @@ body[device-type=mobile] .button:hover {
 	height: 210px;
 	overflow: hidden;
 
-	transition: transform 0.4s ease;
+	transition-property: transform, filter;
+	transition-duration: 0.4s;
+	transition-timing-function: ease;
 }
 
 .preview .picture img {
@@ -193,6 +195,8 @@ body[device-type=mobile] .button:hover {
 
 .preview .picture:first-child {
 	transform: translate(-50%, -50%) rotate(5deg);
+
+	filter: brightness(0.5);
 }
 
 
@@ -202,6 +206,8 @@ body[device-type=mobile] .button:hover {
 
 .project:hover .preview .picture:first-child {
 	transform: translate(-60%, -40%) rotate(8deg);
+
+	filter: brightness(1);
 }
 
 
@@ -232,8 +238,8 @@ body[device-type=mobile] .button:hover {
 	}
 
 	.content {
-		align-items:center;
-		flex-direction: column;
+		align-items: center;
+		flex-direction: column-reverse;
 	}
 
 	.links {

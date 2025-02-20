@@ -17,7 +17,7 @@
  */
 'use client';
 
-import React, { MutableRefObject, useEffect, useRef, useState } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
@@ -58,11 +58,11 @@ export default function ProjectArticle({
 	setCurrentId(id: null|string): void,
 }>)
 {
-	const articleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-	const circleRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+	const articleRef: RefObject<HTMLDivElement | null> = useRef(null);
+	const circleRef: RefObject<HTMLDivElement | null> = useRef(null);
 
-	const containerRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
-	const screenshotsRef: MutableRefObject<HTMLDivElement | null> = useRef(null);
+	const containerRef: RefObject<HTMLDivElement | null> = useRef(null);
+	const screenshotsRef: RefObject<HTMLDivElement | null> = useRef(null);
 
 	const [ open, setOpen ] = useState(false);
 
@@ -148,20 +148,6 @@ export default function ProjectArticle({
 					<h3>{ name }</h3>
 				</div>
 				<div className={ style.content }>
-					<div className={ style.preview }>
-						{previewScreenshots.map((screenshot, i) =>
-						(
-							<div className={ style.picture }>
-								<Image
-									src={ screenshot.src }
-									alt={ screenshot.alt }
-									draggable={ false }
-									quality={ 85 }
-									sizes={ '(max-width: 600px) 200px, (max-width: 900px) 250px, 350px' }
-								/>
-							</div>
-						))}
-					</div>
 					<div className={ style.description }>
 						<div className={ style.text }>
 							{ description }
@@ -180,6 +166,20 @@ export default function ProjectArticle({
 								</Link>
 							))}
 						</div>
+					</div>
+					<div className={ style.preview }>
+						{previewScreenshots.map((screenshot, i) =>
+						(
+							<div className={ style.picture } key={ i }>
+								<Image
+									src={ screenshot.src }
+									alt={ screenshot.alt }
+									draggable={ false }
+									quality={ 85 }
+									sizes={ '(max-width: 600px) 200px, (max-width: 900px) 250px, 350px' }
+								/>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>
