@@ -151,7 +151,7 @@ export default function ProjectArticle({
 					<div className={ style.preview }>
 						{previewScreenshots.map((screenshot, i) =>
 						(
-							<div className={ style.picture }>
+							<div className={ style.picture } key={ i }>
 								<Image
 									src={ screenshot.src }
 									alt={ screenshot.alt }
