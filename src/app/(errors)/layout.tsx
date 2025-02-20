@@ -40,8 +40,12 @@ export default function RootLayout({
 {
 	return (
 		<html lang='en'>
-			<body className={roboto.className}>
-				{children}
+			<body className={ roboto.className }>
+				{ children }
+
+				<footer>
+					<a href='/'>robotoskunk.com</a>
+				</footer>
 			</body>
 		</html>
 	);
