@@ -62,6 +62,10 @@ export function middleware(request: NextRequest)
 	var status = 200;
 
 	switch (true) {
+		case pathStartsWith('/commissions'): {
+			return NextResponse.redirect(new URL('/', request.url));
+		}
+
 		case pathEquals('/public'): {
 			return NextResponse.redirect(new URL('/public/', request.url));
 		}
