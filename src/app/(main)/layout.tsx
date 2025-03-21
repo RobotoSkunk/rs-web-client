@@ -16,22 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
 import { headers } from 'next/headers';
 
 import { execSync } from 'child_process';
 
 import './globals.css';
+import { roboto400 } from '@/utils/fonts';
 
 import Background from '@/components/Background';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AlexPhrase from '@/components/AlexPhrase';
 import metadataBuilder from '@/utils/metadata-builder';
-
-
-const roboto = Roboto({ weight: '400', subsets: [ 'latin' ], display: 'swap' });
 
 
 export const metadata = metadataBuilder();
@@ -70,7 +66,7 @@ export default async function RootLayout({
 			</head>
 
 			<body
-				className={ roboto.className }
+				className={ roboto400.className }
 				device-type={ deviceType }
 			>
 				<Background/>

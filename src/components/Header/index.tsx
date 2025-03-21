@@ -20,15 +20,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Roboto_Condensed } from 'next/font/google';
 import { useEffect } from 'react';
+
+import { robotoCondensed } from '@/utils/fonts';
 
 import backImage from '@/assets/svg/symbols/back.svg';
 import { usePathname } from 'next/navigation';
 import SpanLink from './SpanLink';
 
-
-const roboto = Roboto_Condensed({ weight: '300', subsets: [ 'latin' ], display: 'swap' });
 
 
 
@@ -87,7 +86,7 @@ export default function Header()
 	}
 
 	return (
-		<header className={ roboto.className }>
+		<header className={ robotoCondensed.className }>
 			<div className='nav-menu-bg'></div>
 
 			<nav>

@@ -17,18 +17,14 @@
  */
 
 import Link from 'next/link';
-import { Roboto_Mono } from 'next/font/google';
 
 import metadataBuilder from '@/utils/metadata-builder';
-
+import { robotoMono } from '@/utils/fonts';
 
 import style from './page.module.css';
 import ExternalLink from '@/components/icons/ExternalLink';
 
 import acknowledgements from '@/data/acknowledgements';
-
-
-const robotoMono = Roboto_Mono({ weight: '400', subsets: [ 'latin' ], display: 'swap' });
 
 
 export const metadata = metadataBuilder('Open source');

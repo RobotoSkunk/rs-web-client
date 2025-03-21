@@ -16,35 +16,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import type { Metadata } from 'next';
-import { roboto300 } from '@/utils/fonts';
-
-import './globals.css';
+// Replaced Google fonts with local fonts due to connection problems while downloading fonts on build
+import LocalFont from 'next/font/local';
 
 
-export const metadata: Metadata = {
-	title: 'Error',
-	description: 'Something went wrong...',
-	robots: 'noindex, nofollow',
-};
+export const robotoMono = LocalFont({
+	src: '../assets/font/RobotoMono.woff2',
+	weight: '400',
+	display: 'swap',
+});
 
+export const robotoCondensed = LocalFont({
+	src: '../assets/font/RobotoCondensed.woff2',
+	weight: '300',
+	display: 'swap',
+});
 
+export const roboto400 = LocalFont({
+	src: '../assets/font/Roboto.woff2',
+	weight: '400',
+	display: 'swap',
+});
 
-export default function RootLayout({
-	children,
-}: Readonly<{
-	children: React.ReactNode;
-}>)
-{
-	return (
-		<html lang='en'>
-			<body className={ roboto300.className }>
-				{ children }
-
-				<footer>
-					<a href='/'>robotoskunk.com</a>
-				</footer>
-			</body>
-		</html>
-	);
-}
+export const roboto300 = LocalFont({
+	src: '../assets/font/Roboto.woff2',
+	weight: '300',
+	display: 'swap',
+});

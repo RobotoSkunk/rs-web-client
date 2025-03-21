@@ -21,11 +21,10 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { Roboto } from 'next/font/google';
+import { roboto300 } from '@/utils/fonts';
+
 import { motion } from 'framer-motion';
 import ExternalLink from '../icons/ExternalLink';
-
-const roboto = Roboto({ weight: '300', subsets: [ 'latin' ], display: 'swap' });
 
 
 export default function Footer()
@@ -45,7 +44,7 @@ export default function Footer()
 
 	return (
 		<motion.footer
-			className={roboto.className}
+			className={roboto300.className}
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.8 }}
