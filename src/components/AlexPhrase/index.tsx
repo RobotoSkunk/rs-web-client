@@ -27,8 +27,8 @@ function alexTalk(message: string)
 {
 	console.log(
 		`%cAlex Skunk: %c${message}`,
-		'color: #c3e629; font-size: 15px',
-		'color: #dddddd; font-size: 15px; font-weight: bold'
+		'color: #c3e629; font-size: 1.1em',
+		'color: #dddddd; font-size: 1.1em; font-weight: bold'
 	);
 }
 
