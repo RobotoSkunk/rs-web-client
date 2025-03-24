@@ -1,6 +1,6 @@
 /*
  * robotoskunk.com front client. The frontend part of robotoskunk.com
- * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-.main {
+ .main {
 	width: 90vw;
 	max-width: 800px;
 
@@ -30,48 +30,24 @@
 
 
 .main h1 { font-size: 3em }
-.main h2 { font-size: 2em }
 
+.alex-ref {
+	display: block;
+	box-sizing: content-box;
 
-.nutshell { margin-bottom: 100px }
-.main section { margin-bottom: 50px }
+	max-width: 100%;
+	margin: 20px 0;
 
-.who-i-am {
-	display: flex;
-	flex-direction: row;
-	column-gap: 50px;
+	background-color: white;
 }
 
-.content p { margin: 15px 0 }
-.who-i-am .content { font-size: 1.2em }
-
-.who-i-am,
-.content {
-	text-align: left;
+.alex-ref p {
+	padding: 10px 0;
+	margin: 0;
 }
+.alex-ref a { color: black }
 
-.profile-picture {
-	border-radius: 50%;
+.alex-ref,
+.alex-ref img {
+	border-radius: 20px;
 }
-
-.picture-container {
-	display: inline-flex;
-	flex-direction: column;
-
-	row-gap: 20px;
-}
-
-
-@media screen and (max-width: 700px) {
-	.who-i-am {
-		flex-direction: column;
-		align-items: center;
-
-		text-align: center;
-	}
-
-	.who-i-am .content {
-		text-align: center;
-	}
-}
-

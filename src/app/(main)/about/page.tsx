@@ -59,46 +59,26 @@ export default function Page()
 					</div>
 					<div className={ style.content }>
 						<p>
-							My name is <b>Edgar Lima</b>, I'm a 23-year-old Mexican autodidact Full Stack developer,
-							graphic designer, cartoonist, Linux Servers maintainer and game developer.
+							My name is <b>Edgar Lima</b>, I'm a 23-year-old Mexican computer systems engineer.
+							Graduated from the Instituto Tecnológico Superior de Poza Rica in the state of Veracruz
+							in 2024.
 						</p>
 						<p>
-							I've been coding non-stop since 2018, mainly focused on my own side projects because I wanted
-							to make games and have a servers infrastructure like Google's when I was younger.
+							I have strong knowledge of object-oriented programming languages, among them C++, C#, Java,
+							TypeScript, PHP and also HTML and CSS. I also worked with some frameworks like
+							React.js/Next.js, Kysely, Electron, Discord.js and Express.js.
+						</p>
+						<p>
+							I have experience with Linux-based operating systems, and I've worked in the installation of
+							WRF-Chem and CMAQ in a Linux server for a grant-winning project for the government of
+							Veracruz.
+						</p>
+						<p>
+							I also developed a couple simple games with Unity, Game Maker and Godot.NET in my free time.
 						</p>
 					</div>
 				</div>
 			</div>
-
-			<section>
-				<h2>My Avatar</h2>
-				<p>
-					Since I didn't want to show my face on the Internet, and just for fun, I created an avatar
-					(or fursona) called Alex Skunk. Originally it was meant to be a mascot, but I liked it a lot and
-					decided to use it as my avatar instead.
-				</p>
-
-				<div className={ style['alex-ref'] }>
-					<Image
-						src={ alexReferencePicture }
-						alt="Alex Skunk's reference sheet 2021"
-						width={ 800 }
-						sizes='100%'
-						style={{
-							width: '100%',
-							height: 'auto',
-						}}
-						draggable={ false }
-					/>
-					<p>
-						<Link href='/assets/img/alex-skunk-ref2021.png'>Download Original PNG</Link>
-					</p>
-				</div>
-
-				<p>
-					He was created on January 7, 2017.
-				</p>
-			</section>
 		</main>
 	);
 }

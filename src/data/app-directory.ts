@@ -48,6 +48,11 @@ export default [
 		validForSeo: true,
 	},
 	{
+		path: '/alex-skunk',
+		priority: 0,
+		validForSeo: true,
+	},
+	{
 		path: '/noscript',
 		priority: 0,
 		validForSeo: false,
