@@ -54,22 +54,10 @@ export default function Root()
 			<h2>Edgar Lima</h2>
 			<p>
 				<TypeAnimation
-					preRenderFirstString={ true }
-					sequence={[
-						2000,
-						"I'm a Full Stack Developer.",
-						2000,
-						"I'm a Game Developer.",
-						2000,
-						"I'm a Linux Servers Maintainer.",
-						2000,
-						"I'm a Graphic Designer.",
-						2000,
-						"I'm a Cartoonist.",
-					]}
+					sequence={[ 'Computer Systems Engineer.' ]}
 					speed={ 50 }
-					repeat={ Infinity }
-				/>
+				>
+				</TypeAnimation>
 			</p>
 
 			<div className='social-media'>
