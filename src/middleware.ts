@@ -101,9 +101,11 @@ export function middleware(request: NextRequest)
 	const isOnion = hostname.endsWith('.onion');
 	const allowInsecure = isOnion || process.env.NODE_ENV !== 'production';
 	const canonical = `https://${hostname}${request.nextUrl.pathname}`;
+	const nonce = Buffer.from(crypto.getRandomValues(new Uint32Array(32))).toString('base64url');
 
 	const csp = [
-		`default-src 'self' 'unsafe-hashes' 'unsafe-inline' ${ allowInsecure ? "'unsafe-eval'" : '' };`,
+		`default-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${ allowInsecure ? "'unsafe-eval'" : '' };`,
+		`style-src 'self' 'unsafe-inline';`,
 		`img-src 'self' blob: data:;`,
 		`font-src 'self';`,
 		`object-src 'none';`,
@@ -119,6 +121,7 @@ export function middleware(request: NextRequest)
 	const requestHeaders = new Headers(request.headers);
 	requestHeaders.set('X-Device-Type', device.type ?? 'desktop');
 	requestHeaders.set('X-Canonical', canonical);
+	requestHeaders.set('X-Nonce', nonce);
 
 
 	const response = NextResponse.next({
