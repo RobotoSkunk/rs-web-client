@@ -28,6 +28,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AlexPhrase from '@/components/AlexPhrase';
 import metadataBuilder from '@/utils/metadata-builder';
+import { MotionConfig } from 'framer-motion';
 
 
 export const metadata = metadataBuilder();
@@ -41,7 +42,8 @@ export default async function RootLayout({
 {
 	const _headers = await headers();
 	const deviceType = _headers.get('X-Device-Type') ?? '';
-	const canonical = _headers.get('X-Canonical') ?? '';
+	const canonical  = _headers.get('X-Canonical')   ?? '';
+	const nonce      = _headers.get('X-Nonce')       ?? '';
 
 
 	if (!process.env.COMMIT_SHA) {
@@ -72,13 +74,15 @@ export default async function RootLayout({
 				<Background/>
 				<AlexPhrase/>
 
-				<div id='app'>
-					<Header/>
+				<MotionConfig nonce={ nonce }>
+					<div id='app'>
+						<Header/>
 
-					{ children }
+						{ children }
 
-					<Footer/>
-				</div>
+						<Footer/>
+					</div>
+				</MotionConfig>
 			</body>
 		</html>
 	);
