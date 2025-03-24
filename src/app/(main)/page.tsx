@@ -48,6 +48,7 @@ export default function Root()
 				height={ 200 }
 				className={ style.logo }
 				draggable={ false }
+				priority={ true }
 			/>
 
 			<h1>RobotoSkunk</h1>

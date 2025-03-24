@@ -54,7 +54,7 @@ export default async function RootLayout({
 	}
 
 	return (
-		<html lang='en'>
+		<html lang='en' suppressHydrationWarning={ true }>
 			<head>
 				<link rel='me' href='https://mastodon.social/@RobotoSkunk'/>
 				<link rel='me' href='https://wetdry.world/@RobotoSkunk'/>

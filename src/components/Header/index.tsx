@@ -113,8 +113,9 @@ export default function Header()
 					<Link href='/' className='home-link'>
 						<Image
 							alt=''
-							src={backImage}
-							width={20}
+							src={ backImage }
+							width={ 20 }
+							priority={ true }
 						/>
 						<span>Home</span>
 					</Link>
