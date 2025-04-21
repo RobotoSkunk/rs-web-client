@@ -78,10 +78,6 @@ a:focus .discord-popup {
 	opacity: 1;
 }
 
-body[device-type=mobile] .discord-popup {
-	backdrop-filter: unset;
-}
-
 
 .discord-popup.copied {
 	top: unset;
@@ -116,4 +112,27 @@ body[device-type=mobile] .discord-popup {
 
 .discord-popup.copied.red span {
 	position: relative;
+}
+
+
+body[device-type=mobile] .discord-popup {
+	backdrop-filter: unset;
+}
+
+body[device-type=mobile] .discord-popup.copied {
+	background: #2e712d;
+}
+
+body[device-type=mobile] .discord-popup.copied.red {
+	background: #8e2f2f;
+}
+
+@media (prefers-color-scheme: light) {
+	body[device-type=mobile] .discord-popup.copied {
+		background: #6cb86b;
+	}
+	
+	body[device-type=mobile] .discord-popup.copied.red {
+		background: #db7b7b;
+	}
 }
