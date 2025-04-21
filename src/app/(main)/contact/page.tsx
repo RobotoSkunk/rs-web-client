@@ -76,22 +76,6 @@ export default function Page()
 						<Telegram/>
 					</Link>
 					<Link
-						href='https://discord.com/users/273147770242596875'
-						title='Discord'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Discord/>
-					</Link>
-					<Link
-						href='https://bsky.app/profile/robotoskunk.com'
-						title='Bluesky'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Bluesky/>
-					</Link>
-					<Link
 						href='https://linkedin.com/in/RobotoSkunk'
 						title='LinkedIn'
 						target='_blank'
@@ -106,22 +90,6 @@ export default function Page()
 						rel='noreferrer noopener'
 					>
 						<Messenger/>
-					</Link>
-					<Link
-						href='https://instagram.com/RobotoSkunk'
-						title='Instagram'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Instagram/>
-					</Link>
-					<Link
-						href='https://www.reddit.com/user/RobotoSkunk_'
-						title='Reddit'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Reddit/>
 					</Link>
 				</div>
 			</section>
