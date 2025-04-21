@@ -26,7 +26,6 @@ import { TypeAnimation } from 'react-type-animation';
 
 import Facebook from '@/components/icons/social/Facebook';
 import Twitter from '@/components/icons/social/Twitter';
-import Discord from '@/components/icons/social/Discord';
 import Instagram from '@/components/icons/social/Instagram';
 import YouTube from '@/components/icons/social/YouTube';
 import GitHub from '@/components/icons/social/GitHub';
@@ -38,108 +37,25 @@ import DeviantArt from '@/components/icons/social/DeviantArt';
 import LinkedIn from '@/components/icons/social/LinkedIn';
 
 import logoImage from '@/assets/svg/logo_2024.svg';
-import CopyIcon from '@/components/icons/CopyIcon';
 
 
 export default function Root()
 {
-	const discordRef: RefObject<HTMLAnchorElement | null> = useRef(null);
-	const discordTagRef: RefObject<HTMLDivElement | null> = useRef(null);
-
 	const extraSocialsRef: RefObject<HTMLDivElement | null> = useRef(null);
 	const extraSocialsContainerRef: RefObject<HTMLDivElement | null> = useRef(null);
 	const buttonExtraSocialsRef: RefObject<HTMLButtonElement | null> = useRef(null);
 
-	const copiedDivRef: RefObject<HTMLDivElement | null> = useRef(null);
-	const resetPhraseTimeoutRef: RefObject<number | NodeJS.Timeout | null> = useRef(null);
-	const removeDivTimeoutRef: RefObject<number | NodeJS.Timeout | null> = useRef(null);
-
-	const [ copyCount, setCopyCount ] = useState(0);
 	const [ extrasOpen, setExtrasOpen ] = useState(false);
 
-	const copyPhrases = [
-		'Copied!',
-		'Double Copy!',
-		'Triple Copy!',
-		'Dominating!!',
-		'Rampage!!',
-		'Mega Copy!!',
-		'Unstoppable!!',
-		'Wicked Sick!!',
-		'Monster Copy!!!',
-		'GODLIKE!!!',
-		'BEYOND GODLIKE!!!!',
-	];
-
-	function copyToClipboard(ev: React.MouseEvent<HTMLAnchorElement, MouseEvent>)
+	useEffect(() =>
 	{
-		ev.preventDefault();
-
-		navigator.clipboard.writeText('robotoskunk');
-
-		var doShake = false;
-		var shakeId: any;
-
-		const div = document.createElement('div');
-		const span = document.createElement('span');
+		window.addEventListener('resize', () =>
 		{
-			div.classList.add(style['discord-popup'], style.copied);
-
-			if (copyCount >= copyPhrases.length - 2) {
-				div.classList.add(style.red);
-				doShake = true;
+			if (extrasOpen) {
+				setExtrasHeight();
 			}
-
-			span.innerText = copyPhrases[copyCount];
-			div.appendChild(span);
-		}
-
-
-		discordRef.current?.appendChild(div);
-
-		if (copyCount + 1 < copyPhrases.length) {
-			setCopyCount(copyCount + 1);
-		}
-
-		if (doShake) {
-			shakeId = setInterval(() =>
-			{
-				const x = Math.random() * (Math.random() > 0.5 ? 1 : -1) * 4;
-				const y = Math.random() * (Math.random() > 0.5 ? 1 : -1) * 4;
-
-				span.style.top = `${y}px`;
-				span.style.left = `${x}px`;
-			}, 16);
-		}
-
-		if (resetPhraseTimeoutRef.current) {
-			clearTimeout(resetPhraseTimeoutRef.current);
-		}
-
-		resetPhraseTimeoutRef.current = setTimeout(() => setCopyCount(0), 2000);
-
-
-		if (copiedDivRef.current) {
-			if (removeDivTimeoutRef.current) {
-				clearTimeout(removeDivTimeoutRef.current);
-			}
-
-			copiedDivRef.current.remove();
-		}
-
-		copiedDivRef.current = div;
-
-
-		removeDivTimeoutRef.current = setTimeout(() =>
-		{
-			div.remove();
-
-			if (doShake) {
-				clearInterval(shakeId);
-			}
-		}, 1000);
-	}
-
+		});
+	}, []);
 
 	function setExtrasHeight()
 	{
@@ -154,42 +70,6 @@ export default function Root()
 
 		extraSocialsContainerRef.current.style.height = `${rect.height}px`;
 	}
-
-	function setTagPosition()
-	{
-		if (discordTagRef.current) {
-			// @ts-ignore really?
-			const rect = discordRef.current.getBoundingClientRect();
-
-			discordTagRef.current.style.left = `${rect.x + rect.width / 2}px`;
-			discordTagRef.current.style.top = `${rect.y + rect.height / 2 + 35}px`;
-		}
-	}
-
-	function showDiscordTag(toggle: boolean)
-	{
-		if (discordTagRef.current) {
-			discordTagRef.current.classList.toggle(style.show, toggle);
-
-			if (toggle) {
-				setTagPosition();
-			}
-		}
-	}
-
-	useEffect(() =>
-	{
-		setTagPosition();
-
-		window.addEventListener('resize', () =>
-		{
-			if (extrasOpen) {
-				setExtrasHeight();
-			}
-
-			setTagPosition();
-		});
-	}, []);
 
 	function openExtras()
 	{
@@ -242,20 +122,6 @@ export default function Root()
 						rel='noreferrer noopener'
 					>
 						<Twitter/>
-					</Link>
-					<Link
-						href='#'
-						title='Discord'
-						rel='button'
-						ref={ discordRef }
-						onClick={ ev => copyToClipboard(ev) }
-
-						onMouseEnter={ () => showDiscordTag(true) }
-						onFocus={ () => showDiscordTag(true) }
-						onMouseLeave={ () => showDiscordTag(false) }
-						onBlur={ () => showDiscordTag(false) }
-					>
-						<Discord/>
 					</Link>
 					<Link
 						href='https://instagram.com/RobotoSkunk'
@@ -358,11 +224,6 @@ export default function Root()
 					</div>
 				</div>
 			</main>
-
-			<div className={ style['discord-popup'] } ref={ discordTagRef } style={{ fontSize: '1.2em' }}>
-				<CopyIcon/>
-				<span>@robotoskunk</span>
-			</div>
 		</>
 	);
 }

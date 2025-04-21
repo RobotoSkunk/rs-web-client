@@ -1,0 +1,122 @@
+/*
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.discord-popup {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	background: #353535b0;
+	color: var(--foreground-color);
+
+	position: fixed;
+	left: 50%;
+
+	padding: 10px 15px;
+	white-space: nowrap;
+
+	transform: translateX(-50%);
+
+	border-radius: 10px;
+	backdrop-filter: blur(5px);
+
+	visibility: hidden;
+	opacity: 0;
+
+	z-index: 10;
+	pointer-events: none;
+
+	transition-property: visibility, opacity;
+	transition-timing-function: ease;
+	transition-duration: 0.5s;
+}
+
+
+.discord-popup.show,
+.discord-popup.show {
+	visibility: visible;
+	opacity: 1;
+}
+
+
+.discord-popup.copied {
+	top: unset;
+	bottom: calc(100% + 10px);
+
+	visibility: hidden !important;
+	opacity: 0 !important;
+
+	transition:
+		bottom cubic-bezier(0.22, 1, 0.36, 1) 0.6s,
+		visibility ease 0.5s 0.5s,
+		opacity ease 0.5s 0.5s;
+
+
+	font-size: 0.8em;
+	padding: 8px 13px;
+
+
+	background: #29be2670;
+
+	@starting-style {
+		bottom: 70%;
+
+		visibility: visible !important;
+		opacity: 1 !important;
+	}
+}
+
+.discord-popup.copied.red {
+	background: #f6484870;
+}
+
+.discord-popup.copied.red span {
+	position: relative;
+}
+
+
+body[device-type=mobile] .discord-popup {
+	backdrop-filter: unset;
+	background: #353535;
+}
+
+body[device-type=mobile] .discord-popup.copied {
+	background: #2e712d;
+}
+
+body[device-type=mobile] .discord-popup.copied.red {
+	background: #8e2f2f;
+}
+
+@media (prefers-color-scheme: light) {
+	.discord-popup {
+		background: #a4a4a4b0;
+	}
+
+	body[device-type=mobile] .discord-popup {
+		background: #a4a4a4;
+	}
+
+	body[device-type=mobile] .discord-popup.copied {
+		background: #6cb86b;
+	}
+	
+	body[device-type=mobile] .discord-popup.copied.red {
+		background: #db7b7b;
+	}
+}

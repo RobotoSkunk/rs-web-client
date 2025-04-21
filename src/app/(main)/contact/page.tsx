@@ -22,14 +22,11 @@ import metadataBuilder from '@/utils/metadata-builder';
 
 import style from './page.module.css';
 
-import Discord from '@/components/icons/social/Discord';
-import Instagram from '@/components/icons/social/Instagram';
 import Messenger from '@/components/icons/social/Messenger';
 import Telegram from '@/components/icons/social/Telegram/intex';
-import Reddit from '@/components/icons/social/Reddit';
 import MailIcon from '@/components/icons/MailIcon';
 import LinkedIn from '@/components/icons/social/LinkedIn';
-import Bluesky from '@/components/icons/social/Bluesky';
+import DiscordButton from './discord-button';
 
 
 export const metadata = metadataBuilder('Contact');
@@ -75,6 +72,7 @@ export default function Page()
 					>
 						<Telegram/>
 					</Link>
+					<DiscordButton/>
 					<Link
 						href='https://linkedin.com/in/RobotoSkunk'
 						title='LinkedIn'
