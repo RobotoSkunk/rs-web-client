@@ -445,7 +445,7 @@ footer span:not(:last-child) {
 	transition: scale 0.3s ease-in-out;
 }
 
-.social-media a svg {
+.social-media a > svg {
 	width: 100%;
 	height: 100%;
 
