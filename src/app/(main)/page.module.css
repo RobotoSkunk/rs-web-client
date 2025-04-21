@@ -43,17 +43,114 @@
 }
 
 
+.socials-main {
+	margin-bottom: 0px;
+
+	position: relative;
+	z-index: 2;
+}
+
+.socials-main a {
+	position: relative;
+}
+
+.socials-showmore {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	margin: 0 auto;
+
+	width: 100%;
+	height: 40px;
+
+	padding: 0;
+
+	border: 0;
+	border-radius: 10px;
+
+	overflow: hidden;
+
+	background: transparent;
+	backdrop-filter: blur(0px);
+
+	transition: backdrop-filter 0.5s, background 0.5s, height ease-in-out 0.5s;
+}
+
+.socials-showmore.closed {
+	height: 0px;
+}
+
+.socials-showmore::after {
+	display: none;
+}
+
+.socials-showmore:focus,
+.socials-showmore:hover {
+	background: var(--article-button-background);
+	backdrop-filter: blur(5px);
+}
+
+body[device-type=mobile] .socials-showmore:focus,
+body[device-type=mobile] .socials-showmore:hover {
+	backdrop-filter: unset;
+}
+
+.arrow {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	width: 30px;
+	height: 20px;
+}
+
+.arrow div {
+	display: block;
+	height: 2px;
+	width: 70%;
+	border-radius: 10px;
+	background: var(--foreground-color);
+}
+
+.arrow div:nth-child(1) {
+	transform: translate(12px, 8px) rotate(-40deg);
+	transform-origin: 50% 50%;
+}
+
+.arrow div:nth-child(2) {
+	transform: translate(-3px, -10px) rotate(40deg);
+	transform-origin: 50% 50%;
+}
+
+
+.socials-extra-container {
+	height: 0px;
+	margin-bottom: 40px;
+	overflow: hidden;
+
+	transition: height 0.5s ease-in-out;
+
+	position: relative;
+	z-index: 1;
+}
+
+.socials-extra {
+	margin: 0px;
+}
+
+
+
 .discord-popup {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	background: var(--article-background);
+	background: #353535b0;
 	color: var(--foreground-color);
 
-	position: absolute;
+	position: fixed;
 	left: 50%;
-	top: calc(100% + 5px);
 
 	padding: 10px 15px;
 	white-space: nowrap;
@@ -66,14 +163,17 @@
 	visibility: hidden;
 	opacity: 0;
 
+	z-index: 10;
+	pointer-events: none;
+
 	transition-property: visibility, opacity;
 	transition-timing-function: ease;
 	transition-duration: 0.5s;
 }
 
 
-a:hover .discord-popup,
-a:focus .discord-popup {
+.discord-popup.show,
+.discord-popup.show {
 	visibility: visible;
 	opacity: 1;
 }
@@ -117,6 +217,7 @@ a:focus .discord-popup {
 
 body[device-type=mobile] .discord-popup {
 	backdrop-filter: unset;
+	background: #353535;
 }
 
 body[device-type=mobile] .discord-popup.copied {
@@ -128,6 +229,14 @@ body[device-type=mobile] .discord-popup.copied.red {
 }
 
 @media (prefers-color-scheme: light) {
+	.discord-popup {
+		background: #a4a4a4b0;
+	}
+
+	body[device-type=mobile] .discord-popup {
+		background: #a4a4a4;
+	}
+
 	body[device-type=mobile] .discord-popup.copied {
 		background: #6cb86b;
 	}

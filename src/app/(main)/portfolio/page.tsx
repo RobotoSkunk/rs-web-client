@@ -24,11 +24,11 @@ import metadataBuilder from '@/utils/metadata-builder';
 import style from './page.module.css';
 
 import Newgrounds from '@/components/icons/social/Newgrounds';
-import Instagram from '@/components/icons/social/Instagram';
 import DeviantArt from '@/components/icons/social/DeviantArt';
+import LinkedIn from '@/components/icons/social/LinkedIn';
+import Instagram from '@/components/icons/social/Instagram';
 import GitHub from '@/components/icons/social/GitHub';
 
-import LinkedIn from '@/components/icons/social/LinkedIn';
 import PortfolioContent from './portfolio-content';
 
 

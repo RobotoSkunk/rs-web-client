@@ -103,6 +103,10 @@ body,
 	scroll-behavior: smooth;
 }
 
+#app {
+	overflow: hidden;
+}
+
 html {
 	background-color: var(--background-color);
 	color: var(--foreground-color);
