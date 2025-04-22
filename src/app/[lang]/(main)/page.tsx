@@ -18,11 +18,13 @@
 
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import style from './page.module.css';
 import { RefObject, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { TypeAnimation } from 'react-type-animation';
+
+import style from './page.module.css';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 import Facebook from '@/components/icons/social/Facebook';
 import Twitter from '@/components/icons/social/Twitter';
@@ -41,6 +43,8 @@ import logoImage from '@/assets/svg/logo_2024.svg';
 
 export default function Root()
 {
+	const dict = useDictionary();
+
 	const extraSocialsRef: RefObject<HTMLDivElement | null> = useRef(null);
 	const extraSocialsContainerRef: RefObject<HTMLDivElement | null> = useRef(null);
 	const buttonExtraSocialsRef: RefObject<HTMLButtonElement | null> = useRef(null);
@@ -94,7 +98,7 @@ export default function Root()
 			<h2>Edgar Lima</h2>
 			<p>
 				<TypeAnimation
-					sequence={[ 'Computer Systems Engineer.' ]}
+					sequence={[ dict.pages.home.degree ]}
 					speed={ 50 }
 				>
 				</TypeAnimation>

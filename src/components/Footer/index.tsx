@@ -27,11 +27,16 @@ import { motion } from 'framer-motion';
 import ExternalLink from '../icons/ExternalLink';
 
 
-export default function Footer()
+export default function Footer({
+	params,
+}: {
+	params: { lang: string }
+})
 {
 	const [ commitSha, setCommitSha ] = useState('not_a_repo');
 
 	const year = new Date().getFullYear();
+	const lang = params.lang;
 
 
 	useEffect(() =>
@@ -53,11 +58,11 @@ export default function Footer()
 				© Copyright {year} RobotoSkunk. All Rights Reserved.
 			</span>
 			<span>
-				{/* <Link href='/privacy'>Privacy Policy</Link>
+				{/* <Link href=`/${lang}/privacy`>Privacy Policy</Link>
 				{ ' • ' }
-				<Link href='/terms'>Terms of Use</Link>
+				<Link href=`/${lang}/terms`>Terms of Use</Link>
 				{ ' • ' } */}
-				<Link href='/open-source'>Open Source</Link>
+				<Link href={ `/${lang}/open-source` }>Open Source</Link>
 				{ ' • ' }
 				<Link
 					href={ `https://github.com/RobotoSkunk/rs-web-client/tree/${commitSha}` }

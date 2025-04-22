@@ -36,12 +36,14 @@ function toggleNav()
 	document.querySelector('header')?.classList.toggle('nav-open');
 }
 
-function displayHomeLink(pathname: string)
+function displayHomeLink(pathname: string, lang: string)
 {
 	const navMenu = document.getElementById('nav-menu');
 
+	pathname = pathname.replace(`/${lang}`, '');
+
 	if (navMenu) {
-		navMenu.classList.toggle('show-home', pathname !== '/');
+		navMenu.classList.toggle('show-home', pathname !== '');
 	}
 
 	document.querySelector('header')?.classList.remove('nav-open');
@@ -49,37 +51,42 @@ function displayHomeLink(pathname: string)
 
 
 
-export default function Header()
+export default function Header({
+	params,
+}: {
+	params: { lang: string },
+})
 {
 	const pathname = usePathname();
+	const lang = params.lang;
 
-	useEffect(() => displayHomeLink(pathname as string), [ pathname ]);
+	useEffect(() => displayHomeLink(pathname as string, lang), [ pathname, lang ]);
 
 	const linksData = {
 		time: 0.5,
 		links: [
 			{
-				href: '/about',
+				href: `/${lang}/about`,
 				label: 'About me',
 			},
 			// {
-			// 	href: '/blog',
+			// 	href: `/${lang}/blog`,
 			// 	label: 'Blog',
 			// },
 			// {
-			// 	href: '/commissions',
+			// 	href: `/${lang}/commissions`,
 			// 	label: 'Commissions',
 			// },
 			{
-				href: '/portfolio',
+				href: `/${lang}/portfolio`,
 				label: 'Portfolio',
 			},
 			{
-				href: '/contact',
+				href: `/${lang}/contact`,
 				label: 'Contact',
 			},
 			{
-				href: '/support-me',
+				href: `/${lang}/support-me`,
 				label: 'Support me',
 			},
 		]
@@ -110,7 +117,7 @@ export default function Header()
 
 			<div id='nav-menu'>
 				<div>
-					<Link href='/' className='home-link'>
+					<Link href={ `/${lang}` } className='home-link'>
 						<Image
 							alt=''
 							src={ backImage }

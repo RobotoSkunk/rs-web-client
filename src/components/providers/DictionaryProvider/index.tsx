@@ -1,6 +1,6 @@
 /*
  * robotoskunk.com front client. The frontend part of robotoskunk.com
- * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
@@ -16,41 +16,40 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { StaticImageData } from 'next/image';
+'use client'
+
+import { createContext, useContext } from 'react';
+
+import { getDictionary } from '@/app/dictionaries';
 
 
-declare global
+type Dictionary = Awaited<ReturnType<typeof getDictionary>>;
+
+const DictionaryContext = createContext<Dictionary | null>(null);
+
+
+export default function DictionaryProvider({
+	dictionary,
+	children,
+}: {
+	dictionary: Dictionary
+	children: React.ReactNode
+})
 {
-	interface ProjectData
-	{
-		name: string,
-		description: string,
-		icon: StaticImageData,
-		links: {
-			label: string,
-			url: string,
-		}[],
-		screenshots: {
-			src: StaticImageData,
-			alt: string,
-		}[],
-	}
-
-	interface ArtworkData
-	{
-		name: string,
-		img: StaticImageData,
-	}
-
-	interface PathData
-	{
-		path: string,
-		priority: number,
-		validForSeo: boolean,
-	}
-
-	type Localizations = 'es-MX' | 'en-US';
+	return (
+		<DictionaryContext.Provider value={dictionary}>
+			{ children }
+		</DictionaryContext.Provider>
+	);
 }
 
+export function useDictionary()
+{
+	const dictionary = useContext(DictionaryContext);
 
-export { };
+	if (dictionary === null) {
+		throw new Error('useDictionary hook must be used within DictionaryProvider');
+	}
+
+	return dictionary;
+}

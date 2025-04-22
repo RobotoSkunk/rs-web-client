@@ -30,8 +30,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AlexPhrase from '@/components/AlexPhrase';
 
-
 import locales from '@/data/locales';
+import { getDictionary } from '@/app/dictionaries';
+import DictionaryProvider from '@/components/providers/DictionaryProvider';
 
 
 export async function generateMetadata({
@@ -105,9 +106,12 @@ export default async function RootLayout({
 	params,
 }: Readonly<{
 	children: React.ReactNode;
-	params: Promise<{ lang: string }>;
+	params: Promise<{ lang: Localizations }>;
 }>)
 {
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
 	const _headers = await headers();
 	const deviceType = _headers.get('X-Device-Type') ?? '';
 	const nonce      = _headers.get('X-Nonce')       ?? '';
@@ -123,7 +127,7 @@ export default async function RootLayout({
 	}
 
 	return (
-		<html lang={ (await params).lang } suppressHydrationWarning={ true }>
+		<html lang={ lang } suppressHydrationWarning={ true }>
 			<head>
 				<link rel='me' href='https://mastodon.social/@RobotoSkunk'/>
 				<link rel='me' href='https://wetdry.world/@RobotoSkunk'/>
@@ -142,11 +146,13 @@ export default async function RootLayout({
 
 				<MotionConfig nonce={ nonce }>
 					<div id='app'>
-						<Header/>
+						<DictionaryProvider dictionary={ dict }>
+							<Header params={{ lang }}/>
 
-						{ children }
+							{ children }
 
-						<Footer/>
+							<Footer params={{ lang }}/>
+						</DictionaryProvider>
 					</div>
 				</MotionConfig>
 			</body>
