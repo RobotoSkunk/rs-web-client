@@ -28,6 +28,14 @@
 			"h2": "Acknowledgements",
 			"h2p": "Thank you to the following open source projects that made this website possible!",
 			"github-button": "GitHub Repository"
+		},
+		"contact": {
+			"h1": "Contact",
+			"h1p": "Thanks for wanting to get in touch with me! Here are the multiple ways you can talk with me.",
+			"h2-email": "Email",
+			"h2p-email": "This is my main and only public email.",
+			"h2-socials": "Social Media",
+			"h2p-socials": "You can find me on my social media. Ordered from the fastest to the slowest I respond."
 		}
 	}
 }

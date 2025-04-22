@@ -16,9 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Link from 'next/link';
+'use client';
 
-import metadataBuilder from '@/utils/metadata-builder';
+import Link from 'next/link';
 
 import style from './page.module.css';
 
@@ -27,23 +27,21 @@ import Telegram from '@/components/icons/social/Telegram/intex';
 import MailIcon from '@/components/icons/MailIcon';
 import LinkedIn from '@/components/icons/social/LinkedIn';
 import DiscordButton from './discord-button';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
-
-// export const metadata = await metadataBuilder({ subtitle: 'Contact' });
 
 export default function Page()
 {
+	const dict = useDictionary();
+
 	return (
 		<main className={ style.main }>
-			<h1>Contact</h1>
-			<p>
-				Thanks for wanting to get in touch with me! Here are the multiple ways you can
-				talk with me.
-			</p>
+			<h1>{ dict.pages.contact.h1 }</h1>
+			<p>{ dict.pages.contact.h1p }</p>
 
 			<section>
-				<h2>Email</h2>
-				<p>This is my main and only public email.</p>
+				<h2>{ dict.pages.contact['h2-email'] }</h2>
+				<p>{ dict.pages.contact['h2p-email'] }</p>
 				<p>
 					<Link
 						href='mailto:contact@robotoskunk.com'
@@ -61,8 +59,8 @@ export default function Page()
 			</section>
 
 			<section>
-				<h2>Social Media</h2>
-				<p>You can find me on my social media. Ordered from the fastest to the slowest I respond.</p>
+				<h2>{ dict.pages.contact['h2-socials'] }</h2>
+				<p>{ dict.pages.contact['h2p-socials'] }</p>
 				<div className='social-media'>
 					<Link
 						href='https://m.me/RobotoSkunk'

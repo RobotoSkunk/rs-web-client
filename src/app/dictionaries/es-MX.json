@@ -28,6 +28,14 @@
 			"h2": "Reconocimientos",
 			"h2p": "¡Gracias a los siguientes proyectos de código abierto que hicieron este sitio web posible!",
 			"github-button": "Repositorio de GitHub"
+		},
+		"contact": {
+			"h1": "Contacto",
+			"h1p": "¡Gracias por querer ponerte en contacto conmigo! Aquí están las múltiples formas en las que puedes hablarme.",
+			"h2-email": "Correo Electrónico",
+			"h2p-email": "Este es mi principal y único correo electrónico público.",
+			"h2-socials": "Redes Sociales",
+			"h2p-socials": "Puedes encontrarme en mis redes sociales. Ordenado de la más rápida a la más lenta que respondo."
 		}
 	}
 }
