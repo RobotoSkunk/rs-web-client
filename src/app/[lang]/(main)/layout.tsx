@@ -133,7 +133,7 @@ export default async function RootLayout({
 
 				<meta name='commit-sha' content={ process.env.COMMIT_SHA }/>
 
-				<noscript><meta http-equiv="refresh" content="0; url=/noscript"></meta></noscript>
+				<noscript><meta http-equiv="refresh" content={ `0; url=/${lang}/noscript` }></meta></noscript>
 			</head>
 
 			<body
