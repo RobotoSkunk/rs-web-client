@@ -67,5 +67,18 @@
 			"toggle-hide": "Ocultar",
 			"toggle-label": "capturas de"
 		}
-	}
+	},
+	"discord-copy-phrases": [
+		"¡Copiada!",
+		"¡Copia doble!",
+		"¡Copia triple!",
+		"¡¡Dominando!!",
+		"¡¡Exterminio!!",
+		"¡¡Masacre!!",
+		"¡¡Imparable!!",
+		"¡¡Maníaco homicida!!",
+		"¡¡¡Monstruosidad!!!",
+		"¡¡¡DIOS!!!",
+		"¡¡¡¡POR ENCIMA DE DIOS!!!!"
+	]
 }

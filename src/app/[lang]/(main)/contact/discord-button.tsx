@@ -22,6 +22,7 @@ import Link from 'next/link';
 import { RefObject, useEffect, useRef, useState } from 'react';
 
 import style from './discord-button.module.css';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 import Discord from '@/components/icons/social/Discord';
 import CopyIcon from '@/components/icons/CopyIcon';
@@ -29,6 +30,8 @@ import CopyIcon from '@/components/icons/CopyIcon';
 
 export default function DiscordButton()
 {
+	const dict = useDictionary();
+
 	const discordRef: RefObject<HTMLAnchorElement | null> = useRef(null);
 	const discordTagRef: RefObject<HTMLDivElement | null> = useRef(null);
 
@@ -38,19 +41,7 @@ export default function DiscordButton()
 
 	const [ copyCount, setCopyCount ] = useState(0);
 
-	const copyPhrases = [
-		'Copied!',
-		'Double Copy!',
-		'Triple Copy!',
-		'Dominating!!',
-		'Rampage!!',
-		'Mega Copy!!',
-		'Unstoppable!!',
-		'Wicked Sick!!',
-		'Monster Copy!!!',
-		'GODLIKE!!!',
-		'BEYOND GODLIKE!!!!',
-	];
+	const copyPhrases = dict['discord-copy-phrases'];
 
 	function copyToClipboard(ev: React.MouseEvent<HTMLAnchorElement, MouseEvent>)
 	{
