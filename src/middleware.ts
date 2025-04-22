@@ -18,8 +18,9 @@
 
 import { NextRequest, NextResponse, userAgent } from 'next/server';
 
-import appDirectory from './data/app-directory';
-import redirects from './data/joke-redirects';
+
+import { localesMiddleware } from './middlewares/locales';
+import { pathsMiddleware } from './middlewares/paths';
 
 
 export const config = {
@@ -37,64 +38,26 @@ export const config = {
 
 export function middleware(request: NextRequest)
 {
-	function pathExists()
-	{
-		for (const data of appDirectory) {
-			if (request.nextUrl.pathname === data.path) {
-				return true;
-			}
-		}
+	// #region Localization
+	const localesResponse = localesMiddleware(request);
 
-		return false;
+	if (localesResponse.response) {
+		return localesResponse.response;
 	}
 
-	function pathEquals(pathname: string)
-	{
-		return request.nextUrl.pathname === pathname;
+	request.headers.set('x-locale', localesResponse.locale);
+	// #endregion
+
+	// #region Paths
+	const pathsResponse = pathsMiddleware(request);
+
+	if (typeof pathsResponse != 'number') {
+		return pathsResponse;
 	}
 
-	function pathStartsWith(pathname: string)
-	{
-		return request.nextUrl.pathname.startsWith(pathname);
-	}
+	const status = pathsResponse;
+	// #endregion
 
-
-	var status = 200;
-
-	switch (true) {
-		case pathStartsWith('/commissions'): {
-			return NextResponse.redirect(new URL('/', request.url));
-		}
-
-		case pathEquals('/public'): {
-			return NextResponse.redirect(new URL('/public/', request.url));
-		}
-
-		case pathEquals('/social'): {
-			return NextResponse.redirect(new URL('/contact', request.url));
-		}
-
-		case pathEquals('/acknowledgements'): {
-			return NextResponse.redirect(new URL('/open-source', request.url));
-		}
-
-		case pathStartsWith('/phpmyadmin'):
-		case pathStartsWith('/myadmin'):
-		case pathEquals('/admin'): {
-			const redirect = redirects[Math.floor(Math.random() * (redirects.length - 1))];
-
-			return NextResponse.redirect(new URL(redirect, request.url));
-		}
-
-		case pathEquals('/teapot'): {
-			status = 418;
-			break;
-		}
-
-		case !pathExists(): {
-			status = 404;
-		}
-	}
 
 	const hostname = request.headers.get('Host') || request.nextUrl.hostname;
 

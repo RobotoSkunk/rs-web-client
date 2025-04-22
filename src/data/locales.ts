@@ -1,6 +1,6 @@
 /*
  * robotoskunk.com front client. The frontend part of robotoskunk.com
- * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
@@ -16,31 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import appDirectory from '@/data/app-directory';
-import { MetadataRoute } from 'next';
-
-import locales from '@/data/locales';
-
-
-export default function robots(): MetadataRoute.Robots
-{
-	const paths = appDirectory.filter(v => !v.validForSeo);
-	const disallowedPaths: string[] = [];
-
-	for (const path of paths) {
-		disallowedPaths.push(path.path);
-
-		for (const locale of locales) {
-			disallowedPaths.push(`/${locale}${path.path}`);
-		}
-	}
-
-
-	return {
-		rules: {
-			userAgent: '*',
-			disallow: disallowedPaths,
-		},
-		sitemap: 'https://robotoskunk.com/sitemap.xml',
-	};
-}
+export default [
+	'es-MX',
+	'en-US',
+];
