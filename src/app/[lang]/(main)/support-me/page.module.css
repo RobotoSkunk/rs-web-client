@@ -31,25 +31,57 @@
 	display: none;
 }
 
-.buttons > a,
-.buttons > div {
-	display: inline-flex;
+.buttons a {
+	display: flex;
 	align-items: center;
 	justify-content: center;
 
-	scale: 1;
-
-	transition: scale 0.25s ease;
-}
-
-.buttons > div a {
 	width: 100%;
-	margin-bottom: 0;
+	padding: 10px 0;
+
+	font-size: 1.5em;
+	border-radius: 10px;
+
+	transition: background-color ease 0.2s;
 }
 
-.buttons > a:hover,
-.buttons > a:focus,
-.buttons > div:has(:hover),
-.buttons > div:has(:focus) {
-	scale: 1.1;
+.buttons .stripe {
+	background-color: #635aff;
+	color: white;
+}
+.buttons .stripe:hover,
+.buttons .stripe:focus {
+	background-color: #482ec7;
+}
+.buttons .stripe img {
+	position: relative;
+	top: 1px;
+
+	margin-left: 9px;
+}
+
+.buttons .kofi {
+	background-color: #f4efe7;
+	color: black;
+}
+.buttons .kofi:hover,
+.buttons .kofi:focus {
+	background-color: #ddb28d;
+}
+.buttons .kofi img {
+	margin-right: 10px;
+}
+
+.buttons .paypal {
+	background-color: #0070ba;
+	color: white;
+
+	padding: 12px 0;
+}
+.buttons .paypal:hover,
+.buttons .paypal:focus {
+	background-color: #004280;
+}
+.buttons .paypal img {
+	margin-right: 10px;
 }

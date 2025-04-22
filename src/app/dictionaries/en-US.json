@@ -45,6 +45,14 @@
 			"content-p2": "I have strong knowledge of object-oriented programming languages, among them C++, C#, Java, TypeScript, PHP and also HTML and CSS. I also worked with some frameworks like React.js/Next.js, Kysely, Electron, Discord.js and Express.js.",
 			"content-p3": "I have experience with Linux-based operating systems, and I've worked in the installation of WRF-Chem and CMAQ in a Linux server for a grant-winning project for the government of Veracruz.",
 			"content-p4": "I also developed a couple simple games with Unity, Game Maker and Godot.NET in my free time."
+		},
+		"support-me": {
+			"h1": "Support me",
+			"h1p": "Thank you for your interest in supporting me!",
+			"img-alt": "Alex happy",
+			"button-stripe": "Support with",
+			"button-kofi": "Support me on Ko-fi",
+			"button-paypal": "Support with PayPal"
 		}
 	}
 }

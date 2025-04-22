@@ -16,69 +16,76 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
-import metadataBuilder from '@/utils/metadata-builder';
-
 import style from './page.module.css';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 import alexHappy from '@/assets/img/alex-happy.webp';
 
-import buyMeACoffee from '@/assets/svg/branding/buy-me-a-coffee.svg';
-import paypalDonate from '@/assets/svg/branding/paypal-donate.svg';
+import kofiSymbol from '@/assets/svg/branding/kofi-symbol.svg';
+import paypalSymbol from '@/assets/svg/branding/paypal-symbol.svg';
+import stripeLogo from '@/assets/svg/branding/stripe.svg';
 
-
-// export const metadata = await metadataBuilder({ subtitle: 'Support me' });
 
 export default function Page()
 {
+	const dict = useDictionary();
+
 	return (
 		<main>
-			<h1>Support me</h1>
-			<p>Thank you for your interest in supporting me!</p>
+			<h1>{ dict.pages['support-me'].h1 }</h1>
+			<p>{ dict.pages['support-me'].h1p }</p>
 
 			<Image
 				src={ alexHappy }
-				alt='Alex happy'
+				alt={ dict.pages['support-me']['img-alt'] }
 				width={ 300 }
 				quality={ 100 }
 			/>
 
 			<div className={ style.buttons }>
-				<div>
-					<Link
-						href='https://buy.stripe.com/6oEcPj14kdVN9EceUU'
-						className='button'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						Donate with Stripe!
-					</Link>
-				</div>
 				<Link
-					href='https://ko-fi.com/robotoskunk'
-					title='Buy me a coffee!'
+					href='https://buy.stripe.com/6oEcPj14kdVN9EceUU'
+					className={ style.stripe }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
+					<b>{ dict.pages['support-me']['button-stripe'] }</b>
 					<Image
-						src={ buyMeACoffee }
-						alt='Buy me a coffee!'
-						width={ 300 }
+						src={ stripeLogo }
+						alt='Stripe'
+						height={ 25 }
 					/>
 				</Link>
 				<Link
-					href='https://www.paypal.com/donate/?hosted_button_id=3JHSMUXWCY7FY'
-					title='Donate with PayPal!'
+					href='https://ko-fi.com/robotoskunk'
+					className={ style.kofi }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
 					<Image
-						src={ paypalDonate }
-						alt='Donate with PayPal!'
-						width={ 300 }
+						src={ kofiSymbol }
+						alt=''
+						width={ 45 }
 					/>
+					<b>{ dict.pages['support-me']['button-kofi'] }</b>
+				</Link>
+				<Link
+					href='https://www.paypal.com/donate/?hosted_button_id=3JHSMUXWCY7FY'
+					className={[ style.paypal ].join(' ')}
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<Image
+						src={ paypalSymbol }
+						alt=''
+						height={ 34 }
+					/>
+					<b>{ dict.pages['support-me']['button-paypal'] }</b>
 				</Link>
 			</div>
 		</main>
