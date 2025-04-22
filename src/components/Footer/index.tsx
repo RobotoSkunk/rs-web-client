@@ -72,7 +72,7 @@ export default function Footer({
 					target='_blank'
 					rel='noreferrer noopener'
 				>
-					Built from { commitSha.slice(0, 7) }<ExternalLink/>
+					{ dict.layout.footer['built-from'] }{ ' ' }{ commitSha.slice(0, 7) }<ExternalLink/>
 				</Link>
 			</span>
 		</motion.footer>

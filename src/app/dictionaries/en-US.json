@@ -3,7 +3,8 @@
 	"layout": {
 		"footer": {
 			"rights": "All Rights Reserved.",
-			"open-source": "Open Source"
+			"open-source": "Open Source",
+			"built-from": "Built from"
 		}
 	},
 	"pages": {
