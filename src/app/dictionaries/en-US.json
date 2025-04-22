@@ -80,5 +80,31 @@
 		"Monster Copy!!!",
 		"GODLIKE!!!",
 		"BEYOND GODLIKE!!!!"
-	]
+	],
+	"errors": {
+		"noscript": {
+			"title": "Disabled JavaScript",
+			"description": "Please enable JavaScript to view this website."
+		},
+		"teapot": {
+			"title": "Error 418 (I'm a Teapot) n.n",
+			"description": "I won't try to make coffee, I'm a teapot!"
+		},
+		"not-found": {
+			"title": "Error 404 (Not Found)",
+			"phrases": [
+				"What you are looking for was not found.",
+				"Are you lost?",
+				"That page doesn't exists.",
+				"What? What was you doing?",
+				"Page lost.",
+				"The page you though exists... doesn't.",
+				"I think you know what 404 means...",
+				"Uhhhh......",
+				"What are you looking for?",
+				"Do you want another map?",
+				"I think your map is upside down."
+			]
+		}
+	}
 }

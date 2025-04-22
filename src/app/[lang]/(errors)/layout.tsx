@@ -20,24 +20,37 @@ import type { Metadata } from 'next';
 import { roboto300 } from '@/utils/fonts';
 
 import './globals.css';
+import { getDictionary } from '@/app/dictionaries';
 
 
-export const metadata: Metadata = {
-	title: 'Error',
-	description: 'Something went wrong...',
-	robots: 'noindex, nofollow',
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>
+}): Promise<Metadata>
+{
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
+	return {
+		title: dict.errors['not-found'].title,
+		robots: 'noindex, nofollow',
+	};
 };
 
 
-
-export default function RootLayout({
+export default async function RootLayout({
 	children,
+	params,
 }: Readonly<{
 	children: React.ReactNode;
+	params: Promise<{ lang: Localizations }>;
 }>)
 {
+	const lang = (await params).lang;
+
 	return (
-		<html lang='en'>
+		<html lang={ lang } suppressHydrationWarning={ true }>
 			<body className={ roboto300.className }>
 				{ children }
 

@@ -80,5 +80,31 @@
 		"¡¡¡Monstruosidad!!!",
 		"¡¡¡DIOS!!!",
 		"¡¡¡¡POR ENCIMA DE DIOS!!!!"
-	]
+	],
+	"errors": {
+		"noscript": {
+			"title": "JavaScript Desactivado",
+			"description": "Por favor, activa JavaScript para ver este sitio web."
+		},
+		"teapot": {
+			"title": "Error 418 (Soy una Tetera) n.n",
+			"description": "No intentaré hacer café, ¡soy una tetera!"
+		},
+		"not-found": {
+			"title": "Error 404 (No Encontrado)",
+			"phrases": [
+				"Lo que estabas buscando no fue encontrado.",
+				"¿Estás perdido?",
+				"Esa página no existe.",
+				"¿Qué? ¿Qué estabas haciendo?",
+				"Página perdida.",
+				"La página que pensabas que existía... no existe.",
+				"Creo que ya sabes qué significa 404...",
+				"Uhhhh......",
+				"¿Qué estabas buscando?",
+				"¿Necesitas un mapa?",
+				"Creo que tu mapa está al revés."
+			]
+		}
+	}
 }

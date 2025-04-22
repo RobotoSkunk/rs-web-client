@@ -16,32 +16,22 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { Metadata } from 'next';
 import HTTPError from '@/components/HTTPError';
 
 import alexLost from '@/assets/svg/alex-skunk/lost.svg';
+import { getDictionary } from '@/app/dictionaries';
 
 
-export const metadata: Metadata = {
-	title: 'Error 404 (Not Found)'
-};
-
-
-export default function HTTP404()
+export default async function HTTP404({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>
+})
 {
-	const phrases = [
-		'What you are looking for was not found.',
-		'Are you lost?',
-		"That page doesn't exists.",
-		'What? What was you doing?',
-		'Page lost.',
-		"The page you though exists... doesn't.",
-		'I think you know what 404 means...',
-		'Uhhhh......',
-		'What are you looking for?',
-		'Do you want another map?',
-		'I think your map is upside down.',
-	];
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
+	const phrases = dict.errors['not-found'].phrases;
 
 	const phrase = phrases[Math.floor(Math.random() * phrases.length)];
 

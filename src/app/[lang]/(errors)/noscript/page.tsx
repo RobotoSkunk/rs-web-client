@@ -20,15 +20,38 @@ import { Metadata } from 'next';
 
 import NoScript from './page.component';
 
+import { getDictionary } from '@/app/dictionaries';
+import DictionaryProvider from '@/components/providers/DictionaryProvider';
 
-export const metadata: Metadata = {
-	title: 'Disabled JavaScript'
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>
+}): Promise<Metadata>
+{
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
+	return {
+		title: dict.errors.noscript.title,
+		robots: 'noindex, nofollow',
+	};
 };
 
 
-export default function Page()
+export default async function Page({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>
+})
 {
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
 	return (
-		<NoScript/>
+		<DictionaryProvider dictionary={ dict }>
+			<NoScript lang={ lang }/>
+		</DictionaryProvider>
 	);
 }

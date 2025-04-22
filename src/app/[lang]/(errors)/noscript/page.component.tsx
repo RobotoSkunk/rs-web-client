@@ -21,23 +21,30 @@
 import { useEffect } from 'react';
 
 import HTTPError from '@/components/HTTPError';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 import alexDizzy from '@/assets/svg/alex-skunk/dizzy.svg';
 
 
-function returnHome()
+function returnHome(lang: Localizations)
 {
-	location.href = '/';
+	location.href = `/${lang}`;
 }
 
-export default function NoScript()
+export default function NoScript({
+	lang,
+}: {
+	lang: Localizations,
+})
 {
-	useEffect(returnHome, []);
+	const dict = useDictionary();
+
+	useEffect(() => returnHome(lang), [ lang ]);
 
 	return (
 		<HTTPError
-			title={ 'JavaScript is not enabled' }
-			description={ 'Please enable JavaScript to view this website.' }
+			title={ dict.errors.noscript.title }
+			description={ dict.errors.noscript.description }
 			alexImage={ alexDizzy }
 		/>
 	);
