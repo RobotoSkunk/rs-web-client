@@ -79,151 +79,149 @@ export default function Root()
 
 
 	return (
-		<>
-			<main className={ style.main }>
-				<Image
-					alt='Alex Skunk logo'
-					src={ logoImage }
-					width={ 200 }
-					height={ 200 }
-					className={ style.logo }
-					draggable={ false }
-					priority={ true }
-				/>
+		<main className={ style.main }>
+			<Image
+				alt='Alex Skunk logo'
+				src={ logoImage }
+				width={ 200 }
+				height={ 200 }
+				className={ style.logo }
+				draggable={ false }
+				priority={ true }
+			/>
 
-				<h1>RobotoSkunk</h1>
-				<h2>Edgar Lima</h2>
-				<p>
-					<TypeAnimation
-						sequence={[ 'Computer Systems Engineer.' ]}
-						speed={ 50 }
-					>
-					</TypeAnimation>
-				</p>
+			<h1>RobotoSkunk</h1>
+			<h2>Edgar Lima</h2>
+			<p>
+				<TypeAnimation
+					sequence={[ 'Computer Systems Engineer.' ]}
+					speed={ 50 }
+				>
+				</TypeAnimation>
+			</p>
 
-				<div className={
-					[
-						'social-media',
-						style['socials-main'],
-					].join(' ')
-				}>
-					<Link
-						href='https://facebook.com/RobotoSkunk'
-						title='Facebook'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Facebook/>
-					</Link>
-					<Link
-						href='https://twitter.com/RobotoSkunk'
-						title='Twitter'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Twitter/>
-					</Link>
-					<Link
-						href='https://instagram.com/RobotoSkunk'
-						title='Instagram'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Instagram/>
-					</Link>
-					<Link
-						href='https://www.youtube.com/robotoskunk'
-						title='YouTube'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<YouTube/>
-					</Link>
-					<Link
-						href='https://linkedin.com/in/RobotoSkunk'
-						title='LinkedIn'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<LinkedIn/>
-					</Link>
-					<Link
-						href='https://github.com/RobotoSkunk'
-						title='GitHub'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<GitHub/>
-					</Link>
+			<div className={
+				[
+					'social-media',
+					style['socials-main'],
+				].join(' ')
+			}>
+				<Link
+					href='https://facebook.com/RobotoSkunk'
+					title='Facebook'
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<Facebook/>
+				</Link>
+				<Link
+					href='https://twitter.com/RobotoSkunk'
+					title='Twitter'
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<Twitter/>
+				</Link>
+				<Link
+					href='https://instagram.com/RobotoSkunk'
+					title='Instagram'
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<Instagram/>
+				</Link>
+				<Link
+					href='https://www.youtube.com/robotoskunk'
+					title='YouTube'
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<YouTube/>
+				</Link>
+				<Link
+					href='https://linkedin.com/in/RobotoSkunk'
+					title='LinkedIn'
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<LinkedIn/>
+				</Link>
+				<Link
+					href='https://github.com/RobotoSkunk'
+					title='GitHub'
+					target='_blank'
+					rel='noreferrer noopener'
+				>
+					<GitHub/>
+				</Link>
+			</div>
+
+
+			<button
+				ref={ buttonExtraSocialsRef }
+				onClick={ openExtras }
+				className={[
+					style['socials-showmore'],
+					(extrasOpen ? style.closed : ''),
+				].join(' ')}
+			>
+				<div className={ style.arrow }>
+					<div></div>
+					<div></div>
 				</div>
+			</button>
 
-
-				<button
-					ref={ buttonExtraSocialsRef }
-					onClick={ openExtras }
+			<div ref={ extraSocialsContainerRef } className={ style['socials-extra-container'] }>
+				<div
+					ref={ extraSocialsRef }
 					className={[
-						style['socials-showmore'],
-						(extrasOpen ? style.closed : ''),
+						'social-media',
+						style['socials-extra'],
 					].join(' ')}
 				>
-					<div className={ style.arrow }>
-						<div></div>
-						<div></div>
-					</div>
-				</button>
-
-				<div ref={ extraSocialsContainerRef } className={ style['socials-extra-container'] }>
-					<div
-						ref={ extraSocialsRef }
-						className={[
-							'social-media',
-							style['socials-extra'],
-						].join(' ')}
+					<Link
+						href='https://bsky.app/profile/robotoskunk.com'
+						title='Bluesky'
+						target='_blank'
+						rel='noreferrer noopener'
 					>
-						<Link
-							href='https://bsky.app/profile/robotoskunk.com'
-							title='Bluesky'
+						<Bluesky/>
+					</Link>
+					<Link
+							href='https://www.reddit.com/user/RobotoSkunk_'
+							title='Reddit'
 							target='_blank'
 							rel='noreferrer noopener'
-						>
-							<Bluesky/>
-						</Link>
-						<Link
-								href='https://www.reddit.com/user/RobotoSkunk_'
-								title='Reddit'
-								target='_blank'
-								rel='noreferrer noopener'
-						>
-							<Reddit/>
-						</Link>
-						<Link
-							href='https://mastodon.social/@RobotoSkunk'
-							title='Mastodon'
-							target='_blank'
-							rel='noreferrer noopener'
-						>
-							<Mastodon/>
-						</Link>
+					>
+						<Reddit/>
+					</Link>
+					<Link
+						href='https://mastodon.social/@RobotoSkunk'
+						title='Mastodon'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Mastodon/>
+					</Link>
 
-						<Link
-							href='https://www.deviantart.com/robotoskunk'
-							title='DeviantArt'
-							target='_blank'
-							rel='noreferrer noopener'
-						>
-							<DeviantArt/>
-						</Link>
-						<Link
-							href='https://robotoskunk.newgrounds.com/art'
-							title='Newgrounds'
-							target='_blank'
-							rel='noreferrer noopener'
-						>
-							<Newgrounds/>
-						</Link>
-					</div>
+					<Link
+						href='https://www.deviantart.com/robotoskunk'
+						title='DeviantArt'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<DeviantArt/>
+					</Link>
+					<Link
+						href='https://robotoskunk.newgrounds.com/art'
+						title='Newgrounds'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<Newgrounds/>
+					</Link>
 				</div>
-			</main>
-		</>
+			</div>
+		</main>
 	);
 }
