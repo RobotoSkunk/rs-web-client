@@ -1,5 +1,11 @@
 
 {
+	"layout": {
+		"footer": {
+			"rights": "Todos los Derechos Reservados.",
+			"open-source": "Código Abierto"
+		}
+	},
 	"pages": {
 		"home": {
 			"degree": "Ingeniero en Sistemas Computacionales."

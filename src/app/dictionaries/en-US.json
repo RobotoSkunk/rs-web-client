@@ -1,5 +1,11 @@
 
 {
+	"layout": {
+		"footer": {
+			"rights": "All Rights Reserved.",
+			"open-source": "Open Source"
+		}
+	},
 	"pages": {
 		"home": {
 			"degree": "Computer Systems Engineer."

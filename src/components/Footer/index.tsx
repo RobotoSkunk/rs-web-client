@@ -25,6 +25,7 @@ import { roboto300 } from '@/utils/fonts';
 
 import { motion } from 'framer-motion';
 import ExternalLink from '../icons/ExternalLink';
+import { useDictionary } from '../providers/DictionaryProvider';
 
 
 export default function Footer({
@@ -33,6 +34,8 @@ export default function Footer({
 	params: { lang: string }
 })
 {
+	const dict = useDictionary();
+
 	const [ commitSha, setCommitSha ] = useState('not_a_repo');
 
 	const year = new Date().getFullYear();
@@ -55,14 +58,14 @@ export default function Footer({
 			transition={{ duration: 0.8 }}
 		>
 			<span>
-				© Copyright {year} RobotoSkunk. All Rights Reserved.
+				© Copyright {year} RobotoSkunk. { dict.layout.footer.rights }
 			</span>
 			<span>
 				{/* <Link href=`/${lang}/privacy`>Privacy Policy</Link>
 				{ ' • ' }
 				<Link href=`/${lang}/terms`>Terms of Use</Link>
 				{ ' • ' } */}
-				<Link href={ `/${lang}/open-source` }>Open Source</Link>
+				<Link href={ `/${lang}/open-source` }>{ dict.layout.footer['open-source'] }</Link>
 				{ ' • ' }
 				<Link
 					href={ `https://github.com/RobotoSkunk/rs-web-client/tree/${commitSha}` }
