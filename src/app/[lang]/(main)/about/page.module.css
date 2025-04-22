@@ -52,6 +52,7 @@
 
 .profile-picture {
 	border-radius: 50%;
+	padding: 0 10px;
 }
 
 .picture-container {

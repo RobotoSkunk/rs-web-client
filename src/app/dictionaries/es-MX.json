@@ -36,6 +36,15 @@
 			"h2p-email": "Este es mi principal y único correo electrónico público.",
 			"h2-socials": "Redes Sociales",
 			"h2p-socials": "Puedes encontrarme en mis redes sociales. Ordenado de la más rápida a la más lenta que respondo."
+		},
+		"about": {
+			"h1": "Sobre mí",
+			"img-alt": "Alex Skunk lamiendo una burbuja.",
+			"img-span": "Dibujado por",
+			"content-p1": "Mi nombre es <b>Edgar Lima</b>, Soy un mexicano ingeniero en sistemas de 23 años. Graduado del Instituto Tecnológico Superior de Poza Rica en el estado de Veracruz en 2024.",
+			"content-p2": "Tengo fuertes conocimientos en lenguajes de programación orientada a objetos, entre ellos C++, C#, Java, TypeScript, PHP y también HTML y CSS. También he trabajado con frameworks como React.js/Next.js, Kysely, Electron, Discord.js y Express.js.",
+			"content-p3": "Tengo experiencia con sistemas operativos basados en Linux, y he trabajado en la instalación de WRF-Chem y CMAQ en un servidor de Linux para un proyecto becado para el gobierno de Veracruz.",
+			"content-p4": "También he desarrollado un par de juegos simples con Unity, Game Maker y Godot.NET en mi tiempo libre."
 		}
 	}
 }

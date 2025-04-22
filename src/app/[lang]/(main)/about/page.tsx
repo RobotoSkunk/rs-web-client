@@ -16,38 +16,37 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 
-import metadataBuilder from '@/utils/metadata-builder';
-
 import style from './page.module.css';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 import profilePicture from '@/assets/img/profile-picture.webp';
-import alexReferencePicture from '@/assets/img/alex-skunk-ref2021.webp';
 import ExternalLink from '@/components/icons/ExternalLink';
-
-
-// export const metadata = await metadataBuilder({ subtitle: 'About me' });
 
 
 export default function Page()
 {
+	const dict = useDictionary();
+
 	return (
 		<main className={ style.main }>
 			<div className={ style.nutshell }>
-				<h1>About me</h1>
+				<h1>{ dict.pages.about.h1 }</h1>
 				<div className={ style['who-i-am'] }>
 					<div className={ style['picture-container'] }>
 						<Image
-							alt='Alex Skunk licking a bubble.'
+							alt={ dict.pages.about['img-alt'] }
 							src={ profilePicture }
 							width={ 200 }
 							className={ style['profile-picture'] }
 							draggable={ false }
 						/>
 						<span>
-							Drawn by{ ' ' }
+							{ dict.pages.about['img-span'] + ' ' }
 							<Link
 								href='https://x.com/SynieDraw/status/1699933375417528722'
 								target='_blank'
@@ -58,24 +57,10 @@ export default function Page()
 						</span>
 					</div>
 					<div className={ style.content }>
-						<p>
-							My name is <b>Edgar Lima</b>, I'm a 23-year-old Mexican computer systems engineer.
-							Graduated from the Instituto Tecnológico Superior de Poza Rica in the state of Veracruz
-							in 2024.
-						</p>
-						<p>
-							I have strong knowledge of object-oriented programming languages, among them C++, C#, Java,
-							TypeScript, PHP and also HTML and CSS. I also worked with some frameworks like
-							React.js/Next.js, Kysely, Electron, Discord.js and Express.js.
-						</p>
-						<p>
-							I have experience with Linux-based operating systems, and I've worked in the installation of
-							WRF-Chem and CMAQ in a Linux server for a grant-winning project for the government of
-							Veracruz.
-						</p>
-						<p>
-							I also developed a couple simple games with Unity, Game Maker and Godot.NET in my free time.
-						</p>
+						<p dangerouslySetInnerHTML={{ __html: dict.pages.about['content-p1'] }}></p>
+						<p dangerouslySetInnerHTML={{ __html: dict.pages.about['content-p2'] }}></p>
+						<p dangerouslySetInnerHTML={{ __html: dict.pages.about['content-p3'] }}></p>
+						<p dangerouslySetInnerHTML={{ __html: dict.pages.about['content-p4'] }}></p>
 					</div>
 				</div>
 			</div>
