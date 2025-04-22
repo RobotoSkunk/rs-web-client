@@ -26,7 +26,7 @@ import style from './page.module.css';
 import alexReferencePicture from '@/assets/img/alex-skunk-ref2021.webp';
 
 
-export const metadata = metadataBuilder('About me');
+export const metadata = metadataBuilder('Alex Skunk');
 
 
 export default function Page()
