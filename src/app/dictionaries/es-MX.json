@@ -53,6 +53,18 @@
 			"button-stripe": "Apoyar con",
 			"button-kofi": "Apóyame en Ko-fi",
 			"button-paypal": "Apoyar con PayPal"
+		},
+		"portfolio": {
+			"h1": "Portafolio",
+			"h1p": "Algunos ejemplos de varios de mis proyectos e ilustraciones que he hecho desde que tengo memoria.",
+			"h2-projects": "Proyectos",
+			"h2-artworks": "Ilustraciones",
+			"h2p-artworks": "Una colección de mis ilustraciones y comisiones favoritas que he hecho.",
+			"h3": "¿Quieres ver más?",
+			"h3p": "¡Sigue mis proyectos!",
+			"toggle-show": "Mostrar",
+			"toggle-hide": "Ocultar",
+			"toggle-label": "capturas de"
 		}
 	}
 }

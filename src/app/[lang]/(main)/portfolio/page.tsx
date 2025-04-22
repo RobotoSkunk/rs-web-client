@@ -22,6 +22,7 @@ import Link from 'next/link';
 import { use, useEffect, useState } from 'react';
 
 import style from './page.module.css';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 import projects from '@/data/projects';
 import artworks from '@/data/artworks';
@@ -49,6 +50,7 @@ export default function Page({
 })
 {
 	const lang = use(params).lang;
+	const dict = useDictionary();
 
 	const [ cardId, setCardId ] = useState(null as null|string);
 	const [ imageId, setImageId ] = useState(null as null|string);
@@ -60,13 +62,13 @@ export default function Page({
 
 	return (
 		<main className={ style.main }>
-			<h1>Portfolio</h1>
+			<h1>{ dict.pages.portfolio.h1 }</h1>
 			<p className={ style.legend }>
-				A few examples of some of my favorite projects and artworks I've made since I can remember.
+				{ dict.pages.portfolio.h1p }
 			</p>
 
 			<section>
-				<h2>Projects</h2>
+				<h2>{ dict.pages.portfolio['h2-projects'] }</h2>
 
 				{<div className={ style.gallery }>
 					{projects.map((data, index) =>
@@ -91,8 +93,8 @@ export default function Page({
 			</section>
 
 			<section>
-				<h2>Artworks</h2>
-				<p>A collection of my favorite artworks and commissions I made.</p>
+				<h2>{ dict.pages.portfolio['h2-artworks'] }</h2>
+				<p>{ dict.pages.portfolio['h2p-artworks'] }</p>
 
 				<div className={ style.gallery }>
 					{artworks.map((data, index) => (
@@ -112,8 +114,8 @@ export default function Page({
 			</section>
 
 			<section>
-				<h3>Want to see more?</h3>
-				<p>Follow my projects!</p>
+				<h3>{ dict.pages.portfolio.h3 }</h3>
+				<p>{ dict.pages.portfolio.h3p }</p>
 				<div className='social-media'>
 					<Link
 						href='https://linkedin.com/in/RobotoSkunk'

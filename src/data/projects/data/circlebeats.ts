@@ -49,15 +49,15 @@ export default {
 		{
 			src: screenshot_1,
 			alt: {
-				'en-US': `Progress made with Unity last year`,
-				'es-MX': `Progress made with Unity last year`,
+				'en-US': `Progress made with Unity in 2023`,
+				'es-MX': `Progreso hecho con Unity en 2023`,
 			},
 		},
 		{
 			src: screenshot_2,
 			alt: {
-				'en-US': `Progress made with Godot in January`,
-				'es-MX': `Progress made with Godot in January`,
+				'en-US': `Progress made with Godot in January, 2024`,
+				'es-MX': `Progreso hecho con Godot en enero de 2024`,
 			},
 		},
 	],

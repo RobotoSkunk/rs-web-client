@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 'use client';
 
 import React, { RefObject, useEffect, useRef, useState } from 'react';
@@ -28,6 +29,7 @@ import ImageModal from '@/components/modals/ImageModal';
 
 import articlesStyle from '../article.module.css';
 import style from './project.module.css';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 
 export default function ProjectArticle({
@@ -62,6 +64,8 @@ export default function ProjectArticle({
 	lang: Localizations,
 }>)
 {
+	const dict = useDictionary();
+
 	const articleRef: RefObject<HTMLDivElement | null> = useRef(null);
 	const circleRef: RefObject<HTMLDivElement | null> = useRef(null);
 
@@ -190,7 +194,10 @@ export default function ProjectArticle({
 			<button
 				className={ style.button }
 				onClick={ () => toggleArticle(!open) }
-				aria-label={ `${open ? 'Hide' : 'Show'} screenshots of ${ name }` }
+				aria-label={
+					(open ? dict.pages.portfolio['toggle-hide'] : dict.pages.portfolio['toggle-show']) +
+					` ${dict.pages.portfolio['toggle-label']} ${ name[lang] }`
+				}
 			>
 				<div className={ style.arrow }>
 					<div></div>

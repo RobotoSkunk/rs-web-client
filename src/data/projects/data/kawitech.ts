@@ -36,7 +36,7 @@ export default {
 		'en-US': 'A commissioned website that I did along with my team for ITSPR Student Chapter of the Industrial ' +
 				 'Engineering career to capture payments for attendance at the workshops given at the event.',
 		'es-MX': 'Un sitio web comisionado que hice junto con mi equipo para el Capítulo Estudiantil de la Carrera ' +
-				 'en Ingeniería Industrial del ITSPR, para capturar los pagos de asistencias a talleres ofrecidos en ' +
+				 'en Ingeniería Industrial del ITSPR para capturar los pagos de asistencias a talleres ofrecidos en ' +
 				 'un evento.',
 	},
 	links: [ ],
@@ -59,21 +59,21 @@ export default {
 			src: screenshot_3,
 			alt: {
 				'en-US': 'Venues page',
-				'es-MX': 'Páginas de lugares',
+				'es-MX': 'Páginas de sedes',
 			},
 		},
 		{
 			src: screenshot_4,
 			alt: {
 				'en-US': '"About us" page',
-				'es-MX': 'Página "Sobre nosotros"',
+				'es-MX': 'Página "Acerca de nosotros"',
 			},
 		},
 		{
 			src: screenshot_5,
 			alt: {
 				'en-US': '"About us" organigam section',
-				'es-MX': 'Sección del organigrama de "Sobre nosotros"',
+				'es-MX': 'Sección del organigrama de "Acerca de nosotros"',
 			},
 		},
 		{
