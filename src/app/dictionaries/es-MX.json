@@ -21,6 +21,13 @@
 	"pages": {
 		"home": {
 			"degree": "Ingeniero en Sistemas Computacionales."
+		},
+		"open-source": {
+			"h1": "Código Abierto",
+			"h1p": "Este sitio web es completamente de código abierto bajo la licencia AGPLv3 y su código se puede encontrar en GitHub.",
+			"h2": "Reconocimientos",
+			"h2p": "¡Gracias a los siguientes proyectos de código abierto que hicieron este sitio web posible!",
+			"github-button": "Repositorio de GitHub"
 		}
 	}
 }

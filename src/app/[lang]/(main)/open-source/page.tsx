@@ -16,38 +16,40 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+'use client';
+
 import Link from 'next/link';
 
-import metadataBuilder from '@/utils/metadata-builder';
 import { robotoMono } from '@/utils/fonts';
 
 import style from './page.module.css';
 import ExternalLink from '@/components/icons/ExternalLink';
 
 import acknowledgements from '@/data/acknowledgements';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
-
-// export const metadata = await metadataBuilder({ subtitle: 'Open source' });
 
 export default function Page()
 {
+	const dict = useDictionary();
+
 	return (
 		<main className={ style.main }>
-			<h1>Open Source</h1>
-			<p>This website is completely open source under the AGPLv3 license and its code can be found on GitHub.</p>
+			<h1>{ dict.pages['open-source'].h1 }</h1>
+			<p>{ dict.pages['open-source'].h1p }</p>
 			<Link
 				href='https://github.com/RobotoSkunk/robotoskunk.com'
 				className='button'
 				target='_blank'
 				rel='noreferrer noopener'
 			>
-				GitHub Repository
+				{ dict.pages['open-source']['github-button'] }
 				<ExternalLink/>
 			</Link>
 
 			<section>
-				<h2>Acknowledgements</h2>
-				<p>Thank you to the following open source projects that made this website possible!</p>
+				<h2>{ dict.pages['open-source'].h2 }</h2>
+				<p>{ dict.pages['open-source'].h2p }</p>
 
 				<div className={ style.licenses }>
 					{acknowledgements.map((data, index) =>

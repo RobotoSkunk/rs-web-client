@@ -21,6 +21,13 @@
 	"pages": {
 		"home": {
 			"degree": "Computer Systems Engineer."
+		},
+		"open-source": {
+			"h1": "Open Source",
+			"h1p": "This website is completely open source under the AGPLv3 license and its code can be found on GitHub.",
+			"h2": "Acknowledgements",
+			"h2p": "Thank you to the following open source projects that made this website possible!",
+			"github-button": "GitHub Repository"
 		}
 	}
 }
