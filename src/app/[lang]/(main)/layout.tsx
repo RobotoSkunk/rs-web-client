@@ -30,8 +30,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AlexPhrase from '@/components/AlexPhrase';
 
-import locales from '@/data/locales';
-import { getDictionary } from '@/app/dictionaries';
+import { getDictionary, locales } from '@/app/dictionaries';
 import DictionaryProvider from '@/components/providers/DictionaryProvider';
 
 

@@ -19,7 +19,7 @@
 import appDirectory from '@/data/app-directory';
 import { MetadataRoute } from 'next';
 
-import locales from '@/data/locales';
+import { locales } from '@/app/dictionaries';
 
 
 export default function sitemap(): MetadataRoute.Sitemap

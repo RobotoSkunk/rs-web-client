@@ -23,6 +23,11 @@ const dictionaries = {
 	'en-US': () => import('./dictionaries/en-US.json').then((module) => module.default),
 };
 
+export const locales = [
+	'es-MX',
+	'en-US',
+];
+
 export async function getDictionary(locale: Localizations)
 {
 	return dictionaries[locale]();
