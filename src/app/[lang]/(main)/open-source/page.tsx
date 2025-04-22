@@ -27,7 +27,7 @@ import ExternalLink from '@/components/icons/ExternalLink';
 import acknowledgements from '@/data/acknowledgements';
 
 
-export const metadata = metadataBuilder('Open source');
+// export const metadata = await metadataBuilder({ subtitle: 'Open source' });
 
 export default function Page()
 {

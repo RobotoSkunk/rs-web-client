@@ -29,7 +29,7 @@ import LinkedIn from '@/components/icons/social/LinkedIn';
 import DiscordButton from './discord-button';
 
 
-export const metadata = metadataBuilder('Contact');
+// export const metadata = await metadataBuilder({ subtitle: 'Contact' });
 
 export default function Page()
 {

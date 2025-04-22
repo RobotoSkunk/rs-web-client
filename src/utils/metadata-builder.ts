@@ -17,9 +17,15 @@
  */
 
 import { Metadata } from 'next';
+import { headers } from 'next/headers';
+
+import locales from '@/data/locales';
 
 
-export default function metadataBuilder(subtitle?: string, description?: string)
+export default async function metadataBuilder(data: {
+	subtitle?: string,
+	description?: string,
+} = { })
 {
 	const defaultMetadata = {
 		title: 'RobotoSkunk',
@@ -28,13 +34,23 @@ export default function metadataBuilder(subtitle?: string, description?: string)
 	};
 
 
-	if (subtitle) {
-		defaultMetadata.title = subtitle + ' - ' + defaultMetadata.title;
+	if (data.subtitle) {
+		defaultMetadata.title = data.subtitle + ' - ' + defaultMetadata.title;
 	}
 
-	if (description) {
-		defaultMetadata.description = description;
+	if (data.description) {
+		defaultMetadata.description = data.description;
 	}
+
+	// const _headers = await headers();
+	// const canonical  = _headers.get('X-Canonical')   ?? '';
+
+	// const root = 'https://robotoskunk.com';
+	// const languages: { [ key: string]: string } = {};
+
+	// for (const locale of locales) {
+	// 	languages[locale] = `${root}/${locale}`;
+	// }
 
 
 	return {
@@ -52,6 +68,10 @@ export default function metadataBuilder(subtitle?: string, description?: string)
 			'artworks',
 			'websites',
 		],
+		alternates: {
+			// canonical,
+			// languages,
+		},
 		twitter: {
 			card: 'summary_large_image',
 			creator: '@RobotoSkunk',

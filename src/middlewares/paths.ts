@@ -31,8 +31,6 @@ export function pathsMiddleware(request: NextRequest)
 		urlPathname = '/';
 	}
 
-	console.log(urlPathname);
-
 
 	function pathExists()
 	{
@@ -90,4 +88,6 @@ export function pathsMiddleware(request: NextRequest)
 			return 404;
 		}
 	}
+
+	return 200;
 }

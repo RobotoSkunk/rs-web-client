@@ -28,7 +28,7 @@ import alexReferencePicture from '@/assets/img/alex-skunk-ref2021.webp';
 import ExternalLink from '@/components/icons/ExternalLink';
 
 
-export const metadata = metadataBuilder('About me');
+// export const metadata = await metadataBuilder({ subtitle: 'About me' });
 
 
 export default function Page()

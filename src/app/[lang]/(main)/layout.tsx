@@ -16,8 +16,10 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import { Metadata } from 'next';
 import { headers } from 'next/headers';
 
+import { MotionConfig } from 'framer-motion';
 import { execSync } from 'child_process';
 
 import './globals.css';
@@ -27,22 +29,87 @@ import Background from '@/components/Background';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AlexPhrase from '@/components/AlexPhrase';
-import metadataBuilder from '@/utils/metadata-builder';
-import { MotionConfig } from 'framer-motion';
 
 
-export const metadata = metadataBuilder();
+import locales from '@/data/locales';
+
+
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ lang: string }>,
+})
+{
+	const defaultMetadata = {
+		title: 'RobotoSkunk',
+		description: "I'm a Full Stack developer who makes commissioned artworks, websites, bots and microservices.",
+		metaIcon: 'https://robotoskunk.com/assets/img/meta-icon.webp',
+	};
+
+
+	const _headers = await headers();
+	const canonical = _headers.get('X-Canonical') ?? '';
+	const canonicalPathname = _headers.get('X-Canonical-Path') ?? '';
+	const canonicalRoot     = _headers.get('X-Canonical-Root') ?? '';
+
+	const languages: { [ key: string]: string } = {};
+
+	for (const locale of locales) {
+		languages[locale] = `${canonicalRoot}/${locale}${canonicalPathname}`;
+	}
+
+
+	return {
+		title: defaultMetadata.title,
+		description: defaultMetadata.description,
+		authors: {
+			name: 'RobotoSkunk (Edgar Lima)',
+		},
+		applicationName: defaultMetadata.title,
+		keywords: [
+			'full stack',
+			'servers',
+			'linux',
+			'microservices',
+			'artworks',
+			'websites',
+		],
+		alternates: {
+			canonical,
+			languages,
+		},
+		twitter: {
+			card: 'summary_large_image',
+			creator: '@RobotoSkunk',
+			title: defaultMetadata.title,
+			description: defaultMetadata.description,
+			images: {
+				url: defaultMetadata.metaIcon,
+			},
+		},
+		openGraph: {
+			type: 'website',
+			siteName: defaultMetadata.title,
+			title: defaultMetadata.title,
+			description: defaultMetadata.description,
+			images: {
+				url: defaultMetadata.metaIcon,
+			},
+		},
+	} as Metadata;
+};
 
 
 export default async function RootLayout({
 	children,
+	params,
 }: Readonly<{
 	children: React.ReactNode;
+	params: Promise<{ lang: string }>;
 }>)
 {
 	const _headers = await headers();
 	const deviceType = _headers.get('X-Device-Type') ?? '';
-	const canonical  = _headers.get('X-Canonical')   ?? '';
 	const nonce      = _headers.get('X-Nonce')       ?? '';
 
 
@@ -56,11 +123,10 @@ export default async function RootLayout({
 	}
 
 	return (
-		<html lang='en' suppressHydrationWarning={ true }>
+		<html lang={ (await params).lang } suppressHydrationWarning={ true }>
 			<head>
 				<link rel='me' href='https://mastodon.social/@RobotoSkunk'/>
 				<link rel='me' href='https://wetdry.world/@RobotoSkunk'/>
-				<link rel='canonical' href={ canonical }/>
 
 				<meta name='commit-sha' content={ process.env.COMMIT_SHA }/>
 

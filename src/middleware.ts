@@ -60,10 +60,10 @@ export function middleware(request: NextRequest)
 
 
 	const hostname = request.headers.get('Host') || request.nextUrl.hostname;
+	const canonicalPathname = request.nextUrl.pathname.replace(`/${localesResponse.locale}`, '');
 
 	const isOnion = hostname.endsWith('.onion');
 	const allowInsecure = isOnion || process.env.NODE_ENV !== 'production';
-	const canonical = `https://${hostname}${request.nextUrl.pathname}`;
 	const nonce = Buffer.from(crypto.getRandomValues(new Uint32Array(32))).toString('base64url');
 
 	const csp = [
@@ -83,8 +83,11 @@ export function middleware(request: NextRequest)
 
 	const requestHeaders = new Headers(request.headers);
 	requestHeaders.set('X-Device-Type', device.type ?? 'desktop');
-	requestHeaders.set('X-Canonical', canonical);
 	requestHeaders.set('X-Nonce', nonce);
+
+	requestHeaders.set('X-Canonical', `https://${hostname}${canonicalPathname}`);
+	requestHeaders.set('X-Canonical-Root', `https://${hostname}`);
+	requestHeaders.set('X-Canonical-Path', canonicalPathname);
 
 
 	const response = NextResponse.next({

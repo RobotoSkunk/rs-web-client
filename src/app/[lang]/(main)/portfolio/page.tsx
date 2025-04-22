@@ -33,7 +33,7 @@ import PortfolioContent from './portfolio-content';
 
 
 
-export const metadata = metadataBuilder('Portfolio');
+// export const metadata = await metadataBuilder({ subtitle: 'Portfolio' });
 
 
 

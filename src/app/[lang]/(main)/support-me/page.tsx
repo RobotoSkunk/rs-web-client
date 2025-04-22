@@ -29,7 +29,7 @@ import buyMeACoffee from '@/assets/svg/branding/buy-me-a-coffee.svg';
 import paypalDonate from '@/assets/svg/branding/paypal-donate.svg';
 
 
-export const metadata = metadataBuilder('Support me');
+// export const metadata = await metadataBuilder({ subtitle: 'Support me' });
 
 export default function Page()
 {
