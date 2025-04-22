@@ -28,44 +28,75 @@ import screenshot_7 from '@/assets/img/portfolio/development/siwini-challenge/7.
 
 
 export default {
-	name: 'Siwini Challenge Poza Rica',
+	name: {
+		'en-US': 'Siwini Challenge Poza Rica',
+		'es-MX': 'Siwini Challenge Poza Rica',
+	},
 	icon,
-	description: 'A simple website that Instituto Tecnológico Superior de Poza Rica requested me to register ' +
+	description: {
+		'en-US': 'A simple website that Instituto Tecnológico Superior de Poza Rica requested me to register ' +
 				 'the projects and teams for their mechatronic event.',
+		'es-MX': 'Una página simple que el Instituto Tecnológico Superior de Poza Rica me solicitó para registrar ' +
+				 'los proyectos y equipos para su evento de mecatrónica.',
+	},
 	links: [
 		{
-			label: 'GitHub Repository',
+			label: {
+				'en-US': 'GitHub Repository',
+				'es-MX': 'Repositorio de GitHub',
+			},
 			url: 'https://github.com/RobotoSkunk/siwini-challenge',
 		},
 	],
 	screenshots: [
 		{
 			src: screenshot_1,
-			alt: 'Home page',
+			alt: {
+				'en-US': 'Home page',
+				'es-MX': 'Página de inicio',
+			},
 		},
 		{
 			src: screenshot_2,
-			alt: 'Challenge instructions page',
+			alt: {
+				'en-US': 'Challenge instructions page',
+				'es-MX': 'Página de instrucciones del reto',
+			},
 		},
 		{
 			src: screenshot_3,
-			alt: 'Event calendar page',
+			alt: {
+				'en-US': 'Event calendar page',
+				'es-MX': 'Página de calendarios de eventos',
+			},
 		},
 		{
 			src: screenshot_4,
-			alt: 'Register main page',
+			alt: {
+				'en-US': 'Register main page',
+				'es-MX': 'Página principal de registro',
+			},
 		},
 		{
 			src: screenshot_5,
-			alt: 'Register to event page',
+			alt: {
+				'en-US': 'Register to event page',
+				'es-MX': 'Página de registro al evento',
+			},
 		},
 		{
 			src: screenshot_6,
-			alt: 'Validate payment page',
+			alt: {
+				'en-US': 'Validate payment page',
+				'es-MX': 'Página de validación de pago',
+			},
 		},
 		{
 			src: screenshot_7,
-			alt: 'Winners chart page',
+			alt: {
+				'en-US': 'Winners chart page',
+				'es-MX': 'Página de tabla de ganadores',
+			},
 		},
 	],
 } as ProjectData;

@@ -23,22 +23,22 @@ declare global
 {
 	interface ProjectData
 	{
-		name: string,
-		description: string,
+		name: LocalizationsData,
+		description: LocalizationsData,
 		icon: StaticImageData,
 		links: {
-			label: string,
+			label: LocalizationsData,
 			url: string,
 		}[],
 		screenshots: {
 			src: StaticImageData,
-			alt: string,
+			alt: LocalizationsData,
 		}[],
 	}
 
 	interface ArtworkData
 	{
-		name: string,
+		name: LocalizationsData,
 		img: StaticImageData,
 	}
 
@@ -50,6 +50,10 @@ declare global
 	}
 
 	type Localizations = 'es-MX' | 'en-US';
+	type LocalizationsData = {
+		'es-MX': string,
+		'en-US': string,
+	};
 }
 
 

@@ -30,52 +30,89 @@ import screenshot_9 from '@/assets/img/portfolio/development/genesis-bot/9.webp'
 
 
 export default {
-	name: 'Génesis Discord Bot',
+	name: {
+		'en-US': 'Génesis Discord Bot',
+		'es-MX': 'Génesis, Bot de Discord',
+	},
 	icon,
-	description: 'A commissioned Discord bot to sell roles, avatars and profile banners, provide a looting ' +
+	description: {
+		'en-US': 'A commissioned Discord bot to sell roles, avatars and profile banners, provide a looting ' +
 				 'system and a lot more for a private Discord server.',
+		'es-MX': 'Un bot de Discord comisionado para vender roles, avatares y portadas de perfil, provee un sistema ' +
+				 'de recompensas al azar y mucho más para un servidor privado de Discord.',
+	},
 	links: [
 		{
-			label: 'Discord Server',
+			label: {
+				'en-US': 'Discord Server',
+				'es-MX': 'Servidor de Discord',
+			},
 			url: 'https://discord.gg/NX9s3GMADw',
 		},
 	],
 	screenshots: [
 		{
 			src: screenshot_1,
-			alt: 'Génesis commands list',
+			alt: {
+				'en-US': 'Génesis commands list',
+				'es-MX': 'Lista de comandos de Génesis',
+			},
 		},
 		{
 			src: screenshot_2,
-			alt: 'Roles shop command',
+			alt: {
+				'en-US': 'Roles shop command',
+				'es-MX': 'Comando de tienda de roles',
+			},
 		},
 		{
 			src: screenshot_3,
-			alt: 'Profile command',
+			alt: {
+				'en-US': 'Profile command',
+				'es-MX': 'Comando de perfil',
+			},
 		},
 		{
 			src: screenshot_4,
-			alt: 'Purchases command',
+			alt: {
+				'en-US': 'Purchases command',
+				'es-MX': 'Comando de compras',
+			},
 		},
 		{
 			src: screenshot_5,
-			alt: 'Avatars shop command',
+			alt: {
+				'en-US': 'Avatars shop command',
+				'es-MX': 'comando de tienda de avatares',
+			},
 		},
 		{
 			src: screenshot_6,
-			alt: 'Purchase avatar embed',
+			alt: {
+				'en-US': 'Purchase avatar embed',
+				'es-MX': 'Embed de comprar avatar',
+			},
 		},
 		{
 			src: screenshot_7,
-			alt: 'Claim loot command',
+			alt: {
+				'en-US': 'Claim loot command',
+				'es-MX': 'Comando de reclamar recompensa',
+			},
 		},
 		{
 			src: screenshot_8,
-			alt: 'Leaderboard command',
+			alt: {
+				'en-US': 'Leaderboard command',
+				'es-MX': 'Comando de tabla de clasificaciones',
+			},
 		},
 		{
 			src: screenshot_9,
-			alt: 'Inventory command',
+			alt: {
+				'en-US': 'Inventory command',
+				'es-MX': 'Comando de inventario',
+			},
 		},
 	],
 } as ProjectData;

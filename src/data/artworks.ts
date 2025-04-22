@@ -16,8 +16,6 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { StaticImageData } from 'next/image';
-
 import cuteSkonk    from '@/assets/img/portfolio/artworks/cute-skonk.webp';
 import eliCopter    from '@/assets/img/portfolio/artworks/eli-copter.webp';
 import happySkunk   from '@/assets/img/portfolio/artworks/happy-skunk.webp';
@@ -39,67 +37,115 @@ import comm_zarckets     from '@/assets/img/portfolio/artworks/commissions/zarck
 
 export default [
 	{
-		name: "Commission for @Serpent_Boi",
+		name: {
+			'en-US': 'Commission for @Serpent_Boi',
+			'es-MX': 'Comisión para @Serpent_Boi',
+		},
 		img: comm_SerpentBoi,
 	},
 	{
-		name: "Commission for @Miniponies25",
+		name: {
+			'en-US': 'Commission for @Miniponies25',
+			'es-MX': 'Comisión para @Miniponies25',
+		},
 		img: comm_Miniponies_1,
 	},
 	{
-		name: "Commission for @Miniponies25",
+		name: {
+			'en-US': 'Commission for @Miniponies25',
+			'es-MX': 'Comisión para @Miniponies25',
+		},
 		img: comm_Miniponies_2,
 	},
 	{
-		name: "Commission for @_Terry03",
+		name: {
+			'en-US': 'Commission for @_Terry03',
+			'es-MX': 'Comisión para @_Terry03',
+		},
 		img: comm_terry,
 	},
 	{
-		name: "Commission for @zarckets",
+		name: {
+			'en-US': 'Commission for @zarckets',
+			'es-MX': 'Comisión para @zarckets',
+		},
 		img: comm_zarckets,
 	},
 	{
-		name: 'Cute Skonk',
+		name: {
+			'en-US': 'Cute Skonk',
+			'es-MX': 'Zorruno Lindo',
+		},
 		img: cuteSkonk,
 	},
 	{
-		name: 'Eli-Copter',
+		name: {
+			'en-US': 'Eli-Copter',
+			'es-MX': 'Eli-Cóptero',
+		},
 		img: eliCopter,
 	},
 	{
-		name: 'Happy Skunk',
+		name: {
+			'en-US': 'Happy Skunk',
+			'es-MX': 'Zorrillo Feliz',
+		},
 		img: happySkunk,
 	},
 	{
-		name: 'SILENCE!!!',
+		name: {
+			'en-US': 'SILENCE!!!',
+			'es-MX': '¡¡¡SILENCIO!!!',
+		},
 		img: silence,
 	},
 	{
-		name: "Gift for Sr. Pelo's Birthday",
+		name: {
+			'en-US': "Gift for Sr. Pelo's Birthday",
+			'es-MX': 'Regalo para el cumpleaños del Sr. Pelo',
+		},
 		img: peloBirthday,
 	},
 	{
-		name: "Alex's Sticker",
+		name: {
+			'en-US': "Alex's Sticker",
+			'es-MX': 'Sticker de Alex',
+		},
 		img: sticker,
 	},
 	{
-		name: "Alex's Happy Sticker",
+		name: {
+			'en-US': "Alex's Happy Sticker",
+			'es-MX': 'Sticker de Alex Feliz',
+		},
 		img: stickerHappy,
 	},
 	{
-		name: "Tongue",
+		name: {
+			'en-US': 'Tongue',
+			'es-MX': 'Lengua',
+		},
 		img: tongue,
 	},
 	{
-		name: "Gift for Unzor",
+		name: {
+			'en-US': 'Gift for Unzor',
+			'es-MX': 'Regalo para Unzor',
+		},
 		img: unzor,
 	},
 	{
-		name: "Why did you kill me?",
+		name: {
+			'en-US': 'Why did you kill me?',
+			'es-MX': '¿Por qué me mataste?',
+		},
 		img: kyleKilled,
 	},
 	{
-		name: "Why?",
+		name: {
+			'en-US': 'Why?',
+			'es-MX': '¿Por qué?',
+		},
 		img: why,
 	},
 ] as ArtworkData[];

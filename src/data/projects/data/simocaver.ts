@@ -27,49 +27,84 @@ import screenshot_6 from '@/assets/img/portfolio/development/simocaver/6.webp';
 
 
 export default {
-	name: 'Sistema de Modelado de Calidad del Aire de Veracruz (SiMoCAVer)',
+	name: {
+		'en-US': 'Veracruz Air Quality Modeling System (SiMoCAVer in Spanish)',
+		'es-MX': 'Sistema de Modelado de Calidad del Aire de Veracruz (SiMoCAVer)',
+	},
 	icon,
-	description: 'I worked on the installation of a scientific computing system to calculate the air quality of the ' +
+	description: {
+		'en-US': 'I worked on the installation of a scientific computing system to calculate the air quality of the ' +
 				 'state of Veracruz using satellite information, which was presented to the Governor of Veracruz ' +
 				 'during a COVEICYDET event on September 18, 2024',
+		'es-MX': 'Trabajé en la instalación de un sistema de computación científica para calcular la calidad del ' +
+				 'aire del estado de Veracruz usando información satelital, el cual fue presentado al gobernador ' +
+				 'de Veracruz durante un evento del COVEICYDET el 18 de septiembre de 2024.',
+	},
 	links: [
 		{ // Line length excuse: URL is too long
-			label: 'COVEICYDET\'s Post',
+			label: {
+				'en-US': 'COVEICYDET\'s Post',
+				'es-MX': 'Publicación del COVEICYDET',
+			},
 			url: 'https://ciencia.covecyt.gob.mx/coveicydet-realiza-encuentro-para-mostrar-avances-en-ciencia-y-tecnologia/',
 		},
 		{ // Line length excuse: URL is too long
-			label: 'Scientific Research Book',
+			label: {
+				'en-US': 'Scientific Research Book',
+				'es-MX': 'Libro de Investigación Científica',
+			},
 			url: 'https://static1.squarespace.com/static/55564587e4b0d1d3fb1eda6b/t/668ddd4cfbcc727de1c33c6f/1720573265095/Innovaci%C3%B3n+y+Excelencia+en+la+Investigaci%C3%B3n+Cient%C3%ADfica+%E2%80%93+Ingenier%C3%ADas+%E2%80%93+Academia+Journals+Chiapas+2024.pdf',
 		},
 		{
-			label: 'Installation Report',
+			label: {
+				'en-US': 'Installation Report',
+				'es-MX': 'Reporte de Instalación',
+			},
 			url: 'https://drive.proton.me/urls/XGQ0DZADX4#6n0lQeINIO9q',
 		},
 	],
 	screenshots: [
 		{
 			src: screenshot_1,
-			alt: 'Temperature and precipitation map output with Ncview at COVEICYDET',
+			alt: {
+				'en-US': 'Temperature and precipitation map output with Ncview at COVEICYDET',
+				'es-MX': 'Mapa de temperatura y precipitación con Ncview en el COVEICYDET',
+			},
 		},
 		{
 			src: screenshot_2,
-			alt: 'Temperature map output with Ncview',
+			alt: {
+				'en-US': 'Temperature map output with Ncview',
+				'es-MX': 'Mapa de temperatura con Ncview',
+			},
 		},
 		{
 			src: screenshot_3,
-			alt: 'Presentation table at COVEICYDET',
+			alt: {
+				'en-US': 'Presentation table at COVEICYDET',
+				'es-MX': 'Mesa de presentación en el COVEICYDET',
+			},
 		},
 		{
 			src: screenshot_4,
-			alt: 'ITSPR table at COVEICYDET',
+			alt: {
+				'en-US': 'ITSPR table at COVEICYDET',
+				'es-MX': 'Mesa del ITSPR en el COVEICYDET',
+			},
 		},
 		{
 			src: screenshot_5,
-			alt: 'COVEICYDET information',
+			alt: {
+				'en-US': 'COVEICYDET information',
+				'es-MX': 'Información del COVEICYDET',
+			},
 		},
 		{
 			src: screenshot_6,
-			alt: 'General view of COVEICYDET at KANÁ a day before the event',
+			alt: {
+				'en-US': 'General view of COVEICYDET at KANÁ a day before the event',
+				'es-MX': 'Vista general del COVEICYDET en KANÁ un día antes del evento',
+			},
 		},
 	],
 } as ProjectData;
