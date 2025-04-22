@@ -18,6 +18,7 @@
 
 import { StaticImageData } from 'next/image';
 
+import cuteSkonk    from '@/assets/img/portfolio/artworks/cute-skonk.webp';
 import eliCopter    from '@/assets/img/portfolio/artworks/eli-copter.webp';
 import happySkunk   from '@/assets/img/portfolio/artworks/happy-skunk.webp';
 import silence      from '@/assets/img/portfolio/artworks/silence.webp';
@@ -56,6 +57,10 @@ export default [
 	{
 		name: "Commission for @zarckets",
 		img: comm_zarckets,
+	},
+	{
+		name: 'Cute Skonk',
+		img: cuteSkonk,
 	},
 	{
 		name: 'Eli-Copter',
