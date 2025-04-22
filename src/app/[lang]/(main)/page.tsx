@@ -163,11 +163,13 @@ export default function Root()
 
 			<button
 				ref={ buttonExtraSocialsRef }
+				aria-label={ dict.pages.home['show-more'] }
 				onClick={ openExtras }
 				className={[
 					style['socials-showmore'],
 					(extrasOpen ? style.closed : ''),
 				].join(' ')}
+				disabled={ extrasOpen }
 			>
 				<div className={ style.arrow }>
 					<div></div>

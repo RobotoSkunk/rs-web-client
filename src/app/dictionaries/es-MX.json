@@ -20,7 +20,8 @@
 	},
 	"pages": {
 		"home": {
-			"degree": "Ingeniero en Sistemas Computacionales."
+			"degree": "Ingeniero en Sistemas Computacionales.",
+			"show-more": "Mostrar más redes sociales"
 		},
 		"open-source": {
 			"h1": "Código Abierto",

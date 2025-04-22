@@ -20,7 +20,8 @@
 	},
 	"pages": {
 		"home": {
-			"degree": "Computer Systems Engineer."
+			"degree": "Computer Systems Engineer.",
+			"show-more": "Show more socials"
 		},
 		"open-source": {
 			"h1": "Open Source",
