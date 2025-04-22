@@ -1,6 +1,17 @@
 
 {
 	"layout": {
+		"header": {
+			"about": "About me",
+			"commissions": "Commissions",
+			"portfolio": "Portfolio",
+			"contact": "Contact",
+			"support-me": "Support me",
+			"home": "Home",
+			"aria": {
+				"toggle-menu": "Toggle menu"
+			}
+		},
 		"footer": {
 			"rights": "All Rights Reserved.",
 			"open-source": "Open Source",

@@ -27,6 +27,7 @@ import { robotoCondensed } from '@/utils/fonts';
 import backImage from '@/assets/svg/symbols/back.svg';
 import { usePathname } from 'next/navigation';
 import SpanLink from './SpanLink';
+import { useDictionary } from '../providers/DictionaryProvider';
 
 
 
@@ -57,6 +58,8 @@ export default function Header({
 	params: { lang: string },
 })
 {
+	const dict = useDictionary();
+
 	const pathname = usePathname();
 	const lang = params.lang;
 
@@ -67,7 +70,7 @@ export default function Header({
 		links: [
 			{
 				href: `/${lang}/about`,
-				label: 'About me',
+				label: dict.layout.header.about,
 			},
 			// {
 			// 	href: `/${lang}/blog`,
@@ -75,19 +78,19 @@ export default function Header({
 			// },
 			// {
 			// 	href: `/${lang}/commissions`,
-			// 	label: 'Commissions',
+			// 	label: dict.layout.header.commissions,
 			// },
 			{
 				href: `/${lang}/portfolio`,
-				label: 'Portfolio',
+				label: dict.layout.header.portfolio,
 			},
 			{
 				href: `/${lang}/contact`,
-				label: 'Contact',
+				label: dict.layout.header.contact,
 			},
 			{
 				href: `/${lang}/support-me`,
-				label: 'Support me',
+				label: dict.layout.header['support-me'],
 			},
 		]
 	}
@@ -124,10 +127,10 @@ export default function Header({
 							width={ 20 }
 							priority={ true }
 						/>
-						<span>Home</span>
+						<span>{ dict.layout.header.home }</span>
 					</Link>
 				</div>
-				<button id='nav-toggle' aria-label='Toggle menu' onClick={toggleNav}>
+				<button id='nav-toggle' aria-label={ dict.layout.header.aria['toggle-menu'] } onClick={toggleNav}>
 					<div className='lines'>
 						<div></div>
 						<div></div>
