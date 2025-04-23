@@ -83,7 +83,6 @@ export default function Dropdown({
 				staggerChildren: 0.05,
 			},
 			translateY: '-100%',
-			transformOrigin: '0% 100%',
 		},
 		closed: {
 			scale: 0,
@@ -91,7 +90,6 @@ export default function Dropdown({
 				delay: 0.2,
 			},
 			translateY: '-100%',
-			transformOrigin: '0% 100%',
 		},
 	} satisfies Variants;
 

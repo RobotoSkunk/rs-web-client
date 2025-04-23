@@ -43,7 +43,7 @@
 	position: fixed;
 	overflow: hidden;
 
-	transform: translateY(-100%);
+	transform-origin: 0% 100%;
 
 	border: 1px solid var(--foreground-color);
 	border-radius: 10px 10px 10px 0;
