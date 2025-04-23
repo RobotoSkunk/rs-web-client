@@ -27,6 +27,8 @@ import { motion } from 'framer-motion';
 import ExternalLink from '../icons/ExternalLink';
 import { useDictionary } from '../providers/DictionaryProvider';
 
+import Dropdown from '../Dropdown';
+
 
 export default function Footer({
 	params,
@@ -59,6 +61,15 @@ export default function Footer({
 		>
 			<span>
 				© Copyright {year} RobotoSkunk. { dict.layout.footer.rights }
+			</span>
+			<span>
+				<Dropdown options={[
+					{
+						label: 'English (US)',
+					}, {
+						label: 'Español (México)',
+					},
+				]}/>
 			</span>
 			<span>
 				{/* <Link href=`/${lang}/privacy`>Privacy Policy</Link>

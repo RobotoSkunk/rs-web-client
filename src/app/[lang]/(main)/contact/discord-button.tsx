@@ -116,8 +116,7 @@ export default function DiscordButton()
 
 	function setTagPosition()
 	{
-		if (discordTagRef.current) {
-			// @ts-ignore really?
+		if (discordTagRef.current && discordRef.current) {
 			const rect = discordRef.current.getBoundingClientRect();
 
 			discordTagRef.current.style.left = `${rect.x + rect.width / 2}px`;
