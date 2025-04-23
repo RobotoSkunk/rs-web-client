@@ -61,6 +61,7 @@ export function middleware(request: NextRequest)
 
 	const hostname = request.headers.get('Host') || request.nextUrl.hostname;
 	const canonicalPathname = request.nextUrl.pathname.replace(`/${localesResponse.locale}`, '');
+	const lang = localesResponse.locale;
 
 	const isOnion = hostname.endsWith('.onion');
 	const allowInsecure = isOnion || process.env.NODE_ENV !== 'production';
@@ -85,7 +86,7 @@ export function middleware(request: NextRequest)
 	requestHeaders.set('X-Device-Type', device.type ?? 'desktop');
 	requestHeaders.set('X-Nonce', nonce);
 
-	requestHeaders.set('X-Canonical', `https://${hostname}${canonicalPathname}`);
+	requestHeaders.set('X-Canonical', `https://${hostname}/${lang}${canonicalPathname}`);
 	requestHeaders.set('X-Canonical-Root', `https://${hostname}`);
 	requestHeaders.set('X-Canonical-Path', canonicalPathname);
 
