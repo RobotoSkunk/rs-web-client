@@ -1,5 +1,27 @@
 
 {
+	"meta": {
+		"description": "Soy un ingeniero en sistemas computacionales que hace ilustraciones comisionadas, sitios web, bots y microservicios.",
+		"keywords": [
+			"computacionales",
+			"computadora",
+			"computación",
+			"sistema",
+			"sistemas",
+			"ingeniero",
+			"ingeniería",
+			"servidor",
+			"servidores",
+			"linux",
+			"microservicios",
+			"ilustraciones",
+			"comisiones",
+			"sitios",
+			"web",
+			"bots",
+			"discord"
+		]
+	},
 	"layout": {
 		"header": {
 			"about": "Sobre mí",

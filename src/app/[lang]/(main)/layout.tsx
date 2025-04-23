@@ -32,17 +32,21 @@ import AlexPhrase from '@/components/AlexPhrase';
 
 import { getDictionary, locales } from '@/app/dictionaries';
 import DictionaryProvider from '@/components/providers/DictionaryProvider';
+import appDirectory from '@/data/app-directory';
 
 
 export async function generateMetadata({
 	params,
 }: {
-	params: Promise<{ lang: string }>,
+	params: Promise<{ lang: Localizations }>,
 })
 {
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
 	const defaultMetadata = {
 		title: 'RobotoSkunk',
-		description: "I'm a Full Stack developer who makes commissioned artworks, websites, bots and microservices.",
+		description: dict.meta.description,
 		metaIcon: 'https://robotoskunk.com/assets/img/meta-icon.webp',
 	};
 
@@ -58,6 +62,13 @@ export async function generateMetadata({
 		languages[locale] = `${canonicalRoot}/${locale}${canonicalPathname}`;
 	}
 
+	
+	const directoryData = appDirectory.filter((value) => value.path === canonicalPathname)[0];
+
+	if (directoryData && directoryData.title) {
+		defaultMetadata.title = `${directoryData.title[lang]} - RobotoSkunk`;
+	}
+
 
 	return {
 		title: defaultMetadata.title,
@@ -66,14 +77,7 @@ export async function generateMetadata({
 			name: 'RobotoSkunk (Edgar Lima)',
 		},
 		applicationName: defaultMetadata.title,
-		keywords: [
-			'full stack',
-			'servers',
-			'linux',
-			'microservices',
-			'artworks',
-			'websites',
-		],
+		keywords: dict.meta.keywords,
 		alternates: {
 			canonical,
 			languages,

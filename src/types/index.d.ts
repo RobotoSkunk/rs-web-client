@@ -45,6 +45,7 @@ declare global
 	interface PathData
 	{
 		path: string,
+		title?: LocalizationsData,
 		priority: number,
 		validForSeo: boolean,
 	}

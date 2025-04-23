@@ -1,5 +1,23 @@
 
 {
+	"meta": {
+		"description": "I'm a computer systems engineer who makes commissioned artworks, websites, bots and microservices",
+		"keywords": [
+			"computer",
+			"system",
+			"systems",
+			"engineer",
+			"server",
+			"servers",
+			"linux",
+			"microservices",
+			"artworks",
+			"commissions",
+			"websites",
+			"bots",
+			"discord"
+		]
+	},
 	"layout": {
 		"header": {
 			"about": "About me",
