@@ -30,6 +30,10 @@ import { useDictionary } from '../providers/DictionaryProvider';
 import Dropdown from '../Dropdown';
 
 
+import mxFlag from '@/assets/svg/tweemoji/mx-flag.svg';
+import usFlag from '@/assets/svg/tweemoji/us-flag.svg';
+
+
 export default function Footer({
 	params,
 }: {
@@ -51,6 +55,13 @@ export default function Footer({
 		setCommitSha(metaTag ?? 'not_a_repo');
 	}, []);
 
+	function changeLanguage(value: string)
+	{
+		if (value !== lang) {
+			location.href = location.href.replace(lang, value);
+		}
+	};
+
 
 	return (
 		<motion.footer
@@ -63,13 +74,22 @@ export default function Footer({
 				© Copyright {year} RobotoSkunk. { dict.layout.footer.rights }
 			</span>
 			<span>
-				<Dropdown options={[
-					{
-						label: 'English (US)',
-					}, {
-						label: 'Español (México)',
-					},
-				]}/>
+				<Dropdown
+					options={[
+						{
+							label: 'English (US)',
+							icon: usFlag,
+							value: 'en-US',
+							default: lang === 'en-US',
+						}, {
+							label: 'Español (México)',
+							icon: mxFlag,
+							value: 'es-MX',
+							default: lang === 'es-MX',
+						},
+					]}
+					onValueChange={ changeLanguage }
+				/>
 			</span>
 			<span>
 				{/* <Link href=`/${lang}/privacy`>Privacy Policy</Link>

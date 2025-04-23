@@ -17,6 +17,10 @@
  */
 
 .link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: left;
+
 	color: white;
 }
 
@@ -29,7 +33,7 @@
 	width: 6px;
 	height: 6px;
 
-	transform: rotate(-45deg) translate(10%, -80%);
+	transform: rotate(-45deg) translateY(-50%);
 
 	margin-left: 10px;
 }
@@ -52,6 +56,10 @@
 }
 
 .options button {
+	display: flex;
+	align-items: center;
+	justify-content: left;
+
 	position: relative;
 
 	width: 100%;
@@ -87,6 +95,8 @@
 	background: #ffffff01;
 	backdrop-filter: invert(100%);
 
+	z-index: 1;
+
 	transition-property: width, height;
 	transition-duration: 0.15s;
 	transition-timing-function: ease-in-out;
@@ -99,3 +109,12 @@
 	width: 100%;
 }
 
+.link img,
+.options button img {
+	z-index: 2;
+
+	margin-right: 10px;
+
+	width: 20px;
+	height: 20px;
+}

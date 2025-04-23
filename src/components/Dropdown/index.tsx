@@ -19,25 +19,34 @@
 'use client';
 
 import { RefObject, useRef, useEffect, useState } from 'react';
-import { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { motion, MotionProps, Variants } from 'framer-motion';
 
 import style from './dropdown.module.css';
 
 
+interface DropdownOption
+{
+	icon?: StaticImageData;
+	label: string;
+	value: string;
+	default?: boolean;
+}
+
+
 export default function Dropdown({
 	options,
+	onValueChange,
 }: {
-	options: {
-		icon?: StaticImageData,
-		label: string,
-	}[],
+	options: DropdownOption[],
+	onValueChange: (value: string) => void,
 })
 {
 	const optionsRef: RefObject<HTMLDivElement | null> = useRef(null);
 	const toggleButtonRef: RefObject<HTMLAnchorElement | null> = useRef(null);
 
 	const [ open, setOpen ] = useState(false);
+	const [ selected, setSelected ] = useState(null as DropdownOption | null);
 
 
 	function setTagPosition()
@@ -47,8 +56,6 @@ export default function Dropdown({
 
 			optionsRef.current.style.left = `${rect.x + 5}px`;
 			optionsRef.current.style.top = `${rect.top - 5}px`;
-
-			console.log(rect);
 		}
 	}
 
@@ -60,12 +67,40 @@ export default function Dropdown({
 
 		setTagPosition();
 
-		window.addEventListener('resize', () => setTagPosition());
-	}, []);
+		for (const option of options) {
+			if (option.default) {
+				setSelected(option);
+				break;
+			}
+		}
+	
+		if (!selected) {
+			setSelected(options[0]);
+		}
+
+		function clickedOutside(ev: MouseEvent)
+		{
+			if (toggleButtonRef.current && !toggleButtonRef.current.contains(ev.target as any)) {
+				setOpen(false);
+			}
+		}
+
+		function resize() { setTagPosition() }
+
+		document.addEventListener('mousedown', clickedOutside);
+		window.addEventListener('resize', resize);
+
+		return () => {
+			document.removeEventListener('mousedown', clickedOutside);
+			window.removeEventListener('resize', resize);
+		};
+	}, [ options ]);
 
 
 	function toggle(ev: React.MouseEvent<HTMLAnchorElement, MouseEvent>)
 	{
+		ev.preventDefault();
+
 		setTagPosition();
 		setOpen(!open);
 	}
@@ -114,7 +149,13 @@ export default function Dropdown({
 			href='#'
 			onClick={ (ev) => toggle(ev) }
 		>
-			{ options[0].label }
+			{ selected?.icon ? 
+				<Image
+					src={ selected.icon }
+					alt=''
+				/>
+			: '' }
+			{ selected?.label }
 			<div className={ style.arrow }></div>
 		</a>
 		<motion.div
@@ -124,13 +165,23 @@ export default function Dropdown({
 			animate={ open ? 'open' : 'closed' }
 			initial={ 'closed' }
 		>
-			{options.map((value, index) => (
+			{options.map((option, index) => (
 				<motion.button
 					className={ style.dropdown }
+					onClick={ () => {
+						setSelected(option);
+						onValueChange(option.value);
+					} }
 					key={ index }
 					{ ...itemProps }
 				>
-					{ value.label }
+					{ option.icon ? 
+						<Image
+							src={ option.icon }
+							alt=''
+						/>
+					: '' }
+					{ option.label }
 				</motion.button>
 			))}
 		</motion.div>

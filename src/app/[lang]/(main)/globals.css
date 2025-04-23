@@ -380,6 +380,10 @@ header.nav-open #nav-toggle .lines div:nth-child(3) {
 
 
 footer {
+	display: flex;
+	align-items: center;
+	justify-content: left;
+
 	margin: 20px 0;
 
 	text-align: center;
@@ -387,6 +391,7 @@ footer {
 
 footer span {
 	padding: 5px 0;
+	height: 20px;
 }
 
 footer span:not(:last-child) {
@@ -467,7 +472,7 @@ footer span:not(:last-child) {
 
 /* #region Responsive mobile layout */
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
 	#nav-menu {
 		position: fixed;
 
@@ -534,12 +539,8 @@ footer span:not(:last-child) {
 	main {
 		margin-top: 80px;
 	}
-}
 
-
-@media screen and (max-width: 850px) {
 	footer {
-		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-direction: column;
@@ -548,6 +549,9 @@ footer span:not(:last-child) {
 	footer span {
 		padding: 0;
 		padding-bottom: 10px;
+
+		height: auto;
+		width: 100%;
 	}
 
 	footer span:not(:last-child) {
