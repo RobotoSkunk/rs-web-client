@@ -19,15 +19,27 @@
 import appDirectory from '@/data/app-directory';
 import { MetadataRoute } from 'next';
 
+import { locales } from '@/app/dictionaries';
+
 
 export default function sitemap(): MetadataRoute.Sitemap
 {
 	const root = 'https://robotoskunk.com';
 
-	return appDirectory.filter(v => v.validForSeo).map((value) => (
-		{
+	return appDirectory.filter(v => v.validForSeo).map((value) =>
+	{
+		const languages: { [ key: string]: string } = {};
+
+		for (const locale of locales) {
+			languages[locale] = `${root}/${locale}${value.path}`;
+		}
+
+		return {
 			url: `${root}${value.path}`,
 			priority: value.priority,
-		}
-	));
+			alternates: {
+				languages,
+			},
+		};
+	});
 }

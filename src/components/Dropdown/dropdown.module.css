@@ -1,0 +1,120 @@
+/*
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: left;
+
+	color: var(--foreground-color);
+}
+
+.arrow {
+	display: inline-block;
+
+	border: solid var(--foreground-color);
+	border-width: 0 0 1px 1px;
+
+	width: 6px;
+	height: 6px;
+
+	transform: rotate(-45deg) translateY(-50%);
+
+	margin-left: 10px;
+}
+
+
+.options {
+	display: flex;
+	flex-direction: column;
+	justify-content: left;
+
+	position: fixed;
+	overflow: hidden;
+
+	transform-origin: 0% 100%;
+
+	border: 1px solid var(--foreground-color);
+	border-radius: 10px 10px 10px 0;
+
+	background-color: var(--foreground-color);
+}
+
+.options button {
+	display: flex;
+	align-items: center;
+	justify-content: left;
+
+	position: relative;
+
+	width: 100%;
+	overflow: unset;
+
+	padding: 10px 15px;
+	padding-right: 35px;
+
+	border: 0;
+	margin: 0;
+	border-radius: 0;
+
+	text-align: left;
+
+	background: transparent;
+	color: var(--background-color);
+
+	cursor: pointer;
+}
+.options button::after {
+	content: '';
+	display: block;
+
+	position: absolute;
+	left: 0;
+	top: 0;
+
+	width: 0;
+	height: 100%;
+
+	transform: none;
+
+	background: #ffffff01;
+	backdrop-filter: invert(100%);
+
+	z-index: 1;
+
+	transition-property: width, height;
+	transition-duration: 0.15s;
+	transition-timing-function: ease-in-out;
+}
+
+.options button:hover::after,
+.options button:focus::after,
+.options button:hover::after,
+.options button:focus::after {
+	width: 100%;
+}
+
+.link img,
+.options button img {
+	z-index: 2;
+
+	margin-right: 10px;
+
+	width: 20px;
+	height: 20px;
+}

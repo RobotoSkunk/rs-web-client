@@ -16,46 +16,63 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { StaticImageData } from 'next/image';
+.main {
+	width: 90vw;
+	max-width: 800px;
 
+	flex-grow: 1;
+}
 
-declare global
-{
-	interface ProjectData
-	{
-		name: LocalizationsData,
-		description: LocalizationsData,
-		icon: StaticImageData,
-		links: {
-			label: LocalizationsData,
-			url: string,
-		}[],
-		screenshots: {
-			src: StaticImageData,
-			alt: LocalizationsData,
-		}[],
-	}
-
-	interface ArtworkData
-	{
-		name: LocalizationsData,
-		img: StaticImageData,
-	}
-
-	interface PathData
-	{
-		path: string,
-		title?: LocalizationsData,
-		priority: number,
-		validForSeo: boolean,
-	}
-
-	type Localizations = 'es-MX' | 'en-US';
-	type LocalizationsData = {
-		'es-MX': string,
-		'en-US': string,
-	};
+.main h1,
+.main h2 {
+	margin: 30px 0;
 }
 
 
-export { };
+.main h1 { font-size: 3em }
+.main h2 { font-size: 2em }
+
+
+.nutshell { margin-bottom: 100px }
+.main section { margin-bottom: 50px }
+
+.who-i-am {
+	display: flex;
+	flex-direction: row;
+	column-gap: 50px;
+}
+
+.content p { margin: 15px 0 }
+.who-i-am .content { font-size: 1.2em }
+
+.who-i-am,
+.content {
+	text-align: left;
+}
+
+.profile-picture {
+	border-radius: 50%;
+	padding: 0 10px;
+}
+
+.picture-container {
+	display: inline-flex;
+	flex-direction: column;
+
+	row-gap: 20px;
+}
+
+
+@media screen and (max-width: 700px) {
+	.who-i-am {
+		flex-direction: column;
+		align-items: center;
+
+		text-align: center;
+	}
+
+	.who-i-am .content {
+		text-align: center;
+	}
+}
+

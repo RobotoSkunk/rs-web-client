@@ -25,13 +25,27 @@ import { roboto300 } from '@/utils/fonts';
 
 import { motion } from 'framer-motion';
 import ExternalLink from '../icons/ExternalLink';
+import { useDictionary } from '../providers/DictionaryProvider';
+
+import Dropdown from '../Dropdown';
 
 
-export default function Footer()
+import mxFlag from '@/assets/svg/tweemoji/mx-flag.svg';
+import usFlag from '@/assets/svg/tweemoji/us-flag.svg';
+
+
+export default function Footer({
+	params,
+}: {
+	params: { lang: string }
+})
 {
+	const dict = useDictionary();
+
 	const [ commitSha, setCommitSha ] = useState('not_a_repo');
 
 	const year = new Date().getFullYear();
+	const lang = params.lang;
 
 
 	useEffect(() =>
@@ -40,6 +54,13 @@ export default function Footer()
 
 		setCommitSha(metaTag ?? 'not_a_repo');
 	}, []);
+
+	function changeLanguage(value: string)
+	{
+		if (value !== lang) {
+			location.href = location.href.replace(lang, value);
+		}
+	};
 
 
 	return (
@@ -50,21 +71,39 @@ export default function Footer()
 			transition={{ duration: 0.8 }}
 		>
 			<span>
-				© Copyright {year} RobotoSkunk. All Rights Reserved.
+				© Copyright {year} RobotoSkunk. { dict.layout.footer.rights }
 			</span>
 			<span>
-				{/* <Link href='/privacy'>Privacy Policy</Link>
+				<Dropdown
+					options={[
+						{
+							label: 'English (US)',
+							icon: usFlag,
+							value: 'en-US',
+							default: lang === 'en-US',
+						}, {
+							label: 'Español (México)',
+							icon: mxFlag,
+							value: 'es-MX',
+							default: lang === 'es-MX',
+						},
+					]}
+					onValueChange={ changeLanguage }
+				/>
+			</span>
+			<span>
+				{/* <Link href=`/${lang}/privacy`>Privacy Policy</Link>
 				{ ' • ' }
-				<Link href='/terms'>Terms of Use</Link>
+				<Link href=`/${lang}/terms`>Terms of Use</Link>
 				{ ' • ' } */}
-				<Link href='/open-source'>Open Source</Link>
+				<Link href={ `/${lang}/open-source` }>{ dict.layout.footer['open-source'] }</Link>
 				{ ' • ' }
 				<Link
 					href={ `https://github.com/RobotoSkunk/rs-web-client/tree/${commitSha}` }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
-					Built from { commitSha.slice(0, 7) }<ExternalLink/>
+					{ dict.layout.footer['built-from'] }{ ' ' }{ commitSha.slice(0, 7) }<ExternalLink/>
 				</Link>
 			</span>
 		</motion.footer>

@@ -16,46 +16,36 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { StaticImageData } from 'next/image';
+'use client';
+
+import { useEffect } from 'react';
+
+import HTTPError from '@/components/HTTPError';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
+
+import alexDizzy from '@/assets/svg/alex-skunk/dizzy.svg';
 
 
-declare global
+function returnHome(lang: Localizations)
 {
-	interface ProjectData
-	{
-		name: LocalizationsData,
-		description: LocalizationsData,
-		icon: StaticImageData,
-		links: {
-			label: LocalizationsData,
-			url: string,
-		}[],
-		screenshots: {
-			src: StaticImageData,
-			alt: LocalizationsData,
-		}[],
-	}
-
-	interface ArtworkData
-	{
-		name: LocalizationsData,
-		img: StaticImageData,
-	}
-
-	interface PathData
-	{
-		path: string,
-		title?: LocalizationsData,
-		priority: number,
-		validForSeo: boolean,
-	}
-
-	type Localizations = 'es-MX' | 'en-US';
-	type LocalizationsData = {
-		'es-MX': string,
-		'en-US': string,
-	};
+	location.href = `/${lang}`;
 }
 
+export default function NoScript({
+	lang,
+}: {
+	lang: Localizations,
+})
+{
+	const dict = useDictionary();
 
-export { };
+	useEffect(() => returnHome(lang), [ lang ]);
+
+	return (
+		<HTTPError
+			title={ dict.errors.noscript.title }
+			description={ dict.errors.noscript.description }
+			alexImage={ alexDizzy }
+		/>
+	);
+}

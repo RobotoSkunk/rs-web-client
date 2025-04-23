@@ -27,35 +27,61 @@ import screenshot_6 from '@/assets/img/portfolio/development/kawitech/6.webp';
 
 
 export default {
-	name: 'Kawi Tech',
+	name: {
+		'en-US': 'Kawi Tech',
+		'es-MX': 'Kawi Tech',
+	},
 	icon,
-	description: 'A commissioned website that I did along with my team for ITSPR Student Chapter of the Industrial ' +
+	description: {
+		'en-US': 'A commissioned website that I did along with my team for ITSPR Student Chapter of the Industrial ' +
 				 'Engineering career to capture payments for attendance at the workshops given at the event.',
+		'es-MX': 'Un sitio web comisionado que hice junto con mi equipo para el Capítulo Estudiantil de la Carrera ' +
+				 'en Ingeniería Industrial del ITSPR para capturar los pagos de asistencias a talleres ofrecidos en ' +
+				 'un evento.',
+	},
 	links: [ ],
 	screenshots: [
 		{
 			src: screenshot_1,
-			alt: 'Home page',
+			alt: {
+				'en-US': 'Home page',
+				'es-MX': 'Página de inicio',
+			},
 		},
 		{
 			src: screenshot_2,
-			alt: 'Workshops page',
+			alt: {
+				'en-US': 'Workshops page',
+				'es-MX': 'Página de talleres',
+			},
 		},
 		{
 			src: screenshot_3,
-			alt: 'Venues page',
+			alt: {
+				'en-US': 'Venues page',
+				'es-MX': 'Páginas de sedes',
+			},
 		},
 		{
 			src: screenshot_4,
-			alt: '"About us" page',
+			alt: {
+				'en-US': '"About us" page',
+				'es-MX': 'Página "Acerca de nosotros"',
+			},
 		},
 		{
 			src: screenshot_5,
-			alt: '"About us" organigam section',
+			alt: {
+				'en-US': '"About us" organigam section',
+				'es-MX': 'Sección del organigrama de "Acerca de nosotros"',
+			},
 		},
 		{
 			src: screenshot_6,
-			alt: 'Sign up page',
+			alt: {
+				'en-US': 'Sign up page',
+				'es-MX': 'Página de registro',
+			},
 		},
 	],
 } as ProjectData;

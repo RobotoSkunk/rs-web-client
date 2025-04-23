@@ -26,49 +26,84 @@ import screenshot_5 from '@/assets/img/portfolio/development/wip/pixelman/5.webp
 
 
 export default {
-	name: 'PixelMan Adventures',
+	name: {
+		'en-US': 'PixelMan Adventures',
+		'es-MX': 'PixelMan Adventures',
+	},
 	icon,
-	description: `An upcoming free and open source platformer game, literally the first project I ever made. ` +
+	description: {
+		'en-US': `An upcoming free and open source platformer game, literally the first project I ever made. ` +
 				 `Started in November 2018 with Game Maker Studio, then moved to Unity and now being developed with ` +
-				 `Godot. Initially it was made as an experiment, and now I want to finish it. `,
+				 `Godot. Initially it was made as an experiment, and now I want to finish it.`,
+		'es-MX': `Un próximo juego plataformero gratis de código abierto, literalmente el primer proyecto que he ` +
+				 `hecho. Lo comencé en noviembre de 2018 con Game Maker Studio, luego lo moví a Unity y ahora es ` +
+				 `desarrollado en Godot. Inicialmente era solo un experimento, y ahora quiero terminarlo.`,
+	},
 	links: [
 		{
-			label: 'GitHub Repository',
+			label: {
+				'en-US': 'GitHub Repository',
+				'es-MX': 'Repositorio de GitHub',
+			},
 			url: 'https://github.com/ClockBomb-Games/PixelMan-Adventures',
 		},
 		{
-			label: 'Itch.io Page',
+			label: {
+				'en-US': 'Itch.io Page',
+				'es-MX': 'Página de Itch.io',
+			},
 			url: 'https://clockbombgames.itch.io/pixelman-adventures',
 		},
 		{
-			label: 'Legacy GitHub Repository',
+			label: {
+				'en-US': 'Legacy GitHub Repository',
+				'es-MX': 'Repositorio Legacy de GitHub',
+			},
 			url: 'https://github.com/RobotoSkunk/PixelMan-GMS2',
 		},
 		{
-			label: 'Legacy Gamejolt Page',
+			label: {
+				'en-US': 'Legacy Gamejolt Page',
+				'es-MX': 'Página Legacy de Gamejolt',
+			},
 			url: 'https://gamejolt.com/games/pixelman/410001',
 		},
 	],
 	screenshots: [
 		{
 			src: screenshot_1,
-			alt: `Main menu`,
+			alt: {
+				'en-US': `Main menu`,
+				'es-MX': `Menú principal`,
+			},
 		},
 		{
 			src: screenshot_2,
-			alt: `In-game level editor`,
+			alt: {
+				'en-US': `In-game level editor`,
+				'es-MX': `Editor de niveles del juego`,
+			},
 		},
 		{
 			src: screenshot_3,
-			alt: `Level example 1`,
+			alt: {
+				'en-US': `Level example 1`,
+				'es-MX': `Ejemplo 1 de nivel`,
+			},
 		},
 		{
 			src: screenshot_4,
-			alt: `Level example 2`,
+			alt: {
+				'en-US': `Level example 2`,
+				'es-MX': `Ejemplo 2 de nivel`,
+			},
 		},
 		{
 			src: screenshot_5,
-			alt: `Level won screen`,
+			alt: {
+				'en-US': `Level won screen`,
+				'es-MX': `Pantalla de nivel superado`,
+			},
 		},
 	],
 } as ProjectData;

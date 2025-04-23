@@ -16,46 +16,44 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { StaticImageData } from 'next/image';
+import { Metadata } from 'next';
+
+import HTTPError from '@/components/HTTPError';
+import { getDictionary } from '@/app/dictionaries';
+
+import alexTeapot from '@/assets/svg/alex-skunk/teapot.svg';
 
 
-declare global
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>
+}): Promise<Metadata>
 {
-	interface ProjectData
-	{
-		name: LocalizationsData,
-		description: LocalizationsData,
-		icon: StaticImageData,
-		links: {
-			label: LocalizationsData,
-			url: string,
-		}[],
-		screenshots: {
-			src: StaticImageData,
-			alt: LocalizationsData,
-		}[],
-	}
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
 
-	interface ArtworkData
-	{
-		name: LocalizationsData,
-		img: StaticImageData,
-	}
-
-	interface PathData
-	{
-		path: string,
-		title?: LocalizationsData,
-		priority: number,
-		validForSeo: boolean,
-	}
-
-	type Localizations = 'es-MX' | 'en-US';
-	type LocalizationsData = {
-		'es-MX': string,
-		'en-US': string,
+	return {
+		title: dict.errors.teapot.title,
+		robots: 'noindex, nofollow',
 	};
+};
+
+
+export default async function HTTP418({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>
+})
+{
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
+	return (
+		<HTTPError
+			title={ '418' }
+			description={ dict.errors.teapot.description }
+			alexImage={ alexTeapot }
+		/>
+	);
 }
-
-
-export { };

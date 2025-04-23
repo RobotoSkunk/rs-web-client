@@ -19,13 +19,27 @@
 import appDirectory from '@/data/app-directory';
 import { MetadataRoute } from 'next';
 
+import { locales } from '@/app/dictionaries';
+
 
 export default function robots(): MetadataRoute.Robots
 {
+	const paths = appDirectory.filter(v => !v.validForSeo);
+	const disallowedPaths: string[] = [];
+
+	for (const path of paths) {
+		disallowedPaths.push(path.path);
+
+		for (const locale of locales) {
+			disallowedPaths.push(`/${locale}${path.path}`);
+		}
+	}
+
+
 	return {
 		rules: {
 			userAgent: '*',
-			disallow: appDirectory.filter(v => !v.validForSeo).map(v => v.path),
+			disallow: disallowedPaths,
 		},
 		sitemap: 'https://robotoskunk.com/sitemap.xml',
 	};

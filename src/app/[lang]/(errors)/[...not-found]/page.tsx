@@ -16,46 +16,30 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { StaticImageData } from 'next/image';
+import HTTPError from '@/components/HTTPError';
+
+import alexLost from '@/assets/svg/alex-skunk/lost.svg';
+import { getDictionary } from '@/app/dictionaries';
 
 
-declare global
+export default async function HTTP404({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>
+})
 {
-	interface ProjectData
-	{
-		name: LocalizationsData,
-		description: LocalizationsData,
-		icon: StaticImageData,
-		links: {
-			label: LocalizationsData,
-			url: string,
-		}[],
-		screenshots: {
-			src: StaticImageData,
-			alt: LocalizationsData,
-		}[],
-	}
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
 
-	interface ArtworkData
-	{
-		name: LocalizationsData,
-		img: StaticImageData,
-	}
+	const phrases = dict.errors['not-found'].phrases;
 
-	interface PathData
-	{
-		path: string,
-		title?: LocalizationsData,
-		priority: number,
-		validForSeo: boolean,
-	}
+	const phrase = phrases[Math.floor(Math.random() * phrases.length)];
 
-	type Localizations = 'es-MX' | 'en-US';
-	type LocalizationsData = {
-		'es-MX': string,
-		'en-US': string,
-	};
+	return (
+		<HTTPError
+			title={ '404' }
+			description={ phrase }
+			alexImage={ alexLost }
+		/>
+	);
 }
-
-
-export { };

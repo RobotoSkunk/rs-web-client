@@ -23,25 +23,42 @@ import screenshot_2 from '@/assets/img/portfolio/development/wip/gamink/2.webp';
 
 
 export default {
-	name: 'Gamink',
+	name: {
+		'en-US': 'Gamink',
+		'es-MX': 'Gamink',
+	},
 	icon,
-	description: `An upcoming free and open source rasterized and vectorial painting and animation software written ` +
+	description: {
+		'en-US': `An upcoming free and open source rasterized and vectorial painting and animation software written ` +
 				 `in C++ with GTK4, as an alternative to big tech softwares like Adobe Animate or Toon Boom Harmony, ` +
 				 `focused mainly for videogames design.`,
+		'es-MX': `Un próximo programa de dibujo y animación rasterizada y vectorial gratis de código abierto escrito ` +
+				 `en C++ con GTK4, como una alternativa a los programas de las grandes compañías como Adobe Animate ` +
+				 `o Toon Boom Harmony, principalmente enfocado en el diseño de videojuegos.`,
+	},
 	links: [
 		{
-			label: 'GitHub Repository',
+			label: {
+				'en-US': 'GitHub Repository',
+				'es-MX': 'Repositorio de GitHub',
+			},
 			url: 'https://github.com/Limer-Software/gamink',
 		},
 	],
 	screenshots: [
 		{
 			src: screenshot_1,
-			alt: `First test with one canvas`,
+			alt: {
+				'en-US': `First test with one canvas`,
+				'es-MX': `Primera prueba con un lienzo`,
+			},
 		},
 		{
 			src: screenshot_2,
-			alt: `Second test with two canvases`,
+			alt: {
+				'en-US': `Second test with two canvases`,
+				'es-MX': `Segunda prueba con dos lienzos`,
+			},
 		},
 	],
 } as ProjectData;

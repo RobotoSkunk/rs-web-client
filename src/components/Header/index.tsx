@@ -27,6 +27,7 @@ import { robotoCondensed } from '@/utils/fonts';
 import backImage from '@/assets/svg/symbols/back.svg';
 import { usePathname } from 'next/navigation';
 import SpanLink from './SpanLink';
+import { useDictionary } from '../providers/DictionaryProvider';
 
 
 
@@ -36,12 +37,14 @@ function toggleNav()
 	document.querySelector('header')?.classList.toggle('nav-open');
 }
 
-function displayHomeLink(pathname: string)
+function displayHomeLink(pathname: string, lang: string)
 {
 	const navMenu = document.getElementById('nav-menu');
 
+	pathname = pathname.replace(`/${lang}`, '');
+
 	if (navMenu) {
-		navMenu.classList.toggle('show-home', pathname !== '/');
+		navMenu.classList.toggle('show-home', pathname !== '');
 	}
 
 	document.querySelector('header')?.classList.remove('nav-open');
@@ -49,38 +52,45 @@ function displayHomeLink(pathname: string)
 
 
 
-export default function Header()
+export default function Header({
+	params,
+}: {
+	params: { lang: string },
+})
 {
-	const pathname = usePathname();
+	const dict = useDictionary();
 
-	useEffect(() => displayHomeLink(pathname as string), [ pathname ]);
+	const pathname = usePathname();
+	const lang = params.lang;
+
+	useEffect(() => displayHomeLink(pathname as string, lang), [ pathname, lang ]);
 
 	const linksData = {
 		time: 0.5,
 		links: [
 			{
-				href: '/about',
-				label: 'About me',
+				href: `/${lang}/about`,
+				label: dict.layout.header.about,
 			},
 			// {
-			// 	href: '/blog',
+			// 	href: `/${lang}/blog`,
 			// 	label: 'Blog',
 			// },
 			// {
-			// 	href: '/commissions',
-			// 	label: 'Commissions',
+			// 	href: `/${lang}/commissions`,
+			// 	label: dict.layout.header.commissions,
 			// },
 			{
-				href: '/portfolio',
-				label: 'Portfolio',
+				href: `/${lang}/portfolio`,
+				label: dict.layout.header.portfolio,
 			},
 			{
-				href: '/contact',
-				label: 'Contact',
+				href: `/${lang}/contact`,
+				label: dict.layout.header.contact,
 			},
 			{
-				href: '/support-me',
-				label: 'Support me',
+				href: `/${lang}/support-me`,
+				label: dict.layout.header['support-me'],
 			},
 		]
 	}
@@ -110,17 +120,17 @@ export default function Header()
 
 			<div id='nav-menu'>
 				<div>
-					<Link href='/' className='home-link'>
+					<Link href={ `/${lang}` } className='home-link'>
 						<Image
 							alt=''
 							src={ backImage }
 							width={ 20 }
 							priority={ true }
 						/>
-						<span>Home</span>
+						<span>{ dict.layout.header.home }</span>
 					</Link>
 				</div>
-				<button id='nav-toggle' aria-label='Toggle menu' onClick={toggleNav}>
+				<button id='nav-toggle' aria-label={ dict.layout.header.aria['toggle-menu'] } onClick={toggleNav}>
 					<div className='lines'>
 						<div></div>
 						<div></div>

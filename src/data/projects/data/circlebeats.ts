@@ -23,25 +23,42 @@ import screenshot_2 from '@/assets/img/portfolio/development/wip/circlebeats/2.w
 
 
 export default {
-	name: 'CircleBeats',
+	name: {
+		'es-MX': 'CircleBeats',
+		'en-US': 'CircleBeats',
+	},
 	icon,
-	description: `An upcoming experimental bullet hell video game I've been working on just for fun. ` +
+	description: {
+		'en-US': `An upcoming experimental bullet hell video game I've been working on just for fun. ` +
 				 `Originally it was being made with Unity, but due to some problems with the engine on Linux, ` +
 				 `I decided to move it to Godot instead.`,
+		'es-MX': `Un próximo videojuego bullet hell experimental que he estado desarrollando por diversión. ` +
+				 `Originalmente iba a ser desarrollado con Unity, sin embargo, debido a algunos problemas con ` +
+				 `el motor en Linux, decidí moverlo a Godot.`,
+	},
 	links: [
 		{
-			label: 'GitHub Repository',
+			label: {
+				'en-US': 'GitHub Repository',
+				'es-MX': 'Repositorio de GitHub',
+			},
 			url: 'https://github.com/RobotoSkunk/CircleBeats',
 		},
 	],
 	screenshots: [
 		{
 			src: screenshot_1,
-			alt: `Progress made with Unity last year`,
+			alt: {
+				'en-US': `Progress made with Unity in 2023`,
+				'es-MX': `Progreso hecho con Unity en 2023`,
+			},
 		},
 		{
 			src: screenshot_2,
-			alt: `Progress made with Godot in January`,
+			alt: {
+				'en-US': `Progress made with Godot in January, 2024`,
+				'es-MX': `Progreso hecho con Godot en enero de 2024`,
+			},
 		},
 	],
 } as ProjectData;

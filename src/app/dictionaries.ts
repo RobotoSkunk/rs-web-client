@@ -1,6 +1,6 @@
 /*
  * robotoskunk.com front client. The frontend part of robotoskunk.com
- * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
@@ -16,46 +16,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { StaticImageData } from 'next/image';
+'server-only';
 
+const dictionaries = {
+	'es-MX': () => import('./dictionaries/es-MX.json').then((module) => module.default),
+	'en-US': () => import('./dictionaries/en-US.json').then((module) => module.default),
+};
 
-declare global
+export const locales = [
+	'es-MX',
+	'en-US',
+];
+
+export async function getDictionary(locale: Localizations)
 {
-	interface ProjectData
-	{
-		name: LocalizationsData,
-		description: LocalizationsData,
-		icon: StaticImageData,
-		links: {
-			label: LocalizationsData,
-			url: string,
-		}[],
-		screenshots: {
-			src: StaticImageData,
-			alt: LocalizationsData,
-		}[],
-	}
-
-	interface ArtworkData
-	{
-		name: LocalizationsData,
-		img: StaticImageData,
-	}
-
-	interface PathData
-	{
-		path: string,
-		title?: LocalizationsData,
-		priority: number,
-		validForSeo: boolean,
-	}
-
-	type Localizations = 'es-MX' | 'en-US';
-	type LocalizationsData = {
-		'es-MX': string,
-		'en-US': string,
-	};
+	return dictionaries[locale]();
 }
-
-
-export { };

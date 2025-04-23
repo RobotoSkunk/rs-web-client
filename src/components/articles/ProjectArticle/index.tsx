@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
+
 'use client';
 
 import React, { RefObject, useEffect, useRef, useState } from 'react';
@@ -28,6 +29,7 @@ import ImageModal from '@/components/modals/ImageModal';
 
 import articlesStyle from '../article.module.css';
 import style from './project.module.css';
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 
 export default function ProjectArticle({
@@ -40,24 +42,30 @@ export default function ProjectArticle({
 	id,
 	currentId,
 	setCurrentId,
+
+	lang,
 }: Readonly<{
-	name: string,
-	description: string,
+	name: LocalizationsData,
+	description: LocalizationsData,
 	icon: StaticImageData,
 	screenshots: {
 		src: StaticImageData,
-		alt: string,
+		alt: LocalizationsData,
 	}[],
 	links: {
-		label: string,
+		label: LocalizationsData,
 		url: string,
 	}[],
 
 	id: number,
 	currentId: null|string,
 	setCurrentId(id: null|string): void,
+
+	lang: Localizations,
 }>)
 {
+	const dict = useDictionary();
+
 	const articleRef: RefObject<HTMLDivElement | null> = useRef(null);
 	const circleRef: RefObject<HTMLDivElement | null> = useRef(null);
 
@@ -145,12 +153,12 @@ export default function ProjectArticle({
 						height={ 45 }
 						draggable={ false }
 					/>
-					<h3>{ name }</h3>
+					<h3>{ name[lang] }</h3>
 				</div>
 				<div className={ style.content }>
 					<div className={ style.description }>
 						<div className={ style.text }>
-							{ description }
+							{ description[lang] }
 						</div>
 						<div className={ style.links }>
 							{links.map((link, i) =>
@@ -162,7 +170,7 @@ export default function ProjectArticle({
 									target='_blank'
 									rel='noreferrer noopener'
 								>
-									{ link.label } <ExternalLink/>
+									{ link.label[lang] } <ExternalLink/>
 								</Link>
 							))}
 						</div>
@@ -173,7 +181,7 @@ export default function ProjectArticle({
 							<div className={ style.picture } key={ i }>
 								<Image
 									src={ screenshot.src }
-									alt={ screenshot.alt }
+									alt={ screenshot.alt[lang] }
 									draggable={ false }
 									quality={ 85 }
 									sizes={ '(max-width: 600px) 200px, (max-width: 900px) 250px, 350px' }
@@ -186,7 +194,10 @@ export default function ProjectArticle({
 			<button
 				className={ style.button }
 				onClick={ () => toggleArticle(!open) }
-				aria-label={ `${open ? 'Hide' : 'Show'} screenshots of ${ name }` }
+				aria-label={
+					(open ? dict.pages.portfolio['toggle-hide'] : dict.pages.portfolio['toggle-show']) +
+					` ${dict.pages.portfolio['toggle-label']} ${ name[lang] }`
+				}
 			>
 				<div className={ style.arrow }>
 					<div></div>
@@ -213,7 +224,7 @@ export default function ProjectArticle({
 						>
 							<ImageModal
 								src={ screenshot.src }
-								alt={ screenshot.alt }
+								alt={ screenshot.alt[lang] }
 								width={ 300 }
 								className={ style.screenshot }
 
@@ -223,7 +234,7 @@ export default function ProjectArticle({
 								setCurrentId={ setCurrentId }
 							/>
 							<span>
-								{ screenshot.alt }
+								{ screenshot.alt[lang] }
 							</span>
 						</motion.div>
 					))}
