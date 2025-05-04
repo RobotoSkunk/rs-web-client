@@ -33,6 +33,7 @@ import AlexPhrase from '@/components/AlexPhrase';
 import { getDictionary, locales } from '@/app/dictionaries';
 import DictionaryProvider from '@/components/providers/DictionaryProvider';
 import appDirectory from '@/data/app-directory';
+import TransitionHandler from './TransitionHandler';
 
 
 export async function generateMetadata({
@@ -152,7 +153,9 @@ export default async function RootLayout({
 						<DictionaryProvider dictionary={ dict }>
 							<Header params={{ lang }}/>
 
-							{ children }
+							<TransitionHandler>
+								{ children }
+							</TransitionHandler>
 
 							<Footer params={{ lang }}/>
 						</DictionaryProvider>
