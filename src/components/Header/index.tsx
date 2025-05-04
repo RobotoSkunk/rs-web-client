@@ -21,12 +21,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { motion, MotionProps, Variants } from 'framer-motion';
 
 import { robotoCondensed } from '@/utils/fonts';
 
 import backImage from '@/assets/svg/symbols/back.svg';
-import { usePathname } from 'next/navigation';
-import SpanLink from './SpanLink';
+
 import { useDictionary } from '../providers/DictionaryProvider';
 
 
@@ -65,58 +66,76 @@ export default function Header({
 
 	useEffect(() => displayHomeLink(pathname as string, lang), [ pathname, lang ]);
 
-	const linksData = {
-		time: 0.5,
-		links: [
-			{
-				href: `/${lang}/about`,
-				label: dict.layout.header.about,
+
+	const navVariants = {
+		hidden: {
+			opacity: 1,
+		},
+		visible: {
+			opacity: 1,
+			transition: {
+				delayChildren: 0,
+				staggerChildren: 0.1,
+			}
+		}
+	} satisfies Variants;
+
+	const linkVariants = {
+		hidden: {
+			y: -10,
+			opacity: 0,
+		},
+		visible: {
+			y: 0,
+			opacity: 1,
+			transition: {
+				duration: 0.5,
 			},
-			// {
-			// 	href: `/${lang}/blog`,
-			// 	label: 'Blog',
-			// },
-			// {
-			// 	href: `/${lang}/commissions`,
-			// 	label: dict.layout.header.commissions,
-			// },
-			{
-				href: `/${lang}/portfolio`,
-				label: dict.layout.header.portfolio,
-			},
-			{
-				href: `/${lang}/contact`,
-				label: dict.layout.header.contact,
-			},
-			{
-				href: `/${lang}/support-me`,
-				label: dict.layout.header['support-me'],
-			},
-		]
-	}
+		},
+	} satisfies Variants;
+
 
 	return (
 		<header className={ robotoCondensed.className }>
 			<div className='nav-menu-bg'></div>
 
-			<nav>
-				{
-					linksData.links.map((data, index) =>
-					{
-						const delay = linksData.time / linksData.links.length * index;
-
-						return (
-							<SpanLink
-								href={ data.href }
-								delay={ 0.2 + delay }
-								key={ index }
-							>
-								{ data.label }
-							</SpanLink>
-						);
-					})
-				}
-			</nav>
+			<motion.nav
+				variants={navVariants}
+	
+				initial='hidden'
+				animate='visible'
+			>
+				<motion.span variants={ linkVariants }>
+					<Link href={ `/${lang}/about` }>
+						{ dict.layout.header.about }
+					</Link>
+				</motion.span>
+				{/* <motion.span variants={ linkVariants }>
+					<Link href={ `/${lang}/blog` }>
+						Blog
+					</Link>
+				</motion.span>
+				<motion.span { ...linkVariants }>
+					<Link href={ `/${lang}/commissions` }>
+						{ dict.layout.header.commissions }
+					</Link>
+				</motion.span> */}
+				<motion.span variants={ linkVariants }>
+					<Link href={ `/${lang}/portfolio` }>
+						{ dict.layout.header.portfolio }
+					</Link>
+				</motion.span>
+				<motion.span variants={ linkVariants }>
+					<Link href={ `/${lang}/contact` }>
+						{ dict.layout.header.contact }
+					</Link>
+				</motion.span>
+				<motion.span variants={ linkVariants }>
+					<Link href={ `/${lang}/support-me` }>
+						{ dict.layout.header['support-me'] }
+					</Link>
+				</motion.span>
+			</motion.nav>
 
 			<div id='nav-menu'>
 				<div>
