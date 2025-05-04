@@ -92,6 +92,7 @@ export default function Root()
 				className={ style.logo }
 				draggable={ false }
 				priority={ true }
+				fetchPriority='high'
 			/>
 
 			<h1>RobotoSkunk</h1>

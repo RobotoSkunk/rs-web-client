@@ -44,6 +44,9 @@ export default function HTTPError({
 				draggable={ false }
 
 				height={ 250 }
+
+				priority={ true }
+				fetchPriority='high'
 			/>
 		</main>
 	);

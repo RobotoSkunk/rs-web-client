@@ -152,6 +152,9 @@ export default function ProjectArticle({
 						width={ 45 }
 						height={ 45 }
 						draggable={ false }
+
+						priority={ true }
+						fetchPriority='high'
 					/>
 					<h3>{ name[lang] }</h3>
 				</div>
@@ -185,6 +188,9 @@ export default function ProjectArticle({
 									draggable={ false }
 									quality={ 85 }
 									sizes={ '(max-width: 600px) 200px, (max-width: 900px) 250px, 350px' }
+
+									priority={ true }
+									fetchPriority='high'
 								/>
 							</div>
 						))}

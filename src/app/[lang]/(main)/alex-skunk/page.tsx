@@ -46,6 +46,9 @@ export default function Page()
 						height: 'auto',
 					}}
 					draggable={ false }
+
+					priority={ true }
+					fetchPriority='high'
 				/>
 				<p>
 					<Link href='/assets/img/alex-skunk-ref2021.png'>Download Original PNG</Link>

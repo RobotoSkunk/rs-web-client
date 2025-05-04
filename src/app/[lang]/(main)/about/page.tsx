@@ -44,6 +44,9 @@ export default function Page()
 							width={ 200 }
 							className={ style['profile-picture'] }
 							draggable={ false }
+
+							priority={ true }
+							fetchPriority='high'
 						/>
 						<span>
 							{ dict.pages.about['img-span'] + ' ' }
