@@ -68,11 +68,7 @@ export default function Header({
 
 
 	const navVariants = {
-		hidden: {
-			opacity: 1,
-		},
 		visible: {
-			opacity: 1,
 			transition: {
 				delayChildren: 0,
 				staggerChildren: 0.1,
