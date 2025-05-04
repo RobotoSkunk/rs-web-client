@@ -38,13 +38,11 @@ export default function TransitionHandler({
 				key={ key }
 
 				initial={{ y: 40, opacity: 0 }}
-				exit={{ y: -40, opacity: 0 }}
+				exit={{ y: 40, opacity: 0 }}
 
 				animate={{ y:  0, opacity: 1 }}
 
-				style={{
-					width: '100vw',
-				}}
+				className='content'
 
 				transition={{ ease: 'easeOut', duration: 0.75 }}
 			>

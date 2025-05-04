@@ -117,6 +117,10 @@ main {
 	margin: 0 auto;
 }
 
+.content {
+	width: 100vw;
+}
+
 .no-scroll {
 	overflow: hidden;
 }
