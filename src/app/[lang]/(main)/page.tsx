@@ -220,7 +220,7 @@ export default function Root()
 						<DeviantArt/>
 					</Link>
 					<Link
-						href='https://robotoskunk.newgrounds.com/art'
+						href='https://robotoskunk.newgrounds.com'
 						title='Newgrounds'
 						target='_blank'
 						rel='noreferrer noopener'
