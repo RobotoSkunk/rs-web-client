@@ -16,26 +16,52 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+.main {
+	width: 650px;
+	max-width: 90vw;
 
-import createMDX from '@next/mdx';
+	margin: 50px auto;
+	text-align: justify;
+
+	& h1,
+	& h2 {
+		margin: 30px 0;
+		font-size: 1.5em;
+	}
+
+	& h1 {
+		font-size: 2em;
+		text-align: center;
+	}
+
+	& h3 {
+		font-size: 1.2em;
+	}
 
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-	poweredByHeader: false,
-	reactStrictMode: false,
-	pageExtensions: [
-		'js',
-		'jsx',
-		'md',
-		'mdx',
-		'ts',
-		'tsx',
-	],
-};
+	& > pre,
+	& p > code {
+		background: var(--article-button-background);
+		backdrop-filter: blur(5px);
 
-const withMDX = createMDX({
-	extension: /\.(md|mdx)$/,
-})
- 
-export default withMDX(nextConfig);
+		padding: 10px;
+		border-radius: 10px;
+	}
+
+	& > pre {
+		overflow-x: auto;
+	}
+
+	& p > code {
+		padding: 3px 2px;
+		border-radius: 5px;
+	}
+}
+
+body[device-type=mobile] {
+	& .main > pre,
+	& .main p > code {
+		backdrop-filter: unset;
+	}
+}
+

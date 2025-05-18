@@ -16,26 +16,33 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+'use client';
 
-import createMDX from '@next/mdx';
+import { use } from 'react';
+
+import style from './page.module.css';
+
+import PrivacyPolicy_ES_MX from '@/data/policies/privacy/privacy.es-MX.mdx';
+import PrivacyPolicy_EN_US from '@/data/policies/privacy/privacy.en-US.mdx';
 
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-	poweredByHeader: false,
-	reactStrictMode: false,
-	pageExtensions: [
-		'js',
-		'jsx',
-		'md',
-		'mdx',
-		'ts',
-		'tsx',
-	],
-};
-
-const withMDX = createMDX({
-	extension: /\.(md|mdx)$/,
+export default function Page({
+	params,
+}: {
+	params: React.Usable<{ lang: string }>
 })
- 
-export default withMDX(nextConfig);
+{
+	const { lang } = use(params);
+
+	// TODO: This is currently a workaround. A proper function to handle MDX files by localization is needed.
+
+	return (
+		<main className={ style.main }>
+			{ lang === 'es-MX' ?
+				<PrivacyPolicy_ES_MX/>
+				:
+				<PrivacyPolicy_EN_US/>
+			}
+		</main>
+	);
+}

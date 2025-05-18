@@ -16,26 +16,35 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+'use client';
 
-import createMDX from '@next/mdx';
+import Link from 'next/link';
+import { use } from 'react';
+
+import style from './page.module.css';
+
+import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-	poweredByHeader: false,
-	reactStrictMode: false,
-	pageExtensions: [
-		'js',
-		'jsx',
-		'md',
-		'mdx',
-		'ts',
-		'tsx',
-	],
-};
-
-const withMDX = createMDX({
-	extension: /\.(md|mdx)$/,
+export default function Page({
+	params,
+}: {
+	params: React.Usable<{ lang: string }>
 })
- 
-export default withMDX(nextConfig);
+{
+	const { lang } = use(params);
+	const dict = useDictionary();
+
+	return (
+		<main className={ style.main }>
+			<h1>Legal</h1>
+
+			<p>
+				<Link href={ `/${lang}/open-source` }>{ dict.pages.legal['open-source'] }</Link>
+			</p>
+			<p>
+				<Link href={ `/${lang}/privacy` }>{ dict.pages.legal.privacy }</Link>
+			</p>
+		</main>
+	);
+}

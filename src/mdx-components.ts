@@ -17,25 +17,12 @@
  */
 
 
-import createMDX from '@next/mdx';
-
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-	poweredByHeader: false,
-	reactStrictMode: false,
-	pageExtensions: [
-		'js',
-		'jsx',
-		'md',
-		'mdx',
-		'ts',
-		'tsx',
-	],
-};
-
-const withMDX = createMDX({
-	extension: /\.(md|mdx)$/,
-})
+import type { MDXComponents } from 'mdx/types';
  
-export default withMDX(nextConfig);
+
+export function useMDXComponents(components: MDXComponents): MDXComponents
+{
+	return {
+		...components,
+	}
+}
