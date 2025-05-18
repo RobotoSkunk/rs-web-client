@@ -19,12 +19,11 @@
 'use client';
 
 import Link from 'next/link';
-
+import { use } from 'react';
 
 import style from './page.module.css';
 
 import { useDictionary } from '@/components/providers/DictionaryProvider';
-import { use } from 'react';
 
 
 export default function Page({
