@@ -1,4 +1,4 @@
-/*
+/**
  * robotoskunk.com front client. The frontend part of robotoskunk.com
  * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
  * 
@@ -14,7 +14,7 @@
  * 
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
+**/
 
 // Replaced Google fonts with local fonts due to connection problems while downloading fonts on build
 import LocalFont from 'next/font/local';
