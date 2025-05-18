@@ -16,52 +16,36 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-.main {
-	width: 650px;
-	max-width: 90vw;
+'use client';
 
-	margin: 50px auto;
-	text-align: justify;
-
-	& h1,
-	& h2 {
-		margin: 30px 0;
-		font-size: 1.5em;
-	}
-
-	& h1 {
-		font-size: 2em;
-		text-align: center;
-	}
-
-	& h3 {
-		font-size: 1.2em;
-	}
+import Link from 'next/link';
 
 
-	& > pre,
-	& p > code {
-		background: var(--article-button-background);
-		backdrop-filter: blur(5px);
+import style from './page.module.css';
 
-		padding: 10px;
-		border-radius: 10px;
-	}
+import { useDictionary } from '@/components/providers/DictionaryProvider';
+import { use } from 'react';
 
-	& > pre {
-		overflow-x: auto;
-	}
 
-	& p > code {
-		padding: 3px 2px;
-		border-radius: 5px;
-	}
+export default function Page({
+	params,
+}: {
+	params: React.Usable<{ lang: string }>
+})
+{
+	const { lang } = use(params);
+	const dict = useDictionary();
+
+	return (
+		<main className={ style.main }>
+			<h1>Legal</h1>
+
+			<p>
+				<Link href={ `/${lang}/open-source` }>{ dict.pages.legal['open-source'] }</Link>
+			</p>
+			<p>
+				<Link href={ `/${lang}/privacy` }>{ dict.pages.legal.privacy }</Link>
+			</p>
+		</main>
+	);
 }
-
-body[device-type=mobile] {
-	& .main > pre,
-	& .main p > code {
-		backdrop-filter: unset;
-	}
-}
-

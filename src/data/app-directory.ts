@@ -77,6 +77,15 @@ export default [
 		},
 	},
 	{
+		path: '/legal',
+		priority: 0.5,
+		validForSeo: true,
+		title: {
+			'en-US': 'Legal',
+			'es-MX': 'Legal',
+		},
+	},
+	{
 		path: '/alex-skunk',
 		priority: 0,
 		validForSeo: true,

@@ -92,11 +92,7 @@ export default function Footer({
 				/>
 			</span>
 			<span>
-				{/* <Link href=`/${lang}/privacy`>Privacy Policy</Link>
-				{ ' • ' }
-				<Link href=`/${lang}/terms`>Terms of Use</Link>
-				{ ' • ' } */}
-				<Link href={ `/${lang}/open-source` }>{ dict.layout.footer['open-source'] }</Link>
+				<Link href={ `/${lang}/legal` }>Legal</Link>
 				{ ' • ' }
 				<Link
 					href={ `https://github.com/RobotoSkunk/rs-web-client/tree/${commitSha}` }

@@ -36,7 +36,6 @@
 		},
 		"footer": {
 			"rights": "Todos los Derechos Reservados.",
-			"open-source": "Código Abierto",
 			"built-from": "Compilado de"
 		}
 	},
@@ -88,6 +87,10 @@
 			"toggle-show": "Mostrar",
 			"toggle-hide": "Ocultar",
 			"toggle-label": "capturas de"
+		},
+		"legal": {
+			"privacy": "Aviso de Privacidad",
+			"open-source": "Código Abierto"
 		}
 	},
 	"discord-copy-phrases": [
