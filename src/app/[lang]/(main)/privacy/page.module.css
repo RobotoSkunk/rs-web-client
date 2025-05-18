@@ -1,0 +1,67 @@
+/*
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.main {
+	width: 650px;
+	max-width: 90vw;
+
+	margin: 50px auto;
+	text-align: justify;
+
+	& h1,
+	& h2 {
+		margin: 30px 0;
+		font-size: 1.5em;
+	}
+
+	& h1 {
+		font-size: 2em;
+		text-align: center;
+	}
+
+	& h3 {
+		font-size: 1.2em;
+	}
+
+
+	& > pre,
+	& p > code {
+		background: var(--article-button-background);
+		backdrop-filter: blur(5px);
+
+		padding: 10px;
+		border-radius: 10px;
+	}
+
+	& > pre {
+		overflow-x: auto;
+	}
+
+	& p > code {
+		padding: 3px 2px;
+		border-radius: 5px;
+	}
+}
+
+body[device-type=mobile] {
+	& .main > pre,
+	& .main p > code {
+		backdrop-filter: unset;
+	}
+}
+

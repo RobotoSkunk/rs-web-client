@@ -59,6 +59,15 @@ export default [
 		},
 	},
 	{
+		path: '/privacy',
+		priority: 1,
+		validForSeo: true,
+		title: {
+			'en-US': 'Privacy notice',
+			'es-MX': 'Aviso de privacidad',
+		},
+	},
+	{
 		path: '/support-me',
 		priority: 0.5,
 		validForSeo: true,

@@ -1,0 +1,120 @@
+
+# AVISO DE PRIVACIDAD
+
+En cumplimiento a lo previsto en la Ley Federal de Protección de Datos
+Personales en Posesión de los Particulares, su reglamento y los lineamientos
+aplicables, le informamos lo siguiente: Edgar Alexis Lima Mercado, señalando
+para efectos del presente aviso de privacidad el domicilio ubicado en Sauco #19,
+Fraccionamiento Kana, Poza Rica de Hidalgo, Veracruz, México, C.P. 93230, será
+el responsable de recabar sus datos personales. También será responsable del uso
+y protección que se le dé a los mismos y a aquellos datos que sean recabados
+por cualquiera de los servicios de terceros usados para el funcionamiento
+correcto del sitio web, de conformidad con el presente aviso de privacidad.
+
+Para los efectos de este aviso de privacidad, se entederá por:
+
+1. **Derechos ARCO:** Derechos de acceso, rectificación, cancelación y
+oposición al tratamiento de datos personales;
+4. **Tercero:** Persona física o moral, nacional o extranjera, distinta de la
+persona titular o del responsable de los datos.
+
+## I. Datos recabados
+El sitio web recopila los siguientes datos personales:
+
+1. Dirección IP anonimizada;
+2. Agente de usuario del navegador;
+3. Fecha y hora de conexión;
+4. Ruta a la que se ha conectado.
+
+Los datos se recopilan automáticamente en un archivo de registro y no se puede
+limitar su recolección.
+
+## II. Finalidades de tratamiento de datos
+Se usan los datos recabados mencionados anteriormente para analizar y filtrar
+el tráfico web de orígenes fraudulentos en caso de ataques.
+
+La dirección IP es recolectada y anonimizada por Nginx, el servidor proxy
+encargado de recibir y controlar el tráfico web de la página web.
+
+A continuación, se presenta la configuración de Nginx usada para garantizar
+dichas finalidades:
+
+```conf
+map $remote_addr $ip_anonym1 {
+    default 0.0.0;
+    "~(?P<ip>(\d+)\.(\d+)\.(\d+))\.\d+" $ip;
+    "~(?P<ip>[^:]+:[^:]+):" $ip;
+}
+
+map $remote_addr $ip_anonym2 {
+    default .0;
+    "~(?P<ip>(\d+)\.(\d+)\.(\d+))\.\d+" .0;
+    "~(?P<ip>[^:]+:[^:]+):" ::;
+}
+
+map $ip_anonym1$ip_anonym2 $ip_anonymized {
+    default 0.0.0.0;
+    "~(?P<ip>.*)" $ip;
+}
+
+log_format anonymized '$ip_anonymized - $remote_user [$time_local] "$request" '
+    '$status $body_bytes_sent '
+    '"$http_user_agent" "$http_x_forwarded_for"';
+
+
+access_log  /var/log/nginx/access.log anonymized;
+```
+
+Dichos datos son almacenados durante un día en un archivo de registro y son
+eliminados posteriormente.
+
+Los datos recabados no son usados para finalidades secundarias.
+
+## III. Cookies
+Este sitio web genera una cookie con nombre `within.website-x-cmd-anubis-auth`.
+La cookie es generada automáticamente por Anubis, un servicio de tercero
+desarrollado por Techaro y alojado localmente en el servidor web.
+
+Su funcionalidad es validar el tráfico web, restringiendo el acceso de robots.
+Dicha cookie no almacena ni asocia ningún dato personal que pueda identificar
+a un individuo. Es completamente anónima y no es usada para otro motivo además
+del previamente mencionado.
+
+La cookie tiene una expiración de siete días y es generada nuevamente cuando
+Anubis solicita verificar el navegador web.
+
+Este sitio web no genera ninguna otra cookie que no sea la previamente
+mencionada.
+
+## IV. Servicios de terceros
+### 1. DigitalOcean
+Este sitio web es alojado en un servidor virtual de DigitalOcean con ubicación
+en Nueva York, Estados Unidos.
+
+Los datos recabados en la sección I del presente documento son almacenados en el
+servidor virtual previamente mencionado.
+
+### 2. Next.js - Vercel
+Vercel es el propietario y desarrollador de Next.js, el framework usado para
+desarrollar este sitio web. La telemetría de Next.js es desactivada durante la
+compilación del sitio web usando el siguiente comando de pre-compilación:
+
+```bash
+next telemetry disable
+```
+
+### 3. Anubis - Techaro
+Este sitio web usa Anubis, un servicio de tercero desarrollado por Techaro para
+filtrar el tráfico web y rechazar solicitudes de atacantes y fraudes
+potenciales.
+
+Es alojado localmente en el servidor web y no comparte ni difunde datos a
+terceros en ningún momento.
+
+Los datos recolectados por Anubis son anonimizados como se menciona en la
+sección III del presente documento.
+
+## V. Derechos ARCO
+Debido al diseño de disociación de datos personales mencionados en la sección I
+y en la sección II del presente documento, no se pueden ejercer los derechos
+ARCO correspondientes. 
