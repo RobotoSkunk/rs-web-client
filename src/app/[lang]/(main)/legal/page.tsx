@@ -29,7 +29,7 @@ import { useDictionary } from '@/components/providers/DictionaryProvider';
 export default function Page({
 	params,
 }: {
-	params: React.Usable<{ lang: string }>
+	params: Promise<{ lang: string }>
 })
 {
 	const { lang } = use(params);

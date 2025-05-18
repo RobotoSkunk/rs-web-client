@@ -29,7 +29,7 @@ import PrivacyPolicy_EN_US from '@/data/policies/privacy/privacy.en-US.mdx';
 export default function Page({
 	params,
 }: {
-	params: React.Usable<{ lang: string }>
+	params: Promise<{ lang: string }>
 })
 {
 	const { lang } = use(params);
