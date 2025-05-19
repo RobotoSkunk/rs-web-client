@@ -130,6 +130,7 @@ body[device-type=mobile] .socials-showmore:hover {
 	margin-bottom: 40px;
 	overflow: hidden;
 
+	visibility: hidden;
 	transition: height 0.5s ease-in-out;
 
 	position: relative;
