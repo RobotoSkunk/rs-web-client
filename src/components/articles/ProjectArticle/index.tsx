@@ -127,6 +127,7 @@ export default function ProjectArticle({
 		const rect = screenshotsRef.current?.getBoundingClientRect();
 
 		containerRef.current.style.height = (toggle ? rect.height : 0) + 'px';
+		containerRef.current.style.visibility = toggle ? 'visible' : 'hidden';
 	}
 
 
