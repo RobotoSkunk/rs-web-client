@@ -17,6 +17,6 @@
 **/
 
 a:hover .twitter path,
-a:focus .twitter path {
+a:focus-visible .twitter path {
 	fill: #1da1f2;
 }

@@ -17,12 +17,12 @@
 **/
 
 a:hover .facebook > :first-child,
-a:focus .facebook > :first-child {
+a:focus-visible .facebook > :first-child {
 	fill: white;
 }
 
 a:hover .facebook > path,
-a:focus .facebook > path {
+a:focus-visible .facebook > path {
 	fill: #1877f2;
 }
 

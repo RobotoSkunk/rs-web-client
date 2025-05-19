@@ -17,11 +17,11 @@
 **/
 
 a:hover .youtube rect,
-a:focus .youtube rect {
+a:focus-visible .youtube rect {
 	fill: white;
 }
 
 a:hover .youtube path,
-a:focus .youtube path {
+a:focus-visible .youtube path {
 	fill: #ff0033;
 }

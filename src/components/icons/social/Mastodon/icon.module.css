@@ -23,16 +23,16 @@
 
 
 a:hover .mastodon rect,
-a:focus .mastodon rect {
+a:focus-visible .mastodon rect {
 	fill: white;
 }
 
 a:hover .mastodon stop:first-child,
-a:focus .mastodon stop:first-child {
+a:focus-visible .mastodon stop:first-child {
 	stop-color: #6364ff;
 }
 
 a:hover .mastodon stop:last-child,
-a:focus .mastodon stop:last-child {
+a:focus-visible .mastodon stop:last-child {
 	stop-color: #563acc;
 }

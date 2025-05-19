@@ -17,11 +17,11 @@
 **/
 
 a:hover .reddit circle,
-a:focus .reddit circle {
+a:focus-visible .reddit circle {
 	fill: white;
 }
 
 a:hover .reddit path,
-a:focus .reddit path {
+a:focus-visible .reddit path {
 	fill: #ff4500;
 }

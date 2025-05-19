@@ -168,7 +168,7 @@ a::after {
 }
 
 a:hover::after,
-a:focus::after {
+a:focus-visible::after {
 	width: 100%;
 }
 
@@ -214,9 +214,9 @@ main button::after {
 }
 
 main .button:hover::after,
-main .button:focus::after,
+main .button:focus-visible::after,
 main button:hover::after,
-main button:focus::after {
+main button:focus-visible::after {
 	top: 0;
 	left: 0;
 	height: 100%;
@@ -469,7 +469,7 @@ footer span:not(:last-child) {
 .social-media a::after { display: none }
 
 .social-media a:hover,
-.social-media a:focus {
+.social-media a:focus-visible {
 	scale: 1.3;
 }
 

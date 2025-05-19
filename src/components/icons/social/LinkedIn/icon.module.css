@@ -17,11 +17,11 @@
 **/
 
 a:hover .linkedin rect,
-a:focus .linkedin rect {
+a:focus-visible .linkedin rect {
 	fill: white;
 }
 
 a:hover .linkedin path,
-a:focus .linkedin path {
+a:focus-visible .linkedin path {
 	fill: #0a66c2;
 }

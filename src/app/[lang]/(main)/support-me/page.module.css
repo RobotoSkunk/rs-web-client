@@ -53,7 +53,7 @@
 	color: white;
 }
 .buttons .stripe:hover,
-.buttons .stripe:focus {
+.buttons .stripe:focus-visible {
 	background-color: #482ec7;
 }
 .buttons .stripe img {
@@ -68,7 +68,7 @@
 	color: black;
 }
 .buttons .kofi:hover,
-.buttons .kofi:focus {
+.buttons .kofi:focus-visible {
 	background-color: #ddb28d;
 }
 .buttons .kofi img {
@@ -82,7 +82,7 @@
 	padding: 12px 0;
 }
 .buttons .paypal:hover,
-.buttons .paypal:focus {
+.buttons .paypal:focus-visible {
 	background-color: #004280;
 }
 .buttons .paypal img {
