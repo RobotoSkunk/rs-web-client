@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-a:focus .deviantart polygon,
+a:focus-visible .deviantart polygon,
 a:hover .deviantart polygon {
 	fill: #46ac33;
 }

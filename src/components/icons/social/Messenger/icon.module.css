@@ -17,11 +17,11 @@
 **/
 
 a:hover .messenger circle,
-a:focus .messenger circle {
+a:focus-visible .messenger circle {
 	fill: white;
 }
 
 a:hover .messenger path,
-a:focus .messenger path {
+a:focus-visible .messenger path {
 	fill: #1877f2;
 }

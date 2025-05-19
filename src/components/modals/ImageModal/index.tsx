@@ -57,7 +57,7 @@ export default function ImageModal({
 
 	return (
 		<>
-			<motion.div
+			<motion.button
 				layoutId={ id }
 				className={
 					[
@@ -77,7 +77,7 @@ export default function ImageModal({
 					width={ width }
 					height={ height }
 				/>
-			</motion.div>
+			</motion.button>
 
 
 			<AnimatePresence mode='wait'>

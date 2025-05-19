@@ -103,9 +103,9 @@
 }
 
 .options button:hover::after,
-.options button:focus::after,
+.options button:focus-visible::after,
 .options button:hover::after,
-.options button:focus::after {
+.options button:focus-visible::after {
 	width: 100%;
 }
 

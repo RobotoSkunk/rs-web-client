@@ -17,11 +17,11 @@
 **/
 
 a:hover .telegram circle,
-a:focus .telegram circle {
+a:focus-visible .telegram circle {
 	fill: white;
 }
 
 a:hover .telegram path,
-a:focus .telegram path {
+a:focus-visible .telegram path {
 	fill: #229ed9;
 }

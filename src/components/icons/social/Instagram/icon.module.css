@@ -17,6 +17,6 @@
 **/
 
 a:hover .instagram rect,
-a:focus .instagram rect {
+a:focus-visible .instagram rect {
 	opacity: 0;
 }

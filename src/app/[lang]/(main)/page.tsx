@@ -73,6 +73,7 @@ export default function Root()
 		const rect = extraSocialsRef.current?.getBoundingClientRect();
 
 		extraSocialsContainerRef.current.style.height = `${rect.height}px`;
+		extraSocialsContainerRef.current.style.visibility = 'visible';
 	}
 
 	function openExtras()

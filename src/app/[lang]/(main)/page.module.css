@@ -86,13 +86,13 @@
 	display: none;
 }
 
-.socials-showmore:focus,
+.socials-showmore:focus-visible,
 .socials-showmore:hover {
 	background: var(--article-button-background);
 	backdrop-filter: blur(5px);
 }
 
-body[device-type=mobile] .socials-showmore:focus,
+body[device-type=mobile] .socials-showmore:focus-visible,
 body[device-type=mobile] .socials-showmore:hover {
 	backdrop-filter: unset;
 }
@@ -130,6 +130,7 @@ body[device-type=mobile] .socials-showmore:hover {
 	margin-bottom: 40px;
 	overflow: hidden;
 
+	visibility: hidden;
 	transition: height 0.5s ease-in-out;
 
 	position: relative;

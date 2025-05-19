@@ -23,7 +23,17 @@
 
 	overflow: hidden;
 
+	padding: 0;
+	margin: 0;
+	border: 0;
+
+	background: transparent;
+
 	cursor: zoom-in;
+}
+
+.image::after {
+	display: none;
 }
 
 

@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-a:focus .discord path,
+a:focus-visible .discord path,
 a:hover .discord path {
 	fill: #5865f2;
 }

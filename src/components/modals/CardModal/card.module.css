@@ -65,7 +65,7 @@
 }
 
 .card:hover .preview img,
-.card:focus .preview img {
+.card:focus-visible .preview img {
 	scale: 1.25;
 	filter: blur(5px);
 }
@@ -91,7 +91,7 @@
 }
 
 .card:hover .preview div,
-.card:focus .preview div {
+.card:focus-visible .preview div {
 	opacity: 1;
 }
 

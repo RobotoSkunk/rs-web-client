@@ -40,14 +40,14 @@
 	display: none;
 }
 
-.button:focus,
+.button:focus-visible,
 .button:hover {
 	background: var(--article-button-background);
 	backdrop-filter: blur(5px);
 }
 
 
-body[device-type=mobile] .button:focus,
+body[device-type=mobile] .button:focus-visible,
 body[device-type=mobile] .button:hover {
 	backdrop-filter: unset;
 }
@@ -100,8 +100,9 @@ body[device-type=mobile] .button:hover {
 /* #region Screenshots container */
 .container {
 	overflow: hidden;
+	visibility: hidden;
 
-	transition: height 0.5s ease-in-out;
+	transition: height 0.5s ease-in-out, visibility 0.5s;
 }
 
 .container .screenshots {
