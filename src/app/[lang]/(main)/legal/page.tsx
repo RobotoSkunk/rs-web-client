@@ -18,12 +18,15 @@
 
 'use client';
 
-import Link from 'next/link';
 import { use } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 import style from './page.module.css';
 
 import { useDictionary } from '@/components/providers/DictionaryProvider';
+
+import alexImage from '@/assets/img/alex-legal.webp';
 
 
 export default function Page({
@@ -35,9 +38,16 @@ export default function Page({
 	const { lang } = use(params);
 	const dict = useDictionary();
 
+
 	return (
 		<main className={ style.main }>
 			<h1>Legal</h1>
+
+			<Image
+				alt=''
+				src={ alexImage }
+				width={ 400 }
+			/>
 
 			<p>
 				<Link href={ `/${lang}/open-source` }>{ dict.pages.legal['open-source'] }</Link>
