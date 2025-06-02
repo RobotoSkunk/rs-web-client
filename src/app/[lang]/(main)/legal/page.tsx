@@ -47,6 +47,8 @@ export default function Page({
 				alt={ dict.pages.legal['img-alt'] }
 				src={ alexImage }
 				width={ 400 }
+
+				fetchPriority='high'
 			/>
 
 			<p>
