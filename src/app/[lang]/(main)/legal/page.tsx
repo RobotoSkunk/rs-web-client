@@ -44,7 +44,7 @@ export default function Page({
 			<h1>Legal</h1>
 
 			<Image
-				alt=''
+				alt={ dict.pages.legal['img-alt'] }
 				src={ alexImage }
 				width={ 400 }
 			/>
