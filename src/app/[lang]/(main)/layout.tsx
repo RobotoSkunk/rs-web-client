@@ -19,7 +19,6 @@
 import { Metadata } from 'next';
 import { headers } from 'next/headers';
 
-import { MotionConfig } from 'framer-motion';
 import { execSync } from 'child_process';
 
 import './globals.css';
@@ -34,6 +33,7 @@ import { getDictionary, locales } from '@/app/dictionaries';
 import DictionaryProvider from '@/components/providers/DictionaryProvider';
 import appDirectory from '@/data/app-directory';
 import TransitionHandler from './TransitionHandler';
+import StupidMotionWorkaround from './stupidMotionWorkaround';
 
 
 export async function generateMetadata({
@@ -148,9 +148,9 @@ export default async function RootLayout({
 				<Background/>
 				<AlexPhrase/>
 
-				<MotionConfig nonce={ nonce }>
-					<div id='app'>
-						<DictionaryProvider dictionary={ dict }>
+				<div id='app'>
+					<DictionaryProvider dictionary={ dict }>
+						<StupidMotionWorkaround nonce={ nonce }>
 							<Header params={{ lang }}/>
 
 							<TransitionHandler>
@@ -158,9 +158,9 @@ export default async function RootLayout({
 							</TransitionHandler>
 
 							<Footer params={{ lang }}/>
-						</DictionaryProvider>
-					</div>
-				</MotionConfig>
+						</StupidMotionWorkaround>
+					</DictionaryProvider>
+				</div>
 			</body>
 		</html>
 	);
