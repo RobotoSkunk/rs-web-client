@@ -153,6 +153,7 @@ export default function ProjectArticle({
 						width={ 45 }
 						height={ 45 }
 						draggable={ false }
+						quality={ 60 }
 
 						priority={ true }
 						fetchPriority='high'

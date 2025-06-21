@@ -33,7 +33,7 @@ import { getDictionary, locales } from '@/app/dictionaries';
 import DictionaryProvider from '@/components/providers/DictionaryProvider';
 import appDirectory from '@/data/app-directory';
 import TransitionHandler from './TransitionHandler';
-import StupidMotionWorkaround from './stupidMotionWorkaround';
+import StupidMotionWorkaround from './stupid-motion-workaround';
 
 
 export async function generateMetadata({
