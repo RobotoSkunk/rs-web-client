@@ -117,14 +117,14 @@ export default function Dropdown({
 				delayChildren: 0.2,
 				staggerChildren: 0.05,
 			},
-			translateY: '-100%',
+			translate: '0% -100%',
 		},
 		closed: {
 			scale: 0,
 			transition: {
 				delay: 0.2,
 			},
-			translateY: '-100%',
+			translate: '0% -100%',
 		},
 	} satisfies Variants;
 
