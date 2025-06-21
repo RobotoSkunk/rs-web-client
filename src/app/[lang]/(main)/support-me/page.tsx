@@ -44,7 +44,9 @@ export default function Page()
 				src={ alexHappy }
 				alt={ dict.pages['support-me']['img-alt'] }
 				width={ 300 }
-				quality={ 100 }
+
+				priority={ true }
+				fetchPriority='high'
 			/>
 
 			<div className={ style.buttons }>

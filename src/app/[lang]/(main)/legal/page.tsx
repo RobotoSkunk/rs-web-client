@@ -48,6 +48,7 @@ export default function Page({
 				src={ alexImage }
 				width={ 400 }
 
+				priority={ true }
 				fetchPriority='high'
 			/>
 
