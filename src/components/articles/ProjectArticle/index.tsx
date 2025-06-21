@@ -153,7 +153,6 @@ export default function ProjectArticle({
 						width={ 45 }
 						height={ 45 }
 						draggable={ false }
-						quality={ 60 }
 
 						priority={ true }
 						fetchPriority='high'
@@ -188,7 +187,6 @@ export default function ProjectArticle({
 									src={ screenshot.src }
 									alt={ screenshot.alt[lang] }
 									draggable={ false }
-									quality={ 85 }
 									sizes={ '(max-width: 600px) 200px, (max-width: 900px) 250px, 350px' }
 
 									priority={ true }
