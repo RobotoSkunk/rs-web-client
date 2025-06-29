@@ -40,7 +40,13 @@ function getDefaultLocale(request: NextRequest): string
 
 	const requestedLocales = new Negotiator({ headers }).languages();
 
-	return match(requestedLocales, locales, defaultLocale);
+	var localeFound = defaultLocale;
+
+	try {
+		localeFound = match(requestedLocales, locales, defaultLocale);
+	} catch (_) { }
+
+	return localeFound;
 }
 
 
