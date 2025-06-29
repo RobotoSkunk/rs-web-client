@@ -16,10 +16,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-import appDirectory from '@/data/app-directory';
 import { MetadataRoute } from 'next';
 
+import appDirectory from '@/data/app-directory';
+import aiCrawlers from '@/data/ai-crawlers';
+
 import { locales } from '@/app/dictionaries';
+
 
 
 export default function robots(): MetadataRoute.Robots
@@ -37,10 +40,16 @@ export default function robots(): MetadataRoute.Robots
 
 
 	return {
-		rules: {
-			userAgent: '*',
-			disallow: disallowedPaths,
-		},
+		rules: [
+			{
+				userAgent: aiCrawlers,
+				disallow: '/',
+			},
+			{
+				userAgent: '*',
+				disallow: disallowedPaths,
+			}
+		],
 		sitemap: 'https://robotoskunk.com/sitemap.xml',
 	};
 }
