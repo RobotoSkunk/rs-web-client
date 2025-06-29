@@ -24,7 +24,7 @@ import Negotiator from 'negotiator';
 import { locales } from '@/app/dictionaries';
 
 
-const defaultLocale = 'es-US';
+const defaultLocale = 'en-US';
 
 type LocalesResponse = {
 	response: NextResponse | false;
