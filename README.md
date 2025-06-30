@@ -44,7 +44,23 @@ pm2 start
 The source code of this project is licensed under the
 [GNU Affero General Public License v3.0](LICENSE).
 
-All the assets, including vector images, are protected under the copyright laws,
-and you should remove them if you want to fork this project and use it for your
-own.
+All the assets, including vector images and excluding third party assets, are
+protected under the copyright laws, and you should remove them if you want to
+fork this project and use it for your own.
+
+### Third-party assets
+The Roboto and Roboto Condensed fonts are licensed under the
+[SIL OPEN FONT LICENSE](https://openfontlicense.org/open-font-license-official-text/)
+by the [Roboto Project Authors](https://github.com/googlefonts/roboto-classic).
+
+The Roboto Mono font is licensed under the
+[SIL OPEN FONT LICENSE](https://openfontlicense.org/open-font-license-official-text/)
+by Christian Robertson.
+
+The PayPal logo is a protected trademark of
+[PayPal Holdings, Inc.](https://www.paypal.com)
+
+The Stripe logo is a protected trademark of [Stripe, Inc.](https://stripe.com)
+
+The Ko-fi logo is a protected trademark of [Ko-fi Labs](https://ko-fi.com).
 
