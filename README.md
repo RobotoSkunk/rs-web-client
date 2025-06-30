@@ -64,3 +64,6 @@ The Stripe logo is a protected trademark of [Stripe, Inc.](https://stripe.com)
 
 The Ko-fi logo is a protected trademark of [Ko-fi Labs](https://ko-fi.com).
 
+The Twemoji assets are licensed under the
+[MIT License](https://github.com/jdecked/twemoji/blob/main/LICENSE) by the
+[Twemoji Authors](https://github.com/jdecked/twemoji).
