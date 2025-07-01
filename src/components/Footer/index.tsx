@@ -95,7 +95,7 @@ export default function Footer({
 				<Link href={ `/${lang}/legal` }>Legal</Link>
 				{ ' • ' }
 				<Link
-					href={ `https://github.com/RobotoSkunk/rs-web-client/tree/${commitSha}` }
+					href={ `https://github.com/RobotoSkunk/rs-web-client/commit/${commitSha}` }
 					target='_blank'
 					rel='noreferrer noopener'
 				>
