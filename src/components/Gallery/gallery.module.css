@@ -1,0 +1,161 @@
+/**
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+**/
+
+.gallery {
+	width: 100%;
+
+	& .picture {
+		display: inline-block;
+
+		width: 50px;
+		height: 50px;
+
+		overflow: hidden;
+	}
+}
+
+
+.fullscreen-gallery {
+	position: fixed;
+	top: 0;
+	left: 0;
+
+	width: 100%;
+	height: 100%;
+
+	background: #000000aa;
+	backdrop-filter: blur(5px);
+
+	z-index: 100;
+
+	--strip-height: 200px;
+	--title-height: 30px;
+
+	& img {
+		user-select: none;
+	}
+
+	& .title {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		height: var(--title-height);
+		font-size: 1.5em;
+
+		user-select: none;
+	}
+
+	& .visor {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		height: calc(100vh - var(--strip-height) - var(--title-height));
+
+		& > button {
+			z-index: 2;
+		}
+
+		& .picture-container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			position: relative;
+			height: 100%;
+			flex-grow: 1;
+
+			& img {
+				position: absolute;
+
+				max-height: calc(100% - 25px);
+				max-width: calc(100% - 25px);
+
+				object-fit: contain;
+			}
+		}
+	}
+
+	& .scroller {
+		width: 100%;
+		height: var(--strip-height);
+
+		overflow-x: auto;
+		overflow-y: hidden;
+
+		& .strip {
+			display: inline-flex;
+			align-items: center;
+
+			height: 100%;
+			padding: 0 150px;
+
+			& button {
+				display: inline-block;
+
+				width: 100px;
+				height: 150px;
+
+				border: 0;
+				border-radius: 10px;
+
+				background: transparent;
+				flex-shrink: 0;
+
+				transition: width 0.2s ease-in-out;
+
+				& img {
+					object-fit: cover;
+
+					filter: brightness(1) blur(0);
+
+					transition-property: scale, filter;
+					transition-duration: 0.3s;
+					transition-timing-function: ease-in-out;
+				}
+
+				&::after {
+					display: none;
+				}
+
+				&:hover,
+				&:focus-visible,
+				&.selected {
+					width: 150px;
+
+					& img {
+						scale: 1.2;
+					}
+				}
+
+				&.selected img {
+					scale: 1.6;
+
+					filter: brightness(0.5) blur(3px);
+				}
+			}
+		}
+	}
+}
+
+body[device-type=mobile] .fullscreen-gallery {
+	backdrop-filter: unset;
+	background-color: #000000dd;
+}
+
