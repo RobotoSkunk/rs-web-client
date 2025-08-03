@@ -68,6 +68,15 @@ export default [
 		},
 	},
 	{
+		path: '/commissions',
+		priority: 1,
+		validForSeo: true,
+		title: {
+			'en-US': 'Commissions',
+			'es-MX': 'Comisiones',
+		},
+	},
+	{
 		path: '/support-me',
 		priority: 0.5,
 		validForSeo: true,
