@@ -16,6 +16,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+import { Metadata } from 'next';
+
+
+export async function generateMetadata(): Promise<Metadata>
+{
+	return {
+		title: 'Commissions',
+	};
+}
 
 export default function Page()
 {
