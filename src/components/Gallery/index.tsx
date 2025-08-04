@@ -20,7 +20,7 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, Transition, Variants } from 'framer-motion';
+import { AnimatePresence, motion, Transition, useMotionValue, Variants } from 'framer-motion';
 
 import style from './gallery.module.css';
 
@@ -47,6 +47,10 @@ export default function Gallery(props: Properties)
 
 	const [ timeoutId, setTimeoutId ] = useState<NodeJS.Timeout | null>(null);
 
+	const scroll = useMotionValue(0);
+	const scrollerRef = useRef<HTMLDivElement | null>(null);
+	const [ clickingInScroller, setClickingInScroller ] = useState(true);
+
 
 	useEffect(() =>
 	{
@@ -57,6 +61,28 @@ export default function Gallery(props: Properties)
 			setShowControls(true);
 		}
 	}, [ ]);
+
+	useEffect(() =>
+	{
+		const handleKeydown = (ev: KeyboardEvent) =>
+		{
+			if (ev.repeat) {
+				return;
+			}
+
+			switch (ev.key) {
+				case 'ArrowLeft': paginate(-1); break;
+				case 'ArrowRight': paginate(1); break;
+				case 'Escape': /* owo */ break;
+			}
+		};
+
+		document.addEventListener('keydown', handleKeydown);
+
+		return () => {
+			document.removeEventListener('keydown', handleKeydown);
+		};
+	}, [ page ]);
 
 	// #region Navigation
 
@@ -75,6 +101,7 @@ export default function Gallery(props: Properties)
 
 		if (newPage >= props.gallery.length) {
 			newPage = 0;
+
 		} else if (newPage < 0) {
 			newPage = props.gallery.length - 1;
 		}
@@ -240,12 +267,12 @@ export default function Gallery(props: Properties)
 	// #region PC controls
 	function handleScroll(ev: React.WheelEvent<HTMLDivElement>)
 	{
-		handleZoom(ev.deltaY / 500);
+		handleZoom(ev.deltaY > 0 ? 0.15 : -0.15);
 	}
 
 	function handleOnMouseLeave()
 	{
-		if (isMobile) {
+		if (isMobile || !clickingInScroller) {
 			return;
 		}
 
@@ -483,25 +510,83 @@ export default function Gallery(props: Properties)
 						<motion.div
 							className={ style.scroller }
 
-							initial={{ opacity: 0,y: 200 }}
-							animate={{ opacity: 1,y: 0 }}
-							exit=   {{ opacity: 0,y: 200 }}
+							initial={{ opacity: 0, y: 200 }}
+							animate={{ opacity: 1, y: 0 }}
+							exit=   {{ opacity: 0, y: 200 }}
 
 							onMouseEnter={ () => setCanAutoHide(false) }
 							onMouseLeave={ () => setCanAutoHide(true) }
 
+							ref={ scrollerRef }
+
+							// onLoad={ (ev) => ev.currentTarget.scroll({ left: scroll }) }
+							// onWheel={(ev) =>
+							// {
+							// 	if (ev.currentTarget) {
+							// 		const newScroll = ev.currentTarget.scrollLeft + ev.deltaY;
+
+							// 		ev.currentTarget.scroll({
+							// 			left: newScroll,
+							// 			behavior: 'smooth',
+							// 		});
+
+							// 		setScroll(newScroll);
+							// 	}
+							// }}
+
 							transition={ uiTransition }
 						>
 							<motion.div
-								className={ style.strip }
+								className={ [
+									style.strip,
+									!clickingInScroller ? style.dragging : '',
+								].join(' ') }
+
+								initial={{ x: scroll.get() }}
+								style={{ x: scroll }}
+
+								onMouseOver={ () => setCanAutoHide(false) }
+								onWheel={(ev) =>
+								{
+									if (!scrollerRef.current) {
+										return;
+									}
+
+									var newScroll = scroll.get() + ev.deltaY;
+									// const box = scrollerRef.current.getBoundingClientRect();
+
+									// if (newScroll < box.left) {
+									// 	newScroll = box.left;
+
+									// } else if (newScroll > box.right) {
+									// 	newScroll = box.right;
+									// }
+
+									// console.log(box, newScroll);
+									console.log(newScroll);
+
+									scroll.set(newScroll);
+								}}
+
+								drag='x'
+								dragConstraints={ scrollerRef }
+								onDragStart={ () => setClickingInScroller(false) }
+								onDragEnd={ () => setClickingInScroller(true) }
 							>
 								{ props.gallery.map((v, i) => (
 									<button
 										className={ [
 											style.picture,
+											!clickingInScroller ? style.dragging : '',
 											page === i ? style.selected : '',
 										].join(' ') }
-										onClick={ () => setPage(i) }
+
+										onClick={() =>
+										{
+											if (clickingInScroller) {
+												setPage(i);
+											}
+										}}
 
 										key={ i }
 									>

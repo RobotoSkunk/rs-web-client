@@ -124,6 +124,9 @@
 	}
 
 	& .scroller {
+		display: flex;
+		justify-content: center;
+
 		position: absolute;
 		bottom: 0;
 		left: 0;
@@ -132,17 +135,19 @@
 		height: var(--strip-height);
 		z-index: 3;
 
-		overflow-x: auto;
-		overflow-y: hidden;
-
 		background: linear-gradient(transparent, var(--gallery-background));
 
 		& .strip {
 			display: inline-flex;
 			align-items: center;
+			justify-content: center;
 
 			height: 100%;
 			padding: 0 150px;
+
+			&.dragging {
+				cursor: grabbing;
+			}
 
 			& button {
 				display: inline-block;
@@ -172,8 +177,12 @@
 					display: none;
 				}
 
-				&:hover,
-				&:focus-visible,
+				&.dragging {
+					cursor: grabbing;
+				}
+
+				&:not(.dragging):hover,
+				&:not(.dragging):focus-visible,
 				&.selected {
 					width: 150px;
 
