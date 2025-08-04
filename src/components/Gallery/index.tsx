@@ -631,10 +631,10 @@ export default function Gallery(props: Properties)
 
 									<div className={ style.borders }>
 										<DottedDiv
-											color='black'
+											color='var(--dotted-background)'
 										/>
 										<DottedDiv
-											color='black'
+											color='var(--dotted-background)'
 										/>
 									</div>
 								</motion.div>

@@ -34,6 +34,8 @@
 	--strip-height: 200px;
 	--title-height: 50px;
 	--gallery-background: #000000aa;
+	--gallery-background-mobile: #000000dd;
+	--dotted-background: black;
 
 	position: fixed;
 	top: 0;
@@ -67,10 +69,6 @@
 		margin: 0;
 
 		z-index: 5;
-
-		background-color: white;
-		border-color: white;
-		color: black;
 	}
 
 	& .title {
@@ -86,7 +84,6 @@
 		height: var(--title-height);
 		font-size: 1.5em;
 
-		color: white;
 		background: linear-gradient(var(--gallery-background), transparent);
 		box-shadow: 0 -26px 0 25px var(--gallery-background);
 
@@ -106,7 +103,7 @@
 
 
 		& > button {
-			color: white;
+			color: var(--foreground-color);
 
 			border: 0;
 			border-radius: 0;
@@ -252,10 +249,23 @@
 body[device-type=mobile] .fullscreen-gallery,
 body[device-type=tablet] .fullscreen-gallery {
 	backdrop-filter: unset;
-	background-color: #000000dd;
+	background-color: var(--gallery-background-mobile);
 }
 
 body[device-type=mobile] .fullscreen-gallery .scroller button.selected img,
 body[device-type=tablet] .fullscreen-gallery .scroller button.selected img {
 	filter: brightness(0.25) blur(0px);
+}
+
+
+@media (prefers-color-scheme: light) {
+	.fullscreen-gallery {
+		--gallery-background: #ffffffaa;
+		--gallery-background-mobile: #ffffffdd;
+		--dotted-background: white;
+	}
+
+	.close img {
+		filter: invert(1);
+	}
 }
