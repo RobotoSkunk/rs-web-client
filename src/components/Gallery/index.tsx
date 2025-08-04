@@ -19,10 +19,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 
 import style from './gallery.module.css';
+
+import ArrowIcon from '@/components/icons/Arrow';
 
 
 interface Properties
@@ -31,29 +33,48 @@ interface Properties
 }
 
 
-const fullscreenPictureVariants = {
-	enter: (direction: number) => ({
-		x: direction > 0 ? 500 : -500,
-		opacity: 0,
-	}),
-	center: {
+const paginateButtonsVariants = {
+	initial: {
+		opacity: 0.5,
 		x: 0,
-		opacity: 1,
-		zIndex: 1,
 	},
+	hover: (direction: number) => ({
+		opacity: 1,
+		x: 10 * direction,
+	}),
+	tap: (direction: number) => ({
+		opacity: 1,
+		x: 25 * direction,
+	}),
 	exit: (direction: number) => ({
-		x: direction < 0 ? 500 : -500,
 		opacity: 0,
-		zIndex: 0,
+		x: 150 * direction,
 	}),
 } satisfies Variants;
 
 
 export default function Gallery(props: Properties)
 {
-	const [ [ page, direction ], setPagination ] = useState([0, 1]);
-	// const [ zoom, setZoom ] = useState(false);
+	const [ isMobile, setIsMobile ] = useState(false);
+	const [ isTap, setIsTap ] = useState(true);
 
+	const pictureContainerRef = useRef<HTMLDivElement | null>(null);
+
+	const [ [ page, direction ], setPagination ] = useState([0, 1]);
+	const [ showControls, setShowControls ] = useState(false);
+	const [ zoom, setZoom ] = useState(0);
+
+	const [ timeoutId, setTimeoutId ] = useState<NodeJS.Timeout | null>(null);
+
+
+	useEffect(() =>
+	{
+		const deviceType = document.body.getAttribute('device-type');
+
+		if (deviceType && deviceType === 'mobile') {
+			setIsMobile(true);
+		}
+	}, [ ]);
 
 	function setPage(newPage: number)
 	{
@@ -77,6 +98,135 @@ export default function Gallery(props: Properties)
 		setPagination([ newPage, direction ]);
 	}
 
+	function getPictureElement()
+	{
+		if (pictureContainerRef.current) {
+			return pictureContainerRef.current.querySelector('img');
+		}
+
+		return null;
+	}
+
+
+	function fullscreenPictureVariants()
+	{
+		const canScale = showControls && zoom == 0;
+
+		var scale = canScale ? 0.8 : 1;
+		var y = canScale ? -50 : 0;
+
+		if (zoom > 0) {
+			scale = 1 + zoom;
+			y = 0.01;
+		}
+
+		return {
+			enter: (direction: number) => ({
+				x: direction > 0 ? 500 : -500,
+				opacity: 0,
+				scale,
+				y,
+			}),
+			center: {
+				x: zoom == 0 ? 0 : 0.01,
+				opacity: 1,
+				zIndex: 1,
+				scale,
+				y,
+			},
+			exit: (direction: number) => ({
+				x: direction < 0 ? 500 : -500,
+				opacity: 0,
+				zIndex: 0,
+				scale,
+				y,
+			}),
+		} satisfies Variants
+	}
+
+	function handleZoom(delta: number)
+	{
+		var newZoom = zoom - delta;
+
+		// TODO: obviously fix this formula. It works... kinda, but not correctly
+		const maxZoom = props.gallery[page].img.width / screen.width;
+
+		if (newZoom <= 0) {
+			newZoom = 0;
+
+		} else if (newZoom > maxZoom) {
+			newZoom = maxZoom;
+		}
+
+		setZoom(newZoom);
+	}
+
+
+	// PC controls
+	function handleScroll(ev: React.WheelEvent<HTMLDivElement>)
+	{
+		handleZoom(ev.deltaY / 500);
+	}
+
+	function handleOnMouseLeave()
+	{
+		if (isMobile) {
+			return;
+		}
+
+		if (timeoutId) {
+			clearTimeout(timeoutId);
+		}
+
+		setShowControls(false);
+	}
+
+	function handleOnMouseMove()
+	{
+		if (isMobile) {
+			return;
+		}
+
+		if (timeoutId) {
+			clearTimeout(timeoutId);
+		}
+
+		setShowControls(true);
+
+		setTimeoutId(
+			setTimeout(() => setShowControls(false), 3000)
+		);
+	}
+
+
+	// Touch controls
+	function handleTouchStart()
+	{
+		if (!isMobile) {
+			return;
+		}
+
+		setIsTap(true);
+	}
+
+	function handleTouchEnd()
+	{
+		if (!isMobile || !isTap) {
+			return;
+		}
+
+		setShowControls(!showControls);
+	}
+
+	function handleTouchPan()
+	{
+		if (!isMobile || !isTap) {
+			return;
+		}
+
+		setIsTap(false);
+	}
+
 
 	return (
 		<>
@@ -97,12 +247,42 @@ export default function Gallery(props: Properties)
 				)) }
 			</div> */}
 
-			<div className={ style['fullscreen-gallery'] }>
+			<div
+				className={ style['fullscreen-gallery'] }
+				onMouseMove={ handleOnMouseMove }
+				onMouseLeave={ handleOnMouseLeave }
+
+				onWheel={ handleScroll }
+			>
 				<div className={ style.visor }>
-					<button onClick={ () => paginate(-1) }>
-						{ '<<<' }
-					</button>
-					<div className={ style['picture-container'] }>
+					<AnimatePresence initial={ false }>
+						{ zoom == 0 &&
+							<motion.button
+								onClick={ () => paginate(-1) }
+								variants={ paginateButtonsVariants }
+								custom={ -1 }
+
+								initial='exit'
+								animate='initial'
+								exit='exit'
+
+								whileHover='hover'
+								whileFocus='hover'
+								whileTap='tap'
+							>
+								<ArrowIcon/>
+							</motion.button>
+						}
+					</AnimatePresence>
+
+					<motion.div
+						className={ style['picture-container'] }
+						ref={ pictureContainerRef }
+
+						onTapStart={ handleTouchStart }
+						onPan={ handleTouchPan }
+						onTouchEnd={ handleTouchEnd }
+					>
 						<AnimatePresence
 							initial={ false }
 							custom={ direction }
@@ -111,7 +291,7 @@ export default function Gallery(props: Properties)
 								className={ style.picture }
 								custom={ direction }
 
-								variants={ fullscreenPictureVariants }
+								variants={ fullscreenPictureVariants() }
 								initial='enter'
 								animate='center'
 								exit='exit'
@@ -126,11 +306,32 @@ export default function Gallery(props: Properties)
 									},
 								}}
 
-								drag='x'
-								dragConstraints={{ left: 0, right: 0 }}
-								dragElastic={ 0.5 }
+								style={{
+									zIndex: zoom > 0 ? 5 : 1,
+								}}
+
+								drag={ zoom > 0 ? true : 'x' }
+								dragElastic={ zoom > 0 ? 0.25 : 0.5 }
+								dragConstraints={
+									zoom > 0 ?
+									{
+										left:  -(getPictureElement()?.width ?? 0) / 2 * (1 + zoom),
+										right:  (getPictureElement()?.width ?? 0) / 2 * (1 + zoom),
+										top:   -(getPictureElement()?.height ?? 0) / 2 * (1 + zoom),
+										bottom: (getPictureElement()?.height ?? 0) / 2 * (1 + zoom),
+									} :
+									{
+										left: 0,
+										right: 0,
+									}
+								}
+
 								onDragEnd={(_, panInfo) =>
 								{
+									if (zoom > 0) {
+										return;
+									}
+
 									const swipe = Math.abs(panInfo.offset.x) * panInfo.velocity.x;
 
 									if (swipe < -10000) {
@@ -148,62 +349,106 @@ export default function Gallery(props: Properties)
 								draggable={ false }
 							/>
 						</AnimatePresence>
-					</div>
-					<button onClick={ () => paginate(1) }>
-						{ '>>>' }
-					</button>
-				</div>
+					</motion.div>
 
-				<div className={ style.title }>
-					<AnimatePresence mode='popLayout'>
-						{ props.gallery[page].name['en-US'].split('').map((char, i) => (
-							<motion.span
-								initial={{ opacity: 0, y: -25 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit   ={{ opacity: 0, y: 25 }}
+					<AnimatePresence initial={ false }>
+						{ zoom == 0 &&
+							<motion.button
+								onClick={ () => paginate(1) }
+								variants={ paginateButtonsVariants }
+								custom={ 1 }
 
-								transition={{
-									delay: i / 75,
-								}}
+								initial='exit'
+								animate='initial'
+								exit='exit'
 
-								key={ props.gallery[page].img.src + char + i }
+								whileHover='hover'
+								whileFocus='hover'
+								whileTap='tap'
 							>
-								{ char === ' ' ? '\u00A0' : char }
-							</motion.span>
-						)) }
+								<ArrowIcon flip/>
+							</motion.button>
+						}
 					</AnimatePresence>
 				</div>
 
-				<motion.div
-					className={ style.scroller }
-				>
-					<motion.div
-						className={ style.strip }
-					>
-						{ props.gallery.map((v, i) => (
-							<button
-								className={ [
-									style.picture,
-									page === i ? style.selected : '',
-								].join(' ') }
-								onClick={ () => setPage(i) }
+				<AnimatePresence>
+					{ (showControls && zoom == 0) &&
+						<motion.div
+							className={ style.title }
 
-								key={ i }
+							initial={{ opacity: 0,y: -50 }}
+							animate={{ opacity: 1,y: 0 }}
+							exit=   {{ opacity: 0,y: -50 }}
+						>
+							<AnimatePresence mode='popLayout'>
+								{ props.gallery[page].name['en-US'].split('').map((char, i) => (
+									<motion.span
+										initial={{ opacity: 0, y: -25 }}
+										animate={{ opacity: 1, y: 0 }}
+										exit   ={{ opacity: 0, y: 25 }}
+
+										transition={{
+											delay: i / 75,
+										}}
+
+										key={ props.gallery[page].img.src + char + i }
+									>
+										{ char === ' ' ? '\u00A0' : char }
+									</motion.span>
+								)) }
+							</AnimatePresence>
+						</motion.div>
+					}
+				</AnimatePresence>
+
+				<AnimatePresence>
+					{ (showControls && zoom == 0) &&
+						<motion.div
+							className={ style.scroller }
+
+							initial={{ opacity: 0,y: 200 }}
+							animate={{ opacity: 1,y: 0 }}
+							exit=   {{ opacity: 0,y: 200 }}
+
+							transition={{
+								x: { 
+									type: 'inertia',
+								},
+								opacity: {
+									duration: 0.2,
+								},
+							}}
+						>
+							<motion.div
+								className={ style.strip }
 							>
-								<Image
-									src={ v.img }
-									alt={ v.name['en-US'] }
+								{ props.gallery.map((v, i) => (
+									<button
+										className={ [
+											style.picture,
+											page === i ? style.selected : '',
+										].join(' ') }
+										onClick={ () => setPage(i) }
 
-									quality={ 65 }
-									sizes={ '256px' }
+										key={ i }
+									>
+										<Image
+											src={ v.img }
+											alt={ v.name['en-US'] }
 
-									fill
-									draggable={ false }
-								/>
-							</button>
-						)) }
-					</motion.div>
-				</motion.div>
+											quality={ 65 }
+											sizes={ '256px' }
+
+											fill
+											draggable={ false }
+										/>
+									</button>
+								)) }
+							</motion.div>
+						</motion.div>
+					}
+				</AnimatePresence>
 			</div>
 		</>
 	);

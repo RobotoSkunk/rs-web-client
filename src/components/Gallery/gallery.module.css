@@ -44,7 +44,7 @@
 	z-index: 100;
 
 	--strip-height: 200px;
-	--title-height: 30px;
+	--title-height: 50px;
 
 	& img {
 		user-select: none;
@@ -55,9 +55,17 @@
 		align-items: center;
 		justify-content: center;
 
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+
 		height: var(--title-height);
 		font-size: 1.5em;
 
+		background: linear-gradient(black, transparent);
+
+		z-index: 3;
 		user-select: none;
 	}
 
@@ -66,10 +74,29 @@
 		align-items: center;
 		justify-content: space-between;
 
-		height: calc(100vh - var(--strip-height) - var(--title-height));
+		/* height: calc(100vh - var(--strip-height) - var(--title-height)); */
+		height: 100%;
+
+		z-index: 1;
+
 
 		& > button {
+			color: var(--foreground);
+
+			border: 0;
+			border-radius: 0;
+
+			height: 100%;
+
+			margin: 0;
+			padding: 0 50px;
+
+			background: transparent;
 			z-index: 2;
+
+			&::after {
+				display: none;
+			}
 		}
 
 		& .picture-container {
@@ -88,16 +115,25 @@
 				max-width: calc(100% - 25px);
 
 				object-fit: contain;
+
+				box-shadow: 0 0 50px black;
 			}
 		}
 	}
 
 	& .scroller {
-		width: 100%;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+
 		height: var(--strip-height);
+		z-index: 3;
 
 		overflow-x: auto;
 		overflow-y: hidden;
+
+		background: linear-gradient(transparent, black);
 
 		& .strip {
 			display: inline-flex;
