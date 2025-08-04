@@ -57,6 +57,7 @@ export default function Gallery(props: Properties)
 {
 	const [ isMobile, setIsMobile ] = useState(false);
 	const [ isTap, setIsTap ] = useState(true);
+	const [ canAutoHide, setCanAutoHide ] = useState(true);
 
 	const pictureContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -73,8 +74,11 @@ export default function Gallery(props: Properties)
 
 		if (deviceType && deviceType === 'mobile') {
 			setIsMobile(true);
+			setShowControls(true);
 		}
 	}, [ ]);
+
+	// #region Navigation
 
 	function setPage(newPage: number)
 	{
@@ -107,6 +111,28 @@ export default function Gallery(props: Properties)
 		return null;
 	}
 
+	function handleZoom(delta: number)
+	{
+		var newZoom = zoom - delta;
+
+		const originalWidth = props.gallery[page].img.width;
+		const previewWidth = getPictureElement()?.width ?? 1;
+
+		const maxZoom = originalWidth / previewWidth;
+
+
+		if ((1 + newZoom) > maxZoom) {
+			newZoom = maxZoom - 1;
+		}
+
+		if (newZoom <= 0) {
+			newZoom = 0;
+		}
+
+		setZoom(newZoom);
+	}
+
+	// #endregion
 
 	function fullscreenPictureVariants()
 	{
@@ -144,25 +170,40 @@ export default function Gallery(props: Properties)
 		} satisfies Variants
 	}
 
-	function handleZoom(delta: number)
+	function getPictureConstraints()
 	{
-		var newZoom = zoom - delta;
+		const picture = getPictureElement();
 
-		// TODO: obviously fix this formula. It works... kinda, but not correctly
-		const maxZoom = props.gallery[page].img.width / screen.width;
-
-		if (newZoom <= 0) {
-			newZoom = 0;
-
-		} else if (newZoom > maxZoom) {
-			newZoom = maxZoom;
+		if (!picture) {
+			return {
+				left: 0,
+				right: 0,
+				top: 0,
+				bottom: 0,
+			};
 		}
 
-		setZoom(newZoom);
+		var width = picture.width * (1 + zoom) - (window.innerWidth - 100);
+		var height = picture.height * (1 + zoom) - (window.innerHeight - 100);
+
+		if (width < 0) {
+			width = 0;
+		}
+
+		if (height < 0) {
+			height = 0;
+		}
+
+
+		return {
+			left: -width / 2,
+			right: width / 2,
+			top: -height / 2,
+			bottom: height / 2,
+		};
 	}
 
-
-	// PC controls
+	// #region PC controls
 	function handleScroll(ev: React.WheelEvent<HTMLDivElement>)
 	{
 		handleZoom(ev.deltaY / 500);
@@ -194,12 +235,17 @@ export default function Gallery(props: Properties)
 		setShowControls(true);
 
 		setTimeoutId(
-			setTimeout(() => setShowControls(false), 3000)
+			setTimeout(() =>
+			{
+				if (canAutoHide) {
+					setShowControls(false);
+				}
+			}, 2500)
 		);
 	}
+	// #endregion
 
-
-	// Touch controls
+	// #region Touch controls
 	function handleTouchStart()
 	{
 		if (!isMobile) {
@@ -226,6 +272,7 @@ export default function Gallery(props: Properties)
 
 		setIsTap(false);
 	}
+	// #endregion
 
 
 	return (
@@ -251,10 +298,11 @@ export default function Gallery(props: Properties)
 				className={ style['fullscreen-gallery'] }
 				onMouseMove={ handleOnMouseMove }
 				onMouseLeave={ handleOnMouseLeave }
-
-				onWheel={ handleScroll }
 			>
-				<div className={ style.visor }>
+				<div
+					className={ style.visor }
+					onWheel={ handleScroll }
+				>
 					<AnimatePresence initial={ false }>
 						{ zoom == 0 &&
 							<motion.button
@@ -312,19 +360,7 @@ export default function Gallery(props: Properties)
 
 								drag={ zoom > 0 ? true : 'x' }
 								dragElastic={ zoom > 0 ? 0.25 : 0.5 }
-								dragConstraints={
-									zoom > 0 ?
-									{
-										left:  -(getPictureElement()?.width ?? 0) / 2 * (1 + zoom),
-										right:  (getPictureElement()?.width ?? 0) / 2 * (1 + zoom),
-										top:   -(getPictureElement()?.height ?? 0) / 2 * (1 + zoom),
-										bottom: (getPictureElement()?.height ?? 0) / 2 * (1 + zoom),
-									} :
-									{
-										left: 0,
-										right: 0,
-									}
-								}
+								dragConstraints={ zoom > 0 ? getPictureConstraints() : { left: 0, right: 0 } }
 
 								onDragEnd={(_, panInfo) =>
 								{
@@ -410,6 +446,9 @@ export default function Gallery(props: Properties)
 							initial={{ opacity: 0,y: 200 }}
 							animate={{ opacity: 1,y: 0 }}
 							exit=   {{ opacity: 0,y: 200 }}
+
+							onMouseEnter={ () => setCanAutoHide(false) }
+							onMouseLeave={ () => setCanAutoHide(true) }
 
 							transition={{
 								x: { 
