@@ -27,9 +27,7 @@ export default function CommissionsContent()
 {
 	return (
 		<main>
-			<Gallery
-				gallery={ artworks }
-			/>
+			<Gallery gallery={ artworks }/>
 		</main>
 	);
 }

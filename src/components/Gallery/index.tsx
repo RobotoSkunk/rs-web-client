@@ -26,16 +26,15 @@ import style from './gallery.module.css';
 
 import ArrowIcon from '@/components/icons/Arrow';
 import closeIcon from '@/assets/svg/symbols/close.svg';
-import DottedDiv from '../DottedDiv';
+// import DottedDiv from '../DottedDiv';
 
 
-interface Properties
-{
-	gallery: ArtworkData[];
-}
 
-
-export default function Gallery(props: Properties)
+export default function Gallery({
+	gallery,
+}: {
+	gallery: ArtworkData[],
+})
 {
 	const [ openGallery, setOpenGallery ] = useState(false);
 
@@ -103,11 +102,11 @@ export default function Gallery(props: Properties)
 	{
 		var newPage = page + direction;
 
-		if (newPage >= props.gallery.length) {
+		if (newPage >= gallery.length) {
 			newPage = 0;
 
 		} else if (newPage < 0) {
-			newPage = props.gallery.length - 1;
+			newPage = gallery.length - 1;
 		}
 
 		setPagination([ newPage, direction ]);
@@ -126,7 +125,7 @@ export default function Gallery(props: Properties)
 	{
 		var newZoom = zoom - delta;
 
-		const originalWidth = props.gallery[page].img.width;
+		const originalWidth = gallery[page].img.width;
 		const previewWidth = getPictureElement()?.width ?? 1;
 
 		const maxZoom = originalWidth / previewWidth;
@@ -343,7 +342,7 @@ export default function Gallery(props: Properties)
 	return (
 		<>
 			<div className={ style.gallery }>
-				{ props.gallery.map((v, i) =>
+				{ gallery.map((v, i) =>
 				(
 					<motion.button
 						className={ style.picture }
@@ -390,7 +389,7 @@ export default function Gallery(props: Properties)
 									transition={ uiTransition }
 								>
 									<AnimatePresence mode='popLayout'>
-										{ props.gallery[page].name['en-US'].split('').map((char, i) => (
+										{ gallery[page].name['en-US'].split('').map((char, i) => (
 											<motion.span
 												initial={{ opacity: 0, y: -25 }}
 												animate={{ opacity: 1, y: 0 }}
@@ -400,7 +399,7 @@ export default function Gallery(props: Properties)
 													delay: i / 75,
 												}}
 
-												key={ props.gallery[page].img.src + char + i }
+												key={ gallery[page].img.src + char + i }
 											>
 												{ char === ' ' ? '\u00A0' : char }
 											</motion.span>
@@ -512,10 +511,10 @@ export default function Gallery(props: Properties)
 											}
 										}}
 
-										src={ props.gallery[page].img.src }
-										alt={ props.gallery[page].name['en-US'] }
+										src={ gallery[page].img.src }
+										alt={ gallery[page].name['en-US'] }
 
-										key={ props.gallery[page].img.src }
+										key={ gallery[page].img.src }
 
 										draggable={ false }
 									/>
@@ -598,7 +597,7 @@ export default function Gallery(props: Properties)
 										onDragStart={ () => setClickingInScroller(false) }
 										onDragEnd={ () => setClickingInScroller(true) }
 									>
-										{ props.gallery.map((v, i) => (
+										{ gallery.map((v, i) => (
 											<button
 												className={ [
 													style.picture,
@@ -628,15 +627,6 @@ export default function Gallery(props: Properties)
 											</button>
 										)) }
 									</motion.div>
-
-									<div className={ style.borders }>
-										<DottedDiv
-											color='var(--dotted-background)'
-										/>
-										<DottedDiv
-											color='var(--dotted-background)'
-										/>
-									</div>
 								</motion.div>
 							}
 						</AnimatePresence>

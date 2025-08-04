@@ -35,7 +35,7 @@
 	--title-height: 50px;
 	--gallery-background: #000000aa;
 	--gallery-background-mobile: #000000dd;
-	--dotted-background: black;
+	/* --dotted-background: white; */
 
 	position: fixed;
 	top: 0;
@@ -45,7 +45,7 @@
 	height: 100%;
 
 	background: var(--gallery-background);
-	backdrop-filter: blur(5px);
+	backdrop-filter: blur(5px);	
 
 	z-index: 100;
 
@@ -156,14 +156,15 @@
 		z-index: 3;
 
 		background: linear-gradient(transparent, var(--gallery-background));
+
 		box-shadow: 0 26px 0 25px var(--gallery-background);
 
-		& .borders {
+		/* & .borders {
 			display: flex;
 			justify-content: space-between;
 
 			position: absolute;
-			top: -75px;
+			top: 0;
 			bottom: -25px;
 			width: 100%;
 
@@ -174,13 +175,13 @@
 				width: 240px;
 
 				mask-image: unset !important;
-				mask-image: radial-gradient(at left bottom, black 40%, transparent 65%) !important;
+				mask-image: radial-gradient(100% 100% at 0% 100%, black 85%, transparent 100%) !important;
 
 				&:last-child {
-					mask-image: radial-gradient(at right bottom, black 40%, transparent 65%) !important;
+					mask-image: radial-gradient(100% 100% at 100% 100%, black 85%, transparent 100%) !important;
 				}
 			}
-		}
+		} */
 
 		& .strip {
 			display: inline-flex;
@@ -237,7 +238,7 @@
 				}
 
 				&.selected img {
-					scale: 1.6;
+					scale: 1.6 !important;
 
 					filter: brightness(0.5) blur(3px);
 				}
@@ -262,7 +263,7 @@ body[device-type=tablet] .fullscreen-gallery .scroller button.selected img {
 	.fullscreen-gallery {
 		--gallery-background: #ffffffaa;
 		--gallery-background-mobile: #ffffffdd;
-		--dotted-background: white;
+		/* --dotted-background: white; */
 	}
 
 	.close img {
