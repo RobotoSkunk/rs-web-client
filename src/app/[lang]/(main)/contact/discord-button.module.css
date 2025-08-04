@@ -90,16 +90,19 @@
 }
 
 
-body[device-type=mobile] .discord-popup {
+body[device-type=mobile] .discord-popup,
+body[device-type=tablet] .discord-popup {
 	backdrop-filter: unset;
 	background: #353535;
 }
 
-body[device-type=mobile] .discord-popup.copied {
+body[device-type=mobile] .discord-popup.copied,
+body[device-type=tablet] .discord-popup.copied {
 	background: #2e712d;
 }
 
-body[device-type=mobile] .discord-popup.copied.red {
+body[device-type=mobile] .discord-popup.copied.red,
+body[device-type=tablet] .discord-popup.copied.red {
 	background: #8e2f2f;
 }
 
@@ -108,15 +111,18 @@ body[device-type=mobile] .discord-popup.copied.red {
 		background: #a4a4a4b0;
 	}
 
-	body[device-type=mobile] .discord-popup {
+	body[device-type=mobile] .discord-popup,
+	body[device-type=tablet] .discord-popup {
 		background: #a4a4a4;
 	}
 
-	body[device-type=mobile] .discord-popup.copied {
+	body[device-type=mobile] .discord-popup.copied,
+	body[device-type=tablet] .discord-popup.copied {
 		background: #6cb86b;
 	}
 	
-	body[device-type=mobile] .discord-popup.copied.red {
+	body[device-type=mobile] .discord-popup.copied.red,
+	body[device-type=tablet] .discord-popup.copied.red {
 		background: #db7b7b;
 	}
 }

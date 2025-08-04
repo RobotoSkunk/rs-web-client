@@ -192,7 +192,8 @@
 	}
 }
 
-body[device-type=mobile] .fullscreen-gallery {
+body[device-type=mobile] .fullscreen-gallery,
+body[device-type=tablet] .fullscreen-gallery {
 	backdrop-filter: unset;
 	background-color: #000000dd;
 }

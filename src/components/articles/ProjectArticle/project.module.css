@@ -48,7 +48,9 @@
 
 
 body[device-type=mobile] .button:focus-visible,
-body[device-type=mobile] .button:hover {
+body[device-type=mobile] .button:hover,
+body[device-type=tablet] .button:focus-visible,
+body[device-type=tablet] .button:hover {
 	backdrop-filter: unset;
 }
 

@@ -72,7 +72,7 @@ export default function Gallery(props: Properties)
 	{
 		const deviceType = document.body.getAttribute('device-type');
 
-		if (deviceType && deviceType === 'mobile') {
+		if (deviceType && ([ 'mobile', 'tablet' ].includes(deviceType))) {
 			setIsMobile(true);
 			setShowControls(true);
 		}
