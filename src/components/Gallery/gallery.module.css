@@ -51,6 +51,14 @@
 		user-select: none;
 	}
 
+	& .close {
+		position: absolute;
+		top: 10px;
+		left: 10px;
+
+		z-index: 5;
+	}
+
 	& .title {
 		display: flex;
 		align-items: center;
@@ -66,6 +74,7 @@
 
 		color: white;
 		background: linear-gradient(var(--gallery-background), transparent);
+		box-shadow: 0 -26px 0 25px var(--gallery-background);
 
 		z-index: 3;
 		user-select: none;
@@ -136,6 +145,31 @@
 		z-index: 3;
 
 		background: linear-gradient(transparent, var(--gallery-background));
+		box-shadow: 0 26px 0 25px var(--gallery-background);
+
+		& .borders {
+			display: flex;
+			justify-content: space-between;
+
+			position: absolute;
+			top: -75px;
+			bottom: -25px;
+			width: 100%;
+
+			pointer-events: none;
+
+			& > div {
+				height: 100%;
+				width: 240px;
+
+				mask-image: unset !important;
+				mask-image: radial-gradient(at left bottom, black 40%, transparent 65%) !important;
+
+				&:last-child {
+					mask-image: radial-gradient(at right bottom, black 40%, transparent 65%) !important;
+				}
+			}
+		}
 
 		& .strip {
 			display: inline-flex;
@@ -143,7 +177,7 @@
 			justify-content: center;
 
 			height: 100%;
-			padding: 0 150px;
+			padding: 0 200px;
 
 			&.dragging {
 				cursor: grabbing;
@@ -207,10 +241,7 @@ body[device-type=tablet] .fullscreen-gallery {
 	background-color: #000000dd;
 }
 
-
-
 body[device-type=mobile] .fullscreen-gallery .scroller button.selected img,
 body[device-type=tablet] .fullscreen-gallery .scroller button.selected img {
 	filter: brightness(0.25) blur(0px);
 }
-

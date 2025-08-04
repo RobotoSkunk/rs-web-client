@@ -25,6 +25,8 @@ import { AnimatePresence, motion, Transition, useMotionValue, Variants } from 'f
 import style from './gallery.module.css';
 
 import ArrowIcon from '@/components/icons/Arrow';
+import closeIcon from '@/assets/svg/symbols/close.svg';
+import DottedDiv from '../DottedDiv';
 
 
 interface Properties
@@ -35,6 +37,8 @@ interface Properties
 
 export default function Gallery(props: Properties)
 {
+	const [ openGallery, setOpenGallery ] = useState(false);
+
 	const [ isMobile, setIsMobile ] = useState(false);
 	const [ isTap, setIsTap ] = useState(true);
 	const [ canAutoHide, setCanAutoHide ] = useState(true);
@@ -66,7 +70,7 @@ export default function Gallery(props: Properties)
 	{
 		const handleKeydown = (ev: KeyboardEvent) =>
 		{
-			if (ev.repeat) {
+			if (ev.repeat || !openGallery) {
 				return;
 			}
 
@@ -338,12 +342,18 @@ export default function Gallery(props: Properties)
 
 	return (
 		<>
-			{/* <div className={ style.gallery }>
-				{ props.artworks.map((v, i) =>
+			<div className={ style.gallery }>
+				{ props.gallery.map((v, i) =>
 				(
 					<motion.button
 						className={ style.picture }
 						key={ i }
+
+						onClick={ () => {
+							setPage(i);
+							setOpenGallery(true);
+							setShowControls(true);
+						} }
 					>
 						<Image
 							src={ v.img }
@@ -353,260 +363,286 @@ export default function Gallery(props: Properties)
 						/>
 					</motion.button>
 				)) }
-			</div> */}
+			</div>
 
-			<div
-				className={ style['fullscreen-gallery'] }
-				onMouseMove={ handleOnMouseMove }
-				onMouseLeave={ handleOnMouseLeave }
-			>
-				<div
-					className={ style.visor }
-					onWheel={ handleScroll }
-				>
-					<AnimatePresence initial={ false }>
-						{ zoom == 0 &&
-							<motion.button
-								onClick={ () => paginate(-1) }
-								variants={ paginateButtonsVariants() }
-								custom={ -1 }
-
-								transition={ paginateButtonsTransition }
-
-								initial='exit'
-								animate='initial'
-								exit='exit'
-
-								whileHover='hover'
-								whileFocus='hover'
-								whileTap='tap'
-							>
-								<ArrowIcon/>
-							</motion.button>
-						}
-					</AnimatePresence>
-
+			<AnimatePresence presenceAffectsLayout={ false }>
+				{ openGallery &&
 					<motion.div
-						className={ style['picture-container'] }
-						ref={ pictureContainerRef }
+						className={ style['fullscreen-gallery'] }
+						onMouseMove={ handleOnMouseMove }
+						onMouseLeave={ handleOnMouseLeave }
 
-						onTapStart={ handleTouchStart }
-						onPan={ handleTouchPan }
-						onTouchEnd={ handleTouchEnd }
+						initial={{ scale: 1.5, opacity: 0, filter: isMobile ? '' : 'blur(20px)' }}
+						animate={{ scale: 1,   opacity: 1, filter: isMobile ? '' : 'blur(0px)' }}
+						exit=   {{ scale: 1.5, opacity: 0, filter: isMobile ? '' : 'blur(20px)' }}
+
+						transition={ uiTransition }
 					>
-						<AnimatePresence
-							initial={ false }
-							custom={ direction }
-						>
-							<motion.img
-								className={ style.picture }
-								custom={ direction }
+						<AnimatePresence>
+							{ (showControls && zoom == 0) &&
+								<motion.div
+									className={ style.title }
 
-								variants={ fullscreenPictureVariants() }
-								initial='enter'
-								animate='center'
-								exit='exit'
-								transition={{
-									x: { 
-										type: 'spring',
-										stiffness: 300,
-										damping: 30,
-									},
-									opacity: {
-										duration: 0.2,
-									},
-								}}
+									initial={{ opacity: 0, y: -50 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit=   {{ opacity: 0, y: -50 }}
 
-								style={{
-									zIndex: zoom > 0 ? 5 : 1,
-								}}
+									transition={ uiTransition }
+								>
+									<AnimatePresence mode='popLayout'>
+										{ props.gallery[page].name['en-US'].split('').map((char, i) => (
+											<motion.span
+												initial={{ opacity: 0, y: -25 }}
+												animate={{ opacity: 1, y: 0 }}
+												exit   ={{ opacity: 0, y: 25 }}
 
-								drag={ zoom > 0 ? true : 'x' }
-								dragElastic={ zoom > 0 ? 0.25 : 0.5 }
-								dragConstraints={ zoom > 0 ? getPictureConstraints() : { left: 0, right: 0 } }
+												transition={{
+													delay: i / 75,
+												}}
 
-								onDragEnd={(_, panInfo) =>
-								{
-									if (zoom > 0) {
-										return;
-									}
-
-									const swipe = Math.abs(panInfo.offset.x) * panInfo.velocity.x;
-
-									if (swipe < -10000) {
-										paginate(1);
-									} else if (swipe > 10000) {
-										paginate(-1);
-									}
-								}}
-
-								src={ props.gallery[page].img.src }
-								alt={ props.gallery[page].name['en-US'] }
-
-								key={ props.gallery[page].img.src }
-
-								draggable={ false }
-							/>
+												key={ props.gallery[page].img.src + char + i }
+											>
+												{ char === ' ' ? '\u00A0' : char }
+											</motion.span>
+										)) }
+									</AnimatePresence>
+								</motion.div>
+							}
 						</AnimatePresence>
-					</motion.div>
 
-					<AnimatePresence initial={ false }>
-						{ zoom == 0 &&
-							<motion.button
-								onClick={ () => paginate(1) }
-								variants={ paginateButtonsVariants() }
-								custom={ 1 }
+						<AnimatePresence>
+							{ zoom == 0 &&
+								<motion.button
+									className={ style.close }
 
-								transition={ paginateButtonsTransition }
+									aria-label='Close'
+									onClick={ () => setOpenGallery(false) }
 
-								initial='exit'
-								animate='initial'
-								exit='exit'
+									initial={{ opacity: 0, y: -50 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit=   {{ opacity: 0, y: -50 }}
 
-								whileHover='hover'
-								whileFocus='hover'
-								whileTap='tap'
-							>
-								<ArrowIcon flip/>
-							</motion.button>
-						}
-					</AnimatePresence>
-				</div>
-
-				<AnimatePresence>
-					{ (showControls && zoom == 0) &&
-						<motion.div
-							className={ style.title }
-
-							initial={{ opacity: 0,y: -50 }}
-							animate={{ opacity: 1,y: 0 }}
-							exit=   {{ opacity: 0,y: -50 }}
-
-							transition={ uiTransition }
+									transition={ uiTransition }
+								>
+									<Image
+										src={ closeIcon }
+										alt='Close'
+										width={ 12 }
+									/>
+								</motion.button>
+							}
+						</AnimatePresence>
+						<div
+							className={ style.visor }
+							onWheel={ handleScroll }
 						>
-							<AnimatePresence mode='popLayout'>
-								{ props.gallery[page].name['en-US'].split('').map((char, i) => (
-									<motion.span
-										initial={{ opacity: 0, y: -25 }}
-										animate={{ opacity: 1, y: 0 }}
-										exit   ={{ opacity: 0, y: 25 }}
+							<AnimatePresence initial={ false }>
+								{ zoom == 0 &&
+									<motion.button
+										onClick={ () => paginate(-1) }
+										variants={ paginateButtonsVariants() }
+										custom={ -1 }
 
+										transition={ paginateButtonsTransition }
+
+										initial='exit'
+										animate='initial'
+										exit='exit'
+
+										whileHover='hover'
+										whileFocus='hover'
+										whileTap='tap'
+									>
+										<ArrowIcon/>
+									</motion.button>
+								}
+							</AnimatePresence>
+
+							<motion.div
+								className={ style['picture-container'] }
+								ref={ pictureContainerRef }
+
+								onTapStart={ handleTouchStart }
+								onPan={ handleTouchPan }
+								onTouchEnd={ handleTouchEnd }
+							>
+								<AnimatePresence
+									initial={ false }
+									custom={ direction }
+								>
+									<motion.img
+										className={ style.picture }
+										custom={ direction }
+
+										variants={ fullscreenPictureVariants() }
+										initial='enter'
+										animate='center'
+										exit='exit'
 										transition={{
-											delay: i / 75,
+											x: { 
+												type: 'spring',
+												stiffness: 300,
+												damping: 30,
+											},
+											opacity: {
+												duration: 0.2,
+											},
 										}}
 
-										key={ props.gallery[page].img.src + char + i }
-									>
-										{ char === ' ' ? '\u00A0' : char }
-									</motion.span>
-								)) }
-							</AnimatePresence>
-						</motion.div>
-					}
-				</AnimatePresence>
+										style={{
+											zIndex: zoom > 0 ? 5 : 1,
+										}}
 
-				<AnimatePresence>
-					{ (showControls && zoom == 0) &&
-						<motion.div
-							className={ style.scroller }
+										drag={ zoom > 0 ? true : 'x' }
+										dragElastic={ zoom > 0 ? 0.25 : 0.5 }
+										dragConstraints={ zoom > 0 ? getPictureConstraints() : { left: 0, right: 0 } }
 
-							initial={{ opacity: 0, y: 200 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit=   {{ opacity: 0, y: 200 }}
-
-							onMouseEnter={ () => setCanAutoHide(false) }
-							onMouseLeave={ () => setCanAutoHide(true) }
-
-							ref={ scrollerRef }
-
-							// onLoad={ (ev) => ev.currentTarget.scroll({ left: scroll }) }
-							// onWheel={(ev) =>
-							// {
-							// 	if (ev.currentTarget) {
-							// 		const newScroll = ev.currentTarget.scrollLeft + ev.deltaY;
-
-							// 		ev.currentTarget.scroll({
-							// 			left: newScroll,
-							// 			behavior: 'smooth',
-							// 		});
-
-							// 		setScroll(newScroll);
-							// 	}
-							// }}
-
-							transition={ uiTransition }
-						>
-							<motion.div
-								className={ [
-									style.strip,
-									!clickingInScroller ? style.dragging : '',
-								].join(' ') }
-
-								initial={{ x: scroll.get() }}
-								style={{ x: scroll }}
-
-								onMouseOver={ () => setCanAutoHide(false) }
-								onWheel={(ev) =>
-								{
-									if (!scrollerRef.current) {
-										return;
-									}
-
-									var newScroll = scroll.get() + ev.deltaY;
-									// const box = scrollerRef.current.getBoundingClientRect();
-
-									// if (newScroll < box.left) {
-									// 	newScroll = box.left;
-
-									// } else if (newScroll > box.right) {
-									// 	newScroll = box.right;
-									// }
-
-									// console.log(box, newScroll);
-									console.log(newScroll);
-
-									scroll.set(newScroll);
-								}}
-
-								drag='x'
-								dragConstraints={ scrollerRef }
-								onDragStart={ () => setClickingInScroller(false) }
-								onDragEnd={ () => setClickingInScroller(true) }
-							>
-								{ props.gallery.map((v, i) => (
-									<button
-										className={ [
-											style.picture,
-											!clickingInScroller ? style.dragging : '',
-											page === i ? style.selected : '',
-										].join(' ') }
-
-										onClick={() =>
+										onDragEnd={(_, panInfo) =>
 										{
-											if (clickingInScroller) {
-												setPage(i);
+											if (zoom > 0) {
+												return;
+											}
+
+											const swipe = Math.abs(panInfo.offset.x) * panInfo.velocity.x;
+
+											if (swipe < -10000) {
+												paginate(1);
+											} else if (swipe > 10000) {
+												paginate(-1);
 											}
 										}}
 
-										key={ i }
-									>
-										<Image
-											src={ v.img }
-											alt={ v.name['en-US'] }
+										src={ props.gallery[page].img.src }
+										alt={ props.gallery[page].name['en-US'] }
 
-											quality={ 65 }
-											sizes={ '256px' }
+										key={ props.gallery[page].img.src }
 
-											fill
-											draggable={ false }
-										/>
-									</button>
-								)) }
+										draggable={ false }
+									/>
+								</AnimatePresence>
 							</motion.div>
-						</motion.div>
-					}
-				</AnimatePresence>
-			</div>
+
+							<AnimatePresence initial={ false }>
+								{ zoom == 0 &&
+									<motion.button
+										onClick={ () => paginate(1) }
+										variants={ paginateButtonsVariants() }
+										custom={ 1 }
+
+										transition={ paginateButtonsTransition }
+
+										initial='exit'
+										animate='initial'
+										exit='exit'
+
+										whileHover='hover'
+										whileFocus='hover'
+										whileTap='tap'
+									>
+										<ArrowIcon flip/>
+									</motion.button>
+								}
+							</AnimatePresence>
+						</div>
+
+						<AnimatePresence>
+							{ (showControls && zoom == 0) &&
+								<motion.div
+									className={ style.scroller }
+
+									initial={{ opacity: 0, y: 200 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit=   {{ opacity: 0, y: 200 }}
+
+									onMouseEnter={ () => setCanAutoHide(false) }
+									onMouseLeave={ () => setCanAutoHide(true) }
+
+									ref={ scrollerRef }
+
+									transition={ uiTransition }
+								>
+									<motion.div
+										className={ [
+											style.strip,
+											!clickingInScroller ? style.dragging : '',
+										].join(' ') }
+
+										initial={{ x: scroll.get() }}
+										style={{ x: scroll }}
+
+										onMouseOver={ () => setCanAutoHide(false) }
+										onWheel={(ev) =>
+										{
+											if (!scrollerRef.current) {
+												return;
+											}
+
+											var newScroll = scroll.get() + ev.deltaY;
+											// const box = scrollerRef.current.getBoundingClientRect();
+
+											// if (newScroll < box.left) {
+											// 	newScroll = box.left;
+
+											// } else if (newScroll > box.right) {
+											// 	newScroll = box.right;
+											// }
+
+											// console.log(box, newScroll);
+											console.log(newScroll);
+
+											scroll.set(newScroll);
+										}}
+
+										drag='x'
+										dragConstraints={ scrollerRef }
+										onDragStart={ () => setClickingInScroller(false) }
+										onDragEnd={ () => setClickingInScroller(true) }
+									>
+										{ props.gallery.map((v, i) => (
+											<button
+												className={ [
+													style.picture,
+													!clickingInScroller ? style.dragging : '',
+													page === i ? style.selected : '',
+												].join(' ') }
+
+												onClick={() =>
+												{
+													if (clickingInScroller) {
+														setPage(i);
+													}
+												}}
+
+												key={ i }
+											>
+												<Image
+													src={ v.img }
+													alt={ v.name['en-US'] }
+
+													quality={ 65 }
+													sizes={ '256px' }
+
+													fill
+													draggable={ false }
+												/>
+											</button>
+										)) }
+									</motion.div>
+
+									<div className={ style.borders }>
+										<DottedDiv
+											color='black'
+										/>
+										<DottedDiv
+											color='black'
+										/>
+									</div>
+								</motion.div>
+							}
+						</AnimatePresence>
+					</motion.div>
+				}
+			</AnimatePresence>
 		</>
 	);
 }
