@@ -91,7 +91,7 @@
 			height: 100%;
 
 			margin: 0;
-			padding: 0 50px;
+			padding: 0 25px;
 
 			background: transparent;
 			z-index: 2;
@@ -106,9 +106,9 @@
 			align-items: center;
 			justify-content: center;
 
-			position: relative;
+			position: absolute;
 			height: 100%;
-			width: calc(100% - 300px);
+			width: 100%;
 
 			margin: 0 auto;
 
@@ -196,5 +196,12 @@ body[device-type=mobile] .fullscreen-gallery,
 body[device-type=tablet] .fullscreen-gallery {
 	backdrop-filter: unset;
 	background-color: #000000dd;
+}
+
+
+
+body[device-type=mobile] .fullscreen-gallery .scroller button.selected img,
+body[device-type=tablet] .fullscreen-gallery .scroller button.selected img {
+	filter: brightness(0.25) blur(0px);
 }
 

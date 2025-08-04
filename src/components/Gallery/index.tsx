@@ -20,7 +20,7 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, Variants } from 'framer-motion';
+import { AnimatePresence, motion, Transition, Variants } from 'framer-motion';
 
 import style from './gallery.module.css';
 
@@ -31,26 +31,6 @@ interface Properties
 {
 	gallery: ArtworkData[];
 }
-
-
-const paginateButtonsVariants = {
-	initial: {
-		opacity: 0.5,
-		x: 0,
-	},
-	hover: (direction: number) => ({
-		opacity: 1,
-		x: 10 * direction,
-	}),
-	tap: (direction: number) => ({
-		opacity: 1,
-		x: 25 * direction,
-	}),
-	exit: (direction: number) => ({
-		opacity: 0,
-		x: 150 * direction,
-	}),
-} satisfies Variants;
 
 
 export default function Gallery(props: Properties)
@@ -169,6 +149,60 @@ export default function Gallery(props: Properties)
 			}),
 		} satisfies Variants
 	}
+
+	function paginateButtonsVariants()
+	{
+		const y = showControls ? -50 : 0;
+
+		return {
+			initial: {
+				opacity: 0.5,
+				x: 0,
+				y,
+			},
+			hover: {
+				opacity: 1,
+				x: 0,
+				y,
+			},
+			tap: (direction: number) => ({
+				opacity: 1,
+				x: 10 * direction,
+				y,
+			}),
+			exit: (direction: number) => ({
+				opacity: 0,
+				x: 150 * direction,
+				y,
+			}),
+		} satisfies Variants;
+	}
+
+	const paginateButtonsTransition = {
+		x: { 
+			type: 'spring',
+			bounce: 0.35,
+		},
+		y: { 
+			type: 'spring',
+			stiffness: 300,
+			damping: 30,
+		},
+		opacity: {
+			duration: 0.35,
+		},
+	} satisfies Transition<any>;
+
+	const uiTransition = {
+		y: { 
+			type: 'spring',
+			bounce: 0.35,
+		},
+		opacity: {
+			duration: 0.35,
+		},
+	} satisfies Transition<any>;
+
 
 	function getPictureConstraints()
 	{
@@ -307,8 +341,10 @@ export default function Gallery(props: Properties)
 						{ zoom == 0 &&
 							<motion.button
 								onClick={ () => paginate(-1) }
-								variants={ paginateButtonsVariants }
+								variants={ paginateButtonsVariants() }
 								custom={ -1 }
+
+								transition={ paginateButtonsTransition }
 
 								initial='exit'
 								animate='initial'
@@ -391,8 +427,10 @@ export default function Gallery(props: Properties)
 						{ zoom == 0 &&
 							<motion.button
 								onClick={ () => paginate(1) }
-								variants={ paginateButtonsVariants }
+								variants={ paginateButtonsVariants() }
 								custom={ 1 }
+
+								transition={ paginateButtonsTransition }
 
 								initial='exit'
 								animate='initial'
@@ -416,6 +454,8 @@ export default function Gallery(props: Properties)
 							initial={{ opacity: 0,y: -50 }}
 							animate={{ opacity: 1,y: 0 }}
 							exit=   {{ opacity: 0,y: -50 }}
+
+							transition={ uiTransition }
 						>
 							<AnimatePresence mode='popLayout'>
 								{ props.gallery[page].name['en-US'].split('').map((char, i) => (
@@ -450,14 +490,7 @@ export default function Gallery(props: Properties)
 							onMouseEnter={ () => setCanAutoHide(false) }
 							onMouseLeave={ () => setCanAutoHide(true) }
 
-							transition={{
-								x: { 
-									type: 'inertia',
-								},
-								opacity: {
-									duration: 0.2,
-								},
-							}}
+							transition={ uiTransition }
 						>
 							<motion.div
 								className={ style.strip }
