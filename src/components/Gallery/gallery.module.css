@@ -196,7 +196,9 @@
 			}
 
 			& button {
-				display: inline-block;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
 
 				width: 100px;
 				height: 150px;
@@ -210,8 +212,6 @@
 				transition: width 0.2s ease-in-out;
 
 				& img {
-					object-fit: cover;
-
 					filter: brightness(1) blur(0);
 
 					transition-property: scale, filter;

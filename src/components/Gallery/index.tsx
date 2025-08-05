@@ -48,7 +48,7 @@ export default function Gallery({
 	const [ showControls, setShowControls ] = useState(false);
 	const [ zoom, setZoom ] = useState(0);
 
-	const [ timeoutId, setTimeoutId ] = useState<NodeJS.Timeout | null>(null);
+	const timeoutId = useRef<NodeJS.Timeout | null>(null);
 
 	const scroll = useMotionValue(0);
 	const scrollerRef = useRef<HTMLDivElement | null>(null);
@@ -279,33 +279,31 @@ export default function Gallery({
 			return;
 		}
 
-		if (timeoutId) {
-			clearTimeout(timeoutId);
+		if (timeoutId.current) {
+			clearTimeout(timeoutId.current);
 		}
 
 		setShowControls(false);
 	}
 
-	function handleOnMouseMove()
+	function resetIdleTime()
 	{
 		if (isMobile) {
 			return;
 		}
 
-		if (timeoutId) {
-			clearTimeout(timeoutId);
+		if (timeoutId.current) {
+			clearTimeout(timeoutId.current);
 		}
 
 		setShowControls(true);
 
-		setTimeoutId(
-			setTimeout(() =>
-			{
-				if (canAutoHide) {
-					setShowControls(false);
-				}
-			}, 2500)
-		);
+		timeoutId.current = setTimeout(() =>
+		{
+			if (canAutoHide) {
+				setShowControls(false);
+			}
+		}, 2500)
 	}
 	// #endregion
 
@@ -368,7 +366,7 @@ export default function Gallery({
 				{ openGallery &&
 					<motion.div
 						className={ style['fullscreen-gallery'] }
-						onMouseMove={ handleOnMouseMove }
+						onMouseMove={ resetIdleTime }
 						onMouseLeave={ handleOnMouseLeave }
 
 						initial={{ scale: 1.5, opacity: 0, filter: isMobile ? '' : 'blur(20px)' }}
@@ -377,6 +375,7 @@ export default function Gallery({
 
 						transition={ uiTransition }
 					>
+						{ /* Title */ }
 						<AnimatePresence>
 							{ (showControls && zoom == 0) &&
 								<motion.div
@@ -389,26 +388,39 @@ export default function Gallery({
 									transition={ uiTransition }
 								>
 									<AnimatePresence mode='popLayout'>
-										{ gallery[page].name['en-US'].split('').map((char, i) => (
+										{ isMobile ?
 											<motion.span
 												initial={{ opacity: 0, y: -25 }}
 												animate={{ opacity: 1, y: 0 }}
 												exit   ={{ opacity: 0, y: 25 }}
 
-												transition={{
-													delay: i / 75,
-												}}
-
-												key={ gallery[page].img.src + char + i }
+												key={ gallery[page].name['en-US'] }
 											>
-												{ char === ' ' ? '\u00A0' : char }
+												{ gallery[page].name['en-US'] }
 											</motion.span>
-										)) }
+											:
+											gallery[page].name['en-US'].split('').map((char, i) => (
+												<motion.span
+													initial={{ opacity: 0, y: -25 }}
+													animate={{ opacity: 1, y: 0 }}
+													exit   ={{ opacity: 0, y: 25 }}
+
+													transition={{
+														delay: i / 75,
+													}}
+
+													key={ gallery[page].img.src + char + i }
+												>
+													{ char === ' ' ? '\u00A0' : char }
+												</motion.span>
+											))
+										}
 									</AnimatePresence>
 								</motion.div>
 							}
 						</AnimatePresence>
 
+						{ /* Visor */ }
 						<AnimatePresence>
 							{ zoom == 0 &&
 								<motion.button
@@ -496,6 +508,7 @@ export default function Gallery({
 										dragElastic={ zoom > 0 ? 0.25 : 0.5 }
 										dragConstraints={ zoom > 0 ? getPictureConstraints() : { left: 0, right: 0 } }
 
+										onDrag={ resetIdleTime }
 										onDragEnd={(_, panInfo) =>
 										{
 											if (zoom > 0) {
@@ -544,6 +557,7 @@ export default function Gallery({
 							</AnimatePresence>
 						</div>
 
+						{ /* Scroller */ }
 						<AnimatePresence>
 							{ (showControls && zoom == 0) &&
 								<motion.div
@@ -619,9 +633,8 @@ export default function Gallery({
 													alt={ v.name['en-US'] }
 
 													quality={ 65 }
-													sizes={ '256px' }
+													height={ 150 }
 
-													fill
 													draggable={ false }
 												/>
 											</button>
