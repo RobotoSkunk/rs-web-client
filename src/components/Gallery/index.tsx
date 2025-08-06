@@ -20,14 +20,38 @@
 
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, Transition, useMotionValue, Variants } from 'framer-motion';
+import { AnimatePresence, motion, Transition, useMotionValue, useSpring, Variants } from 'framer-motion';
 
 import style from './gallery.module.css';
 
 import ArrowIcon from '@/components/icons/Arrow';
 import closeIcon from '@/assets/svg/symbols/close.svg';
-// import DottedDiv from '../DottedDiv';
 
+
+const paginateButtonsTransition = {
+	x: { 
+		type: 'spring',
+		bounce: 0.35,
+	},
+	y: { 
+		type: 'spring',
+		stiffness: 300,
+		damping: 30,
+	},
+	opacity: {
+		duration: 0.35,
+	},
+} satisfies Transition<any>;
+
+const uiTransition = {
+	y: { 
+		type: 'spring',
+		bounce: 0.35,
+	},
+	opacity: {
+		duration: 0.35,
+	},
+} satisfies Transition<any>;
 
 
 export default function Gallery({
@@ -149,7 +173,7 @@ export default function Gallery({
 		const canScale = showControls && zoom == 0;
 
 		var scale = canScale ? 0.8 : 1;
-		var y = canScale ? -50 : 0;
+		var y = showControls ? -50 : 0;
 
 		if (zoom > 0) {
 			scale = 1 + zoom;
@@ -177,7 +201,7 @@ export default function Gallery({
 				scale,
 				y,
 			}),
-		} satisfies Variants
+		} satisfies Variants;
 	}
 
 	function paginateButtonsVariants()
@@ -207,32 +231,6 @@ export default function Gallery({
 			}),
 		} satisfies Variants;
 	}
-
-	const paginateButtonsTransition = {
-		x: { 
-			type: 'spring',
-			bounce: 0.35,
-		},
-		y: { 
-			type: 'spring',
-			stiffness: 300,
-			damping: 30,
-		},
-		opacity: {
-			duration: 0.35,
-		},
-	} satisfies Transition<any>;
-
-	const uiTransition = {
-		y: { 
-			type: 'spring',
-			bounce: 0.35,
-		},
-		opacity: {
-			duration: 0.35,
-		},
-	} satisfies Transition<any>;
-
 
 	function getPictureConstraints()
 	{
@@ -373,7 +371,11 @@ export default function Gallery({
 						animate={{ scale: 1,   opacity: 1, filter: isMobile ? '' : 'blur(0px)' }}
 						exit=   {{ scale: 1.5, opacity: 0, filter: isMobile ? '' : 'blur(20px)' }}
 
-						transition={ uiTransition }
+						transition={{
+							type: 'tween',
+							ease: [ 0.452, 0.155, 0.427, 0.991 ],
+							duration: 0.3,
+						}}
 					>
 						{ /* Title */ }
 						<AnimatePresence>
@@ -420,7 +422,7 @@ export default function Gallery({
 							}
 						</AnimatePresence>
 
-						{ /* Visor */ }
+						{ /* Close button */ }
 						<AnimatePresence>
 							{ zoom == 0 &&
 								<motion.button
@@ -443,6 +445,8 @@ export default function Gallery({
 								</motion.button>
 							}
 						</AnimatePresence>
+
+						{ /* Visor */ }
 						<div
 							className={ style.visor }
 							onWheel={ handleScroll }
@@ -490,9 +494,9 @@ export default function Gallery({
 										animate='center'
 										exit='exit'
 										transition={{
-											x: { 
+											x: {
 												type: 'spring',
-												stiffness: 300,
+												stiffness: 350,
 												damping: 30,
 											},
 											opacity: {
