@@ -595,17 +595,17 @@ export default function Gallery({
 											}
 
 											var newScroll = scroll.get() + ev.deltaY;
-											// const box = scrollerRef.current.getBoundingClientRect();
 
-											// if (newScroll < box.left) {
-											// 	newScroll = box.left;
+											const box = ev.currentTarget.getBoundingClientRect();
+											const containerBox = scrollerRef.current.getBoundingClientRect();
 
-											// } else if (newScroll > box.right) {
-											// 	newScroll = box.right;
-											// }
-
-											// console.log(box, newScroll);
-											console.log(newScroll);
+											// TODO: Fix this workaround
+											if (
+												(ev.deltaY > 0 && box.left + ev.deltaY > containerBox.left) ||
+												(ev.deltaY < 0 && box.right + ev.deltaY < containerBox.right)
+											) {
+												return;
+											}
 
 											scroll.set(newScroll);
 										}}
