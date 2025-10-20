@@ -50,7 +50,7 @@ export default function Background()
 	function mainLoop()
 	{
 		// Mouse positon or device orientation
-		if (document.body.getAttribute('device-type') !== 'mobile') {
+		if (![ 'mobile', 'tablet' ].includes(document.body.getAttribute('device-type') ?? '')) {
 			document.addEventListener('mousemove', (ev) =>
 			{
 				mouse.xDelta = ev.clientX / window.innerHeight * 20;

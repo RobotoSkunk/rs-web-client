@@ -16,13 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-'use client';
-
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 import style from './page.module.css';
-import { useDictionary } from '@/components/providers/DictionaryProvider';
+import { getDictionary } from '@/app/dictionaries';
 
 import alexHappy from '@/assets/img/alex-happy.webp';
 
@@ -31,9 +30,28 @@ import paypalSymbol from '@/assets/svg/branding/paypal-symbol.svg';
 import stripeLogo from '@/assets/svg/branding/stripe.svg';
 
 
-export default function Page()
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>,
+}): Promise<Metadata>
 {
-	const dict = useDictionary();
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
+	return {
+		title: dict.pages['support-me'].h1,
+	};
+}
+
+export default async function Page({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>,
+})
+{
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
 
 	return (
 		<main>
