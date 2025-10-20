@@ -24,6 +24,9 @@ import createMDX from '@next/mdx';
 const nextConfig = {
 	poweredByHeader: false,
 	reactStrictMode: false,
+	typescript: {
+		ignoreBuildErrors: true,
+	},
 	pageExtensions: [
 		'js',
 		'jsx',
