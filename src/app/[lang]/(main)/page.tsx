@@ -121,12 +121,12 @@ export default function Root()
 					<Facebook/>
 				</Link>
 				<Link
-					href='https://twitter.com/RobotoSkunk'
-					title='Twitter'
+					href='https://bsky.app/profile/robotoskunk.com'
+					title='Bluesky'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
-					<Twitter/>
+					<Bluesky/>
 				</Link>
 				<Link
 					href='https://instagram.com/RobotoSkunk'
@@ -188,12 +188,12 @@ export default function Root()
 					].join(' ')}
 				>
 					<Link
-						href='https://bsky.app/profile/robotoskunk.com'
-						title='Bluesky'
+						href='https://twitter.com/RobotoSkunk'
+						title='Twitter'
 						target='_blank'
 						rel='noreferrer noopener'
 					>
-						<Bluesky/>
+						<Twitter/>
 					</Link>
 					<Link
 							href='https://www.reddit.com/user/RobotoSkunk_'
