@@ -35,6 +35,13 @@ const nextConfig = {
 		'ts',
 		'tsx',
 	],
+	images: {
+		qualities: [
+			25,
+			50,
+			75,
+		],
+	},
 };
 
 const withMDX = createMDX({
