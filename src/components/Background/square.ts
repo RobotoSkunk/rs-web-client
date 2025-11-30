@@ -63,7 +63,7 @@ export default class Square
 		element.style.scale = '' + (1 + this.scale * 7);
 	}
 
-	public update(mouseData: MouseData): void
+	public update(mouseData: MouseData, delta: number): void
 	{
 		const e = this.element;
 
@@ -71,8 +71,8 @@ export default class Square
 		const relativeLeft = this.left * window.innerWidth;
 
 		// Properties calculation
-		this.top -= this.moveDelta;
-		this.rotation -= this.rotationDelta;
+		this.top -= this.moveDelta * delta;
+		this.rotation -= this.rotationDelta * delta;
 
 		// Position
 		e.style.left = `${relativeLeft + mouseData.x * (0.5 + this.scale * 0.5)}px`;
@@ -97,5 +97,3 @@ export default class Square
 		return this.__isAlive;
 	}
 }
-
-

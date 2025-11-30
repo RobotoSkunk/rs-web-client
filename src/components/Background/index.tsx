@@ -31,7 +31,9 @@ function lerp(from: number, to: number, delta: number)
 
 export default function Background()
 {
-	var squares: Square[] = [];
+	let squares: Square[] = [];
+	let lastTime: number = 0;
+
 	const mouse: MouseData = {
 		x: 0,
 		y: 0,
@@ -39,89 +41,100 @@ export default function Background()
 		yDelta: 0,
 	};
 
-
-	function addSquare(startY?: number){
+	function addSquare(startY?: number)
+	{
 		const square = new Square(startY);
 
 		squares.push(square);
 	}
 
 
-	function mainLoop()
+	useEffect(() =>
 	{
+		const mouseMoveEvent = (ev: MouseEvent) =>
+		{
+			mouse.xDelta = ev.clientX / window.innerHeight * 20;
+			mouse.yDelta = ev.clientY / window.innerHeight * 20;
+		};
+		const deviceOrientationEvent = (ev: DeviceOrientationEvent) =>
+		{
+			var x = ev.gamma ?? 0;
+			var y = ev.beta ?? 0;
+
+			// Clamp Y between -90 and 90
+			if (y > 90) {
+				y = 90;
+			}
+
+			if (y < -90) {
+				y = -90;
+			}
+
+			// Shift ranges to [0, 180]
+			x += 90;
+			y += 90;
+
+			// Shift values based on orientation
+			const angle = screen.orientation.angle;
+			var xDelta = 0;
+			var yDelta = 0;
+
+
+			if (angle >= 270) {
+				xDelta = 180 - y;
+				yDelta = x;
+
+			} else if (angle >= 180) {
+				xDelta = x;
+				yDelta = 180 - y;
+
+			} else if (angle >= 90) {
+				xDelta = y;
+				yDelta = 180 - x;
+
+			} else {
+				xDelta = x;
+				yDelta = y;
+			}
+
+
+			mouse.xDelta = xDelta / 180 * 150;
+			mouse.yDelta = yDelta / 180 * 150;
+		};
+
 		// Mouse positon or device orientation
-		if (![ 'mobile', 'tablet' ].includes(document.body.getAttribute('device-type') ?? '')) {
-			document.addEventListener('mousemove', (ev) =>
-			{
-				mouse.xDelta = ev.clientX / window.innerHeight * 20;
-				mouse.yDelta = ev.clientY / window.innerHeight * 20;
-			});
+		if (document.body.getAttribute('device-type') !== 'mobile') {
+			document.addEventListener('mousemove', mouseMoveEvent);
 		} else {
-			window.addEventListener('deviceorientation', (ev) =>
-			{
-				var x = ev.gamma ?? 0;
-				var y = ev.beta ?? 0;
-
-				// Clamp Y between -90 and 90
-				if (y > 90) {
-					y = 90;
-				}
-
-				if (y < -90) {
-					y = -90;
-				}
-
-				// Shift ranges to [0, 180]
-				x += 90;
-				y += 90;
-
-				// Shift values based on orientation
-				const angle = screen.orientation.angle;
-				var xDelta = 0;
-				var yDelta = 0;
-
-
-				if (angle >= 270) {
-					xDelta = 180 - y;
-					yDelta = x;
-
-				} else if (angle >= 180) {
-					xDelta = x;
-					yDelta = 180 - y;
-
-				} else if (angle >= 90) {
-					xDelta = y;
-					yDelta = 180 - x;
-
-				} else {
-					xDelta = x;
-					yDelta = y;
-				}
-
-
-				mouse.xDelta = xDelta / 180 * 150;
-				mouse.yDelta = yDelta / 180 * 150;
-			});
+			window.addEventListener('deviceorientation', deviceOrientationEvent);
 		}
 
 
 		// Main loop
-		setInterval(() =>
+		const step = (currentTime: number) =>
 		{
 			if (document.hidden) {
+				window.requestAnimationFrame(step);
+				lastTime = currentTime;
 				return;
 			}
 
-			mouse.x = lerp(mouse.x, mouse.xDelta, 0.8);
-			mouse.y = lerp(mouse.y, mouse.yDelta, 0.8);
+			const delta = (currentTime - lastTime) / 1000;
+			lastTime = currentTime;
+
+			mouse.x = lerp(mouse.x, mouse.xDelta, 0.8 * (delta / (1 / 60)));
+			mouse.y = lerp(mouse.y, mouse.yDelta, 0.8 * (delta / (1 / 60)));
 
 			// Update squares
 			for (const square of squares) {
-				square.update(mouse);
+				square.update(mouse, delta * 60.0);
 			}
 
 			squares = squares.filter((v) => v.isAlive);
-		}, 16);
+			window.requestAnimationFrame(step);
+		};
+
+		window.requestAnimationFrame(step);
 
 
 		// Start squares loop
@@ -141,10 +154,17 @@ export default function Background()
 		for (var i = 0; i < maxSquares; i++) {
 			addSquare(window.innerHeight / 2 + Math.random() * window.innerHeight);
 		}
-	}
 
 
-	useEffect(mainLoop, []);
+		return () =>
+		{
+			if (document.body.getAttribute('device-type') !== 'mobile') {
+				document.removeEventListener('mousemove', mouseMoveEvent);
+			} else {
+				window.removeEventListener('deviceorientation', deviceOrientationEvent);
+			}
+		};
+	}, [ ]);
 
 	return (
 		<motion.div
