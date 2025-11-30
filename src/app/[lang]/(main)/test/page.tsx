@@ -27,7 +27,22 @@ export default function CommissionsContent()
 {
 	return (
 		<main>
-			<Gallery gallery={ artworks }/>
+			<Gallery
+				gallery={ artworks }
+				content={ (setPicture) => (
+					<>
+						{[...new Array(10)].map((_, i) =>
+						(
+							<button
+								key={ i }
+								onClick={ setPicture ? () => setPicture(i) : undefined }
+							>
+								Open { i + 1 }
+							</button>
+						))}
+					</>
+				) }
+			/>
 		</main>
 	);
 }

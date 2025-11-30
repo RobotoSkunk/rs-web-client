@@ -19,8 +19,8 @@
 'use client';
 
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, Transition, useMotionValue, useSpring, Variants } from 'framer-motion';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import { AnimatePresence, motion, Transition, useMotionValue, Variants } from 'framer-motion';
 
 import style from './gallery.module.css';
 
@@ -56,8 +56,10 @@ const uiTransition = {
 
 export default function Gallery({
 	gallery,
+	content,
 }: {
-	gallery: ArtworkData[],
+	gallery: ArtworkData[];
+	content: (func: OpenGalleryPictureFunc) => React.ReactNode;
 })
 {
 	const [ openGallery, setOpenGallery ] = useState(false);
@@ -110,6 +112,8 @@ export default function Gallery({
 			document.removeEventListener('keydown', handleKeydown);
 		};
 	}, [ page ]);
+
+
 
 	// #region Navigation
 
@@ -337,28 +341,12 @@ export default function Gallery({
 
 	return (
 		<>
-			<div className={ style.gallery }>
-				{ gallery.map((v, i) =>
-				(
-					<motion.button
-						className={ style.picture }
-						key={ i }
-
-						onClick={ () => {
-							setPage(i);
-							setOpenGallery(true);
-							setShowControls(true);
-						} }
-					>
-						<Image
-							src={ v.img }
-							alt={ v.name['en-US'] }
-
-							fill={ true }
-						/>
-					</motion.button>
-				)) }
-			</div>
+			{ content((index: number) =>
+			{
+				setPage(index);
+				setOpenGallery(true);
+				setShowControls(true);
+			}) }
 
 			<AnimatePresence presenceAffectsLayout={ false }>
 				{ openGallery &&
