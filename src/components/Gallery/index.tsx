@@ -102,7 +102,7 @@ export default function Gallery({
 			switch (ev.key) {
 				case 'ArrowLeft': paginate(-1); break;
 				case 'ArrowRight': paginate(1); break;
-				case 'Escape': /* owo */ break;
+				case 'Escape': setOpenGallery(false); break;
 			}
 		};
 
