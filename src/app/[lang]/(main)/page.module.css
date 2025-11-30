@@ -93,7 +93,9 @@
 }
 
 body[device-type=mobile] .socials-showmore:focus-visible,
-body[device-type=mobile] .socials-showmore:hover {
+body[device-type=mobile] .socials-showmore:hover,
+body[device-type=tablet] .socials-showmore:focus-visible,
+body[device-type=tablet] .socials-showmore:hover {
 	backdrop-filter: unset;
 }
 

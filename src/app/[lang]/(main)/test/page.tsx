@@ -1,6 +1,6 @@
 /**
  * robotoskunk.com front client. The frontend part of robotoskunk.com
- * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * Copyright (C) 2025  Edgar Lima (RobotoSkunk)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
@@ -16,50 +16,18 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+'use client';
 
-/* Div */
+import artworks from '@/data/artworks';
 
-.modal {
-	display: flex;
-	align-items: center;
-	justify-content: center;
+import Gallery from '@/components/Gallery';
 
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
 
-	backdrop-filter: blur(5px);
-	background-color: #000000aa;
-}
-
-body[device-type=mobile] .modal,
-body[device-type=tablet] .modal {
-	backdrop-filter: unset;
-	background-color: #000000dd;
-}
-
-/* Close button */
-
-.modal > button {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	position: absolute;
-	right: 15px;
-	top: 15px;
-
-	width: 30px;
-	height: 30px;
-
-	padding: 0;
-	margin: 0;
-
-	background-color: white;
-	border-color: white;
-	color: black;
-
-	z-index: 1;
+export default function CommissionsContent()
+{
+	return (
+		<main>
+			<Gallery gallery={ artworks }/>
+		</main>
+	);
 }

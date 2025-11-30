@@ -18,11 +18,19 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 import style from './page.module.css';
 
 import alexReferencePicture from '@/assets/img/alex-skunk-ref2021.webp';
 
+
+export async function generateMetadata(): Promise<Metadata>
+{
+	return {
+		title: 'Alex Skunk',
+	};
+}
 
 export default function Page()
 {
