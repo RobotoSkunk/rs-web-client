@@ -75,7 +75,7 @@ export default function PortfolioContent({
 					(
 						<ProjectArticle
 							key={ index }
-							id={ index }
+							// id={ index }
 
 							name={ data.name }
 							description={ data.description }
@@ -83,8 +83,8 @@ export default function PortfolioContent({
 							screenshots={ data.screenshots }
 							links={ data.links }
 
-							currentId={ imageId }
-							setCurrentId={ setImageId }
+							// currentId={ imageId }
+							// setCurrentId={ setImageId }
 
 							lang={ lang }
 						/>

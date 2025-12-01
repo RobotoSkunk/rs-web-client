@@ -18,8 +18,8 @@
 
 'use client';
 
-import Image from 'next/image';
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import Image, { type StaticImageData } from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, Transition, useMotionValue, Variants } from 'framer-motion';
 
 import style from './gallery.module.css';
@@ -58,8 +58,8 @@ export default function Gallery({
 	gallery,
 	content,
 }: {
-	gallery: ArtworkData[];
-	content: (func: OpenGalleryPictureFunc) => React.ReactNode;
+	gallery: { img: StaticImageData, alt: string }[];
+	content: (func: (index: number) => void) => React.ReactNode;
 })
 {
 	const [ openGallery, setOpenGallery ] = useState(false);
@@ -384,12 +384,12 @@ export default function Gallery({
 												animate={{ opacity: 1, y: 0 }}
 												exit   ={{ opacity: 0, y: 25 }}
 
-												key={ gallery[page].name['en-US'] }
+												key={ gallery[page].alt }
 											>
-												{ gallery[page].name['en-US'] }
+												{ gallery[page].alt }
 											</motion.span>
 											:
-											gallery[page].name['en-US'].split('').map((char, i) => (
+											gallery[page].alt.split('').map((char, i) => (
 												<motion.span
 													initial={{ opacity: 0, y: -25 }}
 													animate={{ opacity: 1, y: 0 }}
@@ -401,7 +401,7 @@ export default function Gallery({
 
 													key={ gallery[page].img.src + char + i }
 												>
-													{ char === ' ' ? '\u00A0' : char }
+													{ char === ' ' ? <>&nbsp;</> : char }
 												</motion.span>
 											))
 										}
@@ -517,7 +517,7 @@ export default function Gallery({
 										}}
 
 										src={ gallery[page].img.src }
-										alt={ gallery[page].name['en-US'] }
+										alt={ gallery[page].alt }
 
 										key={ gallery[page].img.src }
 
@@ -622,7 +622,7 @@ export default function Gallery({
 											>
 												<Image
 													src={ v.img }
-													alt={ v.name['en-US'] }
+													alt={ v.alt }
 
 													quality={ 65 }
 													height={ 150 }

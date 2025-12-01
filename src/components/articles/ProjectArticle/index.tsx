@@ -25,10 +25,11 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 import ExternalLink from '@/components/icons/ExternalLink';
-import ImageModal from '@/components/modals/ImageModal';
+import Gallery from '@/components/Gallery';
 
 import articlesStyle from '../article.module.css';
 import style from './project.module.css';
+
 import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 
@@ -38,10 +39,6 @@ export default function ProjectArticle({
 	icon,
 	screenshots,
 	links,
-
-	id,
-	currentId,
-	setCurrentId,
 
 	lang,
 }: Readonly<{
@@ -56,10 +53,6 @@ export default function ProjectArticle({
 		label: LocalizationsData,
 		url: string,
 	}[],
-
-	id: number,
-	currentId: null|string,
-	setCurrentId(id: null|string): void,
 
 	lang: Localizations,
 }>)
@@ -218,32 +211,47 @@ export default function ProjectArticle({
 				}}
 			>
 				<div className={ style.screenshots } ref={ screenshotsRef }>
-					{screenshots.map((screenshot, i) =>
-					(
-						<motion.div
-							key={ i }
-							animate={{
-								y: open ? 0 : 15,
-								opacity: open ? 1 : 0,
-							}}
-							transition={{ duration: 0.25, delay: open ? 0.1 + 0.075 * i : 0.1 }}
-						>
-							<ImageModal
-								src={ screenshot.src }
-								alt={ screenshot.alt[lang] }
-								width={ 300 }
-								className={ style.screenshot }
+					<Gallery
+						gallery={ screenshots.map((data, i) =>
+						({
+							img: data.src,
+							alt: data.alt[lang],
+						})) }
 
-								id={ `project-${id}-${i}` }
-
-								currentId={ currentId }
-								setCurrentId={ setCurrentId }
-							/>
-							<span>
-								{ screenshot.alt[lang] }
-							</span>
-						</motion.div>
-					))}
+						content={ (openPicture) =>
+							screenshots.map((screenshot, i) =>
+							(
+								<motion.div
+									key={ i }
+									animate={{
+										y: open ? 0 : 15,
+										opacity: open ? 1 : 0,
+									}}
+									transition={{ duration: 0.25, delay: open ? 0.1 + 0.075 * i : 0.1 }}
+								>
+									<button
+										className={
+											[
+												style.image,
+												style.screenshot,
+											].join(' ')
+										}
+										onClick={ () => openPicture(i) }
+									>
+										<Image
+											src={ screenshot.src }
+											alt={ screenshot.alt[lang] }
+											width={ screenshot.src.width }
+											height={ screenshot.src.height }
+										/>
+									</button>
+									<span>
+										{ screenshot.alt[lang] }
+									</span>
+								</motion.div>
+							)
+						) }
+					/>
 				</div>
 			</div>
 		</article>

@@ -55,8 +55,6 @@ declare global
 		'es-MX': string,
 		'en-US': string,
 	};
-
-	type OpenGalleryPictureFunc = ((index: number) => void) | undefined;
 }
 
 
