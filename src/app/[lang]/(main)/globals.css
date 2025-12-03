@@ -483,6 +483,7 @@ footer span:not(:last-child) {
 
 		top: 0;
 		width: 90vw;
+		max-width: none;
 		pointer-events: none;
 	}
 
