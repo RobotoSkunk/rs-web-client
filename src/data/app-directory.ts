@@ -23,11 +23,6 @@ export default [
 		validForSeo: true,
 	},
 	{
-		path: '/about',
-		priority: 1,
-		validForSeo: true,
-	},
-	{
 		path: '/contact',
 		priority: 1,
 		validForSeo: true,
@@ -35,6 +30,11 @@ export default [
 	{
 		path: '/open-source',
 		priority: 0.3,
+		validForSeo: true,
+	},
+	{
+		path: '/illustrations',
+		priority: 1,
 		validForSeo: true,
 	},
 	{

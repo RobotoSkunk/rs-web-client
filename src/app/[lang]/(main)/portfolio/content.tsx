@@ -25,22 +25,20 @@ import style from './page.module.css';
 import { useDictionary } from '@/components/providers/DictionaryProvider';
 
 import projects from '@/data/projects';
-import artworks from '@/data/artworks';
 
 import ProjectArticle from '@/components/articles/ProjectArticle';
-import CardModal from '@/components/modals/CardModal';
 
-import Newgrounds from '@/components/icons/social/Newgrounds';
-import DeviantArt from '@/components/icons/social/DeviantArt';
 import LinkedIn from '@/components/icons/social/LinkedIn';
-import Instagram from '@/components/icons/social/Instagram';
 import GitHub from '@/components/icons/social/GitHub';
+import Image from 'next/image';
+import profilePicture from '@/assets/img/profile-picture.webp';
+import ExternalLink from '@/components/icons/ExternalLink';
 
 
-function toggleScrolling(toggle: boolean)
-{
-	document.querySelector('html')?.classList.toggle('no-scroll', toggle);
-}
+// function toggleScrolling(toggle: boolean)
+// {
+// 	document.querySelector('html')?.classList.toggle('no-scroll', toggle);
+// }
 
 
 export default function PortfolioContent({
@@ -52,39 +50,61 @@ export default function PortfolioContent({
 	const lang = use(params).lang;
 	const dict = useDictionary();
 
-	const [ cardId, setCardId ] = useState(null as null|string);
-	const [ imageId, setImageId ] = useState(null as null|string);
-
-	useEffect(() =>
-		toggleScrolling(cardId != null || imageId != null)
-	);
-
 
 	return (
 		<main className={ style.main }>
 			<h1>{ dict.pages.portfolio.h1 }</h1>
-			<p className={ style.legend }>
-				{ dict.pages.portfolio.h1p }
-			</p>
+
+			<section className={ style.nutshell }>
+				<div className={ style['who-i-am'] }>
+					<div className={ style['picture-container'] }>
+						<Image
+							alt={ dict.pages.portfolio.about['img-alt'] }
+							src={ profilePicture }
+							width={ 200 }
+							className={ style['profile-picture'] }
+							draggable={ false }
+
+							priority={ true }
+							fetchPriority='high'
+						/>
+						<span>
+							{ dict.pages.portfolio.about['img-span'] + ' ' }
+							<Link
+								href='https://x.com/SynieDraw/status/1699933375417528722'
+								target='_blank'
+								rel='noreferrer noopener'
+							>
+								@SynieDraw <ExternalLink/>
+							</Link>
+						</span>
+					</div>
+					<div className={ style.content }>
+						<p dangerouslySetInnerHTML={{ __html: dict.pages.portfolio.about['content-p1'] }}></p>
+						<p dangerouslySetInnerHTML={{ __html: dict.pages.portfolio.about['content-p2'] }}></p>
+						<p dangerouslySetInnerHTML={{ __html: dict.pages.portfolio.about['content-p3'] }}></p>
+						<p dangerouslySetInnerHTML={{ __html: dict.pages.portfolio.about['content-p4'] }}></p>
+					</div>
+				</div>
+			</section>
 
 			<section>
-				<h2>{ dict.pages.portfolio['h2-projects'] }</h2>
+				<h2>{ dict.pages.portfolio.projects.title }</h2>
+				<p className={ style.legend }>
+					{ dict.pages.portfolio.projects.description }
+				</p>
 
 				{<div className={ style.gallery }>
 					{projects.map((data, index) =>
 					(
 						<ProjectArticle
 							key={ index }
-							// id={ index }
 
 							name={ data.name }
 							description={ data.description }
 							icon={ data.icon }
 							screenshots={ data.screenshots }
 							links={ data.links }
-
-							// currentId={ imageId }
-							// setCurrentId={ setImageId }
 
 							lang={ lang }
 						/>
@@ -93,29 +113,7 @@ export default function PortfolioContent({
 			</section>
 
 			<section>
-				<h2>{ dict.pages.portfolio['h2-artworks'] }</h2>
-				<p>{ dict.pages.portfolio['h2p-artworks'] }</p>
-
-				<div className={ style.gallery }>
-					{artworks.map((data, index) => (
-						<CardModal
-							id={ `artwork-${index}` }
-							key={ index }
-
-							name={ data.name[lang] }
-							img={ data.img }
-
-							currentId={ cardId }
-							isImage={ true }
-							setCurrentId={ setCardId }
-						/>
-					))}			
-				</div>
-			</section>
-
-			<section>
-				<h3>{ dict.pages.portfolio.h3 }</h3>
-				<p>{ dict.pages.portfolio.h3p }</p>
+				<h2>{ dict.pages.portfolio['see-more'] }</h2>
 				<div className='social-media'>
 					<Link
 						href='https://linkedin.com/in/RobotoSkunk'
@@ -124,30 +122,6 @@ export default function PortfolioContent({
 						rel='noreferrer noopener'
 					>
 						<LinkedIn/>
-					</Link>
-					<Link
-						href='https://www.deviantart.com/robotoskunk'
-						title='DeviantArt'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<DeviantArt/>
-					</Link>
-					<Link
-						href='https://robotoskunk.newgrounds.com/art'
-						title='Newgrounds'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Newgrounds/>
-					</Link>
-					<Link
-						href='https://www.instagram.com/RobotoSkunk'
-						title='Instagram'
-						target='_blank'
-						rel='noreferrer noopener'
-					>
-						<Instagram/>
 					</Link>
 					<Link
 						href='https://github.com/RobotoSkunk'

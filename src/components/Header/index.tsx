@@ -101,11 +101,11 @@ export default function Header({
 				initial='hidden'
 				animate='visible'
 			>
-				<motion.span variants={ linkVariants }>
+				{/* <motion.span variants={ linkVariants }>
 					<Link href={ `/${lang}/about` }>
 						{ dict.layout.header.about }
 					</Link>
-				</motion.span>
+				</motion.span> */}
 				{/* <motion.span variants={ linkVariants }>
 					<Link href={ `/${lang}/blog` }>
 						Blog
@@ -114,6 +114,11 @@ export default function Header({
 				<motion.span variants={ linkVariants }>
 					<Link href={ `/${lang}/portfolio` }>
 						{ dict.layout.header.portfolio }
+					</Link>
+				</motion.span>
+				<motion.span variants={ linkVariants }>
+					<Link href={ `/${lang}/illustrations` }>
+						{ dict.layout.header.illustrations }
 					</Link>
 				</motion.span>
 				<motion.span variants={ linkVariants }>

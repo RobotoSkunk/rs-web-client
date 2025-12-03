@@ -20,7 +20,7 @@ import { Metadata } from 'next';
 
 import { getDictionary } from '@/app/dictionaries';
 
-import PortfolioContent from './content';
+import GalleryContent from './content';
 
 
 export async function generateMetadata({
@@ -33,17 +33,17 @@ export async function generateMetadata({
 	const dict = await getDictionary(lang);
 
 	return {
-		title: dict.pages.portfolio.h1,
+		title: dict.layout.header.illustrations,
 	};
 }
 
-export default function Page({
+export default function PortfolioContent({
 	params,
 }: {
 	params: Promise<{ lang: Localizations }>
 })
 {
 	return (
-		<PortfolioContent params={ params }/>
+		<GalleryContent params={ params }/>
 	);
 }
