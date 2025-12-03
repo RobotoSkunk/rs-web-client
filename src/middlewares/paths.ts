@@ -55,6 +55,10 @@ export function pathsMiddleware(request: NextRequest)
 
 
 	switch (true) {
+		case pathEquals('/about'): {
+			return NextResponse.redirect(new URL(`/${locale}/portfolio`, request.url));
+		}
+
 		case pathEquals('/public'):
 		case pathEquals('/public/'): {
 			return NextResponse.redirect(new URL('/public/', request.url));
