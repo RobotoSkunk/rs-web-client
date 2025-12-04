@@ -39,6 +39,7 @@ const nextConfig = {
 		qualities: [
 			25,
 			50,
+			65,
 			75,
 		],
 	},

@@ -31,7 +31,6 @@ import AlexPhrase from '@/components/AlexPhrase';
 
 import { getDictionary, locales } from '@/app/dictionaries';
 import DictionaryProvider from '@/components/providers/DictionaryProvider';
-import appDirectory from '@/data/app-directory';
 import TransitionHandler from './TransitionHandler';
 import StupidMotionWorkaround from './stupid-motion-workaround';
 
@@ -40,7 +39,7 @@ export async function generateMetadata({
 	params,
 }: {
 	params: Promise<{ lang: Localizations }>,
-})
+}): Promise<Metadata>
 {
 	const lang = (await params).lang;
 	const dict = await getDictionary(lang);
@@ -63,16 +62,11 @@ export async function generateMetadata({
 		languages[locale] = `${canonicalRoot}/${locale}${canonicalPathname}`;
 	}
 
-	
-	const directoryData = appDirectory.filter((value) => value.path === canonicalPathname)[0];
-
-	if (directoryData && directoryData.title) {
-		defaultMetadata.title = `${directoryData.title[lang]} - RobotoSkunk`;
-	}
-
-
 	return {
-		title: defaultMetadata.title,
+		title: {
+			template: '%s | RobotoSkunk',
+			default: 'RobotoSkunk',
+		},
 		description: defaultMetadata.description,
 		authors: {
 			name: 'RobotoSkunk (Edgar Lima)',
@@ -101,7 +95,7 @@ export async function generateMetadata({
 				url: defaultMetadata.metaIcon,
 			},
 		},
-	} as Metadata;
+	};
 };
 
 

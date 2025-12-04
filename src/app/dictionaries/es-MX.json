@@ -26,6 +26,7 @@
 		"header": {
 			"about": "Sobre mí",
 			"commissions": "Comisiones",
+			"illustrations": "Ilustraciones",
 			"portfolio": "Portafolio",
 			"contact": "Contacto",
 			"support-me": "Apóyame",
@@ -59,15 +60,6 @@
 			"h2-socials": "Redes Sociales",
 			"h2p-socials": "Puedes encontrarme en mis redes sociales. Ordenado de la más rápida a la más lenta que respondo."
 		},
-		"about": {
-			"h1": "Sobre mí",
-			"img-alt": "Alex Skunk lamiendo una burbuja.",
-			"img-span": "Dibujado por",
-			"content-p1": "Mi nombre es <b>Edgar Lima</b>, Soy un mexicano ingeniero en sistemas de 24 años. Graduado del Instituto Tecnológico Superior de Poza Rica en el estado de Veracruz en 2024.",
-			"content-p2": "Tengo fuertes conocimientos en lenguajes de programación orientada a objetos, entre ellos C++, C#, Java, TypeScript, PHP y también HTML y CSS. También he trabajado con frameworks como React.js/Next.js, Kysely, Electron, Discord.js y Express.js.",
-			"content-p3": "Tengo experiencia con sistemas operativos basados en Linux, y he trabajado en la instalación de WRF-Chem y CMAQ en un servidor de Linux para un proyecto becado para el gobierno de Veracruz.",
-			"content-p4": "También he desarrollado un par de juegos simples con Unity, Game Maker y Godot.NET en mi tiempo libre."
-		},
 		"support-me": {
 			"h1": "Apóyame",
 			"h1p": "¡Gracias por tu interés en apoyarme!",
@@ -78,12 +70,19 @@
 		},
 		"portfolio": {
 			"h1": "Portafolio",
-			"h1p": "Algunos ejemplos de varios de mis proyectos e ilustraciones que he hecho desde que tengo memoria.",
-			"h2-projects": "Proyectos",
-			"h2-artworks": "Ilustraciones",
-			"h2p-artworks": "Una colección de mis ilustraciones y comisiones favoritas que he hecho.",
-			"h3": "¿Quieres ver más?",
-			"h3p": "¡Sigue mis proyectos!",
+			"about": {
+				"img-alt": "Alex Skunk lamiendo una burbuja.",
+				"img-span": "Dibujado por",
+				"content-p1": "Mi nombre es <b>Edgar Lima</b>, soy un mexicano ingeniero en sistemas de 24 años. Graduado del Instituto Tecnológico Superior de Poza Rica en el estado de Veracruz en 2024.",
+				"content-p2": "Tengo fuertes conocimientos en lenguajes de programación orientada a objetos, entre ellos C++, C#, Java, TypeScript, PHP y también HTML y CSS. También he trabajado con frameworks como React.js/Next.js, Kysely, Electron, Discord.js y Express.js.",
+				"content-p3": "Tengo experiencia con sistemas operativos basados en Linux, y he trabajado en la instalación de WRF-Chem y CMAQ en un servidor de Linux para un proyecto becado para el gobierno de Veracruz.",
+				"content-p4": "También he desarrollado un par de juegos simples con Unity, Game Maker y Godot.NET en mi tiempo libre."
+			},
+			"projects": {
+				"title": "Proyectos",
+				"description": "Algunos ejemplos de varios de mis proyectos que he hecho."
+			},
+			"see-more": "¿Quieres ver más?",
 			"toggle-show": "Mostrar",
 			"toggle-hide": "Ocultar",
 			"toggle-label": "capturas de"

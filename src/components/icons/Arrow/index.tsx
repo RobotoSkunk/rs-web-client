@@ -16,34 +16,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-import { Metadata } from 'next';
-
-import { getDictionary } from '@/app/dictionaries';
-
-import PortfolioContent from './content';
+import style from './arrow.module.css';
 
 
-export async function generateMetadata({
-	params,
+export default function ArrowIcon({
+	flip,
 }: {
-	params: Promise<{ lang: Localizations }>,
-}): Promise<Metadata>
-{
-	const lang = (await params).lang;
-	const dict = await getDictionary(lang);
-
-	return {
-		title: dict.pages.portfolio.h1,
-	};
-}
-
-export default function Page({
-	params,
-}: {
-	params: Promise<{ lang: Localizations }>
+	flip?: boolean,
 })
 {
 	return (
-		<PortfolioContent params={ params }/>
+		<svg
+			className={ style['arrow-icon'] }
+			style={{
+				transform: flip ? 'scaleX(-1)' : ''
+			}}
+
+			viewBox='0 0 5.0300003 9.2653866'
+		>
+			<path d='M 4.6326935,8.868511 0.39687636,4.6326933 4.6326945,0.396875'/>
+		</svg>
 	);
 }

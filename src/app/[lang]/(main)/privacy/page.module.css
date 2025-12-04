@@ -58,7 +58,8 @@
 	}
 }
 
-body[device-type=mobile] {
+body[device-type=mobile],
+body[device-type=tablet] {
 	& .main > pre,
 	& .main p > code {
 		backdrop-filter: unset;
