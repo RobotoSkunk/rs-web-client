@@ -35,12 +35,6 @@ import profilePicture from '@/assets/img/profile-picture.webp';
 import ExternalLink from '@/components/icons/ExternalLink';
 
 
-// function toggleScrolling(toggle: boolean)
-// {
-// 	document.querySelector('html')?.classList.toggle('no-scroll', toggle);
-// }
-
-
 export default function PortfolioContent({
 	params,
 }: {
