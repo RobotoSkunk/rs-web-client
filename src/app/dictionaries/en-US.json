@@ -133,5 +133,14 @@
 				"I think your map is upside down."
 			]
 		}
+	},
+	"components": {
+		"gallery": {
+			"close": "Close gallery",
+			"buttons": {
+				"next": "Next",
+				"previous": "Previous"
+			}
+		}
 	}
 }

@@ -19,7 +19,7 @@
 'use client';
 
 import Link from 'next/link';
-import { use, useEffect, useState } from 'react';
+import { use } from 'react';
 
 import style from './page.module.css';
 import { useDictionary } from '@/components/providers/DictionaryProvider';

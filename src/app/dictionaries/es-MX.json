@@ -137,5 +137,14 @@
 				"Creo que tu mapa está al revés."
 			]
 		}
+	},
+	"components": {
+		"gallery": {
+			"close": "Cerrar galería",
+			"buttons": {
+				"next": "Siguiente",
+				"previous": "Anterior"
+			}
+		}
 	}
 }
