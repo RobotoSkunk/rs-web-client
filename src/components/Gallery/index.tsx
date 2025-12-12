@@ -470,6 +470,8 @@ export default function Gallery({
 								className={ style['picture-container'] }
 								ref={ pictureContainerRef }
 
+								aria-label={ dict.components.gallery.visor }
+
 								onTapStart={ handleTouchStart }
 								onPan={ handleTouchPan }
 								onTouchEnd={ handleTouchEnd }

@@ -144,7 +144,8 @@
 			"buttons": {
 				"next": "Siguiente",
 				"previous": "Anterior"
-			}
+			},
+			"visor": "Visor de imágenes de la galería"
 		}
 	}
 }
