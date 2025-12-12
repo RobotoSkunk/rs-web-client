@@ -180,7 +180,8 @@ export default function ProjectArticle({
 									src={ screenshot.src }
 									alt={ screenshot.alt[lang] }
 									draggable={ false }
-									sizes={ '(max-width: 600px) 200px, (max-width: 900px) 250px, 350px' }
+									width={ 350 }
+									height={ 263 }
 
 									priority={ true }
 									fetchPriority='high'
@@ -241,8 +242,7 @@ export default function ProjectArticle({
 										<Image
 											src={ screenshot.src }
 											alt={ screenshot.alt[lang] }
-											width={ screenshot.src.width }
-											height={ screenshot.src.height }
+											width={ 300 }
 										/>
 									</button>
 									<span>
