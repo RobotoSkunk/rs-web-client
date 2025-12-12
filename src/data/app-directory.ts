@@ -23,76 +23,49 @@ export default [
 		validForSeo: true,
 	},
 	{
-		path: '/about',
-		priority: 1,
-		validForSeo: true,
-		title: {
-			'en-US': 'About me',
-			'es-MX': 'Sobre mí',
-		},
-	},
-	{
 		path: '/contact',
 		priority: 1,
 		validForSeo: true,
-		title: {
-			'en-US': 'Contact',
-			'es-MX': 'Contacto',
-		},
 	},
 	{
 		path: '/open-source',
 		priority: 0.3,
 		validForSeo: true,
-		title: {
-			'en-US': 'About me',
-			'es-MX': 'Código abierto',
-		},
+	},
+	{
+		path: '/illustrations',
+		priority: 1,
+		validForSeo: true,
 	},
 	{
 		path: '/portfolio',
 		priority: 1,
 		validForSeo: true,
-		title: {
-			'en-US': 'Portfolio',
-			'es-MX': 'Portafolio',
-		},
 	},
 	{
 		path: '/privacy',
 		priority: 1,
 		validForSeo: true,
-		title: {
-			'en-US': 'Privacy notice',
-			'es-MX': 'Aviso de privacidad',
-		},
+	},
+	{
+		path: '/commissions',
+		priority: 1,
+		validForSeo: true,
 	},
 	{
 		path: '/support-me',
 		priority: 0.5,
 		validForSeo: true,
-		title: {
-			'en-US': 'Support me',
-			'es-MX': 'Apóyame',
-		},
 	},
 	{
 		path: '/legal',
 		priority: 0.5,
 		validForSeo: true,
-		title: {
-			'en-US': 'Legal',
-			'es-MX': 'Legal',
-		},
 	},
 	{
 		path: '/alex-skunk',
 		priority: 0,
 		validForSeo: true,
-		title: {
-			'en-US': 'Alex Skunk',
-			'es-MX': 'Alex Skunk',
-		},
 	},
 	{
 		path: '/noscript',

@@ -16,9 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-'use client';
-
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 import { robotoMono } from '@/utils/fonts';
 
@@ -26,12 +25,31 @@ import style from './page.module.css';
 import ExternalLink from '@/components/icons/ExternalLink';
 
 import acknowledgements from '@/data/acknowledgements';
-import { useDictionary } from '@/components/providers/DictionaryProvider';
+import { getDictionary } from '@/app/dictionaries';
 
 
-export default function Page()
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>,
+}): Promise<Metadata>
 {
-	const dict = useDictionary();
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
+	return {
+		title: dict.pages['open-source'].h1,
+	};
+}
+
+export default async function Page({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>,
+})
+{
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
 
 	return (
 		<main className={ style.main }>

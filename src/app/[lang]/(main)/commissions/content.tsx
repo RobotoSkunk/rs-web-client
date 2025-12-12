@@ -16,34 +16,13 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-import { Metadata } from 'next';
+'use client';
 
-import { getDictionary } from '@/app/dictionaries';
-
-import PortfolioContent from './content';
-
-
-export async function generateMetadata({
-	params,
-}: {
-	params: Promise<{ lang: Localizations }>,
-}): Promise<Metadata>
-{
-	const lang = (await params).lang;
-	const dict = await getDictionary(lang);
-
-	return {
-		title: dict.pages.portfolio.h1,
-	};
-}
-
-export default function Page({
-	params,
-}: {
-	params: Promise<{ lang: Localizations }>
-})
+export default function CommissionsContent()
 {
 	return (
-		<PortfolioContent params={ params }/>
+		<main>
+			<h1>Commissions</h1>
+		</main>
 	);
 }

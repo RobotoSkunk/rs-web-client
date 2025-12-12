@@ -17,10 +17,8 @@
 **/
 
 import { Metadata } from 'next';
-
+import CommissionsContent from './content';
 import { getDictionary } from '@/app/dictionaries';
-
-import PortfolioContent from './content';
 
 
 export async function generateMetadata({
@@ -33,17 +31,13 @@ export async function generateMetadata({
 	const dict = await getDictionary(lang);
 
 	return {
-		title: dict.pages.portfolio.h1,
+		title: dict.layout.header.commissions,
 	};
 }
 
-export default function Page({
-	params,
-}: {
-	params: Promise<{ lang: Localizations }>
-})
+export default function Page()
 {
 	return (
-		<PortfolioContent params={ params }/>
+		<CommissionsContent/>
 	);
 }

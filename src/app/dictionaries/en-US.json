@@ -22,6 +22,7 @@
 		"header": {
 			"about": "About me",
 			"commissions": "Commissions",
+			"illustrations": "Illustrations",
 			"portfolio": "Portfolio",
 			"contact": "Contact",
 			"support-me": "Support me",
@@ -55,15 +56,6 @@
 			"h2-socials": "Social Media",
 			"h2p-socials": "You can find me on my social media. Ordered from the fastest to the slowest I respond."
 		},
-		"about": {
-			"h1": "About me",
-			"img-alt": "Alex Skunk licking a bubble.",
-			"img-span": "Drawn by",
-			"content-p1": "My name is <b>Edgar Lima</b>, I'm a 24-year-old Mexican computer systems engineer. Graduated from the Instituto Tecnológico Superior de Poza Rica in the state of Veracruz in 2024.",
-			"content-p2": "I have strong knowledge of object-oriented programming languages, among them C++, C#, Java, TypeScript, PHP and also HTML and CSS. I also worked with some frameworks like React.js/Next.js, Kysely, Electron, Discord.js and Express.js.",
-			"content-p3": "I have experience with Linux-based operating systems, and I've worked in the installation of WRF-Chem and CMAQ in a Linux server for a grant-winning project for the government of Veracruz.",
-			"content-p4": "I also developed a couple simple games with Unity, Game Maker and Godot.NET in my free time."
-		},
 		"support-me": {
 			"h1": "Support me",
 			"h1p": "Thank you for your interest in supporting me!",
@@ -74,12 +66,19 @@
 		},
 		"portfolio": {
 			"h1": "Portfolio",
-			"h1p": "A few examples of some of my favorite projects and artworks I've made since I can remember.",
-			"h2-projects": "Projects",
-			"h2-artworks": "Artworks",
-			"h2p-artworks": "A collection of my favorite artworks and commissions I made.",
-			"h3": "Want to see more?",
-			"h3p": "Follow my projects!",
+			"about": {
+				"img-alt": "Alex Skunk licking a bubble.",
+				"img-span": "Drawn by",
+				"content-p1": "My name is <b>Edgar Lima</b>, I'm a 24-year-old Mexican computer systems engineer. Graduated from the Instituto Tecnológico Superior de Poza Rica in the state of Veracruz in 2024.",
+				"content-p2": "I have strong knowledge of object-oriented programming languages, among them C++, C#, Java, TypeScript, PHP and also HTML and CSS. I also worked with some frameworks like React.js/Next.js, Kysely, Electron, Discord.js and Express.js.",
+				"content-p3": "I have experience with Linux-based operating systems, and I've worked in the installation of WRF-Chem and CMAQ in a Linux server for a grant-winning project for the government of Veracruz.",
+				"content-p4": "I also developed a couple simple games with Unity, Game Maker and Godot.NET in my free time."
+			},
+			"projects": {
+				"title": "Projects",
+				"description": "A few examples of some of my favorite projects I've made."
+			},
+			"see-more": "Want to see more?",
 			"toggle-show": "Show",
 			"toggle-hide": "Hide",
 			"toggle-label": "screenshots of"

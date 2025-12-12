@@ -16,34 +16,20 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-import { Metadata } from 'next';
+.arrow-icon {
+	display: inline-block;
 
-import { getDictionary } from '@/app/dictionaries';
-
-import PortfolioContent from './content';
-
-
-export async function generateMetadata({
-	params,
-}: {
-	params: Promise<{ lang: Localizations }>,
-}): Promise<Metadata>
-{
-	const lang = (await params).lang;
-	const dict = await getDictionary(lang);
-
-	return {
-		title: dict.pages.portfolio.h1,
-	};
+	height: 75px;
 }
 
-export default function Page({
-	params,
-}: {
-	params: Promise<{ lang: Localizations }>
-})
-{
-	return (
-		<PortfolioContent params={ params }/>
-	);
+.arrow-icon path {
+	fill: none;
+	stroke: currentColor;
+
+	stroke-width: 0.79375;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-dasharray: none;
+	stroke-opacity: 1;
+	paint-order: stroke fill markers;
 }
