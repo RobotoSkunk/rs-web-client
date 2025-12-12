@@ -25,8 +25,16 @@
 }
 
 .main section {
-	margin: 120px 0;
+	margin: 60px 0;
 }
+
+.main h1,
+.main h2 {
+	margin: 30px 0;
+}
+
+.main h1 { font-size: 3em }
+.main h2 { font-size: 2em }
 
 .gallery {
 	width: 1200px;
@@ -71,6 +79,54 @@
 	word-wrap: break-word;
 	white-space: pre-wrap;
 }
+
+/* #region About me */
+
+.nutshell {
+	max-width: 850px;
+	margin: 0 auto !important;
+}
+
+.who-i-am {
+	display: flex;
+	flex-direction: row;
+	column-gap: 50px;
+}
+
+.content p { margin: 15px 0 }
+.who-i-am .content { font-size: 1.2em }
+
+.who-i-am,
+.content {
+	text-align: left;
+}
+
+.profile-picture {
+	border-radius: 50%;
+	padding: 0 10px;
+}
+
+.picture-container {
+	display: inline-flex;
+	flex-direction: column;
+
+	row-gap: 20px;
+}
+
+
+@media screen and (max-width: 700px) {
+	.who-i-am {
+		flex-direction: column;
+		align-items: center;
+
+		text-align: center;
+	}
+
+	.who-i-am .content {
+		text-align: center;
+	}
+}
+/* #endregion */
 
 
 @media screen and (max-width: 900px) {

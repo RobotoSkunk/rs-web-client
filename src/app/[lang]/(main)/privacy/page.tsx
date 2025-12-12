@@ -16,27 +16,41 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-'use client';
-
-import { use } from 'react';
+import { Metadata } from 'next';
 
 import style from './page.module.css';
+import { getDictionary } from '@/app/dictionaries';
 
 import PrivacyPolicy_ES_MX from '@/data/policies/privacy/privacy.es-MX.mdx';
 import PrivacyPolicy_EN_US from '@/data/policies/privacy/privacy.en-US.mdx';
 
 
-export default function Page({
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ lang: Localizations }>,
+}): Promise<Metadata>
+{
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
+
+	return {
+		title: dict.pages.legal.privacy,
+	};
+}
+
+export default async function Page({
 	params,
 }: {
 	params: Promise<{ lang: string }>
 })
 {
-	const { lang } = use(params);
+	const { lang } = await params;
 
 	// TODO: This is currently a workaround. A proper function to handle MDX files by localization is needed.
 
-	return (
+	return (<>
+		<input type='hidden' id='back-action' value='legal'/>
 		<main className={ style.main }>
 			{ lang === 'es-MX' ?
 				<PrivacyPolicy_ES_MX/>
@@ -44,5 +58,5 @@ export default function Page({
 				<PrivacyPolicy_EN_US/>
 			}
 		</main>
-	);
+	</>);
 }

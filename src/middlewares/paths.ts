@@ -55,8 +55,8 @@ export function pathsMiddleware(request: NextRequest)
 
 
 	switch (true) {
-		case pathStartsWith('/commissions'): {
-			return NextResponse.redirect(new URL(`/${locale}`, request.url));
+		case pathEquals('/about'): {
+			return NextResponse.redirect(new URL(`/${locale}/portfolio`, request.url));
 		}
 
 		case pathEquals('/public'):

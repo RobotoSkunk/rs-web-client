@@ -48,7 +48,9 @@
 
 
 body[device-type=mobile] .button:focus-visible,
-body[device-type=mobile] .button:hover {
+body[device-type=mobile] .button:hover,
+body[device-type=tablet] .button:focus-visible,
+body[device-type=tablet] .button:hover {
 	backdrop-filter: unset;
 }
 
@@ -126,6 +128,28 @@ body[device-type=mobile] .button:hover {
 
 .container .screenshots > div .screenshot {
 	border-radius: 15px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	overflow: hidden;
+
+	padding: 0;
+	margin: 0;
+	border: 0;
+
+	background: transparent;
+
+	cursor: zoom-in;
+
+	&::after {
+		display: none;
+	}
+
+	& img {
+		width: 300px;
+		height: auto;
+	}
 }
 
 .container .screenshots > div span {

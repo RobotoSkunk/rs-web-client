@@ -16,28 +16,32 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-'use client';
-
-import { use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
 import style from './page.module.css';
 
-import { useDictionary } from '@/components/providers/DictionaryProvider';
+import { getDictionary } from '@/app/dictionaries';
 
 import alexImage from '@/assets/img/alex-legal.webp';
 
 
-export default function Page({
+export async function generateMetadata(): Promise<Metadata>
+{
+	return {
+		title: 'Legal',
+	};
+}
+
+export default async function Page({
 	params,
 }: {
-	params: Promise<{ lang: string }>
+	params: Promise<{ lang: Localizations }>,
 })
 {
-	const { lang } = use(params);
-	const dict = useDictionary();
-
+	const lang = (await params).lang;
+	const dict = await getDictionary(lang);
 
 	return (
 		<main className={ style.main }>
