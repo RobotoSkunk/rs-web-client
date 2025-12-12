@@ -19,7 +19,7 @@
 'use client';
 
 import Link from 'next/link';
-import { use, useEffect, useState } from 'react';
+import { use } from 'react';
 
 import style from './page.module.css';
 import { useDictionary } from '@/components/providers/DictionaryProvider';
@@ -33,12 +33,6 @@ import GitHub from '@/components/icons/social/GitHub';
 import Image from 'next/image';
 import profilePicture from '@/assets/img/profile-picture.webp';
 import ExternalLink from '@/components/icons/ExternalLink';
-
-
-// function toggleScrolling(toggle: boolean)
-// {
-// 	document.querySelector('html')?.classList.toggle('no-scroll', toggle);
-// }
 
 
 export default function PortfolioContent({

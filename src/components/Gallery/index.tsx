@@ -26,6 +26,7 @@ import style from './gallery.module.css';
 
 import ArrowIcon from '@/components/icons/Arrow';
 import closeIcon from '@/assets/svg/symbols/close.svg';
+import { useDictionary } from '../providers/DictionaryProvider';
 
 
 const paginateButtonsTransition = {
@@ -62,6 +63,8 @@ export default function Gallery({
 	content: (func: (index: number) => void) => React.ReactNode;
 })
 {
+	const dict = useDictionary();
+
 	const [ openGallery, setOpenGallery ] = useState(false);
 
 	const [ isMobile, setIsMobile ] = useState(false);
@@ -102,7 +105,7 @@ export default function Gallery({
 			switch (ev.key) {
 				case 'ArrowLeft': paginate(-1); break;
 				case 'ArrowRight': paginate(1); break;
-				case 'Escape': setOpenGallery(false); break;
+				case 'Escape': closeGallery(); break;
 			}
 		};
 
@@ -113,6 +116,17 @@ export default function Gallery({
 		};
 	}, [ page ]);
 
+
+	function toggleScrolling(toggle: boolean)
+	{
+		document.querySelector('html')?.classList.toggle('no-scroll', !toggle);
+	}
+
+	function closeGallery()
+	{
+		setOpenGallery(false);
+		toggleScrolling(true);
+	}
 
 
 	// #region Navigation
@@ -346,6 +360,7 @@ export default function Gallery({
 				setPage(index);
 				setOpenGallery(true);
 				setShowControls(true);
+				toggleScrolling(false);
 			}) }
 
 			<AnimatePresence presenceAffectsLayout={ false }>
@@ -416,8 +431,8 @@ export default function Gallery({
 								<motion.button
 									className={ style.close }
 
-									aria-label='Close'
-									onClick={ () => setOpenGallery(false) }
+									aria-label={ dict.components.gallery.close }
+									onClick={ () => closeGallery() }
 
 									initial={{ opacity: 0, y: -50 }}
 									animate={{ opacity: 1, y: 0 }}
@@ -427,7 +442,7 @@ export default function Gallery({
 								>
 									<Image
 										src={ closeIcon }
-										alt='Close'
+										alt={ dict.components.gallery.close }
 										width={ 12 }
 									/>
 								</motion.button>
@@ -455,6 +470,8 @@ export default function Gallery({
 										whileHover='hover'
 										whileFocus='hover'
 										whileTap='tap'
+
+										aria-label={ dict.components.gallery.buttons.previous }
 									>
 										<ArrowIcon/>
 									</motion.button>
@@ -464,6 +481,8 @@ export default function Gallery({
 							<motion.div
 								className={ style['picture-container'] }
 								ref={ pictureContainerRef }
+
+								aria-label={ dict.components.gallery.visor }
 
 								onTapStart={ handleTouchStart }
 								onPan={ handleTouchPan }
@@ -542,6 +561,8 @@ export default function Gallery({
 										whileHover='hover'
 										whileFocus='hover'
 										whileTap='tap'
+
+										aria-label={ dict.components.gallery.buttons.next }
 									>
 										<ArrowIcon flip/>
 									</motion.button>
