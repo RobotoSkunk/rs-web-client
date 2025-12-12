@@ -36,7 +36,7 @@ export const config = {
 }
 
 
-export function middleware(request: NextRequest)
+export function proxy(request: NextRequest)
 {
 	// #region Localization
 	const localesResponse = localesMiddleware(request);
