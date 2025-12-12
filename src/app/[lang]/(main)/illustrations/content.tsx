@@ -48,11 +48,10 @@ export default function GalleryContent({
 
 	return (
 		<main className={ style.main }>
-			<h1>{ dict.layout.header.illustrations }</h1>
-			<p>{ dict.pages.portfolio['h2p-artworks'] }</p>
+			<h1>{ dict.pages.illustrations.title }</h1>
+			<p className={ style.legend }>{ dict.pages.illustrations.description }</p>
 
 			<section>
-				{/* <div className={ style.gallery }> */}
 				<Gallery
 					gallery={ artworks.map((data) =>
 					({
@@ -93,11 +92,10 @@ export default function GalleryContent({
 						))
 					) }
 				/>
-				{/* </div> */}
 			</section>
 
 			<section>
-				<h2>{ dict.pages.portfolio.h3 }</h2>
+				<h2>{ dict.pages.illustrations['see-more'] }</h2>
 				<div className='social-media'>
 					<Link
 						href='https://www.deviantart.com/robotoskunk'

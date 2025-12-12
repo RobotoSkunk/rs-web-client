@@ -83,6 +83,11 @@
 			"toggle-hide": "Hide",
 			"toggle-label": "screenshots of"
 		},
+		"illustrations": {
+			"title": "Illustrations",
+			"description": "Some of my favorite artworks that I have made.",
+			"see-more": "Want to see more?"
+		},
 		"legal": {
 			"privacy": "Privacy Notice",
 			"open-source": "Open Source",

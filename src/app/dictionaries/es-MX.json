@@ -87,6 +87,11 @@
 			"toggle-hide": "Ocultar",
 			"toggle-label": "capturas de"
 		},
+		"illustrations": {
+			"title": "Ilustraciones",
+			"description": "Algunas de mis ilustraciones favoritas que he hecho.",
+			"see-more": "¿Quieres ver más?"
+		},
 		"legal": {
 			"privacy": "Aviso de Privacidad",
 			"open-source": "Código Abierto",
