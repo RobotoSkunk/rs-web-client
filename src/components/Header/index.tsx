@@ -116,11 +116,6 @@ export default function Header({
 				animate='visible'
 			>
 				{/* <motion.span variants={ linkVariants }>
-					<Link href={ `/${lang}/about` }>
-						{ dict.layout.header.about }
-					</Link>
-				</motion.span> */}
-				{/* <motion.span variants={ linkVariants }>
 					<Link href={ `/${lang}/blog` }>
 						Blog
 					</Link>
@@ -135,11 +130,11 @@ export default function Header({
 						{ dict.layout.header.illustrations }
 					</Link>
 				</motion.span>
-				{/* <motion.span variants={ linkVariants }>
+				<motion.span variants={ linkVariants }>
 					<Link href={ `/${lang}/commissions` }>
 						{ dict.layout.header.commissions }
 					</Link>
-				</motion.span> */}
+				</motion.span>
 				<motion.span variants={ linkVariants }>
 					<Link href={ `/${lang}/contact` }>
 						{ dict.layout.header.contact }

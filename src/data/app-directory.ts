@@ -47,11 +47,11 @@ export default [
 		priority: 1,
 		validForSeo: true,
 	},
-	// {
-	// 	path: '/commissions',
-	// 	priority: 1,
-	// 	validForSeo: true,
-	// },
+	{
+		path: '/commissions',
+		priority: 1,
+		validForSeo: true,
+	},
 	{
 		path: '/support-me',
 		priority: 0.5,
