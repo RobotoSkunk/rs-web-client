@@ -20,37 +20,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion, MotionProps, Variants } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 import { robotoCondensed } from '@/utils/fonts';
 
 import backImage from '@/assets/svg/symbols/back.svg';
 
 import { useDictionary } from '../providers/DictionaryProvider';
-
-
-
-
-function toggleNav()
-{
-	document.querySelector('header')?.classList.toggle('nav-open');
-}
-
-function displayHomeLink(pathname: string, lang: string)
-{
-	const navMenu = document.getElementById('nav-menu');
-
-	pathname = pathname.replace(`/${lang}`, '');
-
-	if (navMenu) {
-		navMenu.classList.toggle('show-home', pathname !== '');
-	}
-
-	document.querySelector('header')?.classList.remove('nav-open');
-}
-
 
 
 export default function Header({
@@ -64,7 +42,43 @@ export default function Header({
 	const pathname = usePathname();
 	const lang = params.lang;
 
-	useEffect(() => displayHomeLink(pathname as string, lang), [ pathname, lang ]);
+	const backDiv = useRef<HTMLDivElement | null>(null);
+	const [ backPath, setBackPath ] = useState<string>(`/${lang}`);
+	const [ backText, setBackText ] = useState<string>(dict.layout.header.home);
+
+
+	function toggleNav()
+	{
+		document.querySelector('header')?.classList.toggle('nav-open');
+	}
+
+	useEffect(() =>
+	{
+		if (!backDiv.current) {
+			return;
+		}
+
+		const path = pathname.replace(`/${lang}`, '');
+		const backActionInput = document.getElementById('back-action') as HTMLInputElement | undefined;
+
+		backDiv.current.classList.toggle('show-home', path.length > 0);
+
+		if (backActionInput) {
+			const backDir = backActionInput.value;
+
+			setBackPath(`/${lang}/${backDir}`);
+			setBackText(dict.layout.header.back);
+
+			backActionInput.remove();
+		} else {
+			setBackPath(`/${lang}`);
+			setBackText(dict.layout.header.home);
+		}
+
+		console.log(pathname, Boolean(backActionInput));
+
+		document.querySelector('header')?.classList.remove('nav-open');
+	}, [ pathname ]);
 
 
 	const navVariants = {
@@ -138,19 +152,19 @@ export default function Header({
 				</motion.span>
 			</motion.nav>
 
-			<div id='nav-menu'>
+			<div  id='nav-menu' ref={ backDiv }>
 				<div>
-					<Link href={ `/${lang}` } className='home-link'>
+					<Link href={ backPath } className='home-link'>
 						<Image
 							alt=''
 							src={ backImage }
 							width={ 20 }
 							priority={ true }
 						/>
-						<span>{ dict.layout.header.home }</span>
+						<span>{ backText }</span>
 					</Link>
 				</div>
-				<button id='nav-toggle' aria-label={ dict.layout.header.aria['toggle-menu'] } onClick={toggleNav}>
+				<button id='nav-toggle' aria-label={ dict.layout.header.aria['toggle-menu'] } onClick={ toggleNav }>
 					<div className='lines'>
 						<div></div>
 						<div></div>

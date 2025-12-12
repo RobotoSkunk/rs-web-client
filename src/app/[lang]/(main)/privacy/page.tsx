@@ -49,7 +49,8 @@ export default async function Page({
 
 	// TODO: This is currently a workaround. A proper function to handle MDX files by localization is needed.
 
-	return (
+	return (<>
+		<input type='hidden' id='back-action' value='legal'/>
 		<main className={ style.main }>
 			{ lang === 'es-MX' ?
 				<PrivacyPolicy_ES_MX/>
@@ -57,5 +58,5 @@ export default async function Page({
 				<PrivacyPolicy_EN_US/>
 			}
 		</main>
-	);
+	</>);
 }
