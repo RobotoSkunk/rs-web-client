@@ -28,6 +28,7 @@ import Background from '@/components/Background';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AlexPhrase from '@/components/AlexPhrase';
+import ANSISkunko from '@/components/ANSISkunko';
 
 import { getDictionary, locales } from '@/app/dictionaries';
 import DictionaryProvider from '@/components/providers/DictionaryProvider';
@@ -155,6 +156,8 @@ export default async function RootLayout({
 						</StupidMotionWorkaround>
 					</DictionaryProvider>
 				</div>
+
+				<ANSISkunko/>
 			</body>
 		</html>
 	);
