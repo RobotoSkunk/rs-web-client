@@ -22,6 +22,8 @@ import { roboto300 } from '@/utils/fonts';
 import './globals.css';
 import { getDictionary } from '@/app/dictionaries';
 
+import ANSISkunko from '@/components/ANSISkunko';
+
 
 export async function generateMetadata({
 	params,
@@ -57,6 +59,8 @@ export default async function RootLayout({
 				<footer>
 					<a href='/'>robotoskunk.com</a>
 				</footer>
+
+				<ANSISkunko/>
 			</body>
 		</html>
 	);
