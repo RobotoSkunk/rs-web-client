@@ -19,7 +19,7 @@
     "framer-motion": "^12.23.26",
     "mdx": "^0.2.3",
     "negotiator": "^1.0.0",
-    "next": "^16.0.10",
+    "next": "^16.1.5",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-type-animation": "^3.2.0",
