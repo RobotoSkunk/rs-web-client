@@ -145,7 +145,7 @@ export default function Root()
 					<YouTube/>
 				</Link>
 				<Link
-					href='https://linkedin.com/in/RobotoSkunk'
+					href='https://linkedin.com/in/edgaralexislima'
 					title='LinkedIn'
 					target='_blank'
 					rel='noreferrer noopener'
