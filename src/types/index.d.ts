@@ -48,6 +48,7 @@ declare global
 		title?: LocalizationsData,
 		priority: number,
 		validForSeo: boolean,
+		backPath?: string,
 	}
 
 	type Localizations = 'es-MX' | 'en-US';

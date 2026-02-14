@@ -52,7 +52,6 @@ export default async function Page({
 	const dict = await getDictionary(lang);
 
 	return (<>
-		<input type='hidden' id='back-action' value='legal'/>
 		<main className={ style.main }>
 			<h1>{ dict.pages['open-source'].h1 }</h1>
 			<p>{ dict.pages['open-source'].h1p }</p>

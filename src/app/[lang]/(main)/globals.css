@@ -312,8 +312,8 @@ nav {
 	transition-timing-function: ease;
 }
 
-#nav-menu.show-home .dummy-div { display: none }
-#nav-menu.show-home .home-link {
+#nav-menu.show .dummy-div { display: none }
+#nav-menu.show .home-link {
 	left: 0;
 	opacity: 1;
 	visibility: visible;

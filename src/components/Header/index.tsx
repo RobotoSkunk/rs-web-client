@@ -29,6 +29,7 @@ import { robotoCondensed } from '@/utils/fonts';
 import backImage from '@/assets/svg/symbols/back.svg';
 
 import { useDictionary } from '../providers/DictionaryProvider';
+import appDirectory from '@/data/app-directory';
 
 
 export default function Header({
@@ -59,23 +60,17 @@ export default function Header({
 		}
 
 		const path = pathname.replace(`/${lang}`, '');
-		const backActionInput = document.getElementById('back-action') as HTMLInputElement | undefined;
+		const pathData = appDirectory.find(p => p.path === path);
 
-		backDiv.current.classList.toggle('show-home', path.length > 0);
+		backDiv.current.classList.toggle('show', path.length > 0);
 
-		if (backActionInput) {
-			const backDir = backActionInput.value;
-
-			setBackPath(`/${lang}/${backDir}`);
+		if (pathData && pathData.backPath) {
+			setBackPath(`/${lang}/${pathData.backPath}`);
 			setBackText(dict.layout.header.back);
-
-			backActionInput.remove();
 		} else {
 			setBackPath(`/${lang}`);
 			setBackText(dict.layout.header.home);
 		}
-
-		console.log(pathname, Boolean(backActionInput));
 
 		document.querySelector('header')?.classList.remove('nav-open');
 	}, [ pathname ]);

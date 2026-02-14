@@ -31,6 +31,7 @@ export default [
 		path: '/open-source',
 		priority: 0.3,
 		validForSeo: true,
+		backPath: '/legal',
 	},
 	{
 		path: '/illustrations',
@@ -46,6 +47,7 @@ export default [
 		path: '/privacy',
 		priority: 1,
 		validForSeo: true,
+		backPath: '/legal',
 	},
 	// {
 	// 	path: '/commissions',
