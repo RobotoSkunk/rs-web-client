@@ -62,6 +62,7 @@ export default async function Page({
 				src={ alexHappy }
 				alt={ dict.pages['support-me']['img-alt'] }
 				width={ 300 }
+				placeholder='blur'
 
 				priority={ true }
 				fetchPriority='high'

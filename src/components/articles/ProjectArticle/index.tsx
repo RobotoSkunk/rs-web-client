@@ -146,6 +146,7 @@ export default function ProjectArticle({
 						width={ 45 }
 						height={ 45 }
 						draggable={ false }
+						placeholder='blur'
 
 						priority={ true }
 						fetchPriority='high'
@@ -182,6 +183,7 @@ export default function ProjectArticle({
 									draggable={ false }
 									width={ 350 }
 									height={ 263 }
+									placeholder='blur'
 
 									priority={ true }
 									fetchPriority='high'
@@ -243,6 +245,7 @@ export default function ProjectArticle({
 											src={ screenshot.src }
 											alt={ screenshot.alt[lang] }
 											width={ 300 }
+											placeholder='blur'
 										/>
 									</button>
 									<span>

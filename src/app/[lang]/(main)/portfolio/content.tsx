@@ -59,6 +59,7 @@ export default function PortfolioContent({
 							width={ 200 }
 							className={ style['profile-picture'] }
 							draggable={ false }
+							placeholder='blur'
 
 							priority={ true }
 							fetchPriority='high'

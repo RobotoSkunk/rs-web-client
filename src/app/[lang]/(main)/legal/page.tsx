@@ -51,6 +51,7 @@ export default async function Page({
 				alt={ dict.pages.legal['img-alt'] }
 				src={ alexImage }
 				width={ 400 }
+				placeholder='blur'
 
 				priority={ true }
 				fetchPriority='high'

@@ -492,7 +492,7 @@ export default function Gallery({
 									initial={ false }
 									custom={ direction }
 								>
-									<motion.img
+									<motion.div
 										className={ style.picture }
 										custom={ direction }
 
@@ -535,13 +535,17 @@ export default function Gallery({
 											}
 										}}
 
-										src={ gallery[page].img.src }
-										alt={ gallery[page].alt }
-
 										key={ gallery[page].img.src }
+									>
+										<Image
+											src={ gallery[page].img }
+											alt={ gallery[page].alt }
+											placeholder='blur'
 
-										draggable={ false }
-									/>
+											draggable={ false }
+											unoptimized
+										/>
+									</motion.div>
 								</AnimatePresence>
 							</motion.div>
 
@@ -647,6 +651,7 @@ export default function Gallery({
 
 													quality={ 65 }
 													height={ 150 }
+													placeholder='blur'
 
 													draggable={ false }
 												/>

@@ -82,6 +82,7 @@ export default function GalleryContent({
 										src={ data.img }
 										alt='' // Disabled due to redundancy
 										sizes={ `${(data.img.width / data.img.height) * 350}px` }
+										placeholder='blur'
 										fill
 									/>
 									<div>

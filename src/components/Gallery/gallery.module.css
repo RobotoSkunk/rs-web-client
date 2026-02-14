@@ -128,12 +128,16 @@
 
 			margin: 0 auto;
 
-			& img {
+			& .picture,
+			& .picture img {
 				position: absolute;
 
-				max-height: calc(100% - 25px);
-				max-width: calc(100% - 25px);
+				max-width: calc(100vw - 50px);
+				max-height: calc(100vh - 50px);
+			}
 
+			& .picture img {
+				position: unset;
 				object-fit: contain;
 			}
 		}
