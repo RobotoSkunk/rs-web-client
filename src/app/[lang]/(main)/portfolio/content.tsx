@@ -19,6 +19,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { use } from 'react';
 
 import style from './page.module.css';
@@ -30,7 +31,7 @@ import ProjectArticle from '@/components/articles/ProjectArticle';
 
 import LinkedIn from '@/components/icons/social/LinkedIn';
 import GitHub from '@/components/icons/social/GitHub';
-import Image from 'next/image';
+import GitLab from '@/components/icons/social/GitLab';
 import profilePicture from '@/assets/img/profile-picture.webp';
 import ExternalLink from '@/components/icons/ExternalLink';
 
@@ -124,6 +125,14 @@ export default function PortfolioContent({
 						rel='noreferrer noopener'
 					>
 						<GitHub/>
+					</Link>
+					<Link
+						href='https://gitlab.com/RobotoSkunk'
+						title='GitLab'
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						<GitLab/>
 					</Link>
 				</div>
 			</section>
