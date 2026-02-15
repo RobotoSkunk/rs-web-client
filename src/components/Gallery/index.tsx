@@ -392,35 +392,48 @@ export default function Gallery({
 
 									transition={ uiTransition }
 								>
-									<AnimatePresence mode='popLayout'>
+									<div className={ style['title-container'] }>
 										{ isMobile ?
-											<motion.span
-												initial={{ opacity: 0, y: -25 }}
-												animate={{ opacity: 1, y: 0 }}
-												exit   ={{ opacity: 0, y: 25 }}
-
-												key={ gallery[page].alt }
-											>
-												{ gallery[page].alt }
-											</motion.span>
-											:
-											gallery[page].alt.split('').map((char, i) => (
+											<AnimatePresence mode='popLayout'>
 												<motion.span
 													initial={{ opacity: 0, y: -25 }}
 													animate={{ opacity: 1, y: 0 }}
 													exit   ={{ opacity: 0, y: 25 }}
 
-													transition={{
-														delay: i / 75,
-													}}
-
-													key={ gallery[page].img.src + char + i }
+													className={ style.word }
+													key={ gallery[page].alt }
 												>
-													{ char === ' ' ? <>&nbsp;</> : char }
+													{ gallery[page].alt }
 												</motion.span>
+											</AnimatePresence>
+											:
+											gallery[page].alt.split(' ').map((word, i) => (
+												<div
+													key={ i }
+													className={ style.word }
+												>
+													<AnimatePresence mode='popLayout'>
+														{ word.split('').map((char, j) => (
+															<motion.span
+																initial={{ opacity: 0, y: -25 }}
+																animate={{ opacity: 1, y: 0 }}
+																exit   ={{ opacity: 0, y: 25 }}
+
+																transition={{
+																	delay: 0.02 + Math.random() * 0.16,
+																}}
+
+																className={ style.letter }
+																key={ `${page}-${i}-${j}` }
+															>
+																{ char }
+															</motion.span>
+														)) }
+													</AnimatePresence>
+												</div>
 											))
 										}
-									</AnimatePresence>
+									</div>
 								</motion.div>
 							}
 						</AnimatePresence>

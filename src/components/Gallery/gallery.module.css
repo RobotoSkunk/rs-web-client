@@ -18,7 +18,7 @@
 
 .fullscreen-gallery {
 	--strip-height: 200px;
-	--title-height: 50px;
+	--title-height: 75px;
 	--gallery-background: #000000aa;
 	--gallery-background-mobile: #000000dd;
 	/* --dotted-background: white; */
@@ -64,15 +64,14 @@
 	}
 
 	& .title {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
 		position: absolute;
 		top: 0;
 		left: 0;
 		right: 0;
 
+		text-align: center;
+
+		width: 100vw;
 		height: var(--title-height);
 		font-size: 1.5em;
 
@@ -82,8 +81,28 @@
 		z-index: 3;
 		user-select: none;
 
-		& span {
-			margin: 0 !important;
+		& .title-container {
+			display: flex;
+			align-items: flex-start;
+			justify-content: center;
+			flex-wrap: wrap;
+
+			column-gap: 0.23em;
+
+			margin: 0 auto;
+			margin-top: 15px;
+			width: calc(100vw - 150px);
+
+			& .word {
+				display: inline-block;
+				margin: 0 !important;
+			}
+
+			& .letter {
+				display: inline-block;
+				position: relative;
+				margin: 0 !important;
+			}
 		}
 	}
 

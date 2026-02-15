@@ -152,7 +152,7 @@ body[device-type=tablet] .button:hover {
 	}
 }
 
-.container .screenshots > div span {
+.container .screenshots > .screenshot-container span {
 	max-width: 280px;
 	margin: 0 auto;
 }

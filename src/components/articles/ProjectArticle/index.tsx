@@ -226,6 +226,7 @@ export default function ProjectArticle({
 							(
 								<motion.div
 									key={ i }
+									className={ style['screenshot-container'] }
 									animate={{
 										y: open ? 0 : 15,
 										opacity: open ? 1 : 0,
