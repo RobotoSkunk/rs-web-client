@@ -1,37 +1,23 @@
 {
   "name": "rs-web-client",
-  "version": "0.1.0",
   "private": true,
   "types": "src/types/index.d.ts",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "prebuild": "next telemetry disable",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "bun run --hot ."
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.8",
-    "@mdx-js/loader": "^3.1.1",
-    "@mdx-js/react": "^3.1.1",
-    "@next/mdx": "^16.2.6",
-    "@types/mdx": "^2.0.13",
     "framer-motion": "^12.38.0",
-    "mdx": "^0.3.1",
+    "hono": "^4.12.32",
     "negotiator": "^1.0.0",
-    "next": "^16.2.6",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6",
-    "react-type-animation": "^3.2.0",
-    "sharp": "^0.34.5"
+    "react-dom": "^19.2.6"
   },
   "devDependencies": {
+    "@types/bun": "latest",
     "@types/negotiator": "^0.6.4",
-    "@types/node": "^25.8.0",
     "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "typescript": "^6.0.3",
-    "@types/bun": "latest"
+    "@types/react-dom": "^19.2.3"
   },
   "module": "src/index.ts",
   "type": "module"
