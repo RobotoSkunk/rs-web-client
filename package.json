@@ -11,7 +11,8 @@
     "hono": "^4.12.32",
     "negotiator": "^1.0.0",
     "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react-dom": "^19.2.6",
+    "react-router": "^8.3.0"
   },
   "devDependencies": {
     "@types/bun": "latest",
