@@ -3,21 +3,22 @@
   "private": true,
   "types": "src/types/index.d.ts",
   "scripts": {
-    "dev": "bun run --hot ."
+    "dev": "bun run --watch .",
+    "hot": "bun run --hot ."
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.8",
     "framer-motion": "^12.38.0",
     "hono": "^4.12.32",
     "negotiator": "^1.0.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-router": "^8.3.0"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/negotiator": "^0.6.4",
-    "@types/react": "^19.2.14",
+    "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3"
   },
   "module": "src/index.ts",

@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
     // Environment setup & latest features
-    "lib": ["ESNext"],
+    "lib": [ "ESNext", "DOM" ],
     "target": "ESNext",
     "module": "Preserve",
     "moduleDetection": "force",
     "jsx": "react-jsx",
+	"jsxImportSource": "react",
     "allowJs": true,
-    "types": ["bun"],
+    "types": [ "bun", "react" ],
 
     // Bundler mode
     "moduleResolution": "bundler",
@@ -22,9 +23,15 @@
     "noUncheckedIndexedAccess": true,
     "noImplicitOverride": true,
 
+    "paths": {
+      "@static/*": [ "./src/client/static/*" ],
+      "@app/*": [ "./src/client/app/*" ],
+    },
+
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,
     "noUnusedParameters": false,
-    "noPropertyAccessFromIndexSignature": false
-  }
+    "noPropertyAccessFromIndexSignature": false,
+  },
+  "exclude": [ "node_modules" ],
 }
