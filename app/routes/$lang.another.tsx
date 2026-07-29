@@ -17,15 +17,19 @@
 **/
 
 
+import type {
+	Route,
+} from './+types/$lang.another'
+
 import {
 	NavLink,
 } from 'react-router';
 
 
-export default function PageAnother()
+export default function PageAnother({ params }: Route.ActionArgs)
 {
 	return (<>
 		<h1>Got lost?</h1>
-		<NavLink to='/'>Go back then.</NavLink>
+		<NavLink to={ `/${params.lang}` }>Go back then.</NavLink>
 	</>);
 }

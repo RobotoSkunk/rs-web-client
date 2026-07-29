@@ -17,12 +17,18 @@
 **/
 
 
+import type {
+	Route,
+} from './+types/$lang._index'
+
 import {
 	NavLink,
 } from 'react-router';
 
+import skunko from '~/assets/img/alex-happy.webp';
 
-export default function PageHome()
+
+export default function PageHome({ params }: Route.LoaderArgs)
 {
 	return (<>
 		<h1>Does this work?</h1>
@@ -31,6 +37,7 @@ export default function PageHome()
 		<h4>Does this work?</h4>
 		<h5>Does this work?</h5>
 		<h6>Does this work?</h6>
-		<NavLink to='/another'>Go to another site.</NavLink>
+		<img src={ skunko }/>
+		<NavLink to={ `/${params.lang}/another` }>Go to another site.</NavLink>
 	</>);
 }

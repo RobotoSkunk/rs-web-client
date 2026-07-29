@@ -41,7 +41,31 @@ import {
 import crypto from 'crypto';
 
 
+import { match } from '@formatjs/intl-localematcher';
+import Negotiator from 'negotiator';
+
+
+const defaultLocale = 'en-US';
+
 export const streamTimeout = 5_000;
+
+
+function getDefaultLocale(request: Request): string
+{
+	const requestedLocales = new Negotiator({
+		headers: {
+			'accept-language': request.headers.get('accept-language') || 'en-US,en;q=0.5',
+		},
+	}).languages();
+
+	var localeFound = defaultLocale;
+
+	try {
+		localeFound = match(requestedLocales, [ 'en-US', 'es-MX' ], defaultLocale);
+	} catch (_) { }
+
+	return localeFound;
+}
 
 export default async function handleRequest(
 	request: Request,
@@ -59,8 +83,18 @@ export default async function handleRequest(
 
 	let shellRendered = false;
 	const userAgent = request.headers.get('user-agent');
-
 	const url = new URL(request.url);
+
+	const locale = getDefaultLocale(request);
+
+	const pathnameHasLocal = [ 'en-US', 'es-MX' ].filter(
+		(locale) => url.pathname.startsWith(`/${locale}/`) || url.pathname === `/${locale}`
+	);
+
+	if (!pathnameHasLocal.length) {
+		return Response.redirect(new URL(`/${locale}${url.pathname}`, url));
+	}
+
 
 	const hostname = request.headers.get('Host') || url.hostname;
 	// const canonicalPathname = url.pathname.replace(`/${localesResponse.locale}`, '');
@@ -71,7 +105,7 @@ export default async function handleRequest(
 	const nonce = crypto.randomBytes(32).toString('base64url');
 
 	const csp = [
-		`default-src 'self' 'nonce-${nonce}' 'strict-dynamic' ${ allowInsecure ? "'unsafe-eval'" : '' }`,
+		`default-src 'self' 'nonce-${nonce}' 'strict-dynamic'`,
 		`style-src 'self' 'unsafe-inline'`,
 		`img-src 'self' blob: data:`,
 		`font-src 'self'`,
