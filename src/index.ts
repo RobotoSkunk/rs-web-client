@@ -1,22 +1,17 @@
-
-import { Hono } from 'hono';
-import { serveStatic } from 'hono/bun';
-import { logger } from 'hono/logger';
+import Elysia, { file } from 'elysia';
+import staticPlugin from '@elysia/static';
+import cors from '@elysia/cors';
 
 import html from './client/index.html';
-
-const app = new Hono();
-app.use(logger());
-
-app.use(serveStatic({ root: './src/client/static' }));
+import { client } from './client';
 
 
-const server = Bun.serve({
-	routes: {
-		'/': html,
-	},
-	fetch: app.fetch,
-	development: process.env.NODE_ENV == 'development',
-});
-
-console.log(`Server running on port ${server.port}`);
+new Elysia()
+	.use(cors())
+	.use(staticPlugin({
+		assets: './src/client/assets',
+		prefix: '/assets',
+	}))
+	.get('/favicon.ico', file('./src/client/favicon.ico'))
+	.use(client)
+	.listen(3000);
