@@ -16,29 +16,52 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+
+import {
+	useContext,
+} from 'react';
+
+import {
+	Links,
+	Meta,
+	Scripts,
+	ScrollRestoration,
+} from 'react-router';
+
+import {
+	NonceContext,
+} from './nonce';
+
+import ANSISkunko from './components/ANSISkunko';
+
+
+export default function Layout({
+	children,
+}: {
+	children: React.ReactNode;
+})
 {
-	"include": [
-		"**/*",
-		"**/.server/**/*",
-		"**/.client/**/*",
-		".react-router/types/**/*",
-	],
-	"compilerOptions": {
-		"lib": [ "DOM", "DOM.Iterable", "ES2022" ],
-		"types": [ "node", "vite/client" ],
-		"target": "ES2022",
-		"module": "ES2022",
-		"moduleResolution": "bundler",
-		"jsx": "react-jsx",
-		"rootDirs": [ ".", "./.react-router/types" ],
-		"paths": {
-			"~/*": [ "./app/*" ],
-		},
-		"esModuleInterop": true,
-		"verbatimModuleSyntax": true,
-		"noEmit": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"strict": true,
-	}
+	const nonce = useContext(NonceContext);
+
+	return (
+		<html lang='en'>
+			<head>
+				<meta charSet='utf-8' />
+				<meta name='viewport' content='width=device-width, initial-scale=1' />
+				<Meta/>
+				<Links nonce={ nonce }/>
+			</head>
+			<body>
+				<header>Header</header>
+				<div>
+					{ children }
+				</div>
+				<footer>Footer</footer>
+
+				<Scripts nonce={ nonce }/>
+				<ScrollRestoration nonce={ nonce }/>
+				<ANSISkunko/>
+			</body>
+		</html>
+	);
 }

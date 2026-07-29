@@ -4,8 +4,9 @@
 # testing
 /coverage
 
-# production
-/build
+# React Router
+/.react-router/
+/build/
 
 # misc
 .DS_Store

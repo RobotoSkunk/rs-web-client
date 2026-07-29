@@ -16,29 +16,21 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+
+import {
+	NavLink,
+} from 'react-router';
+
+
+export default function PageHome()
 {
-	"include": [
-		"**/*",
-		"**/.server/**/*",
-		"**/.client/**/*",
-		".react-router/types/**/*",
-	],
-	"compilerOptions": {
-		"lib": [ "DOM", "DOM.Iterable", "ES2022" ],
-		"types": [ "node", "vite/client" ],
-		"target": "ES2022",
-		"module": "ES2022",
-		"moduleResolution": "bundler",
-		"jsx": "react-jsx",
-		"rootDirs": [ ".", "./.react-router/types" ],
-		"paths": {
-			"~/*": [ "./app/*" ],
-		},
-		"esModuleInterop": true,
-		"verbatimModuleSyntax": true,
-		"noEmit": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"strict": true,
-	}
+	return (<>
+		<h1>Does this work?</h1>
+		<h2>Does this work?</h2>
+		<h3>Does this work?</h3>
+		<h4>Does this work?</h4>
+		<h5>Does this work?</h5>
+		<h6>Does this work?</h6>
+		<NavLink to='/another'>Go to another site.</NavLink>
+	</>);
 }

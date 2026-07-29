@@ -3,28 +3,30 @@
   "private": true,
   "types": "src/types/index.d.ts",
   "scripts": {
-    "dev": "bun run --watch .",
-    "hot": "bun run --hot ."
+    "build": "react-router build",
+    "dev": "react-router dev",
+    "start": "react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@elysia/cors": "^1.4.2",
-    "@elysia/static": "^1.4.11",
     "@formatjs/intl-localematcher": "^0.8.8",
-    "@vitejs/plugin-react": "^6.0.4",
-    "elysia": "^1.4.29",
+    "@react-router/fs-routes": "^8.3.0",
     "framer-motion": "^12.38.0",
+    "isbot": "^5",
     "negotiator": "^1.0.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
-    "react-router": "^8.3.0",
-    "vite": "^8.1.5"
+    "react-router": "^8.3.0"
   },
   "devDependencies": {
+    "@react-router/dev": "^8.3.0",
     "@types/negotiator": "^0.6.4",
     "@types/node": "^26.1.2",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@types/bun": "latest"
+    "@vitejs/plugin-react": "^6.0.4",
+    "@vitejs/plugin-rsc": "^0.5.32",
+    "vite": "^8.1.5"
   },
   "module": "src/index.ts",
   "type": "module",

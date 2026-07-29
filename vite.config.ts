@@ -16,29 +16,21 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-{
-	"include": [
-		"**/*",
-		"**/.server/**/*",
-		"**/.client/**/*",
-		".react-router/types/**/*",
+
+import {
+	reactRouter,
+} from '@react-router/dev/vite';
+
+import {
+	defineConfig,
+} from 'vite';
+
+
+export default defineConfig({
+	plugins: [
+		reactRouter(),
 	],
-	"compilerOptions": {
-		"lib": [ "DOM", "DOM.Iterable", "ES2022" ],
-		"types": [ "node", "vite/client" ],
-		"target": "ES2022",
-		"module": "ES2022",
-		"moduleResolution": "bundler",
-		"jsx": "react-jsx",
-		"rootDirs": [ ".", "./.react-router/types" ],
-		"paths": {
-			"~/*": [ "./app/*" ],
-		},
-		"esModuleInterop": true,
-		"verbatimModuleSyntax": true,
-		"noEmit": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"strict": true,
-	}
-}
+	resolve: {
+		tsconfigPaths: true,
+	},
+});

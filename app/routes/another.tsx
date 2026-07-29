@@ -16,29 +16,16 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+
+import {
+	NavLink,
+} from 'react-router';
+
+
+export default function PageAnother()
 {
-	"include": [
-		"**/*",
-		"**/.server/**/*",
-		"**/.client/**/*",
-		".react-router/types/**/*",
-	],
-	"compilerOptions": {
-		"lib": [ "DOM", "DOM.Iterable", "ES2022" ],
-		"types": [ "node", "vite/client" ],
-		"target": "ES2022",
-		"module": "ES2022",
-		"moduleResolution": "bundler",
-		"jsx": "react-jsx",
-		"rootDirs": [ ".", "./.react-router/types" ],
-		"paths": {
-			"~/*": [ "./app/*" ],
-		},
-		"esModuleInterop": true,
-		"verbatimModuleSyntax": true,
-		"noEmit": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"strict": true,
-	}
+	return (<>
+		<h1>Got lost?</h1>
+		<NavLink to='/'>Go back then.</NavLink>
+	</>);
 }
