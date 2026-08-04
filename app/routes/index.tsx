@@ -19,17 +19,25 @@
 
 import type {
 	Route,
-} from './+types/$lang.another'
+} from './+types/index';
 
 import {
 	NavLink,
 } from 'react-router';
 
+import skunko from '@/assets/img/alex-happy.webp';
 
-export default function PageAnother({ params }: Route.ActionArgs)
+
+export default function PageHome({ params }: Route.LoaderArgs)
 {
 	return (<>
-		<h1>Got lost?</h1>
-		<NavLink to={ `/${params.lang}` }>Go back then.</NavLink>
+		<h1>Does this work?</h1>
+		<h2>Does this work?</h2>
+		<h3>Does this work?</h3>
+		<h4>Does this work?</h4>
+		<h5>Does this work?</h5>
+		<h6>Does this work?</h6>
+		<img src={ skunko }/>
+		<NavLink to={ `/${params.lang}/another` }>Go to another site.</NavLink>
 	</>);
 }
