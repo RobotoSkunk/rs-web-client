@@ -23,6 +23,6 @@ import {
 } from '@react-router/dev/routes';
 
 export default [
-	route('/:lang', './routes/index.tsx'),
-	route('/:lang/another', './routes/another.tsx'),
+	route('/:lang', './routes/main/home/index.tsx'),
+	route('/:lang/another', './routes/main/another/index.tsx'),
 ] satisfies RouteConfig;

@@ -16,28 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-
-import type {
-	Route,
-} from './+types/index';
-
-import {
-	NavLink,
-} from 'react-router';
-
-import skunko from '@/assets/img/alex-happy.webp';
-
-
-export default function PageHome({ params }: Route.LoaderArgs)
-{
-	return (<>
-		<h1>Does this work?</h1>
-		<h2>Does this work?</h2>
-		<h3>Does this work?</h3>
-		<h4>Does this work?</h4>
-		<h5>Does this work?</h5>
-		<h6>Does this work?</h6>
-		<img src={ skunko }/>
-		<NavLink to={ `/${params.lang}/another` }>Go to another site.</NavLink>
-	</>);
+@font-face {
+	font-family: 'Roboto Mono';
+	src: url('./bin/RobotoMono.woff2') format('woff2');
+	font-style: normal;
+	font-display: swap;
 }

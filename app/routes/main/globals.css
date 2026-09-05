@@ -1,0 +1,98 @@
+/**
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2026  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+**/
+
+@import url(./colors.css);
+@import url(../../assets/font/roboto.css);
+
+body {
+	background: var(--background);
+	color: var(--foreground);
+	font-family: 'Roboto';
+
+	margin: 0;
+	padding: 0;
+
+	width: 100vw;
+	min-height: 100vh;
+}
+
+#app {
+	width: 100vw;
+	min-height: 100vh;
+}
+
+
+nav {
+	display: flex;
+	flex-direction: column;
+
+	gap: 18px;
+
+	position: fixed;
+	left: 20px;
+	top: 50%;
+	width: 300px;
+
+	transform: translateY(-50%);
+
+	& .link {
+		font-size: 2.4em;
+		font-weight: 100;
+
+		width: fit-content;
+
+		& a {
+			color: white;
+		}
+	}
+}
+
+a {
+	position: relative;
+	text-decoration: none;
+}
+
+a::after {
+	content: '';
+	display: block;
+
+	position: absolute;
+	bottom: 0;
+	left: 0;
+
+	width: 0;
+	height: 1px;
+
+	background-color: currentColor;
+
+	transition: width 0.16s ease-in-out;
+}
+
+a:hover::after,
+a:focus-visible::after {
+	width: 100%;
+}
+
+main {
+	display: inline-block;
+
+	margin-top: 20px;
+	margin-left: 300px;
+
+	min-height: 100vh;
+}

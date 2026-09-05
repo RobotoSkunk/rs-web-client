@@ -16,19 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+.background {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
 
-import {
-  Outlet,
-} from 'react-router';
-
-import Layout from './routes/main/layout';
-
-
-export {
-	Layout
-};
-
-export default function App()
-{
-	return <Outlet />;
+	z-index: -1;
 }

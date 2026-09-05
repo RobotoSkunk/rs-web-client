@@ -16,19 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-
-import {
-  Outlet,
-} from 'react-router';
-
-import Layout from './routes/main/layout';
-
-
-export {
-	Layout
-};
-
-export default function App()
-{
-	return <Outlet />;
+@font-face {
+	font-family: 'Roboto';
+	src: url('./bin/Roboto.woff2') format('woff2');
+	font-style: normal;
+	font-display: swap;
 }

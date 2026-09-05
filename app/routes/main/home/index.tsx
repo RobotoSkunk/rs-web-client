@@ -16,19 +16,15 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+import type {
+	Route,
+} from '../../../+types/root';
 
-import {
-  Outlet,
-} from 'react-router';
-
-import Layout from './routes/main/layout';
+import style from './home.module.css';
 
 
-export {
-	Layout
-};
-
-export default function App()
+export default function PageHome({ params }: Route.LoaderArgs)
 {
-	return <Outlet />;
+
+	return (<></>);
 }

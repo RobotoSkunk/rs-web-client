@@ -16,20 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-
-import type {
-	Route,
-} from './+types/another';
-
-import {
-	NavLink,
-} from 'react-router';
-
-
-export default function PageAnother({ params }: Route.ActionArgs)
-{
-	return (<>
-		<h1>Got lost?</h1>
-		<NavLink to={ `/${params.lang}` }>Go back then.</NavLink>
-	</>);
+:root {
+	--background: black;
+	--foreground: white;
 }

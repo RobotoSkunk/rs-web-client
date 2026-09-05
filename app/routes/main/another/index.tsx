@@ -16,19 +16,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+import type {
+	Route,
+} from '../../../+types/root';
 
 import {
-  Outlet,
+	NavLink,
 } from 'react-router';
 
-import Layout from './routes/main/layout';
 
-
-export {
-	Layout
-};
-
-export default function App()
+export default function PageAnother({ params }: Route.ActionArgs)
 {
-	return <Outlet />;
+	return (<>
+		<h1>Got lost?</h1>
+		<NavLink to={ `/${params.lang}` }>Go back then.</NavLink>
+	</>);
 }

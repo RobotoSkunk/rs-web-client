@@ -11,8 +11,8 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.8",
     "@react-router/serve": "^8.3.0",
-    "framer-motion": "^12.38.0",
     "isbot": "^5",
+    "motion": "^13.2.0",
     "negotiator": "^1.0.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
