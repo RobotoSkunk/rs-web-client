@@ -26,5 +26,10 @@ import style from './home.module.css';
 export default function PageHome({ params }: Route.LoaderArgs)
 {
 
-	return (<></>);
+	return (<>
+		<div className={ style.identity }>
+			<h1>Edgar Lima</h1>
+			<h2>Computer Systems Engineer</h2>
+		</div>
+	</>);
 }

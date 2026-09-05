@@ -16,30 +16,9 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-@import url(../../../assets/font/montserrat.css);
-@import url(../../../assets/font/roboto-condensed.css);
-
-.identity {
-	position: absolute;
-	bottom: 48px;
-	right: 24px;
-
-	text-align: right;
-
-	& h1,
-	& h2 {
-		font-weight: 100;
-	}
-
-	& h1 {
-		font-family: 'Montserrat';
-		font-size: 12em;
-		margin: 0;
-	}
-
-	& h2 {
-		font-family: 'Roboto Condensed';
-		font-size: 4em;
-		margin: 0;
-	}
+@font-face {
+	font-family: 'Montserrat';
+	src: url('./bin/Montserrat.woff2') format('woff2');
+	font-style: normal;
+	font-display: swap;
 }
