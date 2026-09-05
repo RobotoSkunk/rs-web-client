@@ -24,12 +24,41 @@ import {
 import {
 	AnimatePresence,
 	motion,
+	stagger,
+} from 'motion/react';
+
+import type {
+	Variants,
 } from 'motion/react';
 
 import {
 	useEffect,
 	useState,
 } from 'react';
+
+
+const linkVariants = {
+	show: {
+		x: 0,
+		opacity: 1,
+	},
+	hide: {
+		x: -23,
+		opacity: 0,
+	},
+	focus: {
+		x: 10,
+	},
+} satisfies Variants;
+
+const navVariants = {
+	show: {
+		transition: {
+			delayChildren: stagger(0.1),
+		},
+	},
+	hide: { },
+} satisfies Variants;
 
 
 export default function NavBar()
@@ -57,11 +86,15 @@ export default function NavBar()
 		return (
 			<motion.span
 				className='link'
-				whileHover={{
-					x: 10,
-				}}
+				whileHover='focus'
 
-				key={ `navlink-${path}` }
+				initial='hide'
+				animate='show'
+				exit='hide'
+
+				variants={ linkVariants }
+
+				key={ `navlink-${path?.replaceAll('/', '-')}` }
 				layout
 			>
 				<NavLink to={ `/${lang}/${path ?? ''}` }>
@@ -72,14 +105,23 @@ export default function NavBar()
 	}
 
 	return (
-		<nav>
-			<AnimatePresence mode='popLayout'>
+		<AnimatePresence mode='popLayout'>
+			<motion.nav
+				variants={{ navVariants }}
+
+				initial='hide'
+				animate='show'
+				exit='hide'
+
+				key='nav'
+			>
 				{ pathname != '/' && <NavLinkButton>Home</NavLinkButton> }
 				<NavLinkButton path='portfolio'>Blog</NavLinkButton>
 				<NavLinkButton path='portfolio'>Portfolio</NavLinkButton>
 				<NavLinkButton path='illustrations'>Illustrations</NavLinkButton>
 				<NavLinkButton path='contact'>Contact</NavLinkButton>
-			</AnimatePresence>
-		</nav>
+				<NavLinkButton path='another'>another</NavLinkButton>
+			</motion.nav>
+		</AnimatePresence>
 	);
 }

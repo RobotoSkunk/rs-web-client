@@ -16,9 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-
 import {
-  Outlet,
+	Outlet,
 } from 'react-router';
 
 import Layout from './routes/main/layout';
@@ -30,5 +29,5 @@ export {
 
 export default function App()
 {
-	return <Outlet />;
+	return <Outlet/>;
 }
