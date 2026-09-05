@@ -27,16 +27,24 @@ import {
 } from 'react-router';
 
 import {
-	isbot,
-} from 'isbot';
-
-import {
 	renderToReadableStream,
 } from 'react-dom/server';
 
 import {
 	NonceContext,
 } from './contexts/nonce';
+
+import {
+	UserAgentContext,
+} from './contexts/user-agent';
+
+import {
+	UAParser,
+} from 'ua-parser-js';
+
+import {
+	isBot,
+} from 'ua-parser-js/bot-detection';
 
 import crypto from 'crypto';
 
@@ -82,7 +90,7 @@ export default async function handleRequest(
 	}
 
 	let shellRendered = false;
-	const userAgent = request.headers.get('user-agent');
+	const userAgent = request.headers.get('user-agent')!;
 	const url = new URL(request.url);
 
 	const locale = getDefaultLocale(request);
@@ -94,7 +102,6 @@ export default async function handleRequest(
 	if (!pathnameHasLocal.length) {
 		return Response.redirect(new URL(`/${locale}${url.pathname}`, url));
 	}
-
 
 	const hostname = request.headers.get('Host') || url.hostname;
 	// const canonicalPathname = url.pathname.replace(`/${localesResponse.locale}`, '');
@@ -118,13 +125,15 @@ export default async function handleRequest(
 	];
 
 	const body = await renderToReadableStream(
-		<NonceContext.Provider value={ nonce }>
-			<ServerRouter
-				context={ routerContext }
-				url={ request.url }
-				nonce={ nonce }
-			/>
-		</NonceContext.Provider>,
+		<UserAgentContext.Provider value={ new UAParser(userAgent) }>
+			<NonceContext.Provider value={ nonce }>
+				<ServerRouter
+					context={ routerContext }
+					url={ request.url }
+					nonce={ nonce }
+				/>
+			</NonceContext.Provider>
+		</UserAgentContext.Provider>,
 		{
 			nonce,
 			signal: AbortSignal.timeout(streamTimeout + 1000),
@@ -139,9 +148,11 @@ export default async function handleRequest(
 
 	shellRendered = true;
 
-	if ((userAgent && isbot(userAgent)) || routerContext.isSpaMode) {
+	if (isBot(userAgent) || routerContext.isSpaMode) {
 		await body.allReady;
 	}
+
+
 
 	responseHeaders.set('Content-Type',              'text/html');
 	responseHeaders.set('Content-Security-Policy',   csp.join('; '));

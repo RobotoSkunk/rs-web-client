@@ -21,10 +21,6 @@ import {
 	useRef,
 } from 'react';
 
-import {
-	motion,
-} from 'motion/react';
-
 import style from './background.module.css';
 
 
@@ -33,31 +29,39 @@ const dotsSeparation = 12; // px
 const waviness = 180; // px
 const waveLength = 0.4; // decimals
 const dotsAlpha = 0.14; // [0, 1]
-const dotsRadius = 2; // px
-const mouseLightRadius = 600; // px
-const mouseLightStrength = 0.1; // [0, 1]
+const dotsRadius = 1.5; // px
+const mouseEffectRadius = 600; // px
+const mouseEffectStrength = 0.08; // [0, 1]
+const mouseEffectMoveStrength = 120; // px
 
 
 export default function Background()
 {
-	let disableRenderer = false;
-	let animationId = -1;
-	let prevTime = 0;
-	let mouseLightDelta = 0;
-
-	const mouse = {
-		x: 0,
-		y: 0,
-		moveTime: 0,
-	};
-
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
 	useEffect(() =>
 	{
+		let disableRenderer = false;
+		let animationId = -1;
+		let prevTime = 0;
+
+		const cursors: {
+			x: number;
+			y: number;
+			moveTime: number;
+			effectDelta: number;
+			isTouch: boolean;
+		}[] = [];
+
 		function render(time: DOMHighResTimeStamp)
 		{
 			if (disableRenderer) {
+				return;
+			}
+
+			if (document.hidden) {
+				window.requestAnimationFrame(render);
+				prevTime = time;
 				return;
 			}
 
@@ -87,18 +91,30 @@ export default function Background()
 			const deltaTime = (time - prevTime) / 1000;
 			prevTime = time;
 
-			if (mouse.moveTime > 0) {
-				mouse.moveTime -= deltaTime;
+			for (let i = 0; i < cursors.length; i++) {
+				const cursor = cursors[i];
 
-				mouseLightDelta += deltaTime;
-			} else {
-				mouseLightDelta -= deltaTime * 0.2;
-			}
+				if (cursor.moveTime > 0) {
+					cursor.moveTime -= deltaTime;
 
-			if (mouseLightDelta < 0) {
-				mouseLightDelta = 0;
-			} else if (mouseLightDelta > 1) {
-				mouseLightDelta = 1;
+					cursor.effectDelta += deltaTime;
+				} else {
+					if (cursor.isTouch) {
+						cursor.effectDelta -= deltaTime * 0.6;
+					} else {
+						cursor.effectDelta -= deltaTime * 0.2;
+					}
+				}
+
+				if (cursor.effectDelta < 0) {
+					cursor.effectDelta = 0;
+				} else if (cursor.effectDelta > 1) {
+					cursor.effectDelta = 1;
+				}
+
+				if (cursor.isTouch && cursor.moveTime <= 0 && cursor.effectDelta <= 0) {
+					cursors.splice(i, 1);
+				}
 			}
 
 			const rows = Math.ceil(height / dotsSeparation + waviness / 2);
@@ -106,11 +122,12 @@ export default function Background()
 
 			for (let y = 0; y < rows; y++) {
 				for (let x = 0; x < columns; x++) {
-					let alpha = Math.floor(dotsAlpha * (y / (rows / 2)) * 0xff * bgAlpha);
+					const rawAlpha = Math.floor(dotsAlpha * (y / (rows / 2)) * 0xff * bgAlpha);
 					const delta = Math.sin((time + x * 100 + y * 70) * waveLength / 1000);
 
-					const dotX = dotsRadius * 2 + x * dotsSeparation;
-					const dotY = -waviness - dotsSeparation * 2 + y * dotsSeparation - (delta * waviness);
+					let alpha = rawAlpha;
+					let dotX = dotsRadius * 2 + x * dotsSeparation;
+					let dotY = -waviness - dotsSeparation * 2 + y * dotsSeparation - (delta * waviness);
 
 					if (
 						dotX - dotsRadius > width ||
@@ -120,14 +137,29 @@ export default function Background()
 						continue;
 					}
 
-					const radius = mouseLightRadius * mouseLightDelta;
-					const distanceToMouse = Math.sqrt(Math.pow(mouse.x - dotX, 2) + Math.pow(mouse.y - dotY, 2));
+					for (const cursor of cursors) {
+						const radiusAlpha = mouseEffectRadius * cursor.effectDelta;
+						const radiusMove = mouseEffectMoveStrength * cursor.effectDelta;
+						const distanceToMouse = Math.sqrt(Math.pow(cursor.x - dotX, 2) + Math.pow(cursor.y - dotY, 2));
 
-					if (distanceToMouse < radius) {
-						const strength = mouseLightStrength * mouseLightDelta * bgAlpha;
+						if (distanceToMouse < radiusAlpha) {
+							const strength = mouseEffectStrength * cursor.effectDelta * bgAlpha;
+							const strengthDelta = 1 - distanceToMouse / radiusAlpha;
 
-						if (radius > 0) {
-							alpha += Math.floor(strength * (1 - distanceToMouse / radius) * 0xff);
+							if (radiusAlpha > 0) {
+								alpha = rawAlpha + Math.floor(strength * strengthDelta * 0xff);
+							}
+						}
+
+						if (distanceToMouse < radiusMove) {
+							const strengthDelta = (1 - distanceToMouse / radiusMove);
+
+							const rotationToCursor = Math.atan2(cursor.y - dotY, cursor.x - dotX);
+							const dirX = Math.sin(rotationToCursor + time / 380) * mouseEffectMoveStrength * strengthDelta;
+							const dirY = Math.cos(rotationToCursor + time / 380) * mouseEffectMoveStrength * strengthDelta;
+
+							dotX += dirX;
+							dotY += dirY;
 						}
 					}
 
@@ -143,25 +175,54 @@ export default function Background()
 
 		animationId = window.requestAnimationFrame(render);
 
-		function getMousePosition(ev: MouseEvent)
+		function getMousePosition(ev: PointerEvent)
 		{
-			mouse.x = ev.screenX;
-			mouse.y = ev.screenY;
-			mouse.moveTime = 0.1;
+			if (ev.pointerType === 'touch') {
+				return;
+			}
+
+			if (cursors.length == 0) {
+				cursors.push({
+					x: 0,
+					y: 0,
+					moveTime: 0,
+					effectDelta: 0,
+					isTouch: false,
+				});
+			}
+
+			cursors[0].x = ev.clientX;
+			cursors[0].y = ev.clientY;
+			cursors[0].moveTime = 0.7;
 		}
 
-		window.addEventListener('mousemove', getMousePosition);
+		function setTouchPoints(ev: TouchEvent)
+		{
+			for (const touch of ev.touches) {
+				cursors.push({
+					x: touch.clientX,
+					y: touch.clientY,
+					moveTime: 1.5,
+					effectDelta: 0,
+					isTouch: true,
+				});
+			}
+		}
+
+		window.addEventListener('touchstart', setTouchPoints);
+		window.addEventListener('pointermove', getMousePosition);
 
 		return () =>
 		{
 			disableRenderer = true;
 			window.cancelAnimationFrame(animationId);
-			window.removeEventListener('mousemove', getMousePosition);
+			window.removeEventListener('pointermove', getMousePosition);
+			window.removeEventListener('touchstart', setTouchPoints);
 		};
 	}, [ ]);
 
 	return (
-		<motion.canvas
+		<canvas
 			className={ style.background }
 			ref={ canvasRef }
 		/>
