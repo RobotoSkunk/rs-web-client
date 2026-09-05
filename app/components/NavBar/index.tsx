@@ -48,6 +48,7 @@ const linkVariants = {
 	},
 	focus: {
 		x: 10,
+		opacity: 1,
 	},
 } satisfies Variants;
 
@@ -83,21 +84,30 @@ export default function NavBar()
 		children: React.ReactNode;
 	})
 	{
+		const [ focused, setFocused ] = useState(false);
+
 		return (
 			<motion.span
 				className='link'
+
 				whileHover='focus'
+				whileTap='focus'
 
 				initial='hide'
-				animate='show'
+				animate={ focused ? 'focus' : 'show' }
 				exit='hide'
 
 				variants={ linkVariants }
+				tabIndex={ -1 }
 
 				key={ `navlink-${path?.replaceAll('/', '-')}` }
 				layout
 			>
-				<NavLink to={ `/${lang}/${path ?? ''}` }>
+				<NavLink
+					to={ `/${lang}/${path ?? ''}` }
+					onFocus={ (ev) => setFocused(ev.currentTarget.matches(':focus-visible')) }
+					onBlur={ () => setFocused(false) }
+				>
 					{ children }
 				</NavLink>
 			</motion.span>
