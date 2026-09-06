@@ -140,19 +140,22 @@ export default function Background()
 					for (const cursor of cursors) {
 						const radiusAlpha = mouseEffectRadius * cursor.effectDelta;
 						const radiusMove = mouseEffectMoveStrength * cursor.effectDelta;
-						const distanceToMouse = Math.sqrt(Math.pow(cursor.x - dotX, 2) + Math.pow(cursor.y - dotY, 2));
 
-						if (distanceToMouse < radiusAlpha) {
+						const x = cursor.x - dotX;
+						const y = cursor.y - dotY;
+						const distanceToMouse = x * x + y * y;
+
+						if (distanceToMouse < radiusAlpha * radiusAlpha) {
 							const strength = mouseEffectStrength * cursor.effectDelta * bgAlpha;
-							const strengthDelta = 1 - distanceToMouse / radiusAlpha;
+							const strengthDelta = 1 - distanceToMouse / (radiusAlpha * radiusAlpha);
 
 							if (radiusAlpha > 0) {
 								alpha = rawAlpha + Math.floor(strength * strengthDelta * 0xff);
 							}
 						}
 
-						if (distanceToMouse < radiusMove) {
-							const strengthDelta = (1 - distanceToMouse / radiusMove);
+						if (distanceToMouse < radiusMove * radiusMove) {
+							const strengthDelta = 1 - Math.sqrt(distanceToMouse) / radiusMove;
 
 							const rotationToCursor = Math.atan2(cursor.y - dotY, cursor.x - dotX);
 							const dirX = Math.sin(rotationToCursor + time / 380) * mouseEffectMoveStrength * strengthDelta;
