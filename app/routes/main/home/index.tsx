@@ -20,16 +20,54 @@ import type {
 	Route,
 } from '../../../+types/root';
 
+import {
+	motion,
+} from 'motion/react';
+
 import style from './home.module.css';
+
+const title = 'Edgar Lima';
+const subtitle = 'Computer Systems Engineer';
 
 
 export default function PageHome({ params }: Route.LoaderArgs)
 {
-
 	return (<>
 		<div className={ style.identity }>
-			<h1>Edgar Lima</h1>
-			<h2>Computer Systems Engineer</h2>
+			<h1>
+				{ title.split('').map((v, i) =>
+				(
+					<motion.span
+						initial={{ opacity: 0, y: 5 }}
+						animate={{ opacity: 1, y: 0 }}
+
+						transition={{
+							delay: title.length * 0.06 - 0.06 * i,
+						}}
+
+						key={ `${i}-${v}` }
+					>
+						{ v }
+					</motion.span>
+				)) }
+			</h1>
+			<h2>
+				{ subtitle.split('').map((v, i) =>
+				(
+					<motion.span
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+
+						transition={{
+							delay: 0.03 * i,
+						}}
+
+						key={ `${i}-${v}` }
+					>
+						{ v }
+					</motion.span>
+				)) }
+			</h2>
 		</div>
 	</>);
 }
