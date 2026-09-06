@@ -53,6 +53,9 @@ export default function Background()
 			isTouch: boolean;
 		}[] = [];
 
+		let canvas = canvasRef.current;
+		let context = canvas?.getContext('2d');
+
 		function render(time: DOMHighResTimeStamp)
 		{
 			if (disableRenderer) {
@@ -65,19 +68,25 @@ export default function Background()
 				return;
 			}
 
-			const canvas = canvasRef.current;
 			if (!canvas) {
+				canvas = canvasRef.current;
 				window.requestAnimationFrame(render);
 				return;
 			}
 
-			const context = canvas.getContext('2d');
 			if (!context) {
+				context = canvas?.getContext('2d');
+				window.requestAnimationFrame(render);
 				return;
 			}
 
-			const width = canvas.width = window.innerWidth;
-			const height = canvas.height = window.innerHeight;
+			if (canvas.width != window.innerWidth || canvas.height != window.innerHeight) {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			}
+
+			const width = canvas.width;
+			const height = canvas.height;
 
 			context.clearRect(0, 0, width, height);
 
@@ -114,6 +123,7 @@ export default function Background()
 
 				if (cursor.isTouch && cursor.moveTime <= 0 && cursor.effectDelta <= 0) {
 					cursors.splice(i, 1);
+					i--;
 				}
 			}
 
@@ -166,9 +176,19 @@ export default function Background()
 						}
 					}
 
+					if (
+						cursors.length > 0 &&
+						(dotX + dotsRadius < 0 ||
+						dotX - dotsRadius > width ||
+						dotY + dotsRadius < 0 ||
+						dotY - dotsRadius > height)
+					) {
+						continue;
+					}
+
 					context.fillStyle = `#ffffff${alpha.toString(16).padStart(2, '0')}`;
 					context.beginPath();
-					context.ellipse(dotX, dotY, dotsRadius, dotsRadius, 0, 0, 360);
+					context.arc(dotX, dotY, dotsRadius, 0,  Math.PI * 2);
 					context.fill();
 				}
 			}
