@@ -31,7 +31,7 @@ const waveLength = 0.4; // decimals
 const dotsAlpha = 0.14; // [0, 1]
 const dotsRadius = 1.5; // px
 const mouseEffectRadius = 600; // px
-const mouseEffectStrength = 0.08; // [0, 1]
+const mouseEffectAlphaStrength = 0.08; // [0, 1]
 const mouseEffectMoveStrength = 120; // px
 
 
@@ -51,10 +51,12 @@ export default function Background()
 			moveTime: number;
 			effectDelta: number;
 			isTouch: boolean;
+			touchIdentifier: number | null;
 		}[] = [];
 
 		let canvas = canvasRef.current;
 		let context = canvas?.getContext('2d');
+		const maxAlpha = Math.floor((dotsAlpha + mouseEffectAlphaStrength) * 0xff);
 
 		function render(time: DOMHighResTimeStamp)
 		{
@@ -156,11 +158,15 @@ export default function Background()
 						const distanceToMouse = x * x + y * y;
 
 						if (distanceToMouse < radiusAlpha * radiusAlpha) {
-							const strength = mouseEffectStrength * cursor.effectDelta * bgAlpha;
+							const strength = mouseEffectAlphaStrength * cursor.effectDelta * bgAlpha;
 							const strengthDelta = 1 - distanceToMouse / (radiusAlpha * radiusAlpha);
 
 							if (radiusAlpha > 0) {
-								alpha = rawAlpha + Math.floor(strength * strengthDelta * 0xff);
+								alpha += Math.floor(strength * strengthDelta * 0xff);
+
+								if (alpha > maxAlpha) {
+									alpha = maxAlpha;
+								}
 							}
 						}
 
@@ -201,7 +207,7 @@ export default function Background()
 
 		animationId = window.requestAnimationFrame(render);
 
-		function getMousePosition(ev: PointerEvent)
+		function onPointerMove(ev: PointerEvent)
 		{
 			if (ev.pointerType === 'touch') {
 				return;
@@ -214,6 +220,7 @@ export default function Background()
 					moveTime: 0,
 					effectDelta: 0,
 					isTouch: false,
+					touchIdentifier: null,
 				});
 			}
 
@@ -222,7 +229,7 @@ export default function Background()
 			cursors[0].moveTime = 0.7;
 		}
 
-		function setTouchPoints(ev: TouchEvent)
+		function onTouchStart(ev: TouchEvent)
 		{
 			for (const touch of ev.touches) {
 				cursors.push({
@@ -231,19 +238,48 @@ export default function Background()
 					moveTime: 1.5,
 					effectDelta: 0,
 					isTouch: true,
+					touchIdentifier: touch.identifier,
 				});
 			}
 		}
 
-		window.addEventListener('touchstart', setTouchPoints);
-		window.addEventListener('pointermove', getMousePosition);
+		function onTouchMove(ev: TouchEvent)
+		{
+			for (const touch of ev.touches) {
+				const cursor = cursors.find(c => c.touchIdentifier == touch.identifier);
+
+				if (cursor) {
+					cursor.x = touch.clientX;
+					cursor.y = touch.clientY;
+					cursor.moveTime = 1.5;
+				}
+			}
+		}
+
+		function onTouchEnd(ev: TouchEvent)
+		{
+			for (const touch of ev.touches) {
+				const cursor = cursors.find(c => c.touchIdentifier == touch.identifier);
+
+				if (cursor) {
+					cursor.touchIdentifier = null;
+				}
+			}
+		}
+
+		window.addEventListener('pointermove', onPointerMove);
+		window.addEventListener('touchstart', onTouchStart);
+		window.addEventListener('touchmove', onTouchMove);
+		window.addEventListener('touchend', onTouchEnd);
 
 		return () =>
 		{
 			disableRenderer = true;
 			window.cancelAnimationFrame(animationId);
-			window.removeEventListener('pointermove', getMousePosition);
-			window.removeEventListener('touchstart', setTouchPoints);
+			window.removeEventListener('pointermove', onPointerMove);
+			window.removeEventListener('touchstart', onTouchStart);
+			window.removeEventListener('touchmove', onTouchMove);
+			window.removeEventListener('touchend', onTouchEnd);
 		};
 	}, [ ]);
 
