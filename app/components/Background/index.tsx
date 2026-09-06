@@ -177,11 +177,14 @@ export default function Background()
 					}
 
 					if (
-						cursors.length > 0 &&
-						(dotX + dotsRadius < 0 ||
-						dotX - dotsRadius > width ||
-						dotY + dotsRadius < 0 ||
-						dotY - dotsRadius > height)
+						alpha <= 0 ||
+						(
+							cursors.length > 0 &&
+							(dotX + dotsRadius < 0 ||
+							dotX - dotsRadius > width ||
+							dotY + dotsRadius < 0 ||
+							dotY - dotsRadius > height)
+						)
 					) {
 						continue;
 					}
