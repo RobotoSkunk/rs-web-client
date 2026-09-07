@@ -109,10 +109,12 @@ function NavLinkButton({
 	lang,
 	path,
 	children,
+	onClick,
 }: {
 	lang: string;
 	path?: string;
 	children: React.ReactNode;
+	onClick: () => void;
 })
 {
 	const [ focused, setFocused ] = useState(false);
@@ -136,6 +138,8 @@ function NavLinkButton({
 				to={ `/${lang}/${path ?? ''}` }
 				onFocus={ (ev) => setFocused(ev.currentTarget.matches(':focus-visible')) }
 				onBlur={ () => setFocused(false) }
+
+				onClick={ onClick }
 			>
 				{ children }
 			</NavLink>
@@ -211,13 +215,48 @@ export default function NavBar()
 						key='nav'
 					>
 						{ pathname != '/' &&
-							<NavLinkButton lang={ lang }>Home</NavLinkButton>
+							<NavLinkButton
+								lang={ lang }
+								onClick={ () => setOpen(false) }
+							>
+								Home
+							</NavLinkButton>
 						}
-						<NavLinkButton lang={ lang } path='portfolio'>Blog</NavLinkButton>
-						<NavLinkButton lang={ lang } path='portfolio'>Portfolio</NavLinkButton>
-						<NavLinkButton lang={ lang } path='illustrations'>Illustrations</NavLinkButton>
-						<NavLinkButton lang={ lang } path='contact'>Contact</NavLinkButton>
-						<NavLinkButton lang={ lang } path='another'>another</NavLinkButton>
+						<NavLinkButton
+							lang={ lang }
+							onClick={ () => setOpen(false) }
+							path='portfolio'
+						>
+								Blog
+						</NavLinkButton>
+						<NavLinkButton
+							lang={ lang }
+							onClick={ () => setOpen(false) }
+							path='portfolio'
+						>
+								Portfolio
+						</NavLinkButton>
+						<NavLinkButton
+							lang={ lang }
+							onClick={ () => setOpen(false) }
+							path='illustrations'
+						>
+								Illustrations
+						</NavLinkButton>
+						<NavLinkButton
+							lang={ lang }
+							onClick={ () => setOpen(false) }
+							path='contact'
+						>
+								Contact
+						</NavLinkButton>
+						<NavLinkButton
+							lang={ lang }
+							onClick={ () => setOpen(false) }
+							path='another'
+						>
+								another
+						</NavLinkButton>
 					</motion.nav>
 				}
 			</AnimatePresence>
