@@ -65,20 +65,22 @@ export default function Background()
 			}
 
 			if (document.hidden) {
-				window.requestAnimationFrame(render);
 				prevTime = time;
+				animationId = window.requestAnimationFrame(render);
 				return;
 			}
 
 			if (!canvas) {
+				prevTime = time;
 				canvas = canvasRef.current;
-				window.requestAnimationFrame(render);
+				animationId = window.requestAnimationFrame(render);
 				return;
 			}
 
 			if (!context) {
+				prevTime = time;
 				context = canvas?.getContext('2d');
-				window.requestAnimationFrame(render);
+				animationId = window.requestAnimationFrame(render);
 				return;
 			}
 
