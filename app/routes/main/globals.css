@@ -23,6 +23,11 @@
 	scrollbar-color: var(--foreground) transparent;
 }
 
+::selection {
+	background: var(--foreground);
+	color: var(--background);
+}
+
 body {
 	background: var(--background);
 	color: var(--foreground);
