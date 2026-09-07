@@ -19,6 +19,10 @@
 @import url(./colors.css);
 @import url(../../assets/font/roboto.css);
 
+* {
+	scrollbar-color: var(--foreground) transparent;
+}
+
 body {
 	background: var(--background);
 	color: var(--foreground);
