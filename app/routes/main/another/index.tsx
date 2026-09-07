@@ -24,11 +24,68 @@ import {
 	NavLink,
 } from 'react-router';
 
+import DottedImage from '@/components/DottedImage';
+
+import imgTest from '@/assets/img/merge-test.svg';
+
 
 export default function PageAnother({ params }: Route.ActionArgs)
 {
 	return (<>
 		<h1>Got lost?</h1>
+
+		<DottedImage
+			src={ imgTest }
+			width={ 350 }
+			height={ 350 }
+			dotsMargin={ 5 }
+			dotsRadius={ 1.5 }
+			dotsColor={ '#ffffff' }
+			// dotsColor={ false }
+		/>
+
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+		<p>AAAAAAA</p>
+
 		<NavLink to={ `/${params.lang}` }>Go back then.</NavLink>
 	</>);
 }

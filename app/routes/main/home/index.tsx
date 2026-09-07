@@ -26,9 +26,9 @@ import {
 
 import style from './home.module.css';
 
+
 const title = 'Edgar Lima';
 const subtitle = 'Computer Systems Engineer';
-
 
 export default function PageHome({ params }: Route.LoaderArgs)
 {
