@@ -109,12 +109,10 @@ function NavLinkButton({
 	lang,
 	path,
 	children,
-	index,
 }: {
 	lang: string;
 	path?: string;
 	children: React.ReactNode;
-	index: number;
 })
 {
 	const [ focused, setFocused ] = useState(false);
@@ -213,13 +211,13 @@ export default function NavBar()
 						key='nav'
 					>
 						{ pathname != '/' &&
-							<NavLinkButton lang={ lang } index={ 1 }>Home</NavLinkButton>
+							<NavLinkButton lang={ lang }>Home</NavLinkButton>
 						}
-						<NavLinkButton lang={ lang } index={ 2 } path='portfolio'>Blog</NavLinkButton>
-						<NavLinkButton lang={ lang } index={ 3 } path='portfolio'>Portfolio</NavLinkButton>
-						<NavLinkButton lang={ lang } index={ 4 } path='illustrations'>Illustrations</NavLinkButton>
-						<NavLinkButton lang={ lang } index={ 5 } path='contact'>Contact</NavLinkButton>
-						<NavLinkButton lang={ lang } index={ 6 } path='another'>another</NavLinkButton>
+						<NavLinkButton lang={ lang } path='portfolio'>Blog</NavLinkButton>
+						<NavLinkButton lang={ lang } path='portfolio'>Portfolio</NavLinkButton>
+						<NavLinkButton lang={ lang } path='illustrations'>Illustrations</NavLinkButton>
+						<NavLinkButton lang={ lang } path='contact'>Contact</NavLinkButton>
+						<NavLinkButton lang={ lang } path='another'>another</NavLinkButton>
 					</motion.nav>
 				}
 			</AnimatePresence>
