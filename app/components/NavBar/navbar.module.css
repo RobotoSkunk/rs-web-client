@@ -1,0 +1,115 @@
+/**
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2026  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+**/
+
+.navbar {
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	justify-content: center;
+
+	gap: 18px;
+
+	position: fixed;
+	left: 20px;
+	top: 0;
+	width: 300px;
+	height: 100vh;
+
+	z-index: 101;
+
+	& .link {
+		font-size: 2.4em;
+		font-weight: 100;
+
+		width: fit-content;
+
+		& a {
+			color: white;
+			position: relative;
+			text-decoration: none;
+		}
+
+		& a::after {
+			content: '';
+			display: block;
+
+			position: absolute;
+			bottom: 0;
+			left: 0;
+
+			width: 0;
+			height: 1px;
+
+			background-color: currentColor;
+
+			transition: width 0.16s ease-in-out;
+		}
+
+		& a:hover::after,
+		& a:focus-visible::after {
+			width: 100%;
+		}
+	}
+}
+
+.toggle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	position: fixed;
+	top: 12px;
+	left: 12px;
+
+	background: transparent;
+	border: 0;
+	padding: 0;
+	margin: 0;
+
+	cursor: pointer;
+
+	z-index: 102;
+}
+
+.navbar-background {
+	display: block;
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+
+	background: color-mix(in srgb, var(--background), transparent 90%);
+
+	backdrop-filter: blur(5px);
+	z-index: 100;
+
+	& .grain {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+
+		background-image: url(../../assets/img/grain.png);
+		background-repeat: repeat;
+
+		opacity: 0.23;
+	}
+}

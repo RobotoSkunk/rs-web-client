@@ -27,46 +27,132 @@ import {
 	stagger,
 } from 'motion/react';
 
-import type {
-	Variants,
-} from 'motion/react';
-
 import {
 	useEffect,
 	useState,
 } from 'react';
 
+import style from './navbar.module.css';
 
-const linkVariants = {
-	show: {
-		x: 0,
-		opacity: 1,
-	},
-	hide: {
-		x: -23,
-		opacity: 0,
-	},
-	focus: {
-		x: 10,
-		opacity: 1,
-	},
-} satisfies Variants;
 
-const navVariants = {
-	show: {
-		transition: {
-			delayChildren: stagger(0.1),
-		},
-	},
-	hide: { },
-} satisfies Variants;
+const maxWidthMobile = 800; // px
 
+const toggleLine1Y = 12;
+const toggleLine3Y = 38;
+
+function NavToggle({
+	open,
+	onClick,
+}: {
+	open: boolean,
+	onClick: () => void,
+})
+{
+	const [ focused, setFocused ] = useState(false);
+
+	return (
+		<motion.button
+			className={ style.toggle }
+
+			onHoverStart={ () => setFocused(true) }
+			onHoverEnd={ () => setFocused(false) }
+
+			onClick={ onClick }
+		>
+			<svg width={ 50 } height={ 50 } viewBox='0 0 50 50'>
+				<motion.line
+					x1={ 5 }
+					y1={ toggleLine1Y }
+					x2={ 45 }
+					y2={ toggleLine1Y }
+					strokeWidth={ 1 }
+					stroke='#ffffff'
+					shapeRendering={ open ? 'geometricPrecision' : 'crispEdges' }
+
+					animate={{
+						y2: open ? toggleLine3Y : toggleLine1Y,
+					}}
+				/>
+				<motion.line
+					x1={ 5 }
+					y1={ 25 }
+					x2={ 45 }
+					y2={ 25 }
+					strokeWidth={ 1 }
+					stroke='#ffffff'
+					shapeRendering='crispEdges'
+
+					animate={{
+						x1: open ? 25 : (focused ? 10 : 5),
+						x2: open ? 25 : (focused ? 40 : 45),
+						opacity: open ? 0 : 1,
+					}}
+				/>
+				<motion.line
+					x1={ 5 }
+					y1={ toggleLine3Y }
+					x2={ 45 }
+					y2={ toggleLine3Y }
+					strokeWidth={ 1 }
+					stroke='#ffffff'
+					shapeRendering={ open ? 'geometricPrecision' : 'crispEdges' }
+
+					animate={{
+						y2: open ? toggleLine1Y : toggleLine3Y,
+					}}
+				/>
+			</svg>
+		</motion.button>
+	);
+}
+
+function NavLinkButton({
+	lang,
+	path,
+	children,
+	index,
+}: {
+	lang: string;
+	path?: string;
+	children: React.ReactNode;
+	index: number;
+})
+{
+	const [ focused, setFocused ] = useState(false);
+
+	return (
+		<motion.span
+			className={ style.link }
+
+			initial={{ x: -23, opacity: 0 }}
+			animate={{ x: focused ? 10 : 0, opacity: 1 }}
+			exit={{ x: -23, opacity: 0 }}
+
+			whileHover={{ x: 10 }}
+			whileTap={{ x: 10 }}
+			tabIndex={ -1 }
+
+			key={ `navlink-${path?.replaceAll('/', '-')}` }
+			layout
+		>
+			<NavLink
+				to={ `/${lang}/${path ?? ''}` }
+				onFocus={ (ev) => setFocused(ev.currentTarget.matches(':focus-visible')) }
+				onBlur={ () => setFocused(false) }
+			>
+				{ children }
+			</NavLink>
+		</motion.span>
+	);
+}
 
 export default function NavBar()
 {
 	const location = useLocation();
 	const [ lang, setLang ] = useState('es-MX');
 	const [ pathname, setPathname ] = useState('/');
+	const [ open, setOpen ] = useState(false);
+	const [ smallScreen, setSmallScreen ] = useState(false);
 
 	useEffect(() =>
 	{
@@ -74,64 +160,76 @@ export default function NavBar()
 
 		setLang(pathParts.shift() ?? 'es-MX');
 		setPathname('/' + pathParts.join('/'));
+
+		function onScreenResize()
+		{
+			let isSmall = isWindowDefined() && window.innerWidth < maxWidthMobile;
+
+			setSmallScreen(isSmall);
+
+			if (!isSmall) {
+				setOpen(false);
+			}
+		}
+
+		window.addEventListener('resize', onScreenResize);
+		onScreenResize();
+
+		return () =>
+		{
+			window.removeEventListener('resize', onScreenResize);
+		};
 	}, [ location ]);
 
-	function NavLinkButton({
-		path,
-		children,
-	}: {
-		path?: string;
-		children: React.ReactNode;
-	})
+	function isWindowDefined()
 	{
-		const [ focused, setFocused ] = useState(false);
-
-		return (
-			<motion.span
-				className='link'
-
-				whileHover='focus'
-				whileTap='focus'
-
-				initial='hide'
-				animate={ focused ? 'focus' : 'show' }
-				exit='hide'
-
-				variants={ linkVariants }
-				tabIndex={ -1 }
-
-				key={ `navlink-${path?.replaceAll('/', '-')}` }
-				layout
-			>
-				<NavLink
-					to={ `/${lang}/${path ?? ''}` }
-					onFocus={ (ev) => setFocused(ev.currentTarget.matches(':focus-visible')) }
-					onBlur={ () => setFocused(false) }
-				>
-					{ children }
-				</NavLink>
-			</motion.span>
-		);
+		return typeof window !== 'undefined';
 	}
 
 	return (
-		<AnimatePresence mode='popLayout'>
-			<motion.nav
-				variants={{ navVariants }}
+		<>
+			<AnimatePresence mode='wait'>
+				{ smallScreen && open &&
+					<motion.div
+						className={ style['navbar-background'] }
 
-				initial='hide'
-				animate='show'
-				exit='hide'
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
 
-				key='nav'
-			>
-				{ pathname != '/' && <NavLinkButton>Home</NavLinkButton> }
-				<NavLinkButton path='portfolio'>Blog</NavLinkButton>
-				<NavLinkButton path='portfolio'>Portfolio</NavLinkButton>
-				<NavLinkButton path='illustrations'>Illustrations</NavLinkButton>
-				<NavLinkButton path='contact'>Contact</NavLinkButton>
-				<NavLinkButton path='another'>another</NavLinkButton>
-			</motion.nav>
-		</AnimatePresence>
+						key={ 'navbar-background' }
+					>
+						<div className={ style.grain }/>
+					</motion.div>
+				}
+				{ (!smallScreen || open) &&
+					<motion.nav
+						className={ style.navbar }
+						style={{ position: 'fixed' }}
+
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+
+						key='nav'
+					>
+						{ pathname != '/' &&
+							<NavLinkButton lang={ lang } index={ 1 }>Home</NavLinkButton>
+						}
+						<NavLinkButton lang={ lang } index={ 2 } path='portfolio'>Blog</NavLinkButton>
+						<NavLinkButton lang={ lang } index={ 3 } path='portfolio'>Portfolio</NavLinkButton>
+						<NavLinkButton lang={ lang } index={ 4 } path='illustrations'>Illustrations</NavLinkButton>
+						<NavLinkButton lang={ lang } index={ 5 } path='contact'>Contact</NavLinkButton>
+						<NavLinkButton lang={ lang } index={ 6 } path='another'>another</NavLinkButton>
+					</motion.nav>
+				}
+			</AnimatePresence>
+			{ smallScreen &&
+				<NavToggle
+					open={ open }
+					onClick={ () => setOpen(!open) }
+				/>
+			}
+		</>
 	);
 }
