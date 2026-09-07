@@ -43,8 +43,22 @@ export default function DottedImage({
 	src: string;
 	width: number;
 	height: number;
+
+	/**
+	 * The separation margin between each dot; adjusting this also changes the quality of the picture.
+	 * **Lower values with huge pictures are heavy for the CPU.**
+	 */
 	dotsMargin: number;
+
+	/**
+	 * The radius size of the dots.
+	 */
 	dotsRadius: number;
+
+	/**
+	 * Sets a plain color for all dots. If false, the colors from the source image will be used instead (sightly
+	 * increases CPU usage).
+	 */
 	dotsColor: string | false;
 })
 {
