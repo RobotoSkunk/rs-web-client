@@ -50,6 +50,7 @@ main {
 	margin-left: 300px;
 	margin-right: 20px;
 
+	width: calc(100vw - 320px);
 	min-height: 100vh;
 }
 
@@ -57,5 +58,6 @@ main {
 	main {
 		margin-top: 60px;
 		margin-left: 20px;
+		width: calc(100vw - 40px);
 	}
 }
