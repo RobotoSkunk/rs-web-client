@@ -79,8 +79,6 @@ export default function DottedImage({
 		// [y][x] = 0xRRGGBBAA
 		let imgData: {
 			color: number;
-			x: number;
-			y: number;
 			z: number;
 			deltaX: number;
 			deltaY: number;
@@ -131,8 +129,6 @@ export default function DottedImage({
 
 					imgData[y].push({
 						color,
-						x: (1 - Math.random() * 2) * dotsRadius * 2,
-						y: (1 - Math.random() * 2) * dotsRadius * 2,
 						z: 0,
 						deltaX: Math.random() * dotsMargin / 2,
 						deltaY: Math.random() * dotsMargin / 2,
@@ -209,8 +205,8 @@ export default function DottedImage({
 						color = color >>> 0; // Stupid padding to fix a dumbass JavaScript-only error
 					}
 
-					const deltaX = data.x + Math.cos((time * data.deltaX) / 1000);
-					const deltaY = data.y + Math.sin((time * data.deltaY) / 1000);
+					const deltaX = Math.cos((time * data.deltaX) / 1000);
+					const deltaY = Math.sin((time * data.deltaY) / 1000);
 
 					// if (data.z < 1) {
 					// }
