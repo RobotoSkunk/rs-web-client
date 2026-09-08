@@ -109,11 +109,13 @@ function NavLinkButton({
 	lang,
 	path,
 	children,
+	showIndicator,
 	onClick,
 }: {
 	lang: string;
-	path?: string;
+	path: string;
 	children: React.ReactNode;
+	showIndicator: boolean;
 	onClick: () => void;
 })
 {
@@ -131,11 +133,17 @@ function NavLinkButton({
 			whileTap={{ x: 10 }}
 			tabIndex={ -1 }
 
-			key={ `navlink-${path?.replaceAll('/', '-')}` }
-			layout
+			layout='y'
 		>
+			{ showIndicator &&
+				<motion.div
+					className={ style.indicator }
+					layout
+					layoutId='navbar-link-indicator'
+				/>
+			}
 			<NavLink
-				to={ `/${lang}/${path ?? ''}` }
+				to={ `/${lang}/${path}` }
 				onFocus={ (ev) => setFocused(ev.currentTarget.matches(':focus-visible')) }
 				onBlur={ () => setFocused(false) }
 
@@ -151,7 +159,7 @@ export default function NavBar()
 {
 	const location = useLocation();
 	const [ lang, setLang ] = useState('es-MX');
-	const [ pathname, setPathname ] = useState('/');
+	const [ pathname, setPathname ] = useState('');
 	const [ open, setOpen ] = useState(false);
 	const [ smallScreen, setSmallScreen ] = useState(false);
 
@@ -187,9 +195,46 @@ export default function NavBar()
 		return typeof window !== 'undefined';
 	}
 
+	const paths: {
+		path: string;
+		label: string;
+		show: boolean;
+	}[] = [
+		{
+			path: '',
+			label: 'Home',
+			show: pathname !== '/',
+		},
+		{
+			path: 'blog',
+			label: 'Blog',
+			show: true,
+		},
+		{
+			path: 'portfolio',
+			label: 'Portfolio',
+			show: true,
+		},
+		{
+			path: 'illustrations',
+			label: 'Illustrations',
+			show: true,
+		},
+		{
+			path: 'contact',
+			label: 'Contact',
+			show: true,
+		},
+		{
+			path: 'another',
+			label: 'Tests',
+			show: true,
+		},
+	];
+
 	return (
 		<>
-			<AnimatePresence mode='wait'>
+			<AnimatePresence>
 				{ smallScreen && open &&
 					<motion.div
 						className={ style['navbar-background'] }
@@ -214,49 +259,25 @@ export default function NavBar()
 
 						key='nav'
 					>
-						{ pathname != '/' &&
-							<NavLinkButton
-								lang={ lang }
-								onClick={ () => setOpen(false) }
-							>
-								Home
-							</NavLinkButton>
-						}
-						<NavLinkButton
-							lang={ lang }
-							onClick={ () => setOpen(false) }
-							path='portfolio'
-						>
-								Blog
-						</NavLinkButton>
-						<NavLinkButton
-							lang={ lang }
-							onClick={ () => setOpen(false) }
-							path='portfolio'
-						>
-								Portfolio
-						</NavLinkButton>
-						<NavLinkButton
-							lang={ lang }
-							onClick={ () => setOpen(false) }
-							path='illustrations'
-						>
-								Illustrations
-						</NavLinkButton>
-						<NavLinkButton
-							lang={ lang }
-							onClick={ () => setOpen(false) }
-							path='contact'
-						>
-								Contact
-						</NavLinkButton>
-						<NavLinkButton
-							lang={ lang }
-							onClick={ () => setOpen(false) }
-							path='another'
-						>
-								another
-						</NavLinkButton>
+						{ pathname.length > 0 && paths.map((link, i) =>
+						{
+							if (!link.show) {
+								return undefined;
+							}
+
+							return (
+								<NavLinkButton
+									lang={ lang }
+									path={ link.path }
+									onClick={ () => setOpen(false) }
+
+									showIndicator={ pathname.includes(link.path || 'undefined') }
+									key={ link.path ?? '/' }
+								>
+									{ link.label }
+								</NavLinkButton>
+							);
+						}) }
 					</motion.nav>
 				}
 			</AnimatePresence>
