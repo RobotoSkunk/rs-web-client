@@ -39,10 +39,13 @@ export default function DottedImage({
 	dotsMargin,
 	dotsRadius,
 	dotsColor,
+	className,
+	disableStartup,
 }: {
 	src: string;
 	width: number;
 	height: number;
+	className?: string;
 
 	/**
 	 * The separation margin between each dot; adjusting this also changes the quality of the picture.
@@ -60,6 +63,12 @@ export default function DottedImage({
 	 * increases CPU usage).
 	 */
 	dotsColor: string | false;
+
+	/**
+	 * Disables the initial animation where the dots spawn at the center and moves to their respective
+	 * positions.
+	 */
+	disableStartup?: boolean;
 })
 {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -129,7 +138,7 @@ export default function DottedImage({
 
 					imgData[y].push({
 						color,
-						z: 0,
+						z: disableStartup ? 1 : 0,
 						deltaX: Math.random() * dotsMargin / 2,
 						deltaY: Math.random() * dotsMargin / 2,
 						deltaZ: 0.1 + Math.random() * 0.9,
@@ -205,12 +214,12 @@ export default function DottedImage({
 						color = color >>> 0; // Stupid padding to fix a dumbass JavaScript-only error
 					}
 
-					const deltaX = Math.cos((time * data.deltaX) / 1000);
-					const deltaY = Math.sin((time * data.deltaY) / 1000);
+					const deltaX = Math.cos(((time + 1200) * data.deltaX) / 1000);
+					const deltaY = Math.sin(((time + 1200) * data.deltaY) / 1000);
 
-					// if (data.z < 1) {
-					// }
-					data.z += Math.sin(1 - data.z) * deltaTime * data.deltaZ * 4;
+					if (data.z < 1) {
+						data.z += Math.sin(1 - data.z) * deltaTime * data.deltaZ * 4;
+					}
 
 					const xPos = dotsMargin + dotsRadius + lerp(canvas.width / 2, x * dotsMargin, data.z);
 					const yPos = dotsMargin + dotsRadius + lerp(canvas.height / 2, y * dotsMargin, data.z);
@@ -280,6 +289,7 @@ export default function DottedImage({
 		<canvas
 			width={ width + dotsMargin * 2 }
 			height={ height + dotsMargin * 2 }
+			className={ className }
 			ref={ canvasRef }
 		/>
 	);

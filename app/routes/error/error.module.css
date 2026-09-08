@@ -16,22 +16,24 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-import {
-	layout,
-	prefix,
-	route,
-	type RouteConfig
-} from '@react-router/dev/routes';
+.main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+}
 
-export default [
-	layout('./routes/error/layout.tsx', [
-		route('*', './routes/error/index.tsx'),
-	]),
-	...prefix(':lang', [
-		layout('./routes/main/layout.tsx', [
-			route('/', './routes/main/home/index.tsx'),
-			route('/another', './routes/main/another/index.tsx'),
-		]),
-	]),
-] satisfies RouteConfig;
+.phrase {
+	font-size: 1.1em;
+	padding-top: 20px;
+}
+
+.alex {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+}

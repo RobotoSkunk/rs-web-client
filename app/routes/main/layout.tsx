@@ -23,6 +23,7 @@ import {
 import {
 	Links,
 	Meta,
+	Outlet,
 	Scripts,
 	ScrollRestoration,
 } from 'react-router';
@@ -38,11 +39,7 @@ import NavBar from '@/components/NavBar';
 import Background from '@/components/Background';
 
 
-export default function Layout({
-	children,
-}: {
-	children: React.ReactNode;
-})
+export default function Layout()
 {
 	const nonce = useContext(NonceContext);
 
@@ -58,7 +55,7 @@ export default function Layout({
 				<Background/>
 				<NavBar/>
 				<main>
-					{ children }
+					<Outlet/>
 				</main>
 				<footer>Footer</footer>
 

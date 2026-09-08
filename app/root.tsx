@@ -20,12 +20,6 @@ import {
 	Outlet,
 } from 'react-router';
 
-import Layout from './routes/main/layout';
-
-
-export {
-	Layout
-};
 
 export default function App()
 {

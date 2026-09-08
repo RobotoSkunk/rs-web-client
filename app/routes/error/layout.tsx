@@ -17,21 +17,49 @@
 **/
 
 import {
-	layout,
-	prefix,
-	route,
-	type RouteConfig
-} from '@react-router/dev/routes';
+	useContext,
+} from 'react';
+
+import {
+	Links,
+	Meta,
+	Outlet,
+	Scripts,
+} from 'react-router';
+
+import {
+	NonceContext,
+} from '../../contexts/nonce';
+
+import ANSISkunko from '../../components/ANSISkunko';
+
+import Background from '@/components/Background';
+
+import '../main/globals.css';
+import style from './error.module.css';
 
 
-export default [
-	layout('./routes/error/layout.tsx', [
-		route('*', './routes/error/index.tsx'),
-	]),
-	...prefix(':lang', [
-		layout('./routes/main/layout.tsx', [
-			route('/', './routes/main/home/index.tsx'),
-			route('/another', './routes/main/another/index.tsx'),
-		]),
-	]),
-] satisfies RouteConfig;
+export default function Layout()
+{
+	const nonce = useContext(NonceContext);
+
+	return (
+		<html lang='en'>
+			<head>
+				<meta charSet='utf-8' />
+				<meta name='viewport' content='width=device-width, initial-scale=1' />
+				<Meta/>
+				<Links nonce={ nonce }/>
+			</head>
+			<body>
+				<Background/>
+				<main className={ style.main }>
+					<Outlet/>
+				</main>
+
+				<Scripts nonce={ nonce }/>
+				<ANSISkunko/>
+			</body>
+		</html>
+	);
+}
