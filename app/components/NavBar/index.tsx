@@ -23,6 +23,7 @@ import {
 
 import {
 	AnimatePresence,
+	LayoutGroup,
 	motion,
 } from 'motion/react';
 
@@ -155,10 +156,13 @@ function NavLinkButton({
 	);
 }
 
-export default function NavBar()
+export default function NavBar({
+	lang,
+}: {
+	lang: string;
+})
 {
 	const location = useLocation();
-	const [ lang, setLang ] = useState('es-MX');
 	const [ pathname, setPathname ] = useState('');
 	const [ open, setOpen ] = useState(false);
 	const [ smallScreen, setSmallScreen ] = useState(false);
@@ -166,8 +170,7 @@ export default function NavBar()
 	useEffect(() =>
 	{
 		const pathParts = location.pathname.split('/').filter(v => v.length > 0);
-
-		setLang(pathParts.shift() ?? 'es-MX');
+		pathParts.shift();
 		setPathname('/' + pathParts.join('/'));
 
 		function onScreenResize()
@@ -251,33 +254,35 @@ export default function NavBar()
 				{ (!smallScreen || open) &&
 					<motion.nav
 						className={ style.navbar }
-						style={{ position: 'fixed' }}
 
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
 
+						layoutScroll
 						key='nav'
 					>
-						{ pathname.length > 0 && paths.map((link, i) =>
-						{
-							if (!link.show) {
-								return undefined;
-							}
+						<AnimatePresence propagate>
+							{ pathname.length > 0 && paths.map((link, i) =>
+							{
+								if (!link.show) {
+									return undefined;
+								}
 
-							return (
-								<NavLinkButton
-									lang={ lang }
-									path={ link.path }
-									onClick={ () => setOpen(false) }
+								return (
+									<NavLinkButton
+										lang={ lang }
+										path={ link.path }
+										onClick={ () => setOpen(false) }
 
-									showIndicator={ pathname.includes(link.path || 'undefined') }
-									key={ link.path ?? '/' }
-								>
-									{ link.label }
-								</NavLinkButton>
-							);
-						}) }
+										showIndicator={ pathname.includes(link.path || 'undefined') }
+										key={ link.path ?? '/' }
+									>
+										{ link.label }
+									</NavLinkButton>
+								);
+							}) }
+						</AnimatePresence>
 					</motion.nav>
 				}
 			</AnimatePresence>

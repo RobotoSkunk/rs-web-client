@@ -16,34 +16,40 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-import {
-	reactRouter,
-} from '@react-router/dev/vite';
+'use server';
 
 import {
-	defineConfig,
-} from 'vite';
-
-import {
-	execSync,
-} from 'child_process';
+	NavLink,
+} from 'react-router';
 
 
-let commitHash = 'not_a_repo';
-
-try {
-	commitHash = execSync('git rev-parse HEAD').toString().trim();
-} catch (_) { }
-
-
-export default defineConfig({
-	plugins: [
-		reactRouter(),
-	],
-	resolve: {
-		tsconfigPaths: true,
-	},
-	define: {
-		GIT_COMMIT_HASH: JSON.stringify(commitHash),
-	},
-});
+export default function Footer({
+	lang,
+}: {
+	lang: string;
+})
+{
+	return (
+		<footer>
+			<div className='copyright'>
+				<span>
+					© Copyright { new Date().getFullYear() } RobotoSkunk.
+					{ ' ' }
+					<a
+						href={ `https://github.com/RobotoSkunk/rs-web-client/commit/${GIT_COMMIT_HASH}` }
+						target='_blank'
+						rel='noreferrer noopener'
+					>
+						Built from { GIT_COMMIT_HASH.slice(0, 7) }.
+					</a>
+				</span>
+			</div>
+			<div className='links'>
+				<NavLink to={ `/${lang}/terms-of-use` }>Terms of Use</NavLink>
+				<NavLink to={ `/${lang}/privacy` }>Privacy Policy</NavLink>
+				<NavLink to={ `/${lang}/acknowledgements` }>Acknowledgements</NavLink>
+				<NavLink to={ `/${lang}/open-source` }>Open Source</NavLink>
+			</div>
+		</footer>
+	);
+}

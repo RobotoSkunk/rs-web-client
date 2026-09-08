@@ -34,9 +34,11 @@ import {
 
 import ANSISkunko from '../../components/ANSISkunko';
 
-import './globals.css';
 import NavBar from '@/components/NavBar';
 import Background from '@/components/Background';
+import Footer from '@/components/Footer';
+
+import './globals.css';
 
 
 export default function Layout({
@@ -52,8 +54,8 @@ export default function Layout({
 	return (
 		<html lang={ params.lang }>
 			<head>
-				<meta charSet='utf-8' />
-				<meta name='viewport' content='width=device-width, initial-scale=1' />
+				<meta charSet='utf-8'/>
+				<meta name='viewport' content='width=device-width, initial-scale=1'/>
 
 				<link rel='me' href='https://mastodon.social/@RobotoSkunk'/>
 				<link rel='me' href='https://wetdry.world/@RobotoSkunk'/>
@@ -63,15 +65,12 @@ export default function Layout({
 			</head>
 			<body>
 				<Background/>
-				<NavBar/>
+
+				<NavBar lang={ params.lang }/>
 				<main>
 					<Outlet/>
 				</main>
-				<footer>
-					<div>
-						© { new Date().getFullYear() } RobotoSkunk
-					</div>
-				</footer>
+				<Footer lang={ params.lang }/>
 
 				<Scripts nonce={ nonce }/>
 				<ScrollRestoration nonce={ nonce }/>

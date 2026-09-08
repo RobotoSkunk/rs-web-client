@@ -46,10 +46,11 @@ import {
 	isBot,
 } from 'ua-parser-js/bot-detection';
 
+import {
+	match,
+} from '@formatjs/intl-localematcher';
+
 import crypto from 'crypto';
-
-
-import { match } from '@formatjs/intl-localematcher';
 import Negotiator from 'negotiator';
 
 

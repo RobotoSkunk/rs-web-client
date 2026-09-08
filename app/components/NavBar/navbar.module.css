@@ -39,33 +39,6 @@
 
 		width: fit-content;
 
-		& a {
-			color: white;
-			position: relative;
-			text-decoration: none;
-		}
-
-		& a::after {
-			content: '';
-			display: block;
-
-			position: absolute;
-			bottom: 0;
-			left: 0;
-
-			width: 0;
-			height: 1px;
-
-			background-color: currentColor;
-
-			transition: width 0.16s ease-in-out;
-		}
-
-		& a:hover::after,
-		& a:focus-visible::after {
-			width: 100%;
-		}
-
 		& .indicator {
 			position: absolute;
 			top: calc(50% - 10px);
