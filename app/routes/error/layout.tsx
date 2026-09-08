@@ -40,12 +40,18 @@ import '../main/globals.css';
 import style from './error.module.css';
 
 
-export default function Layout()
+export default function Layout({
+	params,
+}: {
+	params: {
+		lang: string;
+	};
+})
 {
 	const nonce = useContext(NonceContext);
 
 	return (
-		<html lang='en'>
+		<html lang={ params.lang }>
 			<head>
 				<meta charSet='utf-8' />
 				<meta name='viewport' content='width=device-width, initial-scale=1' />

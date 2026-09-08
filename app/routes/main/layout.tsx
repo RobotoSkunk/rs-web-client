@@ -39,15 +39,22 @@ import NavBar from '@/components/NavBar';
 import Background from '@/components/Background';
 
 
-export default function Layout()
+export default function Layout({
+	params,
+}: {
+	params: {
+		lang: string;
+	};
+})
 {
 	const nonce = useContext(NonceContext);
 
 	return (
-		<html lang='en'>
+		<html lang={ params.lang }>
 			<head>
 				<meta charSet='utf-8' />
 				<meta name='viewport' content='width=device-width, initial-scale=1' />
+
 				<Meta/>
 				<Links nonce={ nonce }/>
 			</head>
@@ -57,7 +64,11 @@ export default function Layout()
 				<main>
 					<Outlet/>
 				</main>
-				<footer>Footer</footer>
+				<footer>
+					<div>
+						© { new Date().getFullYear() } RobotoSkunk
+					</div>
+				</footer>
 
 				<Scripts nonce={ nonce }/>
 				<ScrollRestoration nonce={ nonce }/>
