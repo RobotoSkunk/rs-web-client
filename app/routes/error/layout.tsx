@@ -23,6 +23,7 @@ import {
 import {
 	Links,
 	Meta,
+	NavLink,
 	Outlet,
 	Scripts,
 } from 'react-router';
@@ -55,6 +56,7 @@ export default function Layout()
 				<Background/>
 				<main className={ style.main }>
 					<Outlet/>
+					<NavLink to='/'>robotoskunk.com</NavLink>
 				</main>
 
 				<Scripts nonce={ nonce }/>

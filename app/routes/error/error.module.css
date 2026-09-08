@@ -25,6 +25,21 @@
 	margin: 0;
 	width: 100vw;
 	height: 100vh;
+
+	& a {
+		position: absolute;
+		bottom: 12px;
+		left: 50%;
+		transform: translateX(-50%);
+
+		color: white;
+		text-decoration: none;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+	}
 }
 
 .phrase {
