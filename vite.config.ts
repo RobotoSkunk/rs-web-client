@@ -21,6 +21,7 @@ import {
 } from '@react-router/dev/vite';
 
 import {
+	loadEnv,
 	defineConfig,
 } from 'vite';
 
@@ -29,21 +30,29 @@ import {
 } from 'child_process';
 
 
-let commitHash = 'not_a_repo';
+export default defineConfig(({ mode }) =>
+{
+	let commitHash = 'not_a_repo';
 
-try {
-	commitHash = execSync('git rev-parse HEAD').toString().trim();
-} catch (_) { }
+	try {
+		commitHash = execSync('git rev-parse HEAD').toString().trim();
+	} catch (_) { }
 
+	const env = loadEnv(mode, process.cwd(), '');
 
-export default defineConfig({
-	plugins: [
-		reactRouter(),
-	],
-	resolve: {
-		tsconfigPaths: true,
-	},
-	define: {
-		GIT_COMMIT_HASH: JSON.stringify(commitHash),
-	},
+	return {
+		plugins: [
+			reactRouter(),
+		],
+		server: {
+			port: Number.parseInt(env.PORT ?? '3000'),
+			host: true,
+		},
+		resolve: {
+			tsconfigPaths: true,
+		},
+		define: {
+			GIT_COMMIT_HASH: JSON.stringify(commitHash),
+		},
+	};
 });
