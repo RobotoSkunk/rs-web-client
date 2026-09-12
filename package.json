@@ -9,9 +9,8 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
-    "@formatjs/intl-localematcher": "^0.8.8",
+    "@formatjs/intl-localematcher": "^0.9.0",
     "@react-router/serve": "^8.3.0",
-    "isbot": "^5",
     "motion": "^13.2.0",
     "negotiator": "^1.0.0",
     "react": "^19.2.8",
