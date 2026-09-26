@@ -48,6 +48,10 @@ export default defineConfig(({ mode }) =>
 			port: Number.parseInt(env.PORT ?? '3000'),
 			host: true,
 		},
+		preview: {
+			port: Number.parseInt(env.PORT ?? '3000'),
+			host: true,
+		},
 		resolve: {
 			tsconfigPaths: true,
 		},
