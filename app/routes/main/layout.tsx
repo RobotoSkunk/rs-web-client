@@ -22,7 +22,6 @@ import {
 
 import {
 	Links,
-	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
@@ -60,7 +59,6 @@ export default function Layout({
 				<link rel='me' href='https://mastodon.social/@RobotoSkunk'/>
 				<link rel='me' href='https://wetdry.world/@RobotoSkunk'/>
 
-				<Meta/>
 				<Links nonce={ nonce }/>
 			</head>
 			<body>

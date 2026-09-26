@@ -38,8 +38,8 @@ type Size = {
 };
 
 type Illustration = {
-	name: string;
-	description: string;
+	name: string | null;
+	description: string | null;
 	created_at: string;
 	picture_filename: string;
 	picture_small_filename: string;
@@ -52,6 +52,95 @@ type IllustrationGroups = {
 	data: Illustration[];
 }[];
 
+// const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+function LoadingBar()
+{
+	return (
+		<motion.div
+			className={ style.bar }
+
+			animate={{
+				x: [
+					-300,
+					620,
+				],
+				transition: {
+					repeat: Infinity,
+					repeatType: 'loop',
+					repeatDelay: 0.4,
+					ease: 'easeInOut',
+					duration: 0.8,
+				}
+			}}
+		/>
+	);
+}
+
+function Card({
+	size,
+	name,
+	alt,
+	src,
+	index,
+}: {
+	size: { x: number; y: number; };
+	name: string;
+	alt: string;
+	src: string;
+	index: number;
+})
+{
+	const [ loaded, setLoaded ] = useState(false);
+
+	return (
+		<motion.button
+			className={ style.card }
+
+			aria-label={ `Open picture "${name}"` }
+
+			style={{
+				width: size.x,
+				height: size.y,
+			}}
+
+			initial={{
+				opacity: 0,
+				y: 30,
+			}}
+			animate={{
+				opacity: 1,
+				y: 0,
+				transition: {
+					delay: 0.1 + 0.1 * index,
+				},
+			}}
+		>
+			{ !loaded &&
+				<div className={ style.loader }>
+					<div className={ style['card-background'] }/>
+				</div>
+			}
+			<img
+				src={ src }
+				width={ size.x }
+				height={ size.y }
+				alt={ alt }
+
+				onLoad={ (ev) => setLoaded(ev.currentTarget.complete) }
+			/>
+			{ !loaded &&
+				<div className={ style.loader }>
+					<LoadingBar/>
+				</div>
+			}
+			<span>
+				{ name }
+			</span>
+		</motion.button>
+	);
+}
+
 export default function Page({ params }: Route.LoaderArgs)
 {
 	const [ groups, setGroups ] = useState<IllustrationGroups>([]);
@@ -62,6 +151,8 @@ export default function Page({ params }: Route.LoaderArgs)
 
 		(async () =>
 		{
+			// await wait(2000);
+
 			const response = await fetch(`/api/illustrations/${params.lang}`);
 			const illustrations = await response.json() as Illustration[];
 
@@ -90,42 +181,70 @@ export default function Page({ params }: Route.LoaderArgs)
 	}, [ ]);
 
 	return (<>
+		<title>Illustrations</title>
+		<meta name='description' content={ `A collection of my favorite illustrations.` }/>
+
 		<h1>Illustrations</h1>
+		<p>A collection of my favorite illustrations.</p>
+		{ groups.length === 0 &&
+			<div className={ style.loader }>
+				{ [... new Array(4)].map((_, i) =>
+				(
+					<section key={ i }>
+						<div className={ style['year-loading'] }>
+							<LoadingBar/>
+						</div>
+						<div className={ style['cards-container'] }>
+							{ [... new Array(4)].map((_, j) =>
+							{
+								let delta = Math.floor(Math.abs(Math.tan(120 * (j + i + 3))) * 200);
+
+								if (delta > 200) {
+									delta = 200;
+								}
+
+								return (
+									<div
+										key={ `${i}-${j}` }
+										className={ style['card-background'] }
+										style={{
+											width: 350 + delta,
+										}}
+									>
+										<LoadingBar/>
+									</div>
+								);
+							}) }
+						</div>
+					</section>
+				)) }
+			</div>
+		}
 		{ groups.map((group, i) =>
 		(
 			<section key={ i }>
 				<h2 className={ style.year }>{ group.year }</h2>
-				{ group.data.map((illustration, j) =>
-				(
-					<motion.button
-						key={ `${i}-${j}` }
-						className={ style.card }
+				<div className={ style['cards-container'] }>
+					{ group.data.map((illustration, j) =>
+					{
+						const size = illustration.picture_small_size;
 
-						aria-label={ `Open picture "${illustration.name}"` }
+						if (size.x > 550) {
+							size.x = 550;
+						}
 
-						initial={{
-							opacity: 0,
-							y: 30,
-						}}
-						animate={{
-							opacity: 1,
-							y: 0,
-							transition: {
-								delay: 0.1 + 0.1 * j,
-							},
-						}}
-					>
-						<img
-							src={ `/api/assets/${illustration.picture_small_filename}` }
-							width={ illustration.picture_small_size.x }
-							height={ illustration.picture_small_size.y }
-							alt={ illustration.description ?? 'Not description provided for this picture.' }
-						/>
-						<span>
-							{ illustration.name ?? 'Untitled' }
-						</span>
-					</motion.button>
-				)) }
+						return (
+							<Card
+								key={ `${i}-${j}` }
+								index={ j }
+								src={ `/api/assets/${illustration.picture_small_filename}` }
+								name={ illustration.name ?? 'Untitled' }
+								alt={ illustration.description ?? 'Not description provided for this picture.' }
+								size={ size }
+							/>
+						);
+					}) }
+				</div>
 			</section>
 		)) }
 	</>);

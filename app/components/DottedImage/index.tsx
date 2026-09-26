@@ -99,6 +99,10 @@ export default function DottedImage({
 
 		function loadImage()
 		{
+			if (!img.complete) {
+				return;
+			}
+
 			imgData = [];
 			alpha = 0;
 

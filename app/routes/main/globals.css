@@ -120,7 +120,11 @@ h4,
 h5,
 h6 {
 	font-weight: lighter;
-	font-size: 2.6em;
+	font-size: 2.4em;
+}
+
+p {
+	font-size: 1.2em;
 }
 
 button {

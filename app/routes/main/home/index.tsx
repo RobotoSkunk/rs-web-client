@@ -33,6 +33,9 @@ const subtitle = 'Computer Systems Engineer';
 export default function PageHome({ params }: Route.LoaderArgs)
 {
 	return (<>
+		<title>RobotoSkunk</title>
+		<meta name='description' content={ `Hi, I'm Edgar Lima, a computer system's engineer.` }/>
+
 		<div className={ style.identity }>
 			<h1>
 				{ title.split('').map((v, i) =>
