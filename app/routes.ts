@@ -32,6 +32,7 @@ export default [
 		layout('./routes/main/layout.tsx', [
 			route('/', './routes/main/home/index.tsx'),
 			route('/another', './routes/main/another/index.tsx'),
+			route('/illustrations', './routes/main/illustrations/index.tsx'),
 		]),
 	]),
 ] satisfies RouteConfig;

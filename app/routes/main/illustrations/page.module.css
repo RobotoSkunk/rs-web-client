@@ -1,0 +1,75 @@
+/**
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2026  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+**/
+
+.year {
+	margin-bottom: 12px;
+}
+
+.card {
+	display: inline-block;
+	overflow: hidden;
+
+	position: relative;
+
+	background: transparent;
+	border: 0;
+	padding: 0;
+
+	backdrop-filter: blur(0px);
+	transition: backdrop-filter 0.48s ease-in-out;
+
+	& img {
+		scale: 1;
+		filter: blur(0px) brightness(1) grayscale(0);
+
+		transition: filter 0.48s ease-in-out, scale 0.42s ease-in-out;
+	}
+
+	& span {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, 10%);
+
+		font-size: 3.2em;
+		font-weight: lighter;
+		text-shadow: 0 0 6px black;
+
+		opacity: 0;
+		visibility: hidden;
+		color: white;
+
+		transition: transform 0.48s ease-in-out, opacity 0.48s, visibility 0.48s;
+	}
+
+	&:hover,
+	&:focus-visible {
+		backdrop-filter: blur(2px);
+
+		& img {
+			scale: 1.1;
+			filter: blur(8px) brightness(0.44) grayscale(0.32);
+		}
+
+		& span {
+			opacity: 1;
+			visibility: visible;
+			transform: translate(-50%, -50%);
+		}
+	}
+}

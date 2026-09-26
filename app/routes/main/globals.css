@@ -113,6 +113,20 @@ a:not(.raw) {
 	}
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: lighter;
+	font-size: 2.6em;
+}
+
+button {
+	cursor: pointer;
+}
+
 @media screen and (max-width: 800px) {
 	main {
 		margin-top: 60px;
