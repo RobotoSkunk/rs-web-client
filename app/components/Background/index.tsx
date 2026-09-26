@@ -289,6 +289,7 @@ export default function Background()
 		<canvas
 			className={ style.background }
 			ref={ canvasRef }
+			role='none'
 		/>
 	);
 }
