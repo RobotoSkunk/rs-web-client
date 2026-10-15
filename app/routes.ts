@@ -31,8 +31,10 @@ export default [
 	...prefix(':lang', [
 		layout('./routes/main/layout.tsx', [
 			route('/', './routes/main/home/index.tsx'),
-			route('/another', './routes/main/another/index.tsx'),
+			route('/blog', './routes/main/blog/index.tsx'),
+			route('/portfolio', './routes/main/portfolio/index.tsx'),
 			route('/illustrations', './routes/main/illustrations/index.tsx'),
+			route('/contact', './routes/main/contact/index.tsx'),
 		]),
 	]),
 ] satisfies RouteConfig;

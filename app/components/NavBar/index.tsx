@@ -228,11 +228,6 @@ export default function NavBar({
 			label: 'Contact',
 			show: true,
 		},
-		{
-			path: 'another',
-			label: 'Tests',
-			show: true,
-		},
 	];
 
 	return (
