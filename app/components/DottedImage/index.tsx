@@ -92,6 +92,8 @@ export default function DottedImage({
 			deltaX: number;
 			deltaY: number;
 			deltaZ: number;
+			startX: number;
+			startY: number;
 		}[][] = [];
 
 		let canvas = canvasRef.current;
@@ -146,6 +148,8 @@ export default function DottedImage({
 						deltaX: Math.random() * dotsMargin / 2,
 						deltaY: Math.random() * dotsMargin / 2,
 						deltaZ: 0.1 + Math.random() * 0.9,
+						startX: Math.random(),
+						startY: Math.random(),
 					});
 				}
 			}
@@ -222,11 +226,11 @@ export default function DottedImage({
 					const deltaY = Math.sin(((time + 1200) * data.deltaY) / 1000);
 
 					if (data.z < 1) {
-						data.z += Math.sin(1 - data.z) * deltaTime * data.deltaZ * 4;
+						data.z += Math.sin(1 - data.z) * deltaTime * data.deltaZ * 9;
 					}
 
-					const xPos = dotsMargin + dotsRadius + lerp(canvas.width / 2, x * dotsMargin, data.z);
-					const yPos = dotsMargin + dotsRadius + lerp(canvas.height / 2, y * dotsMargin, data.z);
+					const xPos = dotsMargin + dotsRadius + lerp(canvas.width * data.startX, x * dotsMargin, data.z);
+					const yPos = dotsMargin + dotsRadius + lerp(canvas.height * data.startY, y * dotsMargin, data.z);
 
 					const dotX = clamp(
 						xPos + deltaX / 2 * dotsMargin,
