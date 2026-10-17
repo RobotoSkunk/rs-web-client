@@ -16,8 +16,216 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
+import {
+	useEffect,
+	useState,
+} from 'react';
 
-export default function Page()
+import {
+	motion,
+} from 'motion/react';
+
+import type {
+	Route,
+} from './+types/index';
+
+import Markdown from 'react-markdown';
+
+import ExternalLink from '@/components/icons/ExternalLink';
+import style from './page.module.css';
+
+type Size = {
+	x: number;
+	y: number;
+};
+
+type ProjectData = {
+	name: string;
+	description: string;
+	icon: {
+		filename: string;
+		size: Size;
+	};
+	pictures: {
+		picture: {
+			filename: string;
+			size: Size;
+		};
+		thumbnail: {
+			filename: string;
+			size: Size;
+		};
+		alt: string;
+	}[];
+};
+
+function Project({
+	index,
+	data,
+}: {
+	index: number;
+	data: ProjectData;
+})
 {
-	return (<></>);
+	const [ galleryOpen, setGalleryOpen ] = useState(false);
+
+	return (
+		<motion.div
+			className={ style.project }
+
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ delay: 0.1 + 0.1 * index }}
+		>
+			<p className={ style.name }>
+				<img
+					src={ `/api/assets/${data.icon.filename}` }
+					width={ data.icon.size.x }
+					height={ data.icon.size.y }
+				/>
+				<span>
+					{ data.name }
+				</span>
+			</p>
+			<div className={ style.body }>
+				<div className={ style.description }>
+					<Markdown
+						components={{
+							a(props) {
+								const { node, target, rel, children, ...rest } = props;
+								return (
+									<a target='_blank' rel='noreferrer noopener' { ...rest }>
+										{ children }
+										{ typeof children === 'string' && !children.startsWith('/') && <ExternalLink/> }
+									</a>
+								);
+							},
+						}}
+					>
+						{ data.description }
+					</Markdown>
+				</div>
+				<motion.div
+					className={ style.pictures }
+					initial={{ height: 250 }}
+					animate={{ height: galleryOpen ? 'auto' : 250 }}
+
+					transition={{
+						type: 'spring',
+						stiffness: 140,
+						damping: 24,
+						duration: 0.32,
+					}}
+				>
+					{ data.pictures.map((p, i) =>
+					(
+						<motion.button
+							className={ style.picture }
+
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ delay: 0.2 + 0.2 * index + 0.1 * i }}
+						>
+							<img
+								key={ i }
+								src={ `/api/assets/${p.thumbnail.filename}` }
+								width={ p.thumbnail.size.x }
+								height={ p.thumbnail.size.y }
+							/>
+							<span className={ style.alt }>
+								{ p.alt }
+							</span>
+						</motion.button>
+					)) }
+				</motion.div>
+				<button
+					className={ style.toggle }
+					onClick={ () => setGalleryOpen(!galleryOpen) }
+				>
+					<svg width={ 50 } height={ 30 } viewBox='0 0 50 30' className={ galleryOpen ? style.open : '' }>
+						<motion.line
+							x1={ 5 }
+							y1={ 5 }
+							x2={ 25 }
+							y2={ 25 }
+							strokeWidth={ 1 }
+							stroke='var(--foreground)'
+							shapeRendering='geometricPrecision'
+							transition={{
+								type: 'spring',
+								stiffness: 300,
+								damping: 30,
+							}}
+
+							animate={{
+								rotate: galleryOpen ? 90 : 0,
+							}}
+						/>
+						<motion.line
+							x1={ 45 }
+							y1={ 5 }
+							x2={ 25 }
+							y2={ 25 }
+							strokeWidth={ 1 }
+							stroke='var(--foreground)'
+							shapeRendering='geometricPrecision'
+							transition={{
+								type: 'spring',
+								stiffness: 300,
+								damping: 30,
+							}}
+
+							animate={{
+								rotate: galleryOpen ? -90 : 0,
+							}}
+						/>
+					</svg>
+				</button>
+			</div>
+		</motion.div>
+	);
+}
+
+export default function Page({ params }: Route.LoaderArgs)
+{
+	const [ projects, setProjects ] = useState<ProjectData[]>([]);
+
+	useEffect(() =>
+	{
+		let stop = false;
+
+		(async () =>
+		{
+			const response = await fetch(`/api/projects/${params.lang}`);
+			const json = await response.json() as ProjectData[];
+
+			if (!stop && response.ok) {
+				setProjects(json);
+			}
+		})();
+
+		return () =>
+		{
+			stop = true;
+		};
+	}, [ ]);
+
+
+	return (<>
+		<title>Portfolio</title>
+		<meta name='description' content={ `A list of some of the projects I've worked on.` }/>
+
+		<h1>Portfolio</h1>
+		<p>A list of some of the projects I've worked on.</p>
+
+		<div className={ style.list }>
+			{ projects.map((project, i) => (
+				<Project
+					key={ i }
+					index={ i }
+					data={ project }
+				/>
+			)) }
+		</div>
+	</>);
 }

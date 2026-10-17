@@ -1,0 +1,154 @@
+/**
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+**/
+
+@import url(../../../assets/font/roboto-condensed.css);
+
+.list {
+	display: flex;
+	flex-direction: column;
+
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.project {
+	/* border-top: 1px var(--foreground) solid;
+	border-radius: 12px;
+
+	padding: 0 12px; */
+
+	& .name {
+		display: flex;
+		align-items: center;
+
+		font-size: 1.5em;
+		gap: 12px;
+
+		font-family: 'Roboto Condensed';
+		font-weight: 300;
+
+		& img {
+			border-radius: 20%;
+		}
+	}
+
+	& .description,
+	& .pictures {
+		margin-left: 32px;
+		margin-right: 32px;
+	}
+
+	& .pictures {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+
+		overflow: hidden;
+		margin-left: 0;
+
+		& .picture {
+			display: flex;
+			position: relative;
+
+			border: 0;
+			padding: 0;
+			background: transparent;
+
+			overflow: hidden;
+
+			text-align: center;
+			font-family: 'Roboto';
+			color: var(--foreground);
+			font-size: 1em;
+
+			& img {
+				scale: 1;
+				filter: blur(0px) brightness(1) grayscale(0);
+
+				transition: filter 0.48s ease-in-out, scale 0.42s ease-in-out;
+			}
+
+			& .alt {
+				display: block;
+				padding: 8px;
+				width: calc(100% - 16px);
+
+				position: absolute;
+				bottom: 0px;
+
+				opacity: 0;
+				transform: translateY(60%);
+				transition: transform 0.48s ease-in-out, opacity 0.48s ease-in-out;
+			}
+
+			&:hover,
+			&:focus-visible {
+				& img {
+					scale: 1.1;
+					filter: blur(2px) brightness(0.44) grayscale(0.32);
+				}
+
+				& .alt {
+					opacity: 1;
+					transform: translateY(0%);
+				}
+			}
+		}
+	}
+
+	& .toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		width: 100%;
+		border: 0;
+		background: transparent;
+
+		padding: 8px 0;
+
+		border-bottom: var(--foreground) 1px solid;
+		border-color: transparent;
+
+		border-bottom-left-radius: 12px;
+		border-bottom-right-radius: 12px;
+
+		transition: border-color 0.2s ease;
+
+		& svg {
+			position: relative;
+			top: 0;
+			transition: top 0.4s ease;
+		}
+
+		&:hover,
+		&:focus-visible {
+			border-color: var(--foreground);
+
+			& svg {
+				top: 4px;
+
+				&.open {
+					top: -4px;
+				}
+			}
+		}
+	}
+
+	margin-bottom: 32px;
+}
