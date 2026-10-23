@@ -4,35 +4,35 @@
   "types": "src/types/index.d.ts",
   "scripts": {
     "build": "bunx --bun react-router build",
-    "dev": "react-router dev",
+    "dev": "bunx --bun react-router dev",
     "start": "bunx --bun react-router-serve ./build/server/index.js",
     "typecheck": "bunx --bun react-router typegen && tsc"
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.9.0",
-    "@react-router/serve": "^8.3.0",
-    "motion": "^13.2.0",
-    "negotiator": "^1.0.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
+    "@react-router/serve": "^8.5.0",
+    "motion": "^13.5.1",
+    "negotiator": "^1.1.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
     "react-markdown": "^10.1.0",
-    "react-router": "^8.3.0",
+    "react-router": "^8.5.0",
     "remark-gfm": "^4.0.1",
     "ua-parser-js": "^2.0.10"
   },
   "devDependencies": {
-    "@react-router/dev": "^8.3.0",
-    "@types/negotiator": "^0.6.4",
-    "@types/node": "^26.1.2",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.4",
-    "@vitejs/plugin-rsc": "^0.5.32",
-    "vite": "^8.1.5"
+    "@react-router/dev": "^8.5.0",
+    "@types/negotiator": "^0.6.5",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "@vitejs/plugin-rsc": "^0.5.38",
+    "vite": "^8.3.5"
   },
   "module": "src/index.ts",
   "type": "module",
   "peerDependencies": {
-    "typescript": "^5"
+    "typescript": "^5.9.3"
   }
 }
