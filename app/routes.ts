@@ -25,10 +25,10 @@ import {
 
 
 export default [
-	layout('./routes/error/layout.tsx', [
-		route('*', './routes/error/index.tsx'),
-	]),
 	...prefix(':lang', [
+		layout('./routes/error/layout.tsx', [
+			route('*', './routes/error/index.tsx'),
+		]),
 		layout('./routes/main/layout.tsx', [
 			route('/', './routes/main/home/index.tsx'),
 			route('/blog', './routes/main/blog/index.tsx'),

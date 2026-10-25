@@ -25,35 +25,26 @@ import {
 	motion,
 } from 'motion/react';
 
+import type {
+	Route,
+} from './+types/index';
+
 import DottedImage from '@/components/DottedImage';
 
 import txt404Image from '@/assets/svg/errors/404.svg';
 import alex404Image from '@/assets/img/errors/alex-404.png';
 
 import style from './error.module.css';
+import getLanguage from '@/data/languages';
 
 
-const phrases = [
-	`Did you lose something?`,
-	`Do you need a map?`,
-	`Where are you going?`,
-	`Is this the road to El Dorado?`,
-	`The princess is in another castle!`,
-	`Have you seen a white dog sleeping around here?`,
-	`Nemo and you would get along great.`,
-	`The page is a lie!`,
-	`KRIS, WHERE THE F*** ARE WE??`,
-];
-
-export default function HomeError()
+export default function HomeError({ params }: Route.LoaderArgs)
 {
-	const [ index, setIndex ] = useState(-1);
+	const i18n = getLanguage(params.lang!).pages.error;
 	const [ displayAlex, setDisplayAlex ] = useState(true);
 
 	useLayoutEffect(() =>
 	{
-		setIndex(Math.floor(Math.random() * phrases.length));
-
 		function onWindowResize()
 		{
 			setDisplayAlex(typeof window !== undefined && (window.innerWidth > 1200 || window.innerHeight > 1000));
@@ -93,7 +84,7 @@ export default function HomeError()
 				dotsRadius={ 1.5 }
 			/>
 			<p className={ style.phrase }>
-				{ phrases[index]?.split('').map((v, i) =>
+				{ i18n.notFound.phrases().split('').map((v, i) =>
 				(
 					<motion.span
 						initial={{ opacity: 0 }}
