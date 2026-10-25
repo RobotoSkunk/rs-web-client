@@ -23,7 +23,6 @@ import {
 
 import {
 	AnimatePresence,
-	LayoutGroup,
 	motion,
 } from 'motion/react';
 
@@ -33,6 +32,7 @@ import {
 } from 'react';
 
 import style from './navbar.module.css';
+import getLanguage from '@/data/languages';
 
 
 const maxWidthMobile = 800; // px
@@ -163,6 +163,8 @@ export default function NavBar({
 })
 {
 	const location = useLocation();
+	const i18n = getLanguage(lang).layout.nav;
+
 	const [ pathname, setPathname ] = useState('');
 	const [ open, setOpen ] = useState(false);
 	const [ smallScreen, setSmallScreen ] = useState(false);
@@ -205,27 +207,27 @@ export default function NavBar({
 	}[] = [
 		{
 			path: '',
-			label: 'Home',
+			label: i18n.home,
 			show: pathname !== '/',
 		},
 		{
 			path: 'blog',
-			label: 'Blog',
+			label: i18n.blog,
 			show: true,
 		},
 		{
 			path: 'portfolio',
-			label: 'Portfolio',
+			label: i18n.portfolio,
 			show: true,
 		},
 		{
 			path: 'illustrations',
-			label: 'Illustrations',
+			label: i18n.illustrations,
 			show: true,
 		},
 		{
 			path: 'contact',
-			label: 'Contact',
+			label: i18n.contact,
 			show: true,
 		},
 	];

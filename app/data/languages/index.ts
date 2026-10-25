@@ -24,7 +24,7 @@ const languages = {
 	'en-US': enUS,
 };
 
-export default function i18n(languageKey: string)
+export default function getLanguage(languageKey: string)
 {
 	if (!Object.keys(languages).includes(languageKey)) {
 		throw new Error(`The requested language key '${languageKey}' is not supported.`);

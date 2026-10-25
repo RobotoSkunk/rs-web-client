@@ -22,6 +22,8 @@ import {
 	NavLink,
 } from 'react-router';
 
+import getLanguage from '@/data/languages';
+
 
 export default function Footer({
 	lang,
@@ -29,26 +31,28 @@ export default function Footer({
 	lang: string;
 })
 {
+	const i18n = getLanguage(lang).layout.footer;
+
 	return (
 		<footer>
 			<div className='copyright'>
 				<span>
-					© Copyright { new Date().getFullYear() } RobotoSkunk.
+					{ i18n.copyright({ year: new Date().getFullYear() }) }
 					{ ' ' }
 					<a
 						href={ `https://github.com/RobotoSkunk/rs-web-client/commit/${GIT_COMMIT_HASH}` }
 						target='_blank'
 						rel='noreferrer noopener'
 					>
-						Built from { GIT_COMMIT_HASH.slice(0, 7) }.
+						{ i18n.builtFrom({ hash: GIT_COMMIT_HASH.slice(0, 7) }) }
 					</a>
 				</span>
 			</div>
 			<div className='links'>
-				<NavLink to={ `/${lang}/terms-of-use` }>Terms of Use</NavLink>
-				<NavLink to={ `/${lang}/privacy` }>Privacy Policy</NavLink>
-				<NavLink to={ `/${lang}/acknowledgements` }>Acknowledgements</NavLink>
-				<NavLink to={ `/${lang}/open-source` }>Open Source</NavLink>
+				<NavLink to={ `/${lang}/terms-of-use` }>{ i18n.terms }</NavLink>
+				<NavLink to={ `/${lang}/privacy` }>{ i18n.privacy }</NavLink>
+				<NavLink to={ `/${lang}/acknowledgements` }>{ i18n.acknowledgements }</NavLink>
+				<NavLink to={ `/${lang}/open-source` }>{ i18n.openSource }</NavLink>
 			</div>
 		</footer>
 	);
