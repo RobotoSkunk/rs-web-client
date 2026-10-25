@@ -25,16 +25,19 @@ import {
 } from 'motion/react';
 
 import style from './home.module.css';
+import getLanguage from '@/data/languages';
 
-
-const title = 'Edgar Lima';
-const subtitle = 'Computer Systems Engineer';
 
 export default function PageHome({ params }: Route.LoaderArgs)
 {
+	const i18n = getLanguage(params.lang!).pages.home;
+
+	const title = i18n.identity.name;
+	const subtitle = i18n.identity.career;
+
 	return (<>
-		<title>RobotoSkunk</title>
-		<meta name='description' content={ `Hi, I'm Edgar Lima, a computer system's engineer.` }/>
+		<title>{ i18n.meta.title }</title>
+		<meta name='description' content={ i18n.meta.description }/>
 
 		<div className={ style.identity }>
 			<h1>
