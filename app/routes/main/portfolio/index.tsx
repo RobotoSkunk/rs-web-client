@@ -32,6 +32,7 @@ import type {
 import Markdown from 'react-markdown';
 
 import ExternalLink from '@/components/icons/ExternalLink';
+import getLanguage from '@/data/languages';
 import style from './page.module.css';
 
 type Size = {
@@ -195,16 +196,17 @@ export async function loader({ params }: Route.LoaderArgs)
 	return json;
 }
 
-export default function Page({ loaderData }: Route.ComponentProps)
+export default function Page({ params, loaderData }: Route.ComponentProps)
 {
 	const projects = loaderData;
+	const i18n = getLanguage(params.lang!).pages.portfolio;
 
 	return (<>
-		<title>Portfolio</title>
-		<meta name='description' content={ `A list of some of the projects I've worked on.` }/>
+		<title>{ i18n.meta.title }</title>
+		<meta name='description' content={ i18n.meta.description }/>
 
-		<h1>Portfolio</h1>
-		<p>A list of some of the projects I've worked on.</p>
+		<h1>{ i18n.title }</h1>
+		<p>{ i18n.content }</p>
 
 		<div className={ style.list }>
 			{ projects.map((project, i) => (
