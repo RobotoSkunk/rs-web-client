@@ -1,6 +1,6 @@
 /**
  * robotoskunk.com front client. The frontend part of robotoskunk.com
- * Copyright (C) 2024  Edgar Lima (RobotoSkunk)
+ * Copyright (C) 2026  Edgar Lima (RobotoSkunk)
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published
@@ -16,23 +16,19 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 **/
 
-import simocaver from './data/simocaver';
-import genesis from './data/genesis';
-import kawitech from './data/kawitech';
-import siwiniChallenge from './data/siwini-challenge';
+import esMX from './es-MX';
+import enUS from './en-US';
 
-import pixelman from './data/pixelman';
-import circlebeats from './data/circlebeats';
-import gamink from './data/gamink';
+const languages = {
+	'es-MX': esMX,
+	'en-US': enUS,
+};
 
+export default function i18n(languageKey: string)
+{
+	if (!Object.keys(languages).includes(languageKey)) {
+		throw new Error(`The requested language key '${languageKey}' is not supported.`);
+	}
 
-export default [
-	simocaver,
-	genesis,
-	kawitech,
-	siwiniChallenge,
-
-	pixelman,
-	circlebeats,
-	gamink,
-] as ProjectData[];
+	return languages[languageKey as keyof typeof languages];
+}
