@@ -32,6 +32,7 @@ import {
 } from '../../contexts/nonce';
 
 import ANSISkunko from '../../components/ANSISkunko';
+import AlexPhrase from '@/components/AlexPhrase';
 
 import NavBar from '@/components/NavBar';
 import Background from '@/components/Background';
@@ -72,6 +73,7 @@ export default function Layout({
 
 				<Scripts nonce={ nonce }/>
 				<ScrollRestoration nonce={ nonce }/>
+				<AlexPhrase/>
 				<ANSISkunko/>
 			</body>
 		</html>

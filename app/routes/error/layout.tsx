@@ -33,6 +33,7 @@ import {
 } from '../../contexts/nonce';
 
 import ANSISkunko from '../../components/ANSISkunko';
+import AlexPhrase from '@/components/AlexPhrase';
 
 import Background from '@/components/Background';
 
@@ -66,6 +67,7 @@ export default function Layout({
 				</main>
 
 				<Scripts nonce={ nonce }/>
+				<AlexPhrase/>
 				<ANSISkunko/>
 			</body>
 		</html>
