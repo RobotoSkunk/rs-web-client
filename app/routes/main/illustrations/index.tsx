@@ -30,6 +30,7 @@ import type {
 } from '../../../+types/root';
 
 import style from './page.module.css';
+import getLanguage from '@/data/languages';
 
 
 type Size = {
@@ -162,16 +163,17 @@ export async function loader({ params }: Route.LoaderArgs)
 	return result;
 }
 
-export default function Page({ loaderData }: Route.ComponentProps)
+export default function Page({ params, loaderData }: Route.ComponentProps)
 {
 	const groups: IllustrationGroups = loaderData!;
+	const i18n = getLanguage(params.lang!).pages.illustrations;
 
 	return (<>
-		<title>Illustrations</title>
-		<meta name='description' content={ `A collection of my favorite illustrations.` }/>
+		<title>{ i18n.meta.title }</title>
+		<meta name='description' content={ i18n.meta.description }/>
 
-		<h1>Illustrations</h1>
-		<p>A collection of my favorite illustrations.</p>
+		<h1>{ i18n.title }</h1>
+		<p>{ i18n.content }</p>
 		{ groups.map((group, i) =>
 		(
 			<section key={ i }>
@@ -190,8 +192,8 @@ export default function Page({ loaderData }: Route.ComponentProps)
 								key={ `${i}-${j}` }
 								index={ j }
 								src={ `/api/assets/${illustration.picture_small_filename}` }
-								name={ illustration.name ?? 'Untitled' }
-								alt={ illustration.description ?? 'Not description provided for this picture.' }
+								name={ illustration.name ?? i18n.card.untitled }
+								alt={ illustration.description ?? i18n.card.description }
 								size={ size }
 							/>
 						);
