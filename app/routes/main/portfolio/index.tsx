@@ -120,6 +120,7 @@ function Project({
 					{ data.pictures.map((p, i) =>
 					(
 						<motion.button
+							key={ i }
 							className={ style.picture }
 
 							initial={{ opacity: 0 }}
@@ -186,30 +187,17 @@ function Project({
 	);
 }
 
-export default function Page({ params }: Route.LoaderArgs)
+export async function loader({ params }: Route.LoaderArgs)
 {
-	const [ projects, setProjects ] = useState<ProjectData[]>([]);
+	const response = await fetch(`${process.env.VITE_INTERNAL_API}/projects/${params.lang}`);
+	const json = await response.json() as ProjectData[];
 
-	useEffect(() =>
-	{
-		let stop = false;
+	return json;
+}
 
-		(async () =>
-		{
-			const response = await fetch(`/api/projects/${params.lang}`);
-			const json = await response.json() as ProjectData[];
-
-			if (!stop && response.ok) {
-				setProjects(json);
-			}
-		})();
-
-		return () =>
-		{
-			stop = true;
-		};
-	}, [ ]);
-
+export default function Page({ loaderData }: Route.ComponentProps)
+{
+	const projects = loaderData;
 
 	return (<>
 		<title>Portfolio</title>

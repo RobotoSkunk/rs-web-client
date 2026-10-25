@@ -141,44 +141,30 @@ function Card({
 	);
 }
 
-export default function Page({ params }: Route.LoaderArgs)
+export async function loader({ params }: Route.LoaderArgs)
 {
-	const [ groups, setGroups ] = useState<IllustrationGroups>([]);
+	const response = await fetch(`${process.env.VITE_INTERNAL_API}/illustrations/${params.lang}`);
+	const illustrations = await response.json() as Illustration[];
 
-	useEffect(() =>
-	{
-		let stop = false;
+	const result: IllustrationGroups = [];
 
-		(async () =>
-		{
-			// await wait(2000);
+	for (const data of illustrations) {
+		const year = Number.parseInt(data.created_at.split('-')[0]!);
+		let index = result.findIndex(group => group.year === year);
 
-			const response = await fetch(`/api/illustrations/${params.lang}`);
-			const illustrations = await response.json() as Illustration[];
+		if (index < 0) {
+			index = result.push({ year, data: [] }) - 1;
+		}
 
-			if (!stop) {
-				const result: IllustrationGroups = [];
+		result[index].data.push(data);
+	}
 
-				for (const data of illustrations) {
-					const year = Number.parseInt(data.created_at.split('-')[0]!);
-					let index = result.findIndex(group => group.year === year);
+	return result;
+}
 
-					if (index < 0) {
-						index = result.push({ year, data: [] }) - 1;
-					}
-
-					result[index].data.push(data);
-				}
-
-				setGroups(result);
-			}
-		})();
-
-		return () =>
-		{
-			stop = true;
-		};
-	}, [ ]);
+export default function Page({ loaderData }: Route.ComponentProps)
+{
+	const groups: IllustrationGroups = loaderData!;
 
 	return (<>
 		<title>Illustrations</title>
@@ -186,40 +172,6 @@ export default function Page({ params }: Route.LoaderArgs)
 
 		<h1>Illustrations</h1>
 		<p>A collection of my favorite illustrations.</p>
-		{ groups.length === 0 &&
-			<div className={ style.loader }>
-				{ [... new Array(4)].map((_, i) =>
-				(
-					<section key={ i }>
-						<div className={ style['year-loading'] }>
-							<LoadingBar/>
-						</div>
-						<div className={ style['cards-container'] }>
-							{ [... new Array(4)].map((_, j) =>
-							{
-								let delta = Math.floor(Math.abs(Math.tan(120 * (j + i + 3))) * 200);
-
-								if (delta > 200) {
-									delta = 200;
-								}
-
-								return (
-									<div
-										key={ `${i}-${j}` }
-										className={ style['card-background'] }
-										style={{
-											width: 350 + delta,
-										}}
-									>
-										<LoadingBar/>
-									</div>
-								);
-							}) }
-						</div>
-					</section>
-				)) }
-			</div>
-		}
 		{ groups.map((group, i) =>
 		(
 			<section key={ i }>
