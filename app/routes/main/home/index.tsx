@@ -51,7 +51,7 @@ export default function PageHome({ params }: Route.LoaderArgs)
 							delay: title.length * 0.06 - 0.06 * i,
 						}}
 
-						key={ `${i}-${v}` }
+						key={ `${params.lang}-${i}-${v}` }
 					>
 						{ v }
 					</motion.span>
@@ -68,7 +68,7 @@ export default function PageHome({ params }: Route.LoaderArgs)
 							delay: 0.03 * i,
 						}}
 
-						key={ `${i}-${v}` }
+						key={ `${params.lang}-${i}-${v}` }
 					>
 						{ v }
 					</motion.span>

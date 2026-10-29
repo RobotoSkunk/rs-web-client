@@ -1,0 +1,106 @@
+/**
+ * robotoskunk.com front client. The frontend part of robotoskunk.com
+ * Copyright (C) 2026  Edgar Lima (RobotoSkunk)
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+**/
+
+.footer {
+	display: flex;
+	flex-direction: row;
+
+	gap: 20px;
+	padding: 140px 80px;
+	padding-bottom: 40px;
+	font-weight: 300;
+
+	background: linear-gradient(transparent, var(--background));
+
+	& .links,
+	& .copyright {
+		flex-grow: 1;
+	}
+
+	& .copyright {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+
+		gap: 16px;
+	}
+
+	& .links {
+		display: flex;
+		flex-direction: column;
+
+		font-size: 1.2em;
+		gap: 12px;
+	}
+
+	& .lang-link {
+		display: flex;
+		align-items: center;
+
+		gap: 6px;
+	}
+}
+
+.dropdown {
+	display: flex;
+	flex-direction: column;
+
+	position: absolute;
+	bottom: calc(100% + 12px);
+	z-index: 10;
+
+	--border: 1px solid var(--foreground);
+	border-top: var(--border);
+	border-bottom: var(--border);
+
+	background: linear-gradient(var(--background), color-mix(in srgb, var(--background), transparent 80%));
+	backdrop-filter: blur(2px);
+
+	overflow: hidden;
+
+	& a {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+
+		padding: 12px 8px;
+
+		&:hover,
+		&:focus-visible {
+			text-decoration: underline;
+		}
+
+		&::after {
+			display: none !important;
+		}
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.footer {
+		flex-direction: column-reverse;
+		gap: 60px;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.footer {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+}

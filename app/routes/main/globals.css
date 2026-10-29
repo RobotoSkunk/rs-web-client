@@ -55,36 +55,6 @@ main {
 	min-height: calc(100vh - 20px);
 }
 
-footer {
-	display: flex;
-	flex-direction: row;
-
-	gap: 20px;
-	padding: 140px 80px;
-	padding-bottom: 40px;
-	font-weight: 300;
-
-	background: linear-gradient(transparent, var(--background));
-
-	& .links,
-	& .copyright {
-		flex-grow: 1;
-	}
-
-	& .copyright {
-		display: flex;
-		align-items: flex-end;
-	}
-
-	& .links {
-		display: flex;
-		flex-direction: column;
-
-		font-size: 1.2em;
-		gap: 12px;
-	}
-}
-
 a:not(.raw) {
 	position: relative;
 	width: fit-content;
@@ -139,17 +109,5 @@ button {
 		margin-left: 20px;
 		width: calc(100vw - 40px);
 		min-height: calc(100vh - 60px);
-	}
-
-	footer {
-		flex-direction: column-reverse;
-		gap: 60px;
-	}
-}
-
-@media screen and (max-width: 550px) {
-	footer {
-		padding-left: 10px;
-		padding-right: 10px;
 	}
 }
