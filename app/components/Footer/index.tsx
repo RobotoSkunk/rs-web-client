@@ -62,6 +62,7 @@ export default function Footer({
 {
 	const i18n = getLanguage(lang).layout.footer;
 	const dropdownRef = useRef<HTMLDivElement>(null);
+	const dropdownToggleRef = useRef<HTMLAnchorElement>(null);
 	const [ languagesOpen, setLanguageOpen ] = useState(false);
 
 	function getCurrentLanguage()
@@ -73,7 +74,10 @@ export default function Footer({
 	{
 		function clickedOutside(ev: MouseEvent)
 		{
-			if (dropdownRef.current && !dropdownRef.current.contains(ev.target as any)) {
+			if (dropdownRef.current &&
+				dropdownToggleRef.current &&
+				!dropdownToggleRef.current.contains(ev.target as any) &&
+				!dropdownRef.current.contains(ev.target as any)) {
 				setLanguageOpen(false);
 			}
 		}
@@ -93,6 +97,7 @@ export default function Footer({
 					<a
 						className={ style['lang-link'] }
 						href='#'
+						ref={ dropdownToggleRef }
 						onClick={ (ev) =>
 						{
 							ev.preventDefault();
